@@ -18,4 +18,18 @@ class PostsController extends AppController
         // 取得した内容を「post」という名前でViewに渡す
         $this->set('post', $post);
     }
+
+    // addアクション
+    public function add()
+    {
+        // Form送信されたかどうかを判断
+        if ($this->request->is('post')) {
+            // Postモデルに新規保存
+            $this->Post->save($this->request->data);
+
+            // メッセージをセットして一覧に遷移
+            $this->Session->setFlash('追加しました！');
+            return $this->redirect('/posts/');
+        }
+    }
 }

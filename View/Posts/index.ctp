@@ -1,5 +1,7 @@
 <h1>Blog posts</h1>
 
+<?php echo $this->Html->link('新規投稿', '/posts/add'); ?>
+
 <table>
   <tr>
     <th>Id</th>
