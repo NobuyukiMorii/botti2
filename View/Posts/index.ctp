@@ -12,7 +12,7 @@
 <?php foreach ($posts as $post) { ?>
   <tr>
     <td><?php echo h($post['Post']['id']); ?></td>
-    <td><?php echo h($post['Post']['title']); ?></td>
+    <td><?php echo $this->Html->link($post['Post']['title'], '/posts/view/'.$post['Post']['id']); ?></td>
     <td><?php echo h($post['Post']['created']); ?></td>
   </tr>
 <?php } ?>
