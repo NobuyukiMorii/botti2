@@ -4,12 +4,20 @@ class Meeting extends AppModel {
 
 	public $uses  = array('Meeting','User','Bar');
 
-	public function afterFind ($results, $primary) {
-		var_dump($results);exit;
-	}
-
-
-	//public $hasOne = array('User','Bar');
+	public $belongsTo = array(
+		'User1' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id_1'
+		),
+		'User2' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id_2'
+		),
+		'Bar' => array(
+			'className' => 'Bar',
+			'foreignKey' => 'bar_id'
+		),
+	);
 
 	// public $validate = array(
 	// 	'user_id_1' => array(

@@ -27,14 +27,18 @@ class User extends AppModel {
 	}
 
     public function afterFind ($results, $primary) {
-        // var_dump($results);exit;
-        
+
         foreach($results as $i => $item){
 
-            if ($item['User']['gender'] == 1) {
-                $item['User']['genderText'] = '男性';
-            } else {
-                $item['User']['genderText'] = '女性';
+            foreach (array('User', 'User1', 'User2') as $model) {
+                if (array_key_exists($model, $item)) {
+
+                    if ($item[$model]['gender'] == 1) {
+                        $item[$model]['genderText'] = '男性';
+                    } else {
+                        $item[$model]['genderText'] = '女性';
+                    }
+                }
             }
 
             $results[$i] = $item;
