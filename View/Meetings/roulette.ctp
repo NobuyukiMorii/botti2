@@ -40,7 +40,7 @@
 
     </tr>
     <tr>
-        <td><img src="<?php echo $this->Html->url("/Meetings/image2Bar"); ?>"></td>
+        <td><img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>"></td>
         <td><?php echo h($randomBar['Bar']['name']); ?></td>
     	<td><?php echo h($randomBar['Bar']['location']);?></td>
 		<td><?php echo h($randomBar['Bar']['telnumber']); ?></td>

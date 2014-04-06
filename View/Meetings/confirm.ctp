@@ -33,8 +33,9 @@
 
     <h2>バー確認画面</h2>
         <h2>写真</h2>
-        <img src="<?php echo $this->Html->url("/meetings/image2Bar"); ?>"
-        <br />
+        <img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>">
+<!--         <img src="<?php echo $this->Html->url("/meetings/image2Bar"); ?>"
+ -->        <br />
         <h2>名前</h2>
         <?php echo $randomBar['Bar']['name']; ?>
         <br/>
@@ -58,8 +59,9 @@
 
     <h2>パートナーの情報</h2>
         <h2>写真</h2>
-        <img src="<?php echo $this->Html->url("/meetings/image2User"); ?>"
-        <br/>
+        <img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>">
+<!--         <img src="<?php echo $this->Html->url("/meetings/image2User"); ?>"
+ -->        <br/>
         <h2>名前</h2>
         <?php echo $randomUser['User']['nickname']; ?>
         <br/>

@@ -64,9 +64,9 @@ class MeetingsController extends AppController
 
     }
 
-    public function image2Bar(){
+    public function image2Bar($bar_id){
         //指定したidに沿ってデータを一件検索
-        $graphic = $this->Session->read('randomBar');
+        $graphic = $this->Bar->findById($bar_id);
         //画像ファイルをアップロードする際の定型コード。どんな データなのかを教えるおまじない。
         header('Content-type: image/jpeg');
         //画像ファイルの呼び出し
@@ -87,9 +87,9 @@ class MeetingsController extends AppController
 
     public function detail(){
 
-        $requestedBar = $this->Session->read('randomBar');
-        $requestedUser = $this->Session->read('randomUser');
-        $this->set(compact('requestedBar','requestedUser'));
+        $randomBar = $this->Session->read('randomBar');
+        $randomUser = $this->Session->read('randomUser');
+        $this->set(compact('randomBar','randomUser'));
     }
 
     public function confirm(){
@@ -109,7 +109,7 @@ class MeetingsController extends AppController
         $randomUser = $this->Session->read('randomUser');
         $this->set('randomUser',$randomUser);
         $this->request->data["Meeting"]["user_id_2"] = $randomUser['User']['id'];   
-        var_dump($this->request->data);
+        //var_dump($this->request->data);
 
         $this->set("data",$this->request->data);
         /*
