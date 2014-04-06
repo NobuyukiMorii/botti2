@@ -54,7 +54,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'root',
-		'database' => 'blog',
+		'database' => 'gachakoi',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
@@ -63,9 +63,9 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
+		'login' => 'root',
+		'password' => 'root',
+		'database' => 'gachakoi',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
