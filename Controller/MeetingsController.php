@@ -21,7 +21,7 @@ class MeetingsController extends AppController
         /*
         男も女もでる。なぜだ。
         */
-        
+
         $login_gender = $this->Auth->user('gender');
         if($login_gender == 1){
             $partner_gender = 2;
@@ -29,7 +29,7 @@ class MeetingsController extends AppController
             $partner_gender = 1;
         }
         //制御構造の場合、外の}には;いらない。
-        
+
         $randomUser = $this->User->find('first',array(
             'conditions' => array('User.age >=' => 20,'User.gender' => $partner_gender),
             'order' => 'rand()',
@@ -74,9 +74,10 @@ class MeetingsController extends AppController
         exit;
     }
 
-    public function image2User(){
-        //指定したidに沿ってデータを一件検索
-        $graphic = $this->Session->read('randomUser');
+    public function image2User($user_id){
+
+        $graphic = $this->User->findById($user_id);
+
         //画像ファイルをアップロードする際の定型コード。どんな データなのかを教えるおまじない。
         header('Content-type: image/jpeg');
         //画像ファイルの呼び出し
@@ -114,7 +115,8 @@ class MeetingsController extends AppController
         /*
         保存すると勝手にUserテーブルと連携しようとしやがる。
         */
-        //$this->Meeting->save($this->request->data);
+
+        $this->Meeting->save($this->request->data);
     }
 
 

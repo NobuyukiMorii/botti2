@@ -14,10 +14,10 @@
         <th>メッセージ</th>
     </tr>
     <tr>
-        <td><img src="<?php echo $this->Html->url("/Meetings/image2User"); ?>"></td>
+        <td><img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>"></td>
         <td><?php echo h($randomUser['User']['nickname']); ?></td>
         <td><?php echo h($randomUser['User']['age']); ?></td>
-        <td><?php echo h($randomUser['User']['gender']); ?></td>
+        <td><?php echo h($randomUser['User']['genderText']); ?></td>
       	<td><?php echo h($randomUser['User']['work']);?></td>
         <td><?php echo h($randomUser['User']['prefecture']);?></td>
         <td><?php echo h($randomUser['User']['message']);?></td>

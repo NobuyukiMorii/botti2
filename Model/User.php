@@ -26,6 +26,23 @@ class User extends AppModel {
 	return true;
 	}
 
+    public function afterFind ($results, $primary) {
+        // var_dump($results);exit;
+        
+        foreach($results as $i => $item){
+
+            if ($item['User']['gender'] == 1) {
+                $item['User']['genderText'] = '男性';
+            } else {
+                $item['User']['genderText'] = '女性';
+            }
+
+            $results[$i] = $item;
+
+        }
+        return $results;
+    }
+
     /*
     なんかメッセージが表示されない。
     あ、ビューに表示させるところがないからだ。作ろう。
@@ -44,13 +61,13 @@ class User extends AppModel {
             ),
         ),
 
-        'plain' => array(
-             // パスワード・確認パスワードの一致
-             'match' => array(
-                 'rule' => array( 'confirmPassword', 'plain', 'plain_confirm'),
-                 'message' => 'パスワードが違います'
-             )
-        ),
+        // 'plain' => array(
+        //      // パスワード・確認パスワードの一致
+        //      'match' => array(
+        //          'rule' => array( 'confirmPassword', 'plain', 'plain_confirm'),
+        //          'message' => 'パスワードが違います'
+        //      )
+        // ),
 
         // 'gender' => array(
         //         'rule' => 'notEmpty',
