@@ -31,8 +31,7 @@ class MeetingsController extends AppController
         //制御構造の場合、外の}には;いらない。
         
         $randomUser = $this->User->find('first',array(
-            'conditions' => array('User.gender' => $partner_gender),
-            'conditions' => array('User.age >=' => 20),
+            'conditions' => array('User.age >=' => 20,'User.gender' => $partner_gender),
             'order' => 'rand()',
             'limit' => 1
             )
