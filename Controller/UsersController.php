@@ -13,7 +13,7 @@ class UsersController extends AppController
     public $components = array('Auth','Session');
 
     public function beforeFilter(){
-        $this->Auth->allow('add');
+        $this->Auth->allow('add','/gachakoi/View/xml/default');//ホーム画面に行けない
         /*Facebockログインのやり方わからない為コメントアウト
         $this->Auth->allow('facebook');
         */

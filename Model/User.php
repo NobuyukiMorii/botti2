@@ -4,7 +4,7 @@ class User extends AppModel {
 
     public $uses  = array('User');
 /*
-    public $hasmany = array(
+    public $hasone = array(
         "Meeting" => array(
             'className' => 'Meeting',
             'conditions' => '',
@@ -18,14 +18,13 @@ class User extends AppModel {
     );
 */
 
-    //user_is_1とのリレーションをどうする
-
 	public function beforeSave(){
 		$this->data['User']['password'] =
 		 AuthComponent::password($this->data['User']['password']);
 	return true;
 	}
 
+    //user_id_1とのリレーションをどうする
     public function afterFind ($results, $primary) {
 
         foreach($results as $i => $item){

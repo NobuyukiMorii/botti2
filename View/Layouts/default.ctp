@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>ガチャ恋</title>
 
     <?=$this->Html->css('bootstrap.css')?>
     <?=$this->Html->css('style.css')?>
@@ -30,13 +30,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">ガチャする</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="#">会員登録する</a></li>
+            <li><a href="#about">お店の一覧を見る</a></li>
+            <li><a href="#contact">利用規約</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -47,5 +47,7 @@
 			<?php echo $this->fetch('content'); ?>
 
     </div><!-- /.container -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
   </body>
 </html>

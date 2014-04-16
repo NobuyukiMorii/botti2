@@ -5,7 +5,7 @@ class Bar extends AppModel {
 	public $uses  = array('Bar');
 
 /*
-	public $hasmany = array(
+	public $hasone = array(
         "Meeting" => array(
             'className' => 'Meeting',
             'conditions' => '',

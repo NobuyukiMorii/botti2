@@ -76,6 +76,8 @@
 <a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">バー一覧</a>
 <br />
 <a href="<?php echo $this->Html->url("/users/edit/".$loginUser['id']); ?>">プロフィール編集</a>
+<br />
+<a href="<?php echo $this->Html->url('/meetings'); ?>">約束一覧画面</a>
 予約確認画面も必要
 
 

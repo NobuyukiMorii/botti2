@@ -18,9 +18,6 @@ class MeetingsController extends AppController
     }
 
     public function roulette(){
-        /*
-        男も女もでる。なぜだ。
-        */
 
         $login_gender = $this->Auth->user('gender');
         if($login_gender == 1){
@@ -38,11 +35,6 @@ class MeetingsController extends AppController
         );
 
         $randomBar = $this->Bar->find('first',array(
-            /*
-            ユーザーのエリアとお店のエリアが一致するようにしたい。
-            Barが定義されていないとか言われる。してるっちゅうに！
-            */
-            //'conditions'=> array('Bar.area' => $randomUser['User']['area']),
             'order' => 'rand()',
             'limit' => 1
             )
