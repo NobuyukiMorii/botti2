@@ -1,48 +1,46 @@
-<form  action="<?php echo $this->Html->url("/bars/admin_confirm");?>" method="post" enctype="multipart/form-data">
+<?php echo $this->Form->create('Bar',array('type' => 'post', 'action'=>'admin_confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
 
-    <h2>バー登録画面</h2>
+    <h2>新しくバーを登録する</h2>
 
-        <p>ID</p>
-        <input type="text" name="data[Bar][id]">
-        <br />
-        <p>店名</p>
-        <td><input type="text" name="data[Bar][name]"></td>
-        <br />
-        <p>住所</p>
-        <input type="text" name="data[Bar][location]">
-        <br />
-        <p>電話番号</p>
-        <input type="text" name="data[Bar][telnumber]">
-        <br />
-        <p>最寄駅</p>
-        <input type="text" name="data[Bar][station]">
-        <br />
-        <p>最寄口</p>
-        <input type="text" name="data[Bar][gate]">
-        <br />
-        <p>料金</p>
-        <input type="text" name="data[Bar][price]">
-        <br />
-        <p>紹介文</p>
-        <input type="text" name="data[Bar][description]">
-        <br />
-        <p>URL</p>
-        <input type="text" name="data[Bar][url]">
-        <br />
-        <p>店舗のエリア</p>
-        <label id="area">
-        <input type="checkbox" name="data[Bar][area]" value="東京" id="area">東京<br />
-        <input type="checkbox" name="data[Bar][area]" value="大阪" id="area">大阪<br />
-        <input type="checkbox" name="data[Bar][area]" value="札幌" id="area">札幌<br />
-        <input type="checkbox" name="data[Bar][area]" value="仙台" id="area">仙台<br />
-        <input type="checkbox" name="data[Bar][area]" value="博多" id="area">博多<br />
-        <input type="checkbox" name="data[Bar][area]" value="松山" id="area">松山<br />
-        </label>
-        <br />
+        <div class="form-group">
+         <?php echo $this->Form->input('Bar.name', array('class' => 'form-control'));?>
+        </div>
+        <div class="form-group">
+         <?php echo $this->Form->input('Bar.location', array('class' => 'form-control'));?>
+        </div>
+        <div class="form-group">
+         <?php echo $this->Form->input('Bar.telnumber', array('class' => 'form-control'));?>
+        </div>
+        <div class="form-group">
+         <?php echo $this->Form->input('Bar.station', array('class' => 'form-control'));?>
+        </div>
+        <div class="form-group">
+         <?php echo $this->Form->input('Bar.gate', array('class' => 'form-control'));?>
+        </div>
+        <div class="form-group">
+         <?php echo $this->Form->input('Bar.price', array('class' => 'form-control'));?>
+        </div>
+        <div class="form-group">
+         <?php echo $this->Form->input('Bar.description', array('class' => 'form-control'));?>
+        </div>
+        <div class="form-group">
+         <?php echo $this->Form->input('Bar.url', array('class' => 'form-control'));?>
+        </div>
+        <?php echo $this->Form->file('Bar.image', array('class' => 'btn'));?>
 
-        <p>写真</p>
-        <input type="file" name="data[Bar][image]">
-        <br />
-        <input type="submit" value="登録する">
+<!--         <input type = "file" id = "BarImage" name = data["Bar"]["image"] style = "display: none;">
 
-</form>
+        <div class="input-prepend">
+        <a class="btn" onclick="$('#file-input').click();"><i class="icon-folder-open"></i></a>
+        <span id="cover" class="input-xlarge uneditable-input">select file</span>
+        </div>
+
+        <script type="text/javascript">
+        $('#file-input').change(function() {
+        $('#cover').html($(this).val());
+        });
+        </script>
+ -->
+        <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-primary'));?>
+        <?php echo $this->Form->end();?>
+

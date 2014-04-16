@@ -62,7 +62,7 @@
 </form>
 
 <br />
-<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">戻る</a>
+<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">ガチャする</a>
 <br />
 <br />
 <a href="<?php echo $this->Html->url('/bars/admin_register'); ?>">バー登録画面（管理者のみ）</a>
@@ -79,6 +79,27 @@
 <br />
 <a href="<?php echo $this->Html->url('/meetings'); ?>">約束一覧画面</a>
 予約確認画面も必要
+
+
+<!-- <h2>ガチャ恋</h2>
+
+<?php
+
+if($this->Session->check('Message.auth'))
+    echo $this->Session->flash('auth');?>
+
+
+<?php echo $this->Form->create('User',array('action'=>'login', 'role' => 'form'));?>
+
+  <div class="form-group">
+    <?php echo $this->Form->input('username', array('class' => 'form-control'));?>
+  </div>
+  <div class="form-group">
+    <?php echo $this->Form->input('password', array('class' => 'form-control'));?>
+  </div>
+<?php echo $this->Form->submit('login', array('class' => 'btn btn-primary'));?>
+<?php echo $this->Form->end();?> -->
+
 
 
 

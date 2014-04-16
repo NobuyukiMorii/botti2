@@ -1,99 +1,96 @@
-<form action="/gachakoi/users/add" method="post" enctype="multipart/form-data">
+<!-- <form action="/gachakoi/users/add" method="post" enctype="multipart/form-data"> -->
 <!--<?php echo $this->Form->create(false,array('type'=>'post','action'=>"/users/add",'enctype'=>"multipart/form-data")); ?> -->
 
-    <h2>ユーザー新規登録画面</h2>
 
-            <p>メールアドレス</p>
-<!--             <input type="text" name="data[User][username]"> -->
-            <?php echo $this->Form->text('User.username'); ?>
+<h1>ユーザー新規登録画面</h1>
+
+<?php echo $this->Form->create('User',array('type' => 'post', 'action'=>'add', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
+      <fieldset>
+
+            <div class="form-group">
+            <label for="UserUsername">メールアドレス</label>
+            <?php echo $this->Form->input('User.username', array('class' => 'form-control'));?>
             <?php echo $this->Form->error('User.username'); ?>
-            <br />
+            </div>
 
-            <p>パスワード</p>
-<!--             <input type="password" name="data[User][password]"> -->
-            <?php echo $this->Form->text('User.password'); ?>
-            <?php echo $this->Form->error('User.password'); ?>
-            <br />
-            
-            <p>ニックネーム</p>
-<!--             <input type="text" name="data[User][nickname]"> -->
-            <?php echo $this->Form->text('User.nickname'); ?>
-            <?php echo $this->Form->error('User.nickname'); ?>
-            <br />
-            
-            <p>性別</p>
-<!--             <input type="radio" name="data[User][gender]" value="男性">男性<br />
-            <input type="radio" name="data[User][gender]" value="女性">女性<br /> -->
-            <?php echo $this->Form->radio('User.gender',array(1 => '男性',2 => '女性'),array('legend'=>'性別')); ?>
-            <?php echo $this->Form->error('User.gender'); ?>
-            <br />
-            <br />
-            
-            <p>年齢</p>
-<!--             <input type="text" name="data[User][age]"> 歳 -->
-            <?php echo $this->Form->text('User.age'); ?>
-            <?php echo $this->Form->error('User.age'); ?>     
-            <br />
-            
-            <p>都道府県</p>
-<!--             <input type="text" name="data[User][prefecture]">県 -->
-            <?php echo $this->Form->text('User.prefecture'); ?>県
-            <?php echo $this->Form->error('User.prefecture'); ?>    
-            <br />
-            
-            <p>職業</p>
-<!--             <input type="text" name="data[User][work]"> -->
-            <?php echo $this->Form->text('User.work'); ?>
-            <?php echo $this->Form->error('User.work'); ?>  
-            <br />
+            <div class="form-group">
+            <?php echo $this->Form->input('User.password', array('class' => 'form-control'));?>
+            <?php echo $this->Form->error('User.password', array('class' => "warning")); ?>
+            </div>
 
-            <p>希望曜日</p>
-<!--             <input type="text" name="data[User][kibouyoubi]">曜日 -->
-            <?php echo $this->Form->text('User.kibouyoubi'); ?>曜日
-            <?php echo $this->Form->error('User.kibouyoubi'); ?>        
-            <br />
+            <div class="form-group">
+            <?php echo $this->Form->input('User.nickname', array('class' => 'form-control'));?>
+            <?php echo $this->Form->error('User.nickname', array('class' => "warning")); ?>
+            </div>
 
-            <p>希望時間</p>
-<!--             <input type="text" name="data[User][kibouzikan]">時〜 -->
-            <?php echo $this->Form->text('User.kibouzikan'); ?>時〜
-            <?php echo $this->Form->error('User.kibouzikan'); ?>       
-            <br />
-            
-            <p>希望駅</p>
-<!--             <input type="text" name="data[User][kiboueki]"> -->
-            <?php echo $this->Form->text('User.kiboueki'); ?>駅
-            <?php echo $this->Form->error('User.kiboueki'); ?> 
-            <br />
+            <div class="radio">
+            <label>
+            <input type="radio" name='User.gender' id="UserGender" value="1" checked>
+            男性
+            </label>
+            </div>
+            <div class="radio">
+            <label>
+            <input type="radio" name="User.gender" id="UserGender" value="2">
+            女性
+            </label>
 
-            <p>行動範囲（エリア）</p>
-<!--             <label id="area">
-            <input type="checkbox" name="data[User][area]" value="東京" id="area">東京<br />
-            <input type="checkbox" name="data[User][area]" value="大阪" id="area">大阪<br />
-            <input type="checkbox" name="data[User][area]" value="札幌" id="area">札幌<br />
-            <input type="checkbox" name="data[User][area]" value="仙台" id="area">仙台<br />
-            <input type="checkbox" name="data[User][area]" value="博多" id="area">博多<br />
-            <input type="checkbox" name="data[User][area]" value="松山" id="area">松山<br /> -->
+            </div>
 
-            <?php echo $this->Form->radio('User.area',array(
-                  1 => '東京',
-                  2 => '大阪',
-                  3 => '札幌',
-                  4 => '仙台',
-                  5 => '博多',
-                  6 => '松山'
-            ),array('legend'=>'生活エリア')); ?>
-            <?php echo $this->Form->error('User.area'); ?>
+            <div class="form-group">
+            <?php echo $this->Form->input('User.birthday', array('class' => 'form-control'));?>
+            <?php echo $this->Form->error('User.birthday', array('class' => "warning")); ?>
+            </div>
 
-            <br />
-            
-            <p>写真</p>
-<!--             <input type="file" name="data[User][image]"> -->
-            <?php echo $this->Form->input( 'User.image', array( 'type' => 'file')); ?>
-            <?php echo $this->Form->error('User.image'); ?> 
-            <br />
-            <br />
+            <div class="form-group">
+            <select name="User.prefecture" id="prefecture" class="form-control">
+            <option value="" selected>都道府県を以下からお選びください。</option>
+            <?php
+            $prefectures = array ('北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','                  山梨県','新潟県','富山県','石川県','福井県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','                  奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県'                   ,'熊本県','大分県','宮崎県','鹿児島県','沖縄県');
+            foreach($prefectures as $prefecture){
+            print('<option value="'.$prefecture.'">'.$prefecture.'</option>');
+            }
+            ?>
+            </select>
+            <?php echo $this->Form->error('User.prefecture', array('class' => "warning")); ?>
+            </div>
 
-            <!-- <input type="submit" value="登録する"> -->
-            <?php echo $this->Form->submit("登録する"); ?>
+            <div class="form-group">
+            <select name='User.work' id="UserWork" class="form-control">
+            <option value="" selected>職業を以下からお選びください。</option>
+            <option value="大学生">大学生</option>
+            <option value="大学院生">大学院生</option>
+            <option value="会社員">会社員</option>
+            <option value="経営者">経営者</option>
+            <option value="フリーランス">フリーランス</option>
+            <option value="その他">その他</option>
+            </select>
+            <?php echo $this->Form->error('User.work', array('class' => "warning")); ?>
+            </form>
+            </div>
+
+            <div class="form-group">
+            <?php echo $this->Form->input('User.kibouyoubi', array('class' => 'form-control input-sm'));?>
+            <?php echo $this->Form->error('User.kibouyoubi', array('class' => "warning")); ?>
+            </div>
+
+            <div class="form-group">
+            <?php echo $this->Form->input('User.kibouzikan', array('class' => 'form-control input-sm'));?>
+            <?php echo $this->Form->error('User.kibouzikan', array('class' => "warning")); ?>
+            </div>
+
+            <div class="form-group">
+            <?php echo $this->Form->input('User.kiboueki', array('class' => 'form-control input-sm'));?>
+            <?php echo $this->Form->error('User.kiboueki', array('class' => "warning")); ?>
+            </div>
+
+             <p>写真</p>
+<!--         <input type="file" name="data[User][image]"> -->
+             <?php echo $this->Form->input( 'User.image', array( 'type' => 'file')); ?>
+             <?php echo $this->Form->error('User.image'); ?> 
+
+             <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-primary'));?>
+             <?php echo $this->Form->end();?>
+
+      <fieldset>
 <?php echo $this->Form->end(); ?>
-

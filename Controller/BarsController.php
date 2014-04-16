@@ -63,11 +63,15 @@ class BarsController extends AppController
     }
 
     public function result() {
-        $data = $this->Bar->findAllByName($this->request->data['Bar']['name']);
+        $data = null;
+        if(!empty($this->request->data)){
+            $data = $this->Bar->find('all', array('conditions' => 
+                array('Bar.name like' => "%{$this->data['Bar']['name']}%")));
+        } else {
+            $data = $this->Board->find('all');
+        }
         $this->set('data',$data);
+
     }
-
 //バーの詳細画面を追加
-
-
 }

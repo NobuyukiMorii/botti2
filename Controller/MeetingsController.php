@@ -111,6 +111,11 @@ class MeetingsController extends AppController
         $this->Meeting->save($this->request->data);
     }
 
+        public function userpolicy(){
+
+
+    }
+
 
     /*Facebook機能がよく分からないためコメントアウト
     function post(){
