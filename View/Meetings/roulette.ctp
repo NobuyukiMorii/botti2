@@ -10,16 +10,14 @@
         <th>年齢</th>
         <th>性別</th>
         <th>職業</th>
-        <th>都道府県</th>
         <th>メッセージ</th>
     </tr>
     <tr>
-        <td><img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>"></td>
+        <td><img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>", width = '100', height = '100' , alt ='UserImage'></td>
         <td><?php echo h($randomUser['User']['nickname']); ?></td>
         <td><?php echo h($randomUser['User']['age']); ?></td>
         <td><?php echo h($randomUser['User']['genderText']); ?></td>
       	<td><?php echo h($randomUser['User']['work']);?></td>
-        <td><?php echo h($randomUser['User']['prefecture']);?></td>
         <td><?php echo h($randomUser['User']['message']);?></td>
     </tr>
     </table>
@@ -40,7 +38,7 @@
 
     </tr>
     <tr>
-        <td><img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>"></td>
+        <td><a href="<?php echo h($randomBar['Bar']['url']) ?>"><img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>", width = '100', height = '100' , alt ='BarImage'></a></td>
         <td><?php echo h($randomBar['Bar']['name']); ?></td>
     	<td><?php echo h($randomBar['Bar']['location']);?></td>
 		<td><?php echo h($randomBar['Bar']['telnumber']); ?></td>
@@ -48,7 +46,6 @@
     	<td><?php echo h($randomBar['Bar']['gate']);?></td>
     	<td><?php echo h($randomBar['Bar']['price']); ?></td>
         <td><?php echo h($randomBar['Bar']['description']); ?></td>
-    	<td><?php echo h($randomBar['Bar']['url']);?></td>
     </tr>
     </table>
 

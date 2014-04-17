@@ -46,6 +46,10 @@ class User extends AppModel {
         return $results;
     }
 
+    public $virtualFields = array(
+        'age' => '(year(curdate()) - year(User.birthday)) - (right(curdate(),5) < right(User.birthday,5))'
+    );
+
     /*
     なんかメッセージが表示されない。
     あ、ビューに表示させるところがないからだ。作ろう。

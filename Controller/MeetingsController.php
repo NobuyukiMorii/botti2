@@ -17,6 +17,14 @@ class MeetingsController extends AppController
         $this->Auth->loginError = "ログインに失敗しました。";
     }
 
+    public function getAge($birthday) {
+
+    $dif = date("Ymd") - date('Ymd',strtotime($birthday));
+    $age = floor($dif/10000);
+    return $age;
+    
+    }
+
     public function roulette(){
 
         $login_gender = $this->Auth->user('gender');
@@ -28,7 +36,13 @@ class MeetingsController extends AppController
         //制御構造の場合、外の}には;いらない。
 
         $randomUser = $this->User->find('first',array(
-            'conditions' => array('User.age >=' => 20,'User.gender' => $partner_gender),
+            //'conditions' => array('User.age >=' => 20,'User.gender' => $partner_gender),
+            /*
+            Userフィールドのageをやめてbirthdayにした。
+            20歳以上の計算をしたいがうまくいかない。
+            */
+
+            'conditions' => array('User.birthday >=' => '20','User.gender' => $partner_gender),
             'order' => 'rand()',
             'limit' => 1
             )
@@ -115,6 +129,7 @@ class MeetingsController extends AppController
 
 
     }
+
 
 
     /*Facebook機能がよく分からないためコメントアウト

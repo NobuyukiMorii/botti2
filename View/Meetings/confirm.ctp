@@ -34,8 +34,7 @@
     <h2>バー確認画面</h2>
         <h2>写真</h2>
         <img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>">
-<!--         <img src="<?php echo $this->Html->url("/meetings/image2Bar"); ?>"
- -->        <br />
+        <br />
         <h2>名前</h2>
         <?php echo $randomBar['Bar']['name']; ?>
         <br/>
@@ -60,8 +59,7 @@
     <h2>パートナーの情報</h2>
         <h2>写真</h2>
         <img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>">
-<!--         <img src="<?php echo $this->Html->url("/meetings/image2User"); ?>"
- -->        <br/>
+        <br/>
         <h2>名前</h2>
         <?php echo $randomUser['User']['nickname']; ?>
         <br/>
@@ -70,9 +68,6 @@
         <br/>
         <h2>メッセージ</h2>
         <?php echo $randomUser['User']['message']; ?>
-        <br/>
-        <h2>行動範囲</h2>
-        <?php echo $randomUser['User']['area']; ?>
         <br/>
 
     <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">ガチャ画面に戻る</a>
