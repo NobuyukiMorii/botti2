@@ -22,48 +22,6 @@ class UsersController extends AppController
         $this->Auth->authError = "あなたはログインしていません。";
         $this->Auth->loginError = "ログインに失敗しました。";
     }
-/*FACEBOOKログインにさせたかったが、うまくいかなかった為コメントアウト
-    function facebook() {
-        App::import('Helper', 'Html');
-        $html = new HtmlHelper();
-        $url = $this->facebook->getLoginUrl(array(
-            'redirect_uri' => $html->url(array('action' => 'callback'), true),
-            'scope' => 'email,publish_stream',));
-        $this->redirect($url);
-    }
-
-        function callback() {
-        try {
-                $me = $this->facebook->api('/me');
-                $access_token = $this->facebook->getAccessToken();
-            } catch (FacebookApiException $e) {
-                // Facebookエラー
-                error_log($e);
-                return;
-            }
-            $login['User']['fb_id'] = $me['id'];
-            $login['User']['password'] = "1";
-            // Facebookから取得した情報で通常のAuth認証を行います if ($this->Auth->login($login)) {
-            // 既存ユーザーの場合の処理
-            if ($this->Auth->login($login)) {
-                $this->redirect($this->Auth->redirect());
-            } else {
-            // 新規ユーザーの場合の処理
-                $this->redirect($this->Auth->redirect(
-                $user = $login;
-                $user['User']['username'] =
-                $me['first_name'].'.'.$me['last_name'];
-                $this->User->save($user);
-
-                $this->Auth->login($login);
-                $this->redirect($this->Auth->redirect());
-            }
-        }
-*/
-
-/**
- * 新規登録画面
-*/
 
 public function add(){
     if(!empty($this->data)){
@@ -74,15 +32,6 @@ public function add(){
             $this->redirect(array('action'=>'login'));
         }
     }
-
-    // $start_time_option = array(
-    // 'minYear' => date('Y'),
-    // 'maxYear' => date('Y', strtotime(date('Y-m-1').' +1 year')),
-    // 'separator' => array('年','月','日'),
-    // 'value' => array('year' => date('Y'),'month' => date('m'),'day' => date('d')),
-    // 'monthNames' => false
-    // );
-    // $this->set(compact('start_time_option'));
 }
 
 public function image($cid){
@@ -120,16 +69,19 @@ public function profile($id = null) {
         // if (!$this->User->exists()) {
         //     throw new NotFoundException(__('ユーザー登録がありません。'));
         // }
+
         if ($this->request->is('post') || $this->request->is('put')) {
+            $this->request->data["User"]["image"]=file_get_contents($this-> data["User"]["image"]["tmp_name"]);
+            
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('プロフィールを更新しました！！'));
                 $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
             } else {
-                $this->Session->setFlash(__('ごめん更新に失敗しました。'));
+                $this->Session->setFlash(__('更新に失敗しました。'));
             }
         } else {
-            $this->request->data = $this->User->read(null, $id);
-            unset($this->request->data['User']['password']);
+            // $this->request->data = $this->User->read(null, $id);
+            // unset($this->request->data['User']['password']);
         }
 }
 

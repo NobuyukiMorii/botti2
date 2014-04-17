@@ -14,11 +14,6 @@
 
 App::uses('Controller', 'Controller');
 
-/*
-Facebookログインにさせたかったが、うまくいかなかったためコメントアウト
-App::import('Vendor','facebook/src/facebook');
-*/
-
 /**
  * Application Controller
  *
@@ -32,28 +27,6 @@ App::import('Vendor','facebook/src/facebook');
 
 class AppController extends Controller {
 	public $components = array('Auth');
-/*
-Facebookログインにさせたかったが、うまくいかなかったためコメントアウト
-	public $facebook;
-	public $user;
-	function beforeFilter(){
-		$this->Auth->fields = array(
-			'username' => 'fb_id',
-			'password' => 'password',
-			);
-
-		$this->facebook = new Facebook(array(
-			'appId'  => 'アプリID',
-			'secret' => 'アプリの秘訣',
-			));
-		$this->Auth->autoRedirect = false,
-		$this->user = this->Auth->user();
-
-		$this->set('user',$this->user['User']);
-		parent::beforeFilter();
-	}
-
-*/
 
 
 }

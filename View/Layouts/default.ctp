@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">デートの約束</a></li>
-<!--             <li><a href="<?php echo $this->Html->url("/users/edit/".$loginUser['id']); ?>">プロフィール編集</a></li> -->
+            <li><a href="<?php echo $this->Html->url("/users/profile/"); ?>">プロフィール編集</a></li><!--本当はここにidの引数を明示的に持たせる必要がある-->
             <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店一覧</a></li>
             <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
             <li><a href="#contact">利用規約</a></li>

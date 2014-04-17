@@ -31,7 +31,7 @@
             </div>
             <div class="radio">
             <label class="radio-inline">
-            <input type="radio" name="User.gender" id="UserGender" value="2">
+            <input type="radio" name='User.gender' id="UserGender" value="2">
             女性
             </label>
 
