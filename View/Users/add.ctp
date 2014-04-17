@@ -43,19 +43,6 @@
             </div>
 
             <div class="form-group">
-            <select name="User.prefecture" id="prefecture" class="form-control">
-            <option value="" selected>都道府県を以下からお選びください。</option>
-            <?php
-            $prefectures = array ('北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','                  山梨県','新潟県','富山県','石川県','福井県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','                  奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県'                   ,'熊本県','大分県','宮崎県','鹿児島県','沖縄県');
-            foreach($prefectures as $prefecture){
-            print('<option value="'.$prefecture.'">'.$prefecture.'</option>');
-            }
-            ?>
-            </select>
-            <?php echo $this->Form->error('User.prefecture', array('class' => "warning")); ?>
-            </div>
-
-            <div class="form-group">
             <select name='User.work' id="UserWork" class="form-control">
             <option value="" selected>職業を以下からお選びください。</option>
             <option value="大学生">大学生</option>
@@ -66,11 +53,19 @@
             <option value="その他">その他</option>
             </select>
             <?php echo $this->Form->error('User.work', array('class' => "warning")); ?>
-            </form>
             </div>
 
             <div class="form-group">
-            <?php echo $this->Form->input('User.kibouyoubi', array('class' => 'form-control input-sm'));?>
+            <select name='User.kibouyoubi' id="UserKibouyoubi" class="form-control">
+            <option value="" selected>希望曜日を以下からお選びください。</option>
+            <option value="月">月曜日</option>
+            <option value="火">火曜日</option>
+            <option value="水">水曜日</option>
+            <option value="木">木曜日</option>
+            <option value="金">金曜日</option>
+            <option value="土">土曜日</option>
+            <option value="日">日曜日</option>
+            </select>
             <?php echo $this->Form->error('User.kibouyoubi', array('class' => "warning")); ?>
             </div>
 
@@ -80,9 +75,15 @@
             </div>
 
             <div class="form-group">
-            <?php echo $this->Form->input('User.kiboueki', array('class' => 'form-control input-sm'));?>
-            <?php echo $this->Form->error('User.kiboueki', array('class' => "warning")); ?>
-            </div>
+            <select name='User.kiboueki' id="UserKiboueki" class="form-control">
+            <option value="" selected>好きな山手線の駅を以下からお選びください。</option>
+            <?php
+            $kibouekis = array ('東京','有楽町','新橋','浜松町','田町','品川','大崎','五反田','目黒','恵比寿','渋谷','原宿','代々木','新宿','新大久保','高田馬場','目白','池袋','大塚','巣鴨','駒込','田端','西日暮里','日暮里','鶯谷','上野','御徒町','秋葉原','神田');
+            foreach($kibouekis as $kiboueki){
+            print('<option value="'.$kiboueki.'">'.$kiboueki.'</option>');
+            }
+            ?>
+            </select>
 
              <p>写真</p>
 <!--         <input type="file" name="data[User][image]"> -->

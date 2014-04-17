@@ -74,6 +74,15 @@ public function add(){
             $this->redirect(array('action'=>'login'));
         }
     }
+    
+    $start_time_option = array(
+    'minYear' => date('Y'),
+    'maxYear' => date('Y', strtotime(date('Y-m-1').' +1 year')),
+    'separator' => array('年','月','日'),
+    'value' => array('year' => date('Y'),'month' => date('m'),'day' => date('d')),
+    'monthNames' => false
+    );
+    $this->set(compact('start_time_option'));
 }
 
 public function image($cid){
