@@ -110,10 +110,7 @@
             <?php echo $this->Form->error('User.kiboueki', array('class' => "warning")); ?>
         	</div>
 
-
-
              <p>写真</p>
-<!--         <input type="file" name="data[User][image]"> -->
 			 <img src="<?php echo $this->Html->url("/Meetings/image2User/".$data['id']); ?>", width = '200', height = '200' , alt ='UserImage'>
              <?php echo $this->Form->input('User.image', array( 'type' => 'file','default' => $data['image'])); ?>
              <?php echo $this->Form->error('User.image'); ?> 

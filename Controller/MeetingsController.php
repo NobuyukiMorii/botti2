@@ -53,14 +53,6 @@ class MeetingsController extends AppController
 
         $this->set('loginUser',$this->Auth->user());
 
-        /*
-        ガチャのカウントをユーザーテーブルに記録させたい。
-        その上で一日あたりのガチャ回数を取り出して、３回までしかガチャができないようにしたい。
-        */
-
-
-
-
     }
 
     public function image2Bar($bar_id){

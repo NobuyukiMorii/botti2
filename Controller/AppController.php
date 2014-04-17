@@ -28,5 +28,14 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 	public $components = array('Auth');
 
+	// // public function beforeFilter (){
+	// // 	$this->Auth->authError = "あなたはログインしていません。";
+	// // 	$this->Auth->authorize = 'controller';
+	// // }
+
+	public function loginuser() {
+	$this->set('loginUser',$this->Auth->user());
+	}
+
 
 }

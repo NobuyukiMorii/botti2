@@ -37,6 +37,43 @@ class User extends AppModel {
                     } else {
                         $item[$model]['genderText'] = '女性';
                     }
+                    /*
+                    *workに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
+                    */
+                    // $work = array('1'=>'大学生','2'=>'大学院生','3'=>'会社員','4'=>'公務員','5'=>'経営者','6'=>'自営業','7'=>'農業','8'=>'医者','9'=>'弁護士','10'=>'ニート','11'=>'ハイパーメディアクリエイター','12'=>'その他');
+
+                    // foreach ($work as $key => $value) {
+                    //     if ($item[$model]['work'] == $key){
+                    //         $item[$model]['workText'] == $value;
+                    //     }
+                    // }
+
+                    if ($item[$model]['work'] == 1) {
+                        $item[$model]['workText'] = '大学生';
+                    } elseif ($item[$model]['work'] == 2) {
+                        $item[$model]['workText'] == '大学院生';
+                    } elseif ($item[$model]['work'] ==3)  {
+                        $item[$model]['workText'] == '会社員';
+                    } elseif ($item[$model]['work'] ==4)  {
+                        $item[$model]['workText'] == '公務員';
+                    } elseif ($item[$model]['work'] ==5)  {
+                        $item[$model]['workText'] == '経営者';
+                    } elseif ($item[$model]['work'] ==6)  {
+                        $item[$model]['workText'] == '自営業';
+                    } elseif ($item[$model]['work'] ==7)  {
+                        $item[$model]['workText'] == '農業';
+                    } elseif ($item[$model]['work'] ==8)  {
+                        $item[$model]['workText'] == '医者';
+                    } elseif ($item[$model]['work'] ==9)  {
+                        $item[$model]['workText'] == '弁護士';
+                    } elseif ($item[$model]['work'] ==10)  {
+                        $item[$model]['workText'] == 'ニート';
+                    } elseif ($item[$model]['work'] ==11)  {
+                        $item[$model]['workText'] == 'ハイパーメディアクリエイター';
+                    } elseif ($item[$model]['work'] ==12)  {
+                        $item[$model]['workText'] == 'その他';
+                    } 
+
                 }
             }
 
