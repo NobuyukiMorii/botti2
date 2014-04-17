@@ -112,8 +112,25 @@ public function logout(){
     return $this->redirect(array('action'=>'roulette','controller'=>'Meetings'));
 }
 
-public function profile() {
+public function profile($id = null) {
+    
     $this->set('data',$this->Auth->user());
+
+    $this->User->id = $id;
+        // if (!$this->User->exists()) {
+        //     throw new NotFoundException(__('ユーザー登録がありません。'));
+        // }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('プロフィールを更新しました！！'));
+                $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
+            } else {
+                $this->Session->setFlash(__('ごめん更新に失敗しました。'));
+            }
+        } else {
+            $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
 }
 
 }

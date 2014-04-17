@@ -24,13 +24,13 @@
             </div>
 
             <div class="radio">
-            <label>
+            <label class="radio-inline">
             <input type="radio" name='User.gender' id="UserGender" value="1" checked>
             男性
             </label>
             </div>
             <div class="radio">
-            <label>
+            <label class="radio-inline">
             <input type="radio" name="User.gender" id="UserGender" value="2">
             女性
             </label>
@@ -43,29 +43,12 @@
             </div>
 
             <div class="form-group">
-            <select name='User.work' id="UserWork" class="form-control">
-            <option value="" selected>職業を以下からお選びください。</option>
-            <option value="大学生">大学生</option>
-            <option value="大学院生">大学院生</option>
-            <option value="会社員">会社員</option>
-            <option value="経営者">経営者</option>
-            <option value="フリーランス">フリーランス</option>
-            <option value="その他">その他</option>
-            </select>
-            <?php echo $this->Form->error('User.work', array('class' => "warning")); ?>
+            <?php echo $this->Form->input('User.work',array('type'=>'select','options'=>array('1'=>'大学生','2'=>'大学院生','3'=>'会社員','4'=>'公務員','5'=>'経営者','6'=>'自営業','7'=>'農業','8'=>'医者','9'=>'弁護士','10'=>'ニート','11'=>'ハイパーメディアクリエイター','12'=>'その他'))) ?>
+            <?php echo $this->Form->error('User.Work', array('class' => "warning")); ?>
             </div>
 
             <div class="form-group">
-            <select name='User.kibouyoubi' id="UserKibouyoubi" class="form-control">
-            <option value="" selected>希望曜日を以下からお選びください。</option>
-            <option value="月">月曜日</option>
-            <option value="火">火曜日</option>
-            <option value="水">水曜日</option>
-            <option value="木">木曜日</option>
-            <option value="金">金曜日</option>
-            <option value="土">土曜日</option>
-            <option value="日">日曜日</option>
-            </select>
+            <?php echo $this->Form->input('User.kibouyoubi',array('type'=>'select','options'=>array('1'=>'月曜日','2'=>'火曜日','3'=>'水曜日','4'=>'木曜日','5'=>'金曜日','6'=>'土曜日','7'=>'日曜日'))) ?>
             <?php echo $this->Form->error('User.kibouyoubi', array('class' => "warning")); ?>
             </div>
 
@@ -75,19 +58,12 @@
             </div>
 
             <div class="form-group">
-            <select name='User.kiboueki' id="UserKiboueki" class="form-control">
-            <option value="" selected>好きな山手線の駅を以下からお選びください。</option>
-            <?php
-            $kibouekis = array ('東京','有楽町','新橋','浜松町','田町','品川','大崎','五反田','目黒','恵比寿','渋谷','原宿','代々木','新宿','新大久保','高田馬場','目白','池袋','大塚','巣鴨','駒込','田端','西日暮里','日暮里','鶯谷','上野','御徒町','秋葉原','神田');
-            foreach($kibouekis as $kiboueki){
-            print('<option value="'.$kiboueki.'">'.$kiboueki.'</option>');
-            }
-            ?>
-            </select>
+            <?php echo $this->Form->input('User.kiboueki',array('type'=>'select','options'=>array('1'=>'東京','2'=>'有楽町','3'=>'新橋','4'=>'浜松町','5'=>'田町','6'=>'品川','7'=>'大崎','8'=>'五反田','9'=>'目黒','10'=>'恵比寿','11'=>'渋谷','12'=>'原宿','13'=>'代々木','14'=>'新宿','15'=>'新大久保','16'=>'高田馬場','17'=>'目白','18'=>'池袋','19'=>'大塚','20'=>'巣鴨','21'=>'駒込','22'=>'田端','23'=>'西日暮里','24'=>'日暮里','25'=>'鶯谷','26'=>'上野','27'=>'御徒町','28'=>'秋葉原','29'=>'神田'))); ?>
+            <?php echo $this->Form->error('User.kiboueki', array('class' => "warning")); ?>
             </div>
 
+
              <p>写真</p>
-<!--         <input type="file" name="data[User][image]"> -->
              <?php echo $this->Form->input( 'User.image', array( 'type' => 'file')); ?>
              <?php echo $this->Form->error('User.image'); ?> 
 

@@ -1,6 +1,4 @@
 <p><?php echo $loginUser['nickname'] ?>さん、ガチャしようよ！</p>
-<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn btn-primary"><span class="glyphiconglyphicon-home"></span>ガチャする<a>
-<a href="<?php echo $this->Html->url('/meetings/detail'); ?>" class="btn btn btn-primary"><span class="glyphiconglyphicon-home"></span>デートに誘う<a>
 
 <TABLE BORDER="0">
 <TR>
@@ -55,6 +53,8 @@
 </TR>
 </TABLE>
 
+<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn btn-primary"><span class="glyphiconglyphicon-home"></span>ガチャする<a>
+<a href="<?php echo $this->Html->url('/meetings/detail'); ?>" class="btn btn btn-primary"><span class="glyphiconglyphicon-home"></span>デートに誘う<a>
 
 
 
