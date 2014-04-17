@@ -1,74 +1,27 @@
-<h2>リクエストを送信しました！</h2>
-さあお店に電話しよう！
-「ガチャ恋で電話」しましたというと、話が早いですよ！
-<br />
+<h1>リクエストを送信しました。</h1>
 
-電話番号は<?php echo $randomBar['Bar']['telnumber']; ?>のお店です。
+<dl>
+  <dt>待ち合わせ場所</dt>
+  <dd><?php echo h($this->data["Meeting"]["meetingspot"]); ?></dd>
+  <dt>日時</dt>
+  <dd><?php echo h($this->data["Meeting"]["date"] ["year"]); ?>年<?php echo h($this->data["Meeting"]["date"] ["month"]); ?>月<?php echo h($this->data["Meeting"]["date"] ["day"]); ?>日<?php echo h($this->data["Meeting"]["time"]["hour"]); ?>時<?php echo h($this->data["Meeting"]["time"]["min"]); ?>分</dd>
+</dl>
 
-[お店の地図]
-[おすすめのメニューやコース]
+<dl width:200px;height:100px;float:left>
+  <dt>デート場所</dt>
+  <dd><a href="<?php echo h($randomBar['Bar']['url']) ?>"><img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>", width = '200', height = '200' , alt ='BarImage'></a></dd>
+  <dd>店名：<?php echo $randomBar['Bar']['name']; ?></dd>
+  <dd>電話番号：<?php echo $randomBar['Bar']['telnumber']; ?></dd>
+  <dd>住所：<?php echo $randomBar['Bar']['location']; ?></dd>
+  <dd>URL：<a href="<?php echo $randomBar['Bar']['url']; ?>"><?php echo $randomBar['Bar']['url']; ?></a></dd>
+</dl>
 
-◯◯名
-◯◯時〜
-◯◯
+<dl width:200px;height:100px;float:right>
+  <dt>デート相手</dt>
+  <dd><a href="<?php echo h($randomBar['Bar']['url']) ?>"><img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>", width = '200', height = '200' , alt ='BarImage'></a></dd>
+  <dd>ニックネーム：<?php echo $randomUser['User']['nickname']; ?></dd>
+  <dd>年齢：<?php echo $randomUser['User']['age']; ?></dd>
+  <dd>職業：<?php echo $randomUser['User']['work']; ?></dd>
+</dl>
 
-プランのおすすめ
-
-    <h2>あなたのお名前</h2>
-        <?php echo $loginUserName; ?>
-        <br/>
-    <h2>待ちあせ時間と場所</h2>
-        <h2>日付</h2>
-        <?php echo h($this->data["Meeting"]["date"]); ?>
-        <br/>
-        <h2>駅</h2>
-        <?php echo h($this->data["Meeting"]["station"]); ?>
-        <br/>
-        <h2>最寄り口</h2>
-        <?php echo h($this->data["Meeting"]["gate"]); ?>
-        <br/>
-        <h2>待ち合わせ場所</h2>
-        <?php echo h($this->data["Meeting"]["meetingspot"]); ?>
-        <br/>
-
-    <h2>バー確認画面</h2>
-        <h2>写真</h2>
-        <img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>">
-        <br />
-        <h2>名前</h2>
-        <?php echo $randomBar['Bar']['name']; ?>
-        <br/>
-        <p>住所</p>
-        <?php echo $randomBar['Bar']['location']; ?>
-        <br/>
-        <p>電話番号</p>
-        <?php echo $randomBar['Bar']['telnumber']; ?>
-        <br/>
-        <p>最寄駅</p>
-        <?php echo $randomBar['Bar']['station']; ?>
-        <br/>
-        <p>最寄口</p>
-        <?php echo $randomBar['Bar']['gate']; ?>
-        <br/>
-        <p>紹介文</p>
-        <?php echo $randomBar['Bar']['description']; ?>
-        <br/>
-        <p>URL</p>
-        <?php echo $randomBar['Bar']['url']; ?>
-
-    <h2>パートナーの情報</h2>
-        <h2>写真</h2>
-        <img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>">
-        <br/>
-        <h2>名前</h2>
-        <?php echo $randomUser['User']['nickname']; ?>
-        <br/>
-        <h2>年齢</h2>
-        <?php echo $randomUser['User']['age']; ?>
-        <br/>
-        <h2>メッセージ</h2>
-        <?php echo $randomUser['User']['message']; ?>
-        <br/>
-
-    <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">ガチャ画面に戻る</a>
-    -->
+<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn-primary"><span class="glyphiconglyphicon-home"></span>ガチャ画面に戻る<a>

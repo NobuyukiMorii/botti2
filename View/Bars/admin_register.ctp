@@ -28,7 +28,7 @@
         </div>
         <?php echo $this->Form->file('Bar.image', array('class' => 'btn'));?>
 
-<!--         <input type = "file" id = "BarImage" name = data["Bar"]["image"] style = "display: none;">
+<!--    <input type = "file" id = "BarImage" name = data["Bar"]["image"] style = "display: none;">
 
         <div class="input-prepend">
         <a class="btn" onclick="$('#file-input').click();"><i class="icon-folder-open"></i></a>

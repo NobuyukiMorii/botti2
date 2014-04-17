@@ -30,12 +30,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo $this->Html->url('/meetings/roulette'); ?>">ガチャ</a>
+          <a class="navbar-brand" href="<?php echo $this->Html->url('/meetings/roulette'); ?>">ガチャする</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店の一覧</a></li>
-            <li><a href="<?php echo $this->Html->url('/users/add'); ?>">ユーザー登録</a></li>
+            <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">デートの約束</a></li>
+<!--             <li><a href="<?php echo $this->Html->url("/users/edit/".$loginUser['id']); ?>">プロフィール編集</a></li> -->
+            <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店一覧</a></li>
             <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
             <li><a href="#contact">利用規約</a></li>
           </ul>

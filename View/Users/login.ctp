@@ -16,3 +16,5 @@ if($this->Session->check('Message.auth'))
   </div>
 <?php echo $this->Form->submit('login', array('class' => 'btn btn-primary'));?>
 <?php echo $this->Form->end();?>
+
+<a href="<?php echo $this->Html->url('/users/add'); ?>" class="btn btn-primary"><span class="glyphiconglyphicon-home"></span>ユーザー登録する<a>

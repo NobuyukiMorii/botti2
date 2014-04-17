@@ -84,6 +84,7 @@
             }
             ?>
             </select>
+            </div>
 
              <p>写真</p>
 <!--         <input type="file" name="data[User][image]"> -->
@@ -91,7 +92,5 @@
              <?php echo $this->Form->error('User.image'); ?> 
 
              <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-primary'));?>
-             <?php echo $this->Form->end();?>
-
-      <fieldset>
+      </fieldset>
 <?php echo $this->Form->end(); ?>

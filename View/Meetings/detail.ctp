@@ -1,62 +1,66 @@
-<h2>待ち合わせ場所と時間を決める画面</h2>
-<br />
-<h2>会う人</h2>
+<h1>デートの集合場所と時間を入力してね！</h1>
 
-    <table>
+<TABLE BORDER="0">
+<TR>
+<TD>
+    <div class="table-responsive">
+    <table height="40" class = "table table-striped table-bordered table-condensed table-hover">
     <tr>
         <th>写真</th>
         <th>ニックネーム</th>
+        <th>年齢</th>
         <th>性別</th>
         <th>職業</th>
-        <th>年齢</th>
         <th>メッセージ</th>
     </tr>
     <tr>
-        <td><img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>"></td>
-<!--         <td><img src="<?php echo $this->Html->url("/meetings/image2Bar"); ?>"></td>
- -->        <td><?php echo h($randomUser['User']['nickname']); ?></td>
-        <td><?php echo h($randomUser['User']['gender']); ?></td>
-    	<td><?php echo h($randomUser['User']['work']);?></td>
-        <td><?php echo h($randomUser['User']['age']);?></td>
+        <td><img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>", width = '200', height = '200' , alt ='UserImage'></td>
+        <td><?php echo h($randomUser['User']['nickname']); ?></td>
+        <td><?php echo h($randomUser['User']['age']); ?></td>
+        <td><?php echo h($randomUser['User']['genderText']); ?></td>
+        <td><?php echo h($randomUser['User']['work']);?></td>
         <td><?php echo h($randomUser['User']['message']);?></td>
     </tr>
     </table>
-<br />
-
-<h2>会うバー</h2>
-    <table>
+    </div>
+</TD>
+<TD>
+    <div class="table-responsive">
+    <table height="40" class = "table table-striped table-bordered table-condensed table-hover">
     <tr>
         <th>写真</th>
         <th>店名</th>
-        <th>住所</t>
+        <th>住所</th>
         <th>電話番号</th>
         <th>料金</th>
         <th>紹介文</th>
-        <th>URL</th>
     </tr>
     <tr>
-        <td><img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>"></td>
-        <!-- <td><img src="<?php echo $this->Html->url("/meetings/image2User"); ?>"></td> -->
-        <td><?php echo h($randomBar['Bar']['name']); ?></td>
-    	<td><?php echo h($randomBar['Bar']['location']);?></td>
-		<td><?php echo h($randomBar['Bar']['telnumber']); ?></td>
-    	<td><?php echo h($randomBar['Bar']['price']); ?></td>
+        <td><a href="<?php echo h($randomBar['Bar']['url']) ?>"><img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>", width = '200', height = '200' , alt ='BarImage'></a></td>
+        <td><a href="<?php echo h($randomBar['Bar']['url']) ?>"><?php echo h($randomBar['Bar']['name']); ?></a></td>
+        <td><?php echo h($randomBar['Bar']['location']);?></td>
+        <td><?php echo h($randomBar['Bar']['telnumber']); ?></td>
+        <td><?php echo h($randomBar['Bar']['price']); ?></td>
         <td><?php echo h($randomBar['Bar']['description']); ?></td>
-    	<td><?php echo h($randomBar['Bar']['url']);?></td>
     </tr>
     </table>
+    </div>
+</TD>
+</TR>
+</TABLE>
 
-<h2>待ち合わせ場所と時間のレコメンド</h2>
-   <p><?php echo h($randomUser['User']['nickname']); ?>さんの希望は・・・</p>
-   <br />
-   <h2>曜日：<?php echo h($randomUser['User']['kibouyoubi']);?></h2>
-   <h2>時間：<?php echo h($randomUser['User']['kibouzikan']);?></h2>
-   <p><?php echo h($randomBar['Bar']['name']); ?>の最寄りは・・・</p>
-   <h2>最寄駅：<?php echo h($randomBar['Bar']['station']); ?></h2>
-   <h2>最寄口：<?php echo h($randomBar['Bar']['gate']); ?></h2>
-   <br />
+<dl align = left ;>
+  <dt><?php echo h($randomUser['User']['nickname']); ?>さんは</dt>
+  <dd><?php echo h($randomUser['User']['kibouyoubi']);?>曜日の<?php echo h($randomUser['User']['kibouzikan']);?>からが都合よくて、</dd>
+</dl>
+<dl>
+  <dt><?php echo h($randomBar['Bar']['name']); ?>の最寄り駅は、</dt>
+  <dd><?php echo h($randomBar['Bar']['station']); ?>、最寄り口は<?php echo h($randomBar['Bar']['gate']); ?>だよ！</dd>
+</dl>
 
-    <form  action="/gachakoi/Meetings/confirm" method="post">
+
+
+<!--     <form  action="/gachakoi/Meetings/confirm" method="post">
 
     <p>何月何日</p><br />
     <input type="dateTime" name="data[Meeting][date]">
@@ -74,5 +78,49 @@
     <br />
     <input type="submit" value="送信する">
     </form>
+ -->
+<?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
+    <fieldset>
+    <div class="form-group">
+    <?php echo $this->Form->input('Meeting.date', array('class' => 'form-control'));?>
+    <?php echo $this->Form->error('Meeting.date]', array('class' => "warning")); ?>
+    </div>
 
-<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">戻る</a>
+    <div class="form-group">
+    <?php echo $this->Form->input('Meeting.time', array('class' => 'form-control'));?>
+    <?php echo $this->Form->error('Meeting.time', array('class' => "warning")); ?>
+    </div>
+
+<!--     <div class="form-group">
+    <select name='Meeting.station' id="MeetingStation" class="form-control">
+    <option value="h($randomBar['Bar']['station']" selected><?php echo h($randomBar['Bar']['station']); ?></option>
+    <?php
+    $stations = array ('東京','有楽町','新橋','浜松町','田町','品川','大崎','五反田','目黒','恵比寿','渋谷','原宿','代々木','新宿','新大久保','高田馬場','目白','池袋','大塚','巣鴨','駒込','田端','西日暮里','日暮里','鶯谷','上野','御徒町','秋葉原','神田');
+    foreach($stations as $station){
+    print('<option value="'.$station.'">'.$station.'</option>');
+    }
+    ?>
+    </select>
+    </div> -->
+
+    <div class="form-group">
+        <select name="data[Meeting][meetingspot]" id="Meetingspot" class="form-control">
+        <option value="" selected><?php echo h($randomBar['Bar']['station']); ?>の近くの待ち合わせ場所をお選びください。</option>
+        <option value="<?php echo h($randomBar['Bar']['station']); ?>の<?php echo h($randomBar['Bar']['gate']); ?>の改札前"><?php echo h($randomBar['Bar']['station']); ?>の<?php echo h($randomBar['Bar']['gate']); ?>の改札前</option>
+        <option value="お店の中">お店の中</option>
+        </select>
+        <?php echo $this->Form->error('Meeting.meetingspot', array('class' => "warning")); ?>
+    </div>
+
+    <?php echo $this->Form->submit('本当にデートに誘う', array('class' => 'btn btn-primary'));?>
+
+    </fieldset>
+<?php echo $this->Form->end();?>
+
+<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn-primary"><span class="glyphiconglyphicon-home"></span>もう一度ガチャする<a>
+
+
+
+
+
+
