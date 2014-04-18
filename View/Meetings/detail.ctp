@@ -55,7 +55,7 @@
 </dl>
 <dl>
   <dt><?php echo h($randomBar['Bar']['name']); ?>の最寄り駅は、</dt>
-  <dd><?php echo h($randomBar['Bar']['station']); ?>、最寄り口は<?php echo h($randomBar['Bar']['gate']); ?>だよ！</dd>
+  <dd><?php echo h($randomBar['Bar']['stationText']); ?>、最寄り口は<?php echo h($randomBar['Bar']['gate']); ?>だよ！</dd>
 </dl>
 
 
@@ -105,9 +105,9 @@
 
     <div class="form-group">
         <select name="data[Meeting][meetingspot]" id="Meetingspot" class="form-control">
-        <option value="" selected><?php echo h($randomBar['Bar']['station']); ?>の近くの待ち合わせ場所をお選びください。</option>
-        <option value="<?php echo h($randomBar['Bar']['station']); ?>の<?php echo h($randomBar['Bar']['gate']); ?>の改札前"><?php echo h($randomBar['Bar']['station']); ?>の<?php echo h($randomBar['Bar']['gate']); ?>の改札前</option>
-        <option value="お店の中">お店の中</option>
+        <option value="" selected><?php echo h($randomBar['Bar']['stationText']); ?>駅の近くの待ち合わせ場所をお選びください。</option>
+        <option value="<?php echo h($randomBar['Bar']['stationText']); ?>駅<?php echo h($randomBar['Bar']['gate']); ?>の改札前"><?php echo h($randomBar['Bar']['stationText']); ?>駅の<?php echo h($randomBar['Bar']['gate']); ?>の改札前</option>
+        <option value="<?php echo h($randomBar['Bar']['name']); ?>のお店の中"><?php echo h($randomBar['Bar']['name']); ?>のお店の中</option>
         </select>
         <?php echo $this->Form->error('Meeting.meetingspot', array('class' => "warning")); ?>
     </div>

@@ -46,7 +46,7 @@
         <td><?php echo h($randomBar['Bar']['name']); ?></td>
         <td><?php echo h($randomBar['Bar']['location']);?></td>
         <td><?php echo h($randomBar['Bar']['telnumber']); ?></td>
-        <td><?php echo h($randomBar['Bar']['station']); ?></td>
+        <td><?php echo h($randomBar['Bar']['stationText']); ?></td>
         <td><?php echo h($randomBar['Bar']['gate']);?></td>
         <td><?php echo h($randomBar['Bar']['price']); ?></td>
         <td><?php echo h($randomBar['Bar']['description']); ?></td>
