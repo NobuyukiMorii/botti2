@@ -1,4 +1,3 @@
-<!-- <form  action="/gachakoi/Bars/admin_notice" method="post" > -->
 <?php echo $this->Form->create('Bar',array('type' => 'post', 'action'=>'admin_notice', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
 
     <h2>確認画面</h2>
@@ -13,6 +12,5 @@
         <p>料金:<?php echo h($this->data["Bar"]["price"]); ?></p>
         <p>紹介文:<?php echo h($this->data["Bar"]["description"]); ?></p>
         <p>URL:<?php echo h($this->data["Bar"]["url"]); ?></p>
-        <!-- <input type="submit" value="登録する" > -->
         <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-primary'));?>
 <?php echo $this->Form->end();?>

@@ -39,12 +39,12 @@ class EmailConfig {
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('site@localhost' => 'My Site'),
-		'host' => 'ssl://smtp//smtp.gmail.com',
+		'host' => 'ssl://smtp.gmail.com',
 		'port' => 465,
 		'timeout' => 30,
 		'username' => 'qwerty.poiu.mory@gmail.com',
 		'password' => 'Asdfghjkl7',
+		'from' => 'qwerty.poiu.mory@gmail.com',
 		'client' => null,
 		'log' => false,
 		//'charset' => 'utf-8',

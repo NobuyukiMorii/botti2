@@ -24,6 +24,18 @@ class User extends AppModel {
 	return true;
 	}
 
+    public function confirmPassword( $field, $plain, $plain_confirm) {
+        if ($plain == $plain_confirm) {
+          // パスワードハッシュ化
+          $this->request->data['User']['password'] = Security::hash( $plain, 'sha512', true);
+          return true;
+        }
+    }
+
+    public $virtualFields = array(
+        'age' => '(year(curdate()) - year(User.birthday)) - (right(curdate(),5) < right(User.birthday,5))'
+    );
+
     //user_id_1とのリレーションをどうする
     public function afterFind ($results, $primary) {
 
@@ -163,10 +175,6 @@ class User extends AppModel {
         return $results;
     }
 
-    public $virtualFields = array(
-        'age' => '(year(curdate()) - year(User.birthday)) - (right(curdate(),5) < right(User.birthday,5))'
-    );
-
     /*
     なんかメッセージが表示されない。
     あ、ビューに表示させるところがないからだ。作ろう。
@@ -260,14 +268,6 @@ class User extends AppModel {
         // ),
 
     );
-
-	public function confirmPassword( $field, $plain, $plain_confirm) {
-        if ($plain == $plain_confirm) {
-          // パスワードハッシュ化
-          $this->request->data['User']['password'] = Security::hash( $plain, 'sha512', true);
-          return true;
-        }
-    }
 
 }
 ?>

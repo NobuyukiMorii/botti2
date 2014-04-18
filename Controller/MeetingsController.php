@@ -83,6 +83,19 @@ class MeetingsController extends AppController
         $this->set(compact('randomBar','randomUser'));
     }
 
+    public function email () {
+        $title = "【ガチャ恋】デートのお誘い";
+        $msg = 'これは、Emailコンポーネントでメールを送信するサンプルです。'.'このような長いテキストも送信することが出来ます。';
+
+        $email = new CakeEmail('smtp');
+        $email->to('qwerty.poiu.mory@gmail.com')
+              ->emailFormat('text')
+              ->subject($title)
+              ->send($msg);
+
+        $this->render('confirm');
+    }
+
     public function confirm(){
         /*
         全データを$this->request->dataにsaveする
@@ -108,27 +121,18 @@ class MeetingsController extends AppController
         */
 
         $this->Meeting->save($this->request->data);
+        
+        /*
+        *CakeEmailの送信
+        */
+        $this->setAction("email");
+
     }
 
-        public function userpolicy(){
+    public function userpolicy(){
 
 
     }
 
 
-
-    /*Facebook機能がよく分からないためコメントアウト
-    function post(){
-        $this->facebook->api('/me/feed','POST',
-        array(
-        // 投稿したい項目を複数選べます
-        // リファレンス参照 https://developers.facebook.com/docs/reference/api/post/
-        'message' => 'メッセージ:テスト投稿',
-        'link' => 'https://developers.facebook.com/docs/reference/api/post/', // 'picture' => '画像URL',
-        // 'name' => '投稿の名前',
-        // 'caption' => 'キャプション', // 'description' => '説明',
-        ));
-        $this->redirect($this->referer());
-        }
-    */
 }
