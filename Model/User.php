@@ -78,23 +78,17 @@ class User extends AppModel {
                     */
                     if ($item[$model]['kibouyoubi'] == 1) {
                         $item[$model]['kibouyoubiText'] = '月曜日';
-                    } 
-                    if ($item[$model]['kibouyoubi'] == 2) {
+                    } elseif ($item[$model]['kibouyoubi'] == 2) {
                         $item[$model]['kibouyoubiText'] = '火曜日';
-                    } 
-                    if ($item[$model]['kibouyoubi'] == 3) {
+                    } elseif ($item[$model]['kibouyoubi'] == 3) {
                         $item[$model]['kibouyoubiText'] = '水曜日';
-                    } 
-                    if ($item[$model]['kibouyoubi'] == 4) {
+                    } elseif ($item[$model]['kibouyoubi'] == 4) {
                         $item[$model]['kibouyoubiText'] = '木曜日';
-                    } 
-                    if ($item[$model]['kibouyoubi'] == 5) {
+                    } elseif ($item[$model]['kibouyoubi'] == 5) {
                         $item[$model]['kibouyoubiText'] = '金曜日';
-                    }  
-                    if ($item[$model]['kibouyoubi'] == 6) {
+                    } elseif ($item[$model]['kibouyoubi'] == 6) {
                         $item[$model]['kibouyoubiText'] = '土曜日';
-                    } 
-                    if ($item[$model]['kibouyoubi'] == 0) {
+                    } elseif ($item[$model]['kibouyoubi'] == 0) {
                         $item[$model]['kibouyoubiText'] = '日曜日';
                     } 
                 }
