@@ -18,7 +18,7 @@
         <td><?php echo h($randomUser['User']['nickname']); ?></td>
         <td><?php echo h($randomUser['User']['age']); ?></td>
         <td><?php echo h($randomUser['User']['genderText']); ?></td>
-        <td><?php echo h($randomUser['User']['work']);?></td>
+        <td><?php echo h($randomUser['User']['workText']);?></td>
         <td><?php echo h($randomUser['User']['message']);?></td>
     </tr>
     </table>

@@ -53,27 +53,26 @@ class User extends AppModel {
                     } elseif ($item[$model]['work'] == 2) {
                         $item[$model]['workText'] == '大学院生';
                     } elseif ($item[$model]['work'] ==3)  {
-                        $item[$model]['workText'] == '会社員';
-                    } elseif ($item[$model]['work'] ==4)  {
+                        $item[$model]['workText'] = '会社員';
+                    } elseif ($item[$model]['work'] == 4) {
                         $item[$model]['workText'] == '公務員';
                     } elseif ($item[$model]['work'] ==5)  {
-                        $item[$model]['workText'] == '経営者';
-                    } elseif ($item[$model]['work'] ==6)  {
+                        $item[$model]['workText'] = '経営者';
+                    } elseif ($item[$model]['work'] == 6) {
                         $item[$model]['workText'] == '自営業';
                     } elseif ($item[$model]['work'] ==7)  {
-                        $item[$model]['workText'] == '農業';
-                    } elseif ($item[$model]['work'] ==8)  {
+                        $item[$model]['workText'] = '農業';
+                    } elseif ($item[$model]['work'] == 8) {
                         $item[$model]['workText'] == '医者';
                     } elseif ($item[$model]['work'] ==9)  {
-                        $item[$model]['workText'] == '弁護士';
-                    } elseif ($item[$model]['work'] ==10)  {
+                        $item[$model]['workText'] = '弁護士';
+                    } elseif ($item[$model]['work'] == 10) {
                         $item[$model]['workText'] == 'ニート';
                     } elseif ($item[$model]['work'] ==11)  {
-                        $item[$model]['workText'] == 'ハイパーメディアクリエイター';
-                    } elseif ($item[$model]['work'] ==12)  {
+                        $item[$model]['workText'] = 'ハイパーメディアクリエイター';
+                    } elseif ($item[$model]['work'] == 12) {
                         $item[$model]['workText'] == 'その他';
-                    } 
-
+                    }
                 }
             }
 

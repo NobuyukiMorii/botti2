@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-group">
-            <?php echo $this->Form->input('User.kibouyoubi',array('type'=>'select','options'=>array('1'=>'月曜日','2'=>'火曜日','3'=>'水曜日','4'=>'木曜日','5'=>'金曜日','6'=>'土曜日','7'=>'日曜日'))) ?>
+            <?php echo $this->Form->input('User.kibouyoubi',array('type'=>'select','options'=>array('1'=>'月曜日','2'=>'火曜日','3'=>'水曜日','4'=>'木曜日','5'=>'金曜日','6'=>'土曜日','0'=>'日曜日'))) ?>
             <?php echo $this->Form->error('User.kibouyoubi', array('class' => "warning")); ?>
             </div>
 
