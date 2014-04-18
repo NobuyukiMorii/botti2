@@ -18,7 +18,7 @@
         <td><?php echo h($randomUser['User']['nickname']); ?></td>
         <td><?php echo h($randomUser['User']['age']); ?></td>
         <td><?php echo h($randomUser['User']['genderText']); ?></td>
-        <td><?php echo h($randomUser['User']['work']);?></td>
+        <td><?php echo h($randomUser['User']['workText']);?></td>
         <td><?php echo h($randomUser['User']['message']);?></td>
     </tr>
     </table>
@@ -51,7 +51,7 @@
 
 <dl align = left ;>
   <dt><?php echo h($randomUser['User']['nickname']); ?>さんは</dt>
-  <dd><?php echo h($randomUser['User']['kibouyoubi']);?>曜日の<?php echo h($randomUser['User']['kibouzikan']);?>からが都合よくて、</dd>
+  <dd><?php echo h($randomUser['User']['kibouyoubiText']);?>の<?php echo h($randomUser['User']['kibouzikan']);?>からが都合よくて、</dd>
 </dl>
 <dl>
   <dt><?php echo h($randomBar['Bar']['name']); ?>の最寄り駅は、</dt>

@@ -18,10 +18,10 @@
 
 <dl width:200px;height:100px;float:right>
   <dt>デート相手</dt>
-  <dd><a href="<?php echo h($randomBar['Bar']['url']) ?>"><img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>", width = '200', height = '200' , alt ='BarImage'></a></dd>
+  <dd><img src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>", width = '200', height = '200' , alt ='BarImage'></dd>
   <dd>ニックネーム：<?php echo $randomUser['User']['nickname']; ?></dd>
   <dd>年齢：<?php echo $randomUser['User']['age']; ?></dd>
-  <dd>職業：<?php echo $randomUser['User']['work']; ?></dd>
+  <dd>職業：<?php echo $randomUser['User']['workText']; ?></dd>
 </dl>
 
 <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn-primary"><span class="glyphiconglyphicon-home"></span>ガチャ画面に戻る<a>
