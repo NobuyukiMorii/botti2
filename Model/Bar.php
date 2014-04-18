@@ -95,7 +95,95 @@ class Bar extends AppModel {
             }
             return $results;
         }
+    public $validate = array(
 
+        'name' => array(
+                array(
+                    'rule' => 'notEmpty',
+                    'message' => '必ず入力して下さい。'
+                ),
+                array(
+                    'rule' => array('maxLength', 30),
+                    'message' => '「30文字以内で入力して下さい。'
+                ),
+            ),
+
+            // 'name' => array(
+            //     array(
+            //         'rule' => 'notEmpty',
+            //         'message' => '必ず入力して下さい。'
+            //     ),
+            //     array(
+            //         'rule' => array('between',1,30),
+            //         'message' => '「30文字以内で入力して下さい。'
+            //     ),
+            // ),
+
+            // 'name' => array(
+            //     array(
+            //         'rule' => 'notEmpty',
+            //         'message' => '必ず入力して下さい。'
+            //     ),
+            //     array(
+            //         'rule' => array('between',1,30),
+            //         'message' => '「30文字以内で入力して下さい。'
+            //     ),
+            // ),
+
+            // 'name' => array(
+            //     array(
+            //         'rule' => 'notEmpty',
+            //         'message' => '必ず入力して下さい。'
+            //     ),
+            //     array(
+            //         'rule' => array('between',1,30),
+            //         'message' => '「30文字以内で入力して下さい。'
+            //     ),
+            // ),
+
+            // 'name' => array(
+            //     array(
+            //         'rule' => 'notEmpty',
+            //         'message' => '必ず入力して下さい。'
+            //     ),
+            //     array(
+            //         'rule' => array('between',1,30),
+            //         'message' => '「30文字以内で入力して下さい。'
+            //     ),
+            // ),
+            // 'name' => array(
+            //     array(
+            //         'rule' => 'notEmpty',
+            //         'message' => '必ず入力して下さい。'
+            //     ),
+            //     array(
+            //         'rule' => array('between',1,30),
+            //         'message' => '「30文字以内で入力して下さい。'
+            //     ),
+            // ),
+
+            // 'name' => array(
+            //     array(
+            //         'rule' => 'notEmpty',
+            //         'message' => '必ず入力して下さい。'
+            //     ),
+            //     array(
+            //         'rule' => array('between',1,30),
+            //         'message' => '「30文字以内で入力して下さい。'
+            //     ),
+            // ),
+
+            // 'name' => array(
+            //     array(
+            //         'rule' => 'notEmpty',
+            //         'message' => '必ず入力して下さい。'
+            //     ),
+            //     array(
+            //         'rule' => array('between',1,30),
+            //         'message' => '「30文字以内で入力して下さい。'
+            //     ),
+            // ),
+    );
 
 
 }

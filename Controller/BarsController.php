@@ -12,10 +12,15 @@ class BarsController extends AppController
 
     public function admin_register(){
 
-
     }
 
 	public function admin_confirm(){
+
+        if ($this->request->is('post')) {
+            $this->Bar->set($this->request->data);
+            $this->Bar->validates();
+        }
+
         $this->request->data["Bar"]["image"]=file_get_contents($this-> data["Bar"]["image"]["tmp_name"]);
         //$this->Sweet->save($this->request->data);
         $this->Session->write('hozon',$this->request->data);
