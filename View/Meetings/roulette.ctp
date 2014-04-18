@@ -11,6 +11,7 @@
         <th>年齢</th>
         <th>性別</th>
         <th>職業</th>
+        <th>都合のいい曜日</th>
         <th>メッセージ</th>
     </tr>
     <tr>
@@ -19,6 +20,7 @@
         <td><?php echo h($randomUser['User']['age']); ?></td>
         <td><?php echo h($randomUser['User']['genderText']); ?></td>
         <td><?php echo h($randomUser['User']['workText']);?></td>
+        <td><?php echo h($randomUser['User']['kibouyoubiText']);?></td>
         <td><?php echo h($randomUser['User']['message']);?></td>
     </tr>
     </table>

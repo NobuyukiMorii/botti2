@@ -73,6 +73,30 @@ class User extends AppModel {
                     } elseif ($item[$model]['work'] == 12) {
                         $item[$model]['workText'] == 'その他';
                     }
+                    /*
+                    *kibouyoubiに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
+                    */
+                    if ($item[$model]['kibouyoubi'] == 1) {
+                        $item[$model]['kibouyoubiText'] = '月曜日';
+                    } 
+                    if ($item[$model]['kibouyoubi'] == 2) {
+                        $item[$model]['kibouyoubiText'] = '火曜日';
+                    } 
+                    if ($item[$model]['kibouyoubi'] == 3) {
+                        $item[$model]['kibouyoubiText'] = '水曜日';
+                    } 
+                    if ($item[$model]['kibouyoubi'] == 4) {
+                        $item[$model]['kibouyoubiText'] = '木曜日';
+                    } 
+                    if ($item[$model]['kibouyoubi'] == 5) {
+                        $item[$model]['kibouyoubiText'] = '金曜日';
+                    }  
+                    if ($item[$model]['kibouyoubi'] == 6) {
+                        $item[$model]['kibouyoubiText'] = '土曜日';
+                    } 
+                    if ($item[$model]['kibouyoubi'] == 0) {
+                        $item[$model]['kibouyoubiText'] = '日曜日';
+                    } 
                 }
             }
 
