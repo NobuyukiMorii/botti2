@@ -85,7 +85,26 @@ class MeetingsController extends AppController
 
     public function email () {
         $title = "【ガチャ恋】デートのお誘い";
-        $msg = 'これは、Emailコンポーネントでメールを送信するサンプルです。'.'このような長いテキストも送信することが出来ます。';
+
+        $msg = 'こんにちは◯◯さん！◯◯さんからデートのお誘いです！デートするなら、このメールのリンクをクリックしてね！';
+
+        // 'こんにちは◯◯さん！◯◯さんからデートのお誘いです！デートするなら、このメールのリンクをクリックしてね！'.
+        //         'お店'.
+        //             '店名:◯◯'.
+        //             'url:◯◯'.
+        //             '最寄駅'.
+        //             '紹介文'.
+        //         '待ち合わせ'.
+        //             '日程:◯月◯日'.
+        //             '時間:◯時◯分'.
+        //             '場所：◯駅の◯'.
+        //         'お相手'.
+        //             '名前:◯◯さん'.
+        //             '年齢:◯◯才'.
+        //             '職業：◯◯'.;
+
+        // $randomUser = $this->Session->read('randomUser');
+        // $to = $randomBar['User']['username'];
 
         $email = new CakeEmail('smtp');
         $email->to('qwerty.poiu.mory@gmail.com')
