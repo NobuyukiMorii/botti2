@@ -1,5 +1,8 @@
+
+
+
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,48 +11,66 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>ガチャ恋</title>
+    <title>Justified Nav Template for Bootstrap</title>
 
-    <?=$this->Html->css('bootstrap.css')?>
-    <?=$this->Html->css('style.css')?>
-  <?php
-    echo $this->fetch('meta');
-    echo $this->fetch('css');
-    echo $this->fetch('script');
+    <?php
+      echo $this->fetch('meta');
+      echo $this->fetch('script');
     ?>
+
+    <!-- Bootstrap core CSS -->
+    <?=$this->Html->css('bootstrap.css')?>
+
+    <!-- Custom styles for this template -->
+    <?=$this->Html->css('justified-nav.css')?>
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="<?php echo $this->Html->url('/meetings/roulette'); ?>">ガチャする</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">デートの約束</a></li>
-            <li><a href="<?php echo $this->Html->url("/users/profile/"); ?>">プロフィール編集</a></li><!--本当はここにidの引数を明示的に持たせる必要がある。AppConで$loginUser['id']渡してみたけど無理だった。挫折。>-->
-            <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店一覧</a></li>
-            <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
-            <li><a href="<?php echo $this->Html->url('/meetings/userpolicy'); ?>">利用規約</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+    <div class="container"><!-- container -->
+
+      <div class="masthead">
+        <h3 class="text-muted">ガチャ恋</h3>
+        <ul class="nav nav-justified">
+          <li class="active"><a href="#">がちゃ恋とは？</a></li>
+          <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">ご利用に当たって</a></li>
+          <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">デートの予定</a></li>
+          <li><a href="<?php echo $this->Html->url("/users/profile/"); ?>">プロフィール編集</a></li>
+          <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">居酒屋</a></li>
+          <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
+
+        </ul>
       </div>
-    </div>
 
-    <div class="container">
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <?php echo $this->fetch('content'); ?>
+      </div>
+      <!-- /Jumbotron -->
 
-      <?php echo $this->fetch('content'); ?>
 
-    </div><!-- /.container -->
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+      <!-- Site footer -->
+      <div class="footer">
+        <p>&copy; Company 2014</p>
+      </div>
+      <!-- /Site footer -->
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <?=$this->Html->script('jquery-1.10.2.js')?>
+    <?=$this->Html->script('bootstrap.js')?>
+    <!-- Placed at the end of the document so the pages load faster -->
   </body>
 </html>
