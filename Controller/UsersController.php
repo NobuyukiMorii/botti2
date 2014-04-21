@@ -47,6 +47,10 @@ public function image($cid){
     }
 
 public function login (){
+    
+    $this->autoLayout = false;
+    $this->autoRender = true;
+
     if($this->request->isPost()){
         if($this->Auth->login()){
             $this->redirect($this->Auth->redirect(array('action' => 'roulette','controller' => 'Meetings')));
