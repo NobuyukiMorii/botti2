@@ -65,7 +65,7 @@
 
                         for($hour=1; $hour<13; $hour++){
                             echo "<option value=\"$hour\"";
-                                if($hour==$selected_hour){
+                                if($hour==7){
                                     echo "selected=selected";  
                                 }
                             echo ">$hour</option>";
