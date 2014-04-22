@@ -1,22 +1,17 @@
 .trimming {
-position:relative;
+position: absolute; 
+top: 60px; 
+left: 0px;
 width: 200px;
 height: 200px;
 overflow: hidden;
 }
 
-.img{
-position:absolute;
-top:-10px;
-left:-20px;
-}
-
 .img-original {
- display: block;
- max-width: 100%;
- height: 100px;
- top: -50px;
- left: 50px;
- width: 100px;
- height: 100px;
+ width: 200px;
+ height: 250px;
+ position: absolute; 
+ top: 40px; 
+ left: 70px;
+
 }

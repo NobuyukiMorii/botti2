@@ -4,41 +4,45 @@
   <div class="container" >
 
     <div class="row">
-
+      
       <div class="col-lg-4 col-md-4 portfolio-item" >
+           
+        <button type="button" class="btn btn-info btn-block">デート相手</button>
+         
+          <a href="<?php echo $randomBar['Bar']['url']; ?>">
+            <p class="trimming">
+              <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>" alt="<?php echo h($randomUser['User']['nickname']); ?>" >
+            </p>
+          </a>
 
-        <dl class="text-left">
-          <dt>デート相手</dt>
-            <dd>
-
-              <a href="<?php echo $randomBar['Bar']['url']; ?>">
-                <p class="trimming"><img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>" alt="<?php echo h($randomUser['User']['nickname']); ?>" ></p>
-              </a>
-            </dd>
-            <dd>ニックネーム：<?php echo $randomUser['User']['nickname']; ?>さん</dd>
-            <dd>年齢：<?php echo $randomUser['User']['age']; ?>才</dd>
-            <dd>職業：<?php echo $randomUser['User']['workText']; ?></dd>
-          </dl>
+        <dl class="text-right">
+            <dt>ニックネーム<dt>
+              <dd><?php echo $randomUser['User']['nickname']; ?>さん</dd>
+            <dt>年齢</dt>
+              <dd><?php echo $randomUser['User']['age']; ?>才</dd>
+            <dt>職業</dt>
+              <dd><?php echo $randomUser['User']['workText']; ?></dd>
+        </dl>
 
       </div>
 
       <div class="col-lg-4 col-md-4 portfolio-item" >
 
-        <a href="#project-two">
-          <p class="trimming"><img class="img-responsive" src="<?php echo $this->Html->url("/webroot/img/AndImg.jpg"); ?>" alt="AndImage" />
-        </a>
+          <a href="#project-two">
+            <img class="img-original" src="<?php echo $this->Html->url("/webroot/img/AndImg.jpg"); ?>" alt="AndImage" />
+          </a>
   
       </div>
 
       <div class="col-lg-4 col-md-4 portfolio-item" >
 
-        <dl class="text-left">
-        <dt>デート場所</dt>
-          <dd>
+        <button type="button" class="btn btn-info btn-block">デート場所</button>
+
             <a href="#project-two">
               <p class="trimming"><img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>" alt="<?php echo h($randomBar['Bar']['name']); ?>" ></p>
             </a>
-          </dd>
+
+        <dl class="text-left">
           <dd>店名：<a href="<?php echo $randomBar['Bar']['url']; ?>"><?php echo $randomBar['Bar']['name']; ?></a></dd>
           <dd>電話番号：<?php echo $randomBar['Bar']['telnumber']; ?></dd>
           <dd>住所：<br /><?php echo $randomBar['Bar']['location']; ?></dd>
