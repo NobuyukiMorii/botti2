@@ -42,7 +42,6 @@
     <div class="container"><!-- container -->
 
       <div class="masthead">
-        <h3 class="text-muted">ガチャ恋</h3>
         <ul class="nav nav-justified">
           <li class="active"><a href="#">がちゃ恋とは？</a></li>
           <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">ご利用に当たって</a></li>
@@ -59,13 +58,6 @@
         <?php echo $this->fetch('content'); ?>
       </div>
       <!-- /Jumbotron -->
-
-
-      <!-- Site footer -->
-      <div class="footer">
-        <p>&copy; Company 2014</p>
-      </div>
-      <!-- /Site footer -->
 
     </div> <!-- /container -->
 

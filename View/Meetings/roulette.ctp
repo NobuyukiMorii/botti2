@@ -147,9 +147,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-
                 <a href="<?php echo $this->Html->url('/meetings/detail'); ?>" class="btn btn btn-primary"><span class="glyphiconglyphicon-home"></span>デートに誘う<a>
-
             </div>
 
         </div>
