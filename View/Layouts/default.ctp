@@ -24,6 +24,9 @@
     <!-- Custom styles for this template -->
     <?=$this->Html->css('justified-nav.css')?>
 
+    <!-- Original for this template -->
+    <?=$this->Html->css('style.css')?>
+
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
