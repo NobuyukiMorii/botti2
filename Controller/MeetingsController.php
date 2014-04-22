@@ -29,12 +29,6 @@ class MeetingsController extends AppController
         //制御構造の場合、外の}には;いらない。
 
         $randomUser = $this->User->find('first',array(
-            //'conditions' => array('User.age >=' => 20,'User.gender' => $partner_gender),
-            /*
-            Userフィールドのageをやめてbirthdayにした。
-            20歳以上の計算をしたいがうまくいかない。
-            */
-
             'conditions' => array('User.age >=' => '20','User.gender' => $partner_gender),
             'order' => 'rand()',
             'limit' => 1
@@ -148,10 +142,29 @@ class MeetingsController extends AppController
 
     }
 
-    public function userpolicy(){
+    public function meetinglist() {
+
+        $data = $this->Meeting->find('all',array(
+            // 'fields' => array('User2.nickname','User2.birthday','User2.work','Bar.name','Bar.station','Meeting.date','Meeting.time','Meeting.meetingspot'), //フィールド名の配列
+            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC'), //並び順を文字列または配列で指定  
+            'limit' => 10,
+            'callbacks' => false
+            )
+        );
+
+        $this->set('data', $data);
+
+    }
+
+    public function userpolicy() {
 
 
     }
+
+
+
+
+
 
 
 }

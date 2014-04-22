@@ -45,11 +45,9 @@
         <ul class="nav nav-justified">
           <li class="active"><a href="#">がちゃ恋とは？</a></li>
           <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">ご利用に当たって</a></li>
-          <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">デートの予定</a></li>
           <li><a href="<?php echo $this->Html->url("/users/profile/"); ?>">プロフィール編集</a></li>
           <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">居酒屋一覧</a></li>
           <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
-
         </ul>
       </div>
 
