@@ -6,7 +6,7 @@
         </div>
 
                 <label for="BarName">名称</label>
-                <input name="data[Bar][name]" type="text" id="BarName" value="<?php echo h($this->data["Bar"]["name"]); ?>"/>
+                <input name="data[Bar][name]" type="text" id="BarName" value="<?php echo h($this->data["Bar"]["name"]); ?>" />
                 <?php echo $this->Form->error('Bar.name'); ?>
 
                 <label for="BarLocation">住所</label>
@@ -53,7 +53,7 @@
                 <?php echo $this->Form->error('Bar.station'); ?>
 
                 <label for="BarGate">最寄口</label>
-                    <input name="data[Bar][gate]" type="text" id="BarGate" value="<?php echo h($this->data["Bar"]["gate"]); ?>" />
+                    <input name="data[Bar][gate]" type="text" id="BarGate" value="<?php echo h($this->data["Bar"]["gate"]); ?>" >
 
                 <label for="BarPrice">価格</label>
                     <select name="data[Bar][price]" id="Barprice" value="<?php echo h($this->data["Bar"]["price"]); ?>" >
@@ -63,8 +63,8 @@
                     </select>
                 <?php echo $this->Form->error('Bar.name'); ?>
 
-¥                <label for="BarDescription">紹介文</label>
-                    <textarea name="data[Bar][description]" cols="30" rows="6" id="BarDescription" value="<?php echo h($this->data["Bar"]["description"]); ?>" ></textarea>
+                <label for="BarDescription">紹介文</label>
+                    <textarea name="data[Bar][description]" cols="30" rows="6" id="BarDescription" ><?php echo h($this->data["Bar"]["description"]); ?></textarea>
                 <?php echo $this->Form->error('Bar.description'); ?>
 
                 <label for="BarUrl">Url</label>
