@@ -104,65 +104,65 @@ class Bar extends AppModel {
             array(
                 'rule' => 'notEmpty',
                 'message' => '必ず入力して下さい。'
-                ),
+            ),
             array(
                 'rule' => array('maxLength', 30),
                 'message' => '30文字以内で入力して下さい。'
-                )
-            ),
+            )
+        ),
 
         'location' => array(
             'rule' => 'notEmpty',
             'message' => '必ず入力して下さい。',
-            ),
+        ),
 
         'telnumber' => array(
             array(
                 'rule' => 'notEmpty',
                 'message' => '必ず入力して下さい。',
-                ),
+            ),
             array(
                 'rule' => array( 'custom', '/^(0\d{1,4}-\d{1,4}-\d{4})$/'),
                 'message'=>'電話番号を正確に入力してください。'
-                )
-            ),
+            )
+        ),
 
         'station' => array(
             array(
                 'rule' => 'notEmpty',
                 'message' => '必ず入力して下さい。',
-                ),
+            ),
             array(
                 'rule' => 'numeric',
                 'message' => 'プルダウンから選択して下さい。',
-                ),
+            ),
             array(
                 'rule' => array('comparison','<=',29),
                 'message' => 'プルダウンから選択して下さい。',
-                )
+            )
             ),
 
         'gate' => array(
             array(
                 'rule' => 'notEmpty',
                 'message' => '必ず入力して下さい。',
-                ),
+            ),
             array(
                 'rule' => array('maxLength', 30),
                 'message' => '30文字以内で入力して下さい。',
-                )
-            ),
+            )
+        ),
 
         'url' => array(
             array(
                 'rule' => 'notEmpty',
                 'message' => '必ず入力して下さい。',
-                ),
+            ),
             array(
                 'rule' => 'url',
                 'message' => 'URLを入力して下さい。',
-                )
-            ),
+            )
+        ),
 
     //     'image' => array(
     //         array(
@@ -193,17 +193,17 @@ class Bar extends AppModel {
             array(
                 'rule' => 'notEmpty',
                 'message' => '必ず入力して下さい。',
-                ),
+            ),
             array(
                 'rule' => array('maxLength', 200),
                 'message' => '「200文字以内で入力して下さい。',
-                )
-            ),
+            )
+        ),
 
         'price' => array(
             'rule' => 'notEmpty',
             'message' => '必ず入力して下さい。'
-            )
+        )
     );
 
 

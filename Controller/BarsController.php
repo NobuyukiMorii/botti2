@@ -16,11 +16,19 @@ class BarsController extends AppController
 
 	public function admin_confirm(){
 
-        $this->request->data["Bar"]["image"]=file_get_contents($this-> data["Bar"]["image"]["tmp_name"]);
-        //$this->Sweet->save($this->request->data);
-        $this->Session->write('hozon',$this->request->data);
-
-
+        if ($this->request->is('post')) {
+            //バリデーションチェック
+            $this->Bar->set($this->request->data);
+            //バリデーションエラーがあれば、admin_register画面に戻し、エラーを表示する
+            if(!$this->Bar->validates()){
+                $this->set("error",$this->Bar->validationErrors);
+                $this->render("admin_register");
+            } else {
+                $this->request->data["Bar"]["image"]=file_get_contents($this-> data["Bar"]["image"]["tmp_name"]);
+                $this->Session->write('data',$this->request->data);
+                $this->render("admin_confirm");
+            }
+        }
     }
 
     public function image2(){

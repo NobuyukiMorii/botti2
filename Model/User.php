@@ -237,11 +237,11 @@ class User extends AppModel {
         //         'message' => 'メッセージは必ず入力して下さい。',   
         // ),
 
-        // 'nickname' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => 'ニックネームは必ず入力して下さい。',   
-        // ),
+        'nickname' => array(
+                'rule' => 'notEmpty',
+                //'allowEmpty' => false
+                'message' => 'ニックネームは必ず入力して下さい。',   
+        ),
 
         // 'kibouyoubi' => array(
         //         'rule' => 'notEmpty',
