@@ -164,30 +164,43 @@ class Bar extends AppModel {
             )
         ),
 
-    //     'image' => array(
-    //         array(
-    //             'upload-file' => array( 
-    //                 'rule' => array( 'uploadError'),
-    //                 'message' => '写真のアップロードに失敗しました。'
-    //                 ),
-    //             'extension' => array(
-    //                 'rule' => array( 'extension', array('jpg', 'jpeg', 'png', 'gif')),
-    //                 'message' => 'jpg、jpeg、png、gifの写真を選択して下さい。',
-    //                 ),
-    //             'mimetype' => array( 
-    //                 'rule' => array( 'mimeType', array('image/jpg','image/jpeg', 'image/png', 'image/gif')),
-    //                 'message' => 'jpg、jpeg、png、gifの写真を選択して下さい。',
-    //                 ),
-    //             'maxFileSize' => array( 
-    //                 'rule' => array('fileSize', '<=', '3MB'),
-    //                 'message' => array( '3MB以下のファイルを選択して下さい。')
-    //                 ),
-    //             'minFileSize' => array( 
-    //                 'rule' => array( 'fileSize', '>',  0),
-    //                 'message' => array( 'このファイルはアップロード出来ません。')
-    //                 )
-    //             )
-    //         ),
+        'image' => array(
+
+            // ルール：uploadError => errorを検証
+            'upload-file' => array( 
+                'rule' => array( 'uploadError'),
+                'message' => array( '写真のアップロードに失敗しました。')
+            ),
+
+            // ルール：extension => pathinfoを使用して拡張子を検証
+            'extension' => array(
+                'rule' => array( 'extension', array( 
+                    'jpg', 'jpeg', 'png', 'gif')  // 拡張子を配列で定義
+                ),
+                'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
+            ),
+
+            // ルール：mimeType => 
+            // finfo_file(もしくは、mime_content_type)でファイルのmimeを検証
+            'mimetype' => array( 
+                'rule' => array( 'mimeType', array( 
+                    'image/jpeg', 'image/png', 'image/gif')  // MIMEタイプを配列で定義
+                ),
+                'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
+            ),
+
+            // ルール：fileSize => filesizeでファイルサイズを検証(2GBまで)
+            'size' => array(
+                'maxFileSize' => array( 
+                    'rule' => array( 'fileSize', '<=', '10MB'),  // 10M以下
+                    'message' => array( '10MB以下のファイルにして下さい。')
+                ),
+                'minFileSize' => array( 
+                    'rule' => array( 'fileSize', '>',  0),    // 0バイトより大
+                    'message' => array( 'このファイルは選択出来ません。')
+                ),
+            ),
+        ),
 
         'description' => array(
             array(

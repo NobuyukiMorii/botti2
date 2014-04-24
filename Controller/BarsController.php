@@ -13,21 +13,23 @@ class BarsController extends AppController
     public function admin_register(){
 
 
-
     }
 
 	public function admin_confirm(){
 
         if ($this->request->is('post')) {
+
             //バリデーションチェック
             $this->Bar->set($this->request->data);
+            $this->request->data["Bar"]["image"]=file_get_contents($this-> data["Bar"]["image"]["tmp_name"]);
+
             //バリデーションエラーがあれば、admin_register画面に戻し、エラーを表示する
             if(!$this->Bar->validates()){
+
                 $this->set("error",$this->Bar->validationErrors);
                 $this->render("admin_register");
             } else {
-                $this->request->data["Bar"]["image"]=file_get_contents($this-> data["Bar"]["image"]["tmp_name"]);
-                $this->Session->write('data',$this->request->data);
+                $this->Session->write('hozon',$this->request->data);
                 $this->render("admin_confirm");
             }
         }
@@ -46,7 +48,10 @@ class BarsController extends AppController
     public function admin_notice(){
 
         $register = $this->Session->read('hozon');
-        $this->Bar->save($register);
+
+        if ($this->Bar->save($register, array( 'validate' => false))) {
+            $this->render("admin_notice");
+        }
 
     }
 
