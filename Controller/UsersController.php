@@ -26,12 +26,56 @@ class UsersController extends AppController
 public function add(){
     if(!empty($this->data)){
         if($this->data){
-            $this->User->create();
+            $this->User->create($this->request->data);
             $this->request->data["User"]["image"]=file_get_contents($this-> data["User"]["image"]["tmp_name"]);
-            $this->User->save($this->data);
-            $this->redirect(array('action'=>'login'));
+
+            /*
+            バリデーション追加ここから
+            */
+            if(!$this->User->validates()){
+                $this->set("error",$this->User->validationErrors);
+                $this->render("add");
+            } else {
+                $this->User->save($this->data);
+                $this->Session->setFlash('ユーザー登録を完了しました。');//追加
+                $this->redirect(array('action'=>'login'));
+            }
+            /*
+            バリデーション追加ここまで
+            */
+
+            /*
+            最初のバリデーションなしの時の記述
+            */
+
+            // $this->User->save($this->data);
+            // $this->Session->setFlash('ユーザー登録を完了しました。');//追加
+            // $this->redirect(array('action'=>'login'));
+
+            /*
+            最初のバリデーションありの時の記述
+            */
+
         }
     }
+
+        //         //バリデーションチェック
+        //     $this->User->set($this->request->data);
+        //     $this->request->data["Bar"]["image"]=file_get_contents($this-> data["Bar"]["image"]["tmp_name"]);
+
+        //     //バリデーションエラーがあれば、admin_register画面に戻し、エラーを表示する
+        //     if(!$this->Bar->validates()){
+
+        //         $this->set("error",$this->Bar->validationErrors);
+        //         $this->render("admin_register");
+        //     } else {
+        //         $this->Session->write('hozon',$this->request->data);
+        //         $this->render("admin_confirm");
+        //     }
+        // }
+
+
+
 }
 
 public function image($cid){

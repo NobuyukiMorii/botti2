@@ -198,73 +198,122 @@ class User extends AppModel {
              'match' => array(
                  'rule' => array( 'confirmPassword', 'plain', 'plain_confirm'),
                  'message' => 'パスワードが違います'
-             )
+             )  
         ),
-
-        // 'gender' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => '性別は必ず入力して下さい。',   
-        // ),
-
-        // 'prefecture' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => 'お住まいの都道府県は必ず入力して下さい。',   
-        // ),
-
-        // 'work' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => '職業は必ず入力して下さい。',   
-        // ),
-
-        // 'age' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => '年齢は必ず入力して下さい。',   
-        // ),
-
-        // 'image' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => '画像は必ず登録して下さい。',   
-        // ),
-
-        // 'message' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => 'メッセージは必ず入力して下さい。',   
-        // ),
 
         'nickname' => array(
+            array(
                 'rule' => 'notEmpty',
-                //'allowEmpty' => false
-                'message' => 'ニックネームは必ず入力して下さい。',   
+                'message' => 'ニックネームは必ず入力して下さい。'
+            ),
+            array(
+                'rule' => array('maxLength', 30),
+                'message' => '30文字以内で入力して下さい。'
+            )
         ),
 
-        // 'kibouyoubi' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => '希望日は必ず入力して下さい。',   
-        // ),
+        'gender' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => '必ず入力して下さい。',
+            ),
+            array(
+                'rule' => 'numeric',
+                'message' => 'プルダウンから選択して下さい。'
+            ),
+            array(
+                'rule' => array('comparison','<=',2),
+                'message' => 'プルダウンから選択して下さい。'
+            )
+        ),
 
-        // 'kibouzikan' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => '希望開始時間は必ず入力して下さい。',   
-        // ),
+        'birthday' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => 'お誕生日は必ず入力して下さい。'
+            ),
+            array(
+                'rule' => array('date','ymd'),
+                'message' => 'フォーマットの形式で入力して下さい。'
+            )
+        ),
+        
+        'work' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => '必ず入力して下さい。',
+            ),
+            array(
+                'rule' => 'numeric',
+                'message' => 'プルダウンから選択して下さい。'
+            ),
+            array(
+                'rule' => array('comparison','<=',12),
+                'message' => 'プルダウンから選択して下さい。'
+            )
+        ),
 
-        // 'kiboueki' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => '希望曜日は必ず入力して下さい。',   
-        // ),
+        'kibouyoubi' => array(
+                'rule' => 'notEmpty',
+                //'allowEmpty' => false
+                'message' => '希望日は必ず入力して下さい。',   
+        ),
 
-        // 'area' => array(
-        //         'rule' => 'notEmpty',
-        //         //'allowEmpty' => false
-        //         'message' => 'エリアは必ず入力して下さい。',   
+        'kibouzikan' => array(
+                'rule' => 'notEmpty',
+                //'allowEmpty' => false
+                'message' => '希望開始時間は必ず入力して下さい。',   
+        ),
+
+        'kiboueki' => array(
+                'rule' => 'notEmpty',
+                //'allowEmpty' => false
+                'message' => '希望曜日は必ず入力して下さい。',   
+        ),
+
+        'message' => array(
+            array(
+                'rule' => array('maxLength', 200),
+                'message' => '「200文字以内で入力して下さい。',
+            )
+        ),
+
+        // 'image' => array(
+
+        //     // ルール：uploadError => errorを検証
+        //     'upload-file' => array( 
+        //         'rule' => array( 'uploadError'),
+        //         'message' => array( '写真のアップロードに失敗しました。')
+        //     ),
+
+        //     // ルール：extension => pathinfoを使用して拡張子を検証
+        //     'extension' => array(
+        //         'rule' => array( 'extension', array( 
+        //             'jpg', 'jpeg', 'png', 'gif')  // 拡張子を配列で定義
+        //         ),
+        //         'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
+        //     ),
+
+        //     // ルール：mimeType => 
+        //     // finfo_file(もしくは、mime_content_type)でファイルのmimeを検証
+        //     'mimetype' => array( 
+        //         'rule' => array( 'mimeType', array( 
+        //             'image/jpeg', 'image/png', 'image/gif')  // MIMEタイプを配列で定義
+        //         ),
+        //         'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
+        //     ),
+
+        //     // ルール：fileSize => filesizeでファイルサイズを検証(2GBまで)
+        //     'size' => array(
+        //         'maxFileSize' => array( 
+        //             'rule' => array( 'fileSize', '<=', '10MB'),  // 10M以下
+        //             'message' => array( '10MB以下のファイルにして下さい。')
+        //         ),
+        //         'minFileSize' => array( 
+        //             'rule' => array( 'fileSize', '>',  0),    // 0バイトより大
+        //             'message' => array( 'このファイルは選択出来ません。')
+        //         ),
+        //     ),
         // ),
 
     );

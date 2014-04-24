@@ -140,7 +140,7 @@ class Bar extends AppModel {
                 'rule' => array('comparison','<=',29),
                 'message' => 'プルダウンから選択して下さい。',
             )
-            ),
+        ),
 
         'gate' => array(
             array(
