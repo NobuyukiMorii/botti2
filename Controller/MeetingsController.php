@@ -17,7 +17,6 @@ class MeetingsController extends AppController
         $this->Auth->loginError = "ログインに失敗しました。";
     }
 
-
     public function roulette(){
 
         $login_gender = $this->Auth->user('gender');
@@ -45,8 +44,26 @@ class MeetingsController extends AppController
         $this->Session->write('randomBar',$randomBar);
         $this->Session->write('randomUser',$randomUser);
 
-        $this->set('loginUser',$this->Auth->user());
 
+        /*
+        次の希望曜日を算出
+        */
+
+        $target_week = $randomUser['User']['kibouyoubi'];
+        //今日の曜日取得
+        $today_week=date('w');
+        $plus=0;
+        if($target_week>$today_week) {
+            $plus=$target_week-$today_week;
+        } else {
+            $plus=7-($today_week-$target_week);
+        }
+        $add_sec = $plus * 86400;//日数×１日の秒数
+        $target_sec = date('U') + $add_sec;//Unixからの秒数
+        $NextWeekDay = date('Ymd', $target_sec);
+
+        $this->set('NextWeekDay',$NextWeekDay);
+ 
     }
 
     public function image2Bar($bar_id){
@@ -160,11 +177,6 @@ class MeetingsController extends AppController
 
 
     }
-
-
-
-
-
 
 
 }

@@ -8,11 +8,11 @@ overflow: hidden;
 }
 
 .img-question {
- width: 150px;
- height: 180px;
+ width: 100px;
+ height: 100px;
  position: absolute; 
- top: 40px; 
- left: 10px;
+ top: 80px; 
+ left: 20px;
 
 }
 
