@@ -233,31 +233,31 @@ class User extends AppModel {
             )
         ),
 
-//         'new_password1' => array(
-//             'alphaNumeric' => array(
-//                 'rule' => '/^[a-z\d]*$/i',
-//                 'message' => '半角英数で入力してください'
-//             ),
-//             'between' => array(
-//                 'rule' => array('between', 6, 16),
-//                 'message' => 'パスワードは6文字以上16文字以下で入力してください'
-//             )
-//         ),
+        'new_password1' => array(
+            'alphaNumeric' => array(
+                'rule' => '/^[a-z\d]*$/i',
+                'message' => '半角英数で入力してください',
+            ),
+            'between' => array(
+                'rule' => array('between', 6, 16),
+                'message' => 'パスワードは6文字以上16文字以下で入力してください',
+            )
+        ),
 
-//         'new_password2' => array(
-//             'alphaNumeric' => array(
-//                 'rule' => '/^[a-z\d]*$/i',
-//                 'message' => '半角英数で入力してください',
-//             ),
-//             'between' => array(
-//                 'rule' => array('between', 6, 16),
-//                 'message' => 'パスワードは6文字以上16文字以下で入力してください'
-//             ),
-//             'same' => array(
-//                 'rule' => array('checkCompare', 'new_password1'),
-//                 'message' => '上下で同じ内容を入力してください'
-//             )
-//         ),
+        'new_password2' => array(
+            'alphaNumeric' => array(
+                'rule' => '/^[a-z\d]*$/i',
+                'message' => '半角英数で入力してください',
+            ),
+            'between' => array(
+                 'rule' => array('between', 6, 16),
+                 'message' => 'パスワードは6文字以上16文字以下で入力してください',
+            ),
+            'same' => array(
+                'rule' => array('checkCompare', 'new_password1'),
+                'message' => '上下で同じ内容を入力してください',
+            ),
+        ),
 
         'nickname' => array(
             array(

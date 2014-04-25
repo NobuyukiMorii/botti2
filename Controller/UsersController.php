@@ -66,11 +66,13 @@ public function edit($id = null) {
         //pr('★START');
         //pr($this->request->data);
 
-
     $this->User->id = $id;
     if (!$this->User->exists()) {
         throw new NotFoundException(__('Invalid user'));
     }
+
+    unset($this->User->validate['new_password1']['between']);
+    unset($this->User->validate['new_password2']['between']);
 
     if ($this->request->is('post') || $this->request->is('put')) {
 

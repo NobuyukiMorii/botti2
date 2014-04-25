@@ -25,7 +25,7 @@
             <?php echo $this->Form->input('User.nickname', array('class' => 'form-control','required' => false));?>
             </div>
 
-            <?php echo $this->Form->radio('User.gender', array("1" => '男性', "2" => '女性'), array('legend' => '性別','value' => '1'), array('class' => 'form-control','required' => false));?>
+            <?php echo $this->Form->radio('User.gender', array("1" => '男性', "2" => '女性'), array('legend' => '性別'), array('class' => 'form-control','required' => false));?>
 
             </div>
 
