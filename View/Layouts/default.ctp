@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,14 +35,13 @@
   </head>
 
   <body>
-
     <div class="container"><!-- container -->
 
       <div class="masthead">
         <ul class="nav nav-justified">
           <li class="active"><a href="#">がちゃ恋とは？</a></li>
           <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">ご利用に当たって</a></li>
-          <li><a href="<?php echo $this->Html->url("/users/profile/"); ?>">プロフィール編集</a></li>
+          <li><a href="<?php echo $this->Html->url('/users/edit/'.$LoginUserId); ?>">プロフィール編集</a></li>
           <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">居酒屋一覧</a></li>
           <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
         </ul>
@@ -53,6 +49,10 @@
 
       <!-- Jumbotron -->
       <div class="jumbotron">
+        <?php echo $this->Session->flash('success'); ?>
+        <?php echo $this->Session->flash('fail'); ?>
+        <?php echo $this->Session->flash('auth'); ?>
+        
         <?php echo $this->fetch('content'); ?>
       </div>
       <!-- /Jumbotron -->

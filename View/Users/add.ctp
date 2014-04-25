@@ -41,8 +41,6 @@
             <?php echo $this->Form->input('User.message', array('class' => 'form-control','required' => false));?>
             </div>
 
-
-             <p>写真</p>
              <?php echo $this->Form->input('User.image', array('type' => 'file','required' => false)); ?>
 
              <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-primary'));?>

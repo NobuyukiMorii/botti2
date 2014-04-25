@@ -23,4 +23,17 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+    public function checkCompare($valid_field1 , $valid_field2) {
+        // フィールド名とフォームへの入力値の配列から、キーであるフィールド名を取得
+        $fieldname = key($valid_field1);
+     
+         // 2つのフィールドの入力値を比較
+        if($this->data[$this->name][$fieldname] === $this->data[$this->name][$valid_field2]){
+            return true;
+        }
+
+        return false;
+    }
+
 }

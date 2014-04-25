@@ -26,16 +26,31 @@ App::uses('Controller', 'Controller');
 
 
 class AppController extends Controller {
+
 	public $components = array('Auth');
 
-	// // public function beforeFilter (){
-	// // 	$this->Auth->authError = "あなたはログインしていません。";
-	// // 	$this->Auth->authorize = 'controller';
-	// // }
+    public function beforeFilter(){
 
-	public function loginuser() {
-	$this->set('loginUser',$this->Auth->user());
+        $this->Auth->allow('add','/gachakoi/View/xml/default');
+
+        $this->Auth->authorize = "Controller";//2014/4/24 users/edit/idとするため追記
+
+        $this->Auth->authError = "あなたはログインしていません。";
+        $this->Auth->loginError = "ログインに失敗しました。";
+    }
+
+    public function  isAuthorized() {
+        $this->Session->setFlash(
+        	'ログインしています。(ユーザー名：'.
+        	$this->Auth->user('nickname').')',true);
+		return true;
+    }
+
+    public function beforeRender(){
+
+    $this->set('LoginUserId', $this->Auth->user('id'));
+
 	}
 
-
 }
+

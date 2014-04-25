@@ -18,11 +18,27 @@ class User extends AppModel {
     );
 */
 
-	public function beforeSave(){
-		$this->data['User']['password'] =
-		 AuthComponent::password($this->data['User']['password']);
-	return true;
-	}
+	// public function beforeSave(){
+	// 	$this->data['User']['password'] =
+	// 	 AuthComponent::password($this->data['User']['password']);
+	// return true;
+	// }
+
+    /*
+    *上記記述より下の方が良さそうなので、置き換えた。
+    */
+    public function beforeSave() {
+
+        if (isset($this->data['User']['password'])) {
+            $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+        }
+        return true;
+
+    }
+
+    public $virtualFields = array(
+        'age' => '(year(curdate()) - year(User.birthday)) - (right(curdate(),5) < right(User.birthday,5))'
+    );
 
     public function confirmPassword( $field, $plain, $plain_confirm) {
         if ($plain == $plain_confirm) {
@@ -32,9 +48,6 @@ class User extends AppModel {
         }
     }
 
-    public $virtualFields = array(
-        'age' => '(year(curdate()) - year(User.birthday)) - (right(curdate(),5) < right(User.birthday,5))'
-    );
 
     //user_id_1とのリレーションをどうする
     public function afterFind ($results, $primary) {
@@ -181,16 +194,20 @@ class User extends AppModel {
     */
 
 	public $validate = array(
+
         'username' => array(
-            'validEmail' => array(
-                'rule' => array( 'email', true),
-                'message' => 'メールアドレスを入力して下さい'
-            ),
-            // 一意性チェック
-            'emailExists' => array(
-                'rule' => 'isUnique',
-                'message' => 'メールアドレスは既に登録されています'
-            ),
+            'isUnique' => array(
+                'rule'    => 'isUnique',
+                'message' =>'入力されたメールアドレスは既に登録されています。'
+             ),
+            'email' => array(
+                'rule'    => array('email',true),
+                'message' =>'正しいメールアドレスを入力してください。'
+             ),
+            'notEmpty' => array(
+                'rule'    => 'notEmpty',
+                'message' =>'メールアドレスを入力してください。'
+            )
         ),
 
         'plain' => array(
@@ -200,6 +217,47 @@ class User extends AppModel {
                  'message' => 'パスワードが違います'
              )  
         ),
+
+        'password' => array(
+            'notempty' => array(
+                'rule' => 'notEmpty',
+                'message' => 'パスワードは必ず入力してください'//追加
+            ),
+            'alphaNumeric' => array(
+                'rule' => '/^[a-z\d]*$/i',
+                'message' => '半角英数で入力してください',
+            ),
+            'between' => array(
+                'rule' => array('between', 6, 16),
+                'message' => 'パスワードは6文字以上16文字以下で入力してください',
+            )
+        ),
+
+//         'new_password1' => array(
+//             'alphaNumeric' => array(
+//                 'rule' => '/^[a-z\d]*$/i',
+//                 'message' => '半角英数で入力してください'
+//             ),
+//             'between' => array(
+//                 'rule' => array('between', 6, 16),
+//                 'message' => 'パスワードは6文字以上16文字以下で入力してください'
+//             )
+//         ),
+
+//         'new_password2' => array(
+//             'alphaNumeric' => array(
+//                 'rule' => '/^[a-z\d]*$/i',
+//                 'message' => '半角英数で入力してください',
+//             ),
+//             'between' => array(
+//                 'rule' => array('between', 6, 16),
+//                 'message' => 'パスワードは6文字以上16文字以下で入力してください'
+//             ),
+//             'same' => array(
+//                 'rule' => array('checkCompare', 'new_password1'),
+//                 'message' => '上下で同じ内容を入力してください'
+//             )
+//         ),
 
         'nickname' => array(
             array(
