@@ -1,3 +1,6 @@
+<?php echo $this->Html->script(array('jquery-1.10.2.js', 'jquery-ui-1.10.4.custom','jquery.ui.datepicker-ja'), array('inline'=>false)); ?>
+<?php echo $this->Html->css(array('jquery-ui-1.10.4.custom'), array('inline'=>false)); ?>
+
     <!-- row１ここから -->
     <div class="row">
       
@@ -302,36 +305,38 @@
 
         <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
 
-        <?
-        echo $this->form->input('Meeting.date', array(
-          'label' => __('Date', true),
-          'default' => date('Y-m-d', strtotime($NextWeekDay)),
-          'timeFormat' => '24',
-          'dateFormat' => 'YMD',
-          'monthNames' => false,
+        
+        <div id="formBd"></div>
+        <?php echo $this->Datepicker->datepicker('Meeting.date', array(
+          'type' => 'text',
+          'default' => date('Y/m/d', strtotime($NextWeekDay)),
           'empty' => true,
-          'separator' => '/',
           'maxYear' => date('Y'),
-        ));
+          'inline' => true
+          ));
         ?>
 
-        <?
-        echo $this->form->input('Meeting.date', array(
-          'id' => 'datepicker',
-          'label' => __('Date', true),
-          'default' => date('Y-m-d', strtotime($NextWeekDay)),
-          'timeFormat' => '24',
-          'dateFormat' => 'YMD',
-          'monthNames' => false,
-          'empty' => true,
-          'separator' => '/',
-          'maxYear' => date('Y'),
-        ));
-        ?>
+          <div id="datepicker"></div>
+          <input type="hidden" id="selectedValue" />
+          <button type="button" id="btnShow">選択された日付を表示する</button>
 
-        <?php echo $this->Datepicker->datepicker('Birthday'); ?>
+          <script src="js/jquery-1.10.2.js"></script>
+          <script src="js/jquery-ui.js"></script>
+          <script src="js/jquery.ui.datepicker-ja.js"></script>
+          <script>
+          $(function() {
+              $('#formBd').datepicker({
+              onSelect: function(dateText, inst) {
+                $('#from').val(dateText);
+              }
+              });
+          });
+          </script>
 
-        <?php echo $youbi ;?>曜日<br />
+
+<div id="formBd"></div>
+<input id="from" type="text" value="">
+
         <?
         echo $this->form->input('Meeting.time', array(
           'label' => __('time', true),
@@ -351,3 +356,13 @@
 
     </div>
 </div>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $("#datepicker").datepicker({
+      numberOfMonths: 2,
+      onSelect: function(dateText, inst) { $("#selectedValue").val(dateText); }
+    });
+    $("#btnShow").click(function() { alert($("#selectedValue").val()); });
+  });
+  </script>

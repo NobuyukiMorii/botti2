@@ -13,6 +13,7 @@
     <?php
       echo $this->fetch('meta');
       echo $this->fetch('script');
+      echo $this->fetch('css');
     ?>
 
     <!-- Bootstrap core CSS -->
