@@ -5,13 +5,9 @@ class Meeting extends AppModel {
 	public $uses  = array('Meeting','User','Bar');
 
 	public $belongsTo = array(
-		'User1' => array(
+		'User' => array(
 			'className' => 'User',
-			'foreignKey' => 'user_id_1'
-		),
-		'User2' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id_2'
+			'foreignKey' => 'user_id'
 		),
 		'Bar' => array(
 			'className' => 'Bar',

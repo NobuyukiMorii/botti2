@@ -12,6 +12,8 @@ class UsersController extends AppController
 
     public $components = array('Auth','Session');
 
+    public $helpers = array("DatePicker");
+
 public function add(){
     if(!empty($this->data)){
         if($this->data){
@@ -50,7 +52,9 @@ public function login (){
 
     if($this->request->isPost()){
         if($this->Auth->login()){
-            $this->redirect($this->Auth->redirect(array('action' => 'roulette','controller' => 'Meetings')));
+            //$this->redirect($this->Auth->redirect(array('action' => 'roulette','controller' => 'Meetings')));
+            $this->redirect('/Meetings/roulette/');
+            $this->Session->setFlash('ログインしました。','default',array(),'auth');
         } else {
             $this->Session->setFlash('ユーザー名かパスワードが違います。','default',array(),'auth');
         }    
@@ -59,7 +63,7 @@ public function login (){
 
 public function logout(){
     $this->Auth->logout();
-    return $this->redirect(array('action'=>'roulette','controller'=>'Meetings'));
+    $this->redirect('/Users/login/');
 }
 
 public function edit($id = null) {
@@ -97,6 +101,7 @@ public function edit($id = null) {
         } else {
                 // 更新失敗
             $this->Session->setFlash('プロフィールを更新に失敗しました！！', 'default', array(), 'fail');
+            $this->redirect('/users/edit/'.$this->Auth->user('id'));
 
         }
     } else {

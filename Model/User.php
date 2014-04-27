@@ -49,12 +49,12 @@ class User extends AppModel {
     }
 
 
-    //user_id_1とのリレーションをどうする
+    //user_id_1とのリレーションをどうす
     public function afterFind ($results, $primary) {
 
         foreach($results as $i => $item){
 
-            foreach (array('User', 'User1', 'User2') as $model) {
+            foreach (array('User') as $model) {
                 if (array_key_exists($model, $item)) {
 
                     if ($item[$model]['gender'] == 1) {
@@ -117,7 +117,7 @@ class User extends AppModel {
                         $item[$model]['kibouyoubiText'] = '日曜日';
                     } 
                     /*
-                    *kibouyoubiに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
+                    *kibouekiに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
                     */
                     if ($item[$model]['kiboueki'] == 1) {
                         $item[$model]['kibouekiText'] = '東京';
@@ -177,6 +177,16 @@ class User extends AppModel {
                         $item[$model]['kibouekiText'] = '秋葉原';
                     } elseif ($item[$model]['kiboueki'] == 29) {
                         $item[$model]['kibouekiText'] = '神田';
+                    }
+                    /*
+                    *genreに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
+                    */
+                    if ($item[$model]['genre'] == 1) {
+                        $item[$model]['genreText'] = '居酒屋';
+                    } elseif ($item[$model]['genre'] == 2) {
+                        $item[$model]['genreText'] = 'イタリアン';
+                    } elseif ($item[$model]['genre'] == 3) {
+                        $item[$model]['genreText'] = 'フランス料理';
                     } 
 
                 }
@@ -321,6 +331,12 @@ class User extends AppModel {
                 'rule' => 'notEmpty',
                 //'allowEmpty' => false
                 'message' => '希望開始時間は必ず入力して下さい。',   
+        ),
+
+        'genre' => array(
+                'rule' => 'notEmpty',
+                //'allowEmpty' => false
+                'message' => 'ジャンルは必ず入力して下さい。',   
         ),
 
         'kiboueki' => array(

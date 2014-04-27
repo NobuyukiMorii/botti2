@@ -1,18 +1,21 @@
-<!-- containerここから -->
-<div class="container" >
-
     <!-- row１ここから -->
     <div class="row">
       
       <div class="col-lg-5 col-md-5 portfolio-item" >
            
-        <button type="button" class="btn btn-info btn-block">デート相手</button>
+        <button type="button" class="btn btn-info btn-block">誰と</button>
 
       </div>
 
-      <div class="col-lg-5 col-md-5 col-md-offset-2 portfolio-item" >
+      <div class="col-lg-2 col-md-2 portfolio-item" >
 
-        <button type="button" class="btn btn-info btn-block">デート場所</button>
+        <h1><?php echo $total_much_point ;?>％</h1>
+
+      </div>
+
+      <div class="col-lg-5 col-md-5 portfolio-item" >
+
+        <button type="button" class="btn btn-info btn-block">誰が</button>
 
       </div>
 
@@ -23,7 +26,7 @@
     <div class="row" >
 
       <!-- デート相手 -->
-      <div class="col-lg-5 col-md-5 portfolio-item" >
+      <div class="col-lg-5 col-md-5 portfolio-item" style="border-right:solid 1px;;border-left:solid 1px;" >
         <!-- デート相手写真 -->
         <div class="col-lg-6 col-md-6 portfolio-item" >
 
@@ -51,6 +54,8 @@
               <dd><?php echo $randomUser['User']['kibouyoubiText']; ?></dd>
             <dt>待ち合わせやすい時間</dt>
               <dd><?php echo $randomUser['User']['kibouzikan']; ?></dd>
+            <dt>好きなジャンル</dt>
+              <dd><?php echo $randomUser['User']['genreText']; ?></dd>
           </dl>
 
         </div>
@@ -63,7 +68,7 @@
 
             <div class="img-question">
             <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">
-            <?php echo $this->Html->image('gacha.png', array('alt' => 'サンプル画像','width'=>'100','height'=>'100')); ?>
+            <?php echo $this->Html->image('heart.jpeg', array('alt' => 'サンプル画像','width'=>'200','height'=>'200')); ?>
             </a>
             </div>
 
@@ -71,38 +76,40 @@
       <!-- ガチャボタンここまで -->
 
       <!-- デート場所 -->
-      <div class="col-lg-5 col-md-5 portfolio-item" >
-        <!--デート場所写真 -->
+      <div class="col-lg-5 col-md-5 portfolio-item" style="border-right:solid 1px;;border-left:solid 1px; ">
+      <!-- 自分写真 -->
         <div class="col-lg-6 col-md-6 portfolio-item" >
 
-          <a href="#project-two">
+          <a href="<?php echo $randomBar['Bar']['url']; ?>">
             <p class="trimming2">
-              <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>" alt="<?php echo h($randomBar['Bar']['name']); ?>" >
+             <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$anata['User']['id']); ?>" alt="<?php echo h($anata['User']['nickname']); ?>" >
             </p>
           </a>
 
         </div>
-        <!-- デート場所写真ここまで -->
-        <!-- デート場所詳細１ -->
+        <!-- 自分写真ここまで -->
+        <!-- 自分詳細 -->
         <div class="col-lg-6 col-md-6 portfolio-item" >
 
           <dl class="text-left">
-            <dt>店名</dt>
-              <dd><a href="<?php echo $randomBar['Bar']['url']; ?>"><?php echo $randomBar['Bar']['name']; ?></a></dd>
-            <dt>料金</dt>
-              <dd><?php echo $randomBar['Bar']['price']; ?></dd>
-            <dt>電話番号</dt>
-              <dd><?php echo $randomBar['Bar']['telnumber']; ?></dd>
-            <dt>最寄駅</dt>
-              <dd><?php echo $randomBar['Bar']['stationText']; ?></dd>
-            <dt>最寄出口</dt>
-              <dd><?php echo $randomBar['Bar']['gate']; ?></dd>
+            <dt>ニックネーム<dt>
+              <dd><?php echo $anata['User']['nickname']; ?>さん</dd>
+            <dt>年齢</dt>
+              <dd><?php echo $anata['User']['age']; ?>才</dd>
+            <dt>職業</dt>
+              <dd><?php echo $anata['User']['workText']; ?></dd>
+            <dt>デートしやすい駅</dt>
+              <dd><?php echo $anata['User']['kibouekiText']; ?></dd>
+            <dt>デートしやすい曜日</dt>
+              <dd><?php echo $anata['User']['kibouyoubiText']; ?></dd>
+            <dt>待ち合わせやすい時間</dt>
+              <dd><?php echo $anata['User']['kibouzikan']; ?></dd>
+            <dt>好きなジャンル</dt>
+              <dd><?php echo $anata['User']['genreText']; ?></dd>
           </dl>
 
         </div>
-        <!-- デート場所詳細１ -->
-      </div>
-      <!-- デート場所ここまで -->
+        <!-- 自分詳細 -->
 
     </div>
     <!-- row２ここまで -->
@@ -110,7 +117,7 @@
     <!-- row３ここから -->
     <div class="row">
     <!-- デート相手詳細２ここから -->    
-      <div class="col-lg-5 col-md-5 portfolio-item" >
+      <div class="col-lg-5 col-md-5 portfolio-item" style="height:100px;">
 
           <dl class="text-left">
             <dt>メッセージ</dt>
@@ -121,7 +128,7 @@
       </div>
       <!-- デート相手詳細２ここまで --> 
       <!-- デート相手場場所２ここから --> 
-      <div class="col-lg-5 col-md-5 col-md-offset-2 portfolio-item" >
+      <div class="col-lg-5 col-md-5 col-md-offset-2 portfolio-item" style="height:100px;">
 
           <dl class="text-left">
             <dt>ご紹介</dt>
@@ -133,154 +140,214 @@
     </div>
     <!-- row３ここまで -->
 
+    <!-- row４ここから -->
+    <div class="row">
+      
+      <div class="col-lg-5 col-md-5 portfolio-item" >
+           
+        
 
-</div>
+      </div>
 
-<div class="container" >
+      <div class="col-lg-2 col-md-2 portfolio-item" >
+
+
+      </div>
+
+      <div class="col-lg-5 col-md-5 portfolio-item" >
+           
+        
+
+      </div>
+
+    </div>
+    <!-- row４ここまで -->
+
+    <!-- row５ここから -->
+    <div class="row">
+      
+      <div class="col-lg-5 col-md-5 portfolio-item" >
+           
+        <button type="button" class="btn btn-info btn-block">デートのお店</button>
+
+      </div>
+
+      <div class="col-lg-2 col-md-2 portfolio-item" >
+
+        
+
+      </div>
+
+      <div class="col-lg-5 col-md-5 portfolio-item" >
+
+        <button type="button" class="btn btn-info btn-block">待ち合わせ</button>
+
+      </div>
+
+    </div>
+    <!-- row５ここまで -->
+
+    <!-- row６ここから -->
+    <div class="row" >
+
+      <!-- デート相手 -->
+      <div class="col-lg-5 col-md-5 portfolio-item" >
+        <!-- デート相手写真 -->
+        <div class="col-lg-6 col-md-6 portfolio-item" >
+
+          <a href="<?php echo $randomBar['Bar']['url']; ?>">
+            <p class="trimming2">
+                <p class="trimming2">
+                  <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>" alt="<?php echo h($randomBar['Bar']['name']); ?>" >
+            </p>
+          </a>
+
+        </div>
+        <!-- デート相手写真ここまで -->
+        <!-- デート相手詳細１ -->
+        <div class="col-lg-6 col-md-6 portfolio-item" >
+
+              <dl class="text-left">
+                <dt>店名</dt>
+                  <dd><a href="<?php echo $randomBar['Bar']['url']; ?>"><?php echo $randomBar['Bar']['name']; ?></a></dd>
+                <dt>ジャンル</dt>
+                  <dd><?php echo $randomBar['Bar']['genreText']; ?></dd>
+                <dt>料金</dt>
+                  <dd><?php echo $randomBar['Bar']['price']; ?></dd>
+                <dt>電話番号</dt>
+                  <dd><?php echo $randomBar['Bar']['telnumber']; ?></dd>
+                <dt>最寄駅</dt>
+                  <dd><?php echo $randomBar['Bar']['stationText']; ?></dd>
+                <dt>最寄出口</dt>
+                  <dd><?php echo $randomBar['Bar']['gate']; ?></dd>
+              </dl>
+
+        </div>
+        <!-- デート相手詳細１ -->
+      </div>
+      <!-- デート相手ここまで -->
+
+      <!-- ガチャボタンここから -->
+      <div class="col-lg-2 col-md-2 portfolio-item" >
+
+
+      </div>
+      <!-- ガチャボタンここまで -->
+
+      <!-- デート場所 -->
+      <div class="col-lg-5 col-md-5 portfolio-item" >
+      <!-- 自分写真 -->
+        <div class="col-lg-6 col-md-6 portfolio-item" >
+
+
+
+        </div>
+        <!-- 自分写真ここまで -->
+        <!-- 自分詳細 -->
+        <div class="col-lg-6 col-md-6 portfolio-item" >
+
+          <dl class="text-left">
+            <dt>ニックネーム<dt>
+              <dd><?php echo $anata['User']['nickname']; ?>さん</dd>
+            <dt>年齢</dt>
+              <dd><?php echo $anata['User']['age']; ?>才</dd>
+            <dt>職業</dt>
+              <dd><?php echo $anata['User']['workText']; ?></dd>
+            <dt>デートしやすい駅</dt>
+              <dd><?php echo $anata['User']['kibouekiText']; ?></dd>
+            <dt>デートしやすい曜日</dt>
+              <dd><?php echo $anata['User']['kibouyoubiText']; ?></dd>
+            <dt>待ち合わせやすい時間</dt>
+              <dd><?php echo $anata['User']['kibouzikan']; ?></dd>
+          </dl>
+
+        </div>
+        <!-- 自分詳細 -->
+
+    </div>
+    <!-- row６ここまで -->
+
+    <!-- row７ここから -->
+    <div class="row">
+    <!-- デート相手詳細２ここから -->    
+      <div class="col-lg-5 col-md-5 portfolio-item" style="height:100px";>
+
+          <dl class="text-left">
+            <dt>紹介文</dt>
+              <dd><?php echo $randomBar['Bar']['description']; ?></dd>
+          </dl>           
+
+
+      </div>
+
+      <div class="col-lg-2 col-md-2 portfolio-item" style="height:100px";>
+
+
+
+      </div>
+
+      <div class="col-lg-5 col-md-5 portfolio-item" style="height:100px";>
+
+
+
+      </div>
+      <!-- デート相手場場所２ここまで -->
+    </div>
+    <!-- row７ここまで -->
+
+
+
 
     <div class="row">
 
-        <form action="/gachakoi/meetings/confirm" enctype="multipart/form-data" role="form" id="MeetingConfirmForm" method="post" accept-charset="utf-8">
-            <div style="display:none;">
-                <input type="hidden" name="_method" value="POST"/>
-            </div>
-
-            <fieldset>
-
-            <div class="form-group">
-                <div class="input date">
-                <label for="MeetingDateMonth">日付</label>
-
-                    <select class="span2" name="data[Meeting][date][year]" class="form-control" id="MeetingDateYear">
-                        <?php for($year=date('Y'); $year<=date("Y",strtotime("+1 year")); $year++) {
-                            print('<option value="'.$year.'">'.$year.'</option>');
-                        } ?>
-                     </select>
-
-                    <select class="span2" name="data[Meeting][date][month]" class="form-control" id="MeetingDateMonth">
-                        <?php 
-                            $this_month=date('n');
-                            for($month=1; $month<13; $month++){
-                            echo "<option value=\"$month\"";
-                            if($month==$this_month){
-                            echo "selected=selected";  
-                            }
-                            echo ">$month</option>";                  
-                            }
-                        ?>     
-                    </select>
-
-                    <select class="span2" name="data[Meeting][date][day]" class="form-control" id="MeetingDateDay">
-                        <?php 
-                            $today=date('d');
-                            for($day=1; $day<32; $day++){
-                            echo "<option value=\"$day\"";
-                            if($day==$today){
-                            echo "selected=selected";  
-                            }
-                            echo ">$day</option>";
-                           }
-                       ?>      
-                    </select>
-                </div>
-            </div>
-
-        <div class="form-group">
-            <div class="input time">
-
-                <label for="MeetingTimeHour">時間</label>
-
-                <select class="span2" name="data[User][kibouzikan][meridian]" class="form-control input-sm" id="UserKibouzikanMeridian">
-                    <option value="am">午前</option>
-                    <option value="pm" selected="selected">午後</option>
-                </select>
-
-                <select class="span2" name="data[Meeting][time][hour]" class="form-control" id="MeetingTimeHour">
-                    <?php 
-                        $selected_hour=h($randomUser['User']['kibouzikan']['hour']);
-
-                        for($hour=1; $hour<13; $hour++){
-                            echo "<option value=\"$hour\"";
-                                if($hour==7){
-                                    echo "selected=selected";  
-                                }
-                            echo ">$hour</option>";
-                        }
-                    ?>
-                </select>
-
-                <select class="span2" name="data[Meeting][time][min]" class="form-control" id="MeetingTimeMin">
-                    <option value="0" selected="selected">0</option>
-                    <option value="30">30</option>
-                </select>
-
-            </div>
-        </div>
-
-
-
-        <!--     <div class="form-group">
-            <?php echo $this->Form->input('Meeting.time', array('class' => 'form-control'));?>
-            <?php echo $this->Form->error('Meeting.time', array('class' => "warning")); ?>
-            </div> -->
-
-        <div class="form-group">
-            <div class="input time">
-                <label for="Meetingspot">待ち合わせ場所</label>
-
-                <select class="span6" name="data[Meeting][meetingspot]" id="Meetingspot" class="form-control">
-                <option value="<?php echo h($randomBar['Bar']['stationText']); ?>駅<?php echo h($randomBar['Bar']['gate']); ?>の改札前" selected="selected"><?php echo h($randomBar['Bar']['stationText']); ?>駅の<?php echo h($randomBar['Bar']['gate']); ?>の改札前</option>
-                <option value="<?php echo h($randomBar['Bar']['name']); ?>のお店の中"><?php echo h($randomBar['Bar']['name']); ?>のお店の中</option>
-                </select>
-                <?php echo $this->Form->error('Meeting.meetingspot', array('class' => "warning")); ?>
-            </div>
-        </div>
-
-            <?php echo $this->Form->submit('本当にデートに誘う', array('class' => 'btn btn-primary'));?>
-
-        </fieldset>
-
-
-        <?php echo $this->Form->end();?>
-
-
         <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
-        <fieldset>
 
-        <div class="form-group">
-        <?php echo $this->Form->input('Meeting.date', array('class' => 'form-control'));?>
-        </div>
-
-        <div class="form-group">
-        <?php
-        echo $this->Form->input('Meeting.time', array('class' => 'form-control'));
+        <?
+        echo $this->form->input('Meeting.date', array(
+          'label' => __('Date', true),
+          'default' => date('Y-m-d', strtotime($NextWeekDay)),
+          'timeFormat' => '24',
+          'dateFormat' => 'YMD',
+          'monthNames' => false,
+          'empty' => true,
+          'separator' => '/',
+          'maxYear' => date('Y'),
+        ));
         ?>
-        </div>
 
-        <div class="form-group">
-            <select name="data[Meeting][meetingspot]" id="Meetingspot" class="form-control">
-                <option value="" selected><?php echo h($randomBar['Bar']['stationText']); ?>駅の近くの待ち合わせ場所をお選びください。</option>
-                <option value="<?php echo h($randomBar['Bar']['stationText']); ?>駅<?php echo h($randomBar['Bar']['gate']); ?>の改札前"><?php echo h($randomBar['Bar']['stationText']); ?>駅の<?php echo h($randomBar['Bar']['gate']); ?>の改札前</option>
-                <option value="<?php echo h($randomBar['Bar']['name']); ?>のお店の中"><?php echo h($randomBar['Bar']['name']); ?>のお店の中</option>
-            </select>
-        </div>
+        <?
+        echo $this->form->input('Meeting.date', array(
+          'id' => 'datepicker',
+          'label' => __('Date', true),
+          'default' => date('Y-m-d', strtotime($NextWeekDay)),
+          'timeFormat' => '24',
+          'dateFormat' => 'YMD',
+          'monthNames' => false,
+          'empty' => true,
+          'separator' => '/',
+          'maxYear' => date('Y'),
+        ));
+        ?>
 
+        <?php echo $this->Datepicker->datepicker('Birthday'); ?>
 
-        <?php echo $this->Form->submit('本当にデートに誘う', array('class' => 'btn btn-primary'));?>
+        <?php echo $youbi ;?>曜日<br />
+        <?
+        echo $this->form->input('Meeting.time', array(
+          'label' => __('time', true),
+          'default' => date('H:i:s', strtotime($randomUser['User']['kibouzikan'])),
+          'timeFormat' => '24',
+          'dateFormat' => 'H:i:s',
+          'empty' => true,
+          'separator' => '/',
+        ));
+        ?>
 
-        </fieldset>
+      <?php echo $this->Form->radio('Meeting.meetingspot', array("改札前" => $randomBar['Bar']['stationText'].$randomBar['Bar']['gate'].'改札前', "店内" => $randomBar['Bar']['name'].'店内'), array('legend' => '待ち合わせ場所','value' => '1'), array('class' => 'form-control','required' => false));?>
 
-        <?php echo $this->Form->end();?>
+      <?php echo $this->Form->submit('デートに誘う', array('class' => 'btn btn-primary'));?>
 
-        <?php echo $NextWeekDay ;?>
+      <?php echo $this->Form->end();?>
 
     </div>
 </div>
-
-
-
-
-
-
-
-

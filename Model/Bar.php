@@ -89,6 +89,14 @@ class Bar extends AppModel {
                         $item[$model]['stationText'] = '神田';
                     } 
 
+                    if ($item[$model]['genre'] == 1) {
+                        $item[$model]['genreText'] = '居酒屋';
+                    } elseif ($item[$model]['genre'] == 2) {
+                        $item[$model]['genreText'] = 'イタリアン';
+                    } elseif ($item[$model]['genre'] == 3) {
+                        $item[$model]['genreText'] = 'フランス料理';
+                    } 
+
                 }
             }
 
@@ -140,6 +148,11 @@ class Bar extends AppModel {
                 'rule' => array('comparison','<=',29),
                 'message' => 'プルダウンから選択して下さい。',
             )
+        ),
+
+        'genre' => array(
+            'rule' => 'notEmpty',
+            'message' => 'ジャンルは必ず入力して下さい。',   
         ),
 
         'gate' => array(

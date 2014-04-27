@@ -35,21 +35,23 @@ class AppController extends Controller {
 
         $this->Auth->authorize = "Controller";//2014/4/24 users/edit/idとするため追記
 
-        $this->Auth->authError = "あなたはログインしていません。";
+        if (!$this->Auth->loggedIn()) {
+            $this->Auth->authError = false;
+        }
+
         $this->Auth->loginError = "ログインに失敗しました。";
     }
 
-    public function  isAuthorized() {
+    public function isAuthorized() {
         $this->Session->setFlash(
         	'ログインしています。(ユーザー名：'.
-        	$this->Auth->user('nickname').')',true);
+            $this->Auth->user('nickname').')',true);
+
 		return true;
     }
 
     public function beforeRender(){
-
-    $this->set('LoginUserId', $this->Auth->user('id'));
-
+        $this->set('LoginUserId', $this->Auth->user('id'));
 	}
 
 }

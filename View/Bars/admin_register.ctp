@@ -19,6 +19,10 @@
         </div>
 
         <div class="form-group">
+        <?php echo $this->Form->input('Bar.genre',array('type'=>'select','options'=>array('1'=>'居酒屋','2'=>'イタリアン','3'=>'フランス料理'),'required' => false)); ?>
+        </div>
+
+        <div class="form-group">
          <?php echo $this->Form->input('Bar.gate', array('class' => 'form-control','required' => false));?>
         </div>
 

@@ -4,17 +4,14 @@ class MeetingsController extends AppController
 {
     public $name = 'Meetings';
 
-    public $scaffold;
-
     public $uses = array('Meeting','User','Bar');
 
     public $components = array('Auth','Email','Session');
 
+    public $helpers = array("DatePicker");
+
     public function beforeFilter(){
         $this->Auth->allow('add');
-        //$this->Auth->allow('logout');
-        $this->Auth->authError = "あなたはログインしていません。";
-        $this->Auth->loginError = "ログインに失敗しました。";
     }
 
     public function roulette(){
@@ -40,17 +37,18 @@ class MeetingsController extends AppController
             )
         );
 
-        $this->set(compact('randomBar','randomUser'));
+        $anata =$this->User->find('first',array(
+            'conditions' => array('User.id' => $this->Auth->user('id')),
+            'limit' => 1
+            )
+        );
+
+        $this->set(compact('randomBar','randomUser','anata'));
         $this->Session->write('randomBar',$randomBar);
         $this->Session->write('randomUser',$randomUser);
 
-
-        /*
-        次の希望曜日を算出
-        */
-
+        //希望曜日の一週間後の日付を算出してViewに渡す
         $target_week = $randomUser['User']['kibouyoubi'];
-        //今日の曜日取得
         $today_week=date('w');
         $plus=0;
         if($target_week>$today_week) {
@@ -60,10 +58,102 @@ class MeetingsController extends AppController
         }
         $add_sec = $plus * 86400;//日数×１日の秒数
         $target_sec = date('U') + $add_sec;//Unixからの秒数
-        $NextWeekDay = date('Ymd', $target_sec);
+        $NextWeekDay = date('Y-m-d', $target_sec);
 
         $this->set('NextWeekDay',$NextWeekDay);
- 
+
+        //今日の曜日
+        $youbi = array("日", "月", "火", "水", "木", "金", "土");
+        $w = date("w");
+        $this->set('youbi',$youbi[$w]);
+
+        $request_time = $randomUser['User']['kibouzikan'];
+        $this->set('request_time',$request_time);
+
+        //datetimeのプルダウンのフォーマットの設定を渡す
+        $start_time_option = array(
+            'minYear' => date('Y'),
+            'maxYear' => date('Y', strtotime(date('Y-m-1').' +1 year')),
+            'separator' => array('年','月','日'),
+            'value' => array('year' => date('Y'),'month' => date('m'),'day' => date('d')),
+            'monthNames' => false
+        );
+        $this->set('start_time_option',$start_time_option);
+
+        /*
+        ここからマッチング処理
+        */
+
+        //山手線の駅のマッチングポイント
+        $station_a = $randomUser['User']['kiboueki'];
+        $station_b = $anata['User']['kiboueki'];
+
+        if ($station_a - $station_b > 15) {$dif_st_cnt = (29 - $station_a) + $station_b;}
+        if ($station_a - $station_b < -15) {$dif_st_cnt = $station_a + (29 - $station_b);}
+        if ($station_a - $station_b >= -15 || $station_a - $station_b <= 15 ) {$dif_st_cnt = abs($station_a - $station_b);};
+        $mach_station_point = 30 - $dif_st_cnt;
+
+        //曜日のマッチングポイント
+        $youbi_a = $randomUser['User']['kibouyoubi'];
+        $youbi_b = $anata['User']['kibouyoubi'];
+
+        if ($youbi_a == $youbi_b) {
+            $mach_youbi_point = 20;
+        } else {$mach_youbi_point = 0;
+        }
+
+        //年齢のマッチングポイント
+        $age_a = $randomUser['User']['age'];
+        $age_b = $anata['User']['age'];
+        if(abs($age_a - $age_b) <= 10) {
+            $much_age_point = 10 - abs($age_a - $age_b);            
+        } else {
+            $much_age_point = 0;
+        }
+
+        //仕事のマッチングポイント
+        $work_a = $randomUser['User']['work'];
+        $work_b = $anata['User']['work'];
+        if ($work_a == $work_b) {
+            $much_work_point = 10;
+        } else {$much_work_point = 0;
+        }   
+
+        //時間のマッチングポイント
+        $time_a = strtotime($randomUser['User']['kibouzikan']);
+        $time_b = strtotime($anata['User']['kibouzikan']);
+        $this->set(compact('time_a','time_b')); 
+        $differ_time = ($time_a - $time_b) / 60;
+        if ($differ_time == 0) {
+            $much_age_point = 20;
+        } elseif ($differ_time >= 30 && $differ_time < 60) {
+            $much_age_point = 15;
+        } elseif ($differ_time >= 60 && $differ_time < 90) {
+            $much_age_point = 10;
+        } elseif ($differ_time >= 90 && $differ_time < 120) {
+            $much_age_point = 5;
+        } else {
+            $much_age_point = 0;
+        }
+
+        //食事のマッチングポイント
+        $genre_a = $randomUser['User']['genre'];
+        $genre_b = $anata['User']['genre'];
+        if ($genre_a == $genre_b) {
+            $much_genre_point = 10;
+        } else {$much_genre_point = 0;
+        }
+        //トータルポイント
+        $total_much_point = $mach_station_point + $mach_youbi_point + $much_age_point + $much_work_point + $much_age_point + $much_genre_point;
+        $this->set('total_much_point',$total_much_point);
+
+        /*
+        *ここまでマッチング処理
+        */
+
+
+
+
     }
 
     public function image2Bar($bar_id){
@@ -162,10 +252,8 @@ class MeetingsController extends AppController
     public function meetinglist() {
 
         $data = $this->Meeting->find('all',array(
-            // 'fields' => array('User2.nickname','User2.birthday','User2.work','Bar.name','Bar.station','Meeting.date','Meeting.time','Meeting.meetingspot'), //フィールド名の配列
+            // 'fields' => array('User.nickname','User.birthday','User.work','Bar.name','Bar.station','Meeting.date','Meeting.time','Meeting.meetingspot'), //フィールド名の配列
             'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC'), //並び順を文字列または配列で指定  
-            'limit' => 10,
-            'callbacks' => false
             )
         );
 
