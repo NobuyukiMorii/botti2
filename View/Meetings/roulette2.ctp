@@ -9,7 +9,7 @@
         <div class="row" style="margin-top:50px;">
 
             <div class="col-md-6" >
-            	<p class="trimming2">
+            	<p class="trimming2" style="margin-left:40px;">
                 <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
             	</p>
             </div>

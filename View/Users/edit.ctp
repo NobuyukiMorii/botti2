@@ -46,7 +46,7 @@
             </div>
 
             <div class="form-group">
-            <?php echo $this->Form->input('User.genre',array('type'=>'select','options'=>array('1'=>'居酒屋','2'=>'イタリアン','3'=>'フランス料理'),'required' => false)); ?>
+            <?php echo $this->Form->input('User.genre',array('type'=>'select','options'=>array('1'=>'和風居酒屋','2'=>'洋風居酒屋','3'=>'中華料理','4'=>'コンセプト居酒屋'),'required' => false)); ?>
             </div>
 
             <div class="form-group">

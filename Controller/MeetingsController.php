@@ -32,6 +32,7 @@ class MeetingsController extends AppController
         );
 
         $randomBar = $this->Bar->find('first',array(
+            'conditions' => array('Bar.station' => $randomUser['User']['kiboueki'],'Bar.genre' => $randomUser['User']['genre']),
             'order' => 'rand()',
             'limit' => 1
             )

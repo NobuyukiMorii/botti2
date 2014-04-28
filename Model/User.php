@@ -186,7 +186,9 @@ class User extends AppModel {
                     } elseif ($item[$model]['genre'] == 2) {
                         $item[$model]['genreText'] = 'イタリアン';
                     } elseif ($item[$model]['genre'] == 3) {
-                        $item[$model]['genreText'] = 'フランス料理';
+                        $item[$model]['genreText'] = '中華料理';
+                    } elseif ($item[$model]['genre'] == 4) {
+                        $item[$model]['genreText'] = 'コンセプト居酒屋';
                     } 
 
                 }

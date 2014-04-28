@@ -4,52 +4,63 @@
 
 <div class="container">
 
-    <div class="row" style="margin-top:50px;">
+    <div class="row" style="margin-top:0px;">
 
-        <div class="col-md-6" >
+        <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
+          <h2 class="text-left"><?php echo h($randomBar['Bar']['name']); ?></h2>
+        </a>
 
-            <div style="margin-top:-20px;">
+    </div>
 
-                <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
-                    <h2 class="text-left"><?php echo h($randomBar['Bar']['name']); ?></h2>
-                </a>
+    <div class="row">
 
-            </div>
+        <div class="col-md-5" >
 
+          <div>
 
-            <p class="trimming2" style="margin-top:50px;">
+            <p class="trimming2" style="margin-top:0px;">
             <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
                 <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
             </a>
             </p>
 
+          </div>
+
+          <div style="margin-top:300px;">
+
+            <h4>
+            <dl class="text-left">
+              <dt>最寄駅</dt>
+                <dd><?php echo $randomBar['Bar']['stationText']; ?></dd>
+              <dt>アクセス</dt>
+                <dd><?php echo $randomBar['Bar']['gate']; ?>から徒歩<?php echo $randomBar['Bar']['walk_time']; ?>分</dd>
+              <dt>住所</dt>  
+                <dd><?php echo $randomBar['Bar']['location']; ?></dd>
+              <dt>電話番号</dt>
+                <dd><?php echo $randomBar['Bar']['telnumber']; ?></dd>
+            </dl>
+          </h4>
+
+
+          </div>
+
 
         </div>
 
-        <div class="col-md-6" >
 
-            <div class="text-left">
 
-                <strong><?php echo $randomUser['User']['kibouekiText']; ?>駅</strong>を希望している<?php echo h($randomUser['User']['nickname']); ?>さんにぴったりなお店。<br />
-                <?php echo h($randomUser['User']['nickname']); ?>さんは<?php echo h($randomUser['User']['genreText']); ?>が好きだし、絶対に喜ぶはず！<br />
-
-            </div>
-
-            <div class="text-left" style="margin-top:10px;">
-
-            <dl class="text-left">
-                <dt>最寄駅</dt>
-                  <dd><?php echo $randomBar['Bar']['stationText']; ?></dd>
-                <dt>アクセス</dt>
-                  <dd><?php echo $randomBar['Bar']['gate']; ?>から徒歩x分</dd>
-            </dl>
-
-            </div>
+        <div class="col-md-7" >
 
             <div class="text-left" style="margin-top:20px;">
 
-                <form class ="well my-inline form-inline">
+                <h2><strong><?php echo $randomUser['User']['kibouekiText']; ?>駅</strong>を希望している<?php echo h($randomUser['User']['nickname']); ?>さんにぴったりなお店。<br />
+                <?php echo h($randomUser['User']['nickname']); ?>さんは<strong><?php echo h($randomUser['User']['genreText']); ?></strong>が好きだし、絶対に喜ぶはず！<br /></h2>
 
+            </div>
+
+            <div class="text-left" style="margin-top:30px;">
+
+                <form class ="well my-inline form-inline">
 
                     <div>
                         <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>

@@ -92,9 +92,11 @@ class Bar extends AppModel {
                     if ($item[$model]['genre'] == 1) {
                         $item[$model]['genreText'] = '居酒屋';
                     } elseif ($item[$model]['genre'] == 2) {
-                        $item[$model]['genreText'] = 'イタリアン';
+                        $item[$model]['genreText'] = '洋風居酒屋';
                     } elseif ($item[$model]['genre'] == 3) {
-                        $item[$model]['genreText'] = 'フランス料理';
+                        $item[$model]['genreText'] = '中華料理';
+                    } elseif ($item[$model]['genre'] == 3) {
+                        $item[$model]['genreText'] = 'コンセプト居酒屋';
                     } 
 
                 }

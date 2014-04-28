@@ -37,7 +37,7 @@
   <body>
     <div class="container"><!-- container -->
       <div style="margin : 30px 0px 20px 0px">
-        <h1>Title</h1>
+        <h1>DateOut</h1>
       </div>
 
       <div class="masthead">
