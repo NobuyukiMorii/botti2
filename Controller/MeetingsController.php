@@ -266,5 +266,18 @@ class MeetingsController extends AppController
 
     }
 
+    public function acceptance() {
+
+        $data = $this->Meeting->find('first',array(
+            'conditions' => array('user_id' => $this->request->data['id']),
+            'order' => array('Meeting.match_user' => 'ASC','Meeting.time' => 'ASC'), //並び順を文字列または配列で指定  
+            )
+        );
+        $this->set('data', $data);
+    }
+
+
+
+
 
 }

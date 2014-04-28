@@ -305,7 +305,7 @@
 
         <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
 
-        
+
         <div id="formBd"></div>
         <?php echo $this->Datepicker->datepicker('Meeting.date', array(
           'type' => 'text',
@@ -315,27 +315,6 @@
           'inline' => true
           ));
         ?>
-
-          <div id="datepicker"></div>
-          <input type="hidden" id="selectedValue" />
-          <button type="button" id="btnShow">選択された日付を表示する</button>
-
-          <script src="js/jquery-1.10.2.js"></script>
-          <script src="js/jquery-ui.js"></script>
-          <script src="js/jquery.ui.datepicker-ja.js"></script>
-          <script>
-          $(function() {
-              $('#formBd').datepicker({
-              onSelect: function(dateText, inst) {
-                $('#from').val(dateText);
-              }
-              });
-          });
-          </script>
-
-
-<div id="formBd"></div>
-<input id="from" type="text" value="">
 
         <?
         echo $this->form->input('Meeting.time', array(
@@ -356,13 +335,3 @@
 
     </div>
 </div>
-
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $("#datepicker").datepicker({
-      numberOfMonths: 2,
-      onSelect: function(dateText, inst) { $("#selectedValue").val(dateText); }
-    });
-    $("#btnShow").click(function() { alert($("#selectedValue").val()); });
-  });
-  </script>
