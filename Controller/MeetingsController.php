@@ -14,7 +14,7 @@ class MeetingsController extends AppController
         $this->Auth->allow('add');
     }
 
-    public function roulette(){
+    public function roulette2(){
 
         $login_gender = $this->Auth->user('gender');
         if($login_gender == 1){

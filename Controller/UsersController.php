@@ -53,7 +53,7 @@ public function login (){
     if($this->request->isPost()){
         if($this->Auth->login()){
             //$this->redirect($this->Auth->redirect(array('action' => 'roulette','controller' => 'Meetings')));
-            $this->redirect('/Meetings/roulette/');
+            $this->redirect('/Meetings/roulette2/');
             $this->Session->setFlash('ログインしました。','default',array(),'auth');
         } else {
             $this->Session->setFlash('ユーザー名かパスワードが違います。','default',array(),'auth');
@@ -96,7 +96,7 @@ public function edit($id = null) {
                 // 2つのパスワード入力フォームを空で表示するために、配列から破棄
             unset($this->request->data['User']['new_password1'], $this->request->data['User']['new_password2']);
 
-            $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
+            $this->redirect(array('action' => 'roulette2','controller' => 'Meetings'));
 
         } else {
                 // 更新失敗

@@ -2,7 +2,7 @@
 <?php echo $this->Html->css(array('jquery-ui-1.10.4.custom'), array('inline'=>false)); ?>
 
     <!-- row１ここから -->
-    <div class="row">
+    <div class="row" >
       
       <div class="col-lg-5 col-md-5 portfolio-item" >
            
