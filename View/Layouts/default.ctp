@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>No Name</title>
 
     <?php
       echo $this->fetch('meta');
@@ -36,10 +36,13 @@
   </head>
   <body>
     <div class="container"><!-- container -->
-      <h1>Title</h1>
+      <div style="margin : 30px 0px 20px 0px">
+        <h1>Title</h1>
+      </div>
+
       <div class="masthead">
         <ul class="nav nav-justified">
-          <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">がちゃ恋とは？</a></li>
+          <li><a href="<?php echo $this->Html->url('/meetings/roulette2'); ?>">がちゃ恋とは？</a></li>
           <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">ご利用に当たって</a></li>
           <li><a href="<?php echo $this->Html->url('/bars/admin_register'); ?>">バー登録</a></li>
           <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">居酒屋一覧</a></li>

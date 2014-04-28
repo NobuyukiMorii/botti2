@@ -177,11 +177,27 @@ class MeetingsController extends AppController
         exit;
     }
 
-    public function detail(){
+    public function detail2(){
 
         $randomBar = $this->Session->read('randomBar');
         $randomUser = $this->Session->read('randomUser');
         $this->set(compact('randomBar','randomUser'));
+
+        //希望曜日の一週間後の日付を算出してViewに渡す
+        $target_week = $randomUser['User']['kibouyoubi'];
+        $today_week=date('w');
+        $plus=0;
+        if($target_week>$today_week) {
+            $plus=$target_week-$today_week;
+        } else {
+            $plus=7-($today_week-$target_week);
+        }
+        $add_sec = $plus * 86400;//日数×１日の秒数
+        $target_sec = date('U') + $add_sec;//Unixからの秒数
+        $NextWeekDay = date('Y-m-d', $target_sec);
+
+        $this->set('NextWeekDay',$NextWeekDay);
+
     }
 
     public function email () {
