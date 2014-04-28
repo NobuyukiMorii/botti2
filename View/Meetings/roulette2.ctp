@@ -21,10 +21,12 @@
 
                 <div class="text-left" style="margin-top:40px;">
 
+                    <h4>
 					<?php echo $randomUser['User']['age']; ?>才の<?php echo $randomUser['User']['workText']; ?>です。<br/>
 					基本的に<?php echo $randomUser['User']['kibouyoubiText']; ?>の<?php echo $randomUser['User']['kibouzikan']; ?>時からは大丈夫です。
 					<?php echo $randomUser['User']['kibouekiText']; ?>駅は行きやすいです。<br />
 					<?php echo $randomUser['User']['genreText']; ?>が好きです！<br />
+                    </h4>
 
 				</div>
 

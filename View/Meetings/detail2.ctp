@@ -26,7 +26,7 @@
 
           </div>
 
-          <div style="margin-top:300px;">
+          <div style="margin-top:330px;">
 
             <h4>
             <dl class="text-left">
@@ -58,7 +58,7 @@
 
             </div>
 
-            <div class="text-left" style="margin-top:30px;">
+            <div class="text-left" style="margin-top:60px;">
 
                 <form class ="well my-inline form-inline">
 
@@ -102,7 +102,7 @@
                     <div class = "form-group" style="margin-top : 30px">
                       <p>待ち合わせ場所</p>
                         <div class="radio">
-                          <?php echo $this->Form->radio('Meeting.meetingspot', array("改札前" => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'改札前', "店内" =>'店内'), array('legend' => false,'separator' => "<br />", 'value' => '1'), array('class' => 'form-group','required' => false));?>
+                          <?php echo $this->Form->radio('Meeting.meetingspot', array("改札前" => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'改札前', "店内" =>'店内'), array('legend' => false,'separator' => "<br />", 'default' => '1'), array('class' => 'form-group','required' => false));?>
                         </div>
                     </div>
 
@@ -112,9 +112,9 @@
                       <?php echo $this->Form->submit('デートに誘う', array('class' => 'btn btn-primary'));?>
                   </div>
 
-              </form>
-
               <?php echo $this->Form->end();?>
+
+              </form>
               
           </div>
 
