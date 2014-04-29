@@ -206,7 +206,7 @@ class MeetingsController extends AppController
 
         $bar_name = $randomBar['Bar']['name'];
         $bar_url = $randomBar['Bar']['url'];
-        $bar_station = $randomBar['Bar']['station'];
+        $bar_station = $randomBar['Bar']['stationText'];
         $bar_gate = $randomBar['Bar']['gate'];
         $bar_genre = $randomBar['Bar']['genreText'];
         $bar_walk_time = $randomBar['Bar']['walk_time'];
@@ -217,7 +217,8 @@ class MeetingsController extends AppController
         $bar_price = $randomBar['Bar']['price'];
 
         $meeting_date = $meeting_info['Meeting']['date'];
-        $meeting_time = $meeting_info['Meeting']['time'];
+        $meeting_time_hour = $meeting_info['Meeting']['time']['hour'];
+        $meeting_time_min = $meeting_info['Meeting']['time']['min'];
         $meetingspot = $meeting_info['Meeting']['meetingspot'];
 
         $title = "【ガチャ恋】デートのお誘い";
@@ -248,7 +249,8 @@ class MeetingsController extends AppController
                 'bar_close_time',
                 'bar_price',
                 'meeting_date',
-                'meeting_time', 
+                'meeting_time_hour',
+                'meeting_time_min', 
                 'meetingspot'
                 ));
         $email->send();
@@ -275,7 +277,7 @@ class MeetingsController extends AppController
         $this->request->data["Meeting"]["user_id_2"] = $randomUser['User']['id'];   
         //var_dump($this->request->data);
 
-        $this->Session->write('meeting_data',$this->request->data);
+        $this->Session->write('data',$this->request->data);
 
         $this->set("data",$this->request->data);
 

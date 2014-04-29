@@ -6,7 +6,7 @@ http://xxxxx.xxxxx.xxxxx.xxxxx.xxxxxx<?php echo "\n" ?>
 
 【待ち合わせ】<?php echo "\n" ?>
 	日付：<?php echo $meeting_date ;?><?php echo "\n" ?>
-	時間：<?php echo $meeting_time ;?><?php echo "\n" ?>
+	時間：<?php echo $meeting_time_hour ;?>:<?php echo $meeting_time_min ;?><?php echo "\n" ?>
 	場所：<?php echo $meetingspot ;?><?php echo "\n" ?>
 
 【デート相手】<?php echo "\n" ?>

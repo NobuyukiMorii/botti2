@@ -1,7 +1,3 @@
-<?php var_dump($data["Meeting"]["date"]) ;?><br />
-<?php var_dump($data["Meeting"]["time"]) ;?><br />
-
-
 <div class="container">
 
         <!-- START THE FEATURETTES -->
@@ -14,7 +10,7 @@
 
             <h4 class="text-left">デート内容</h4>
 
-            <p class="lead"><?php echo h($this->data["Meeting"]["date"] ["year"]); ?>年<?php echo h($this->data["Meeting"]["date"] ["month"]); ?>月<?php echo h($this->data["Meeting"]["date"] ["day"]); ?>日<?php echo h($this->data["Meeting"]["time"]["hour"]); ?>時<?php echo h($this->data["Meeting"]["time"]["min"]); ?>分に、<?php echo h($this->data["Meeting"]["meetingspot"]); ?>で待ち合わせです。</p>
+            <p class="lead"><?php echo h($this->data["Meeting"]["date"]); ?> <?php echo h($this->data["Meeting"]["time"]["hour"]); ?>:<?php echo h($this->data["Meeting"]["time"]["min"]); ?>に<?php echo h($this->data["Meeting"]["meetingspot"]); ?>で待ち合わせです。</p>
 
 
         <!-- /END THE FEATURETTES -->
