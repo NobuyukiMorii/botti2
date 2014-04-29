@@ -11,7 +11,7 @@ class MeetingsController extends AppController
     public $helpers = array("DatePicker");
 
     public function beforeFilter(){
-        $this->Auth->allow('add');
+        $this->Auth->allow('add','acceptance');
     }
 
     public function roulette(){
@@ -216,6 +216,7 @@ class MeetingsController extends AppController
         $bar_close_time = $randomBar['Bar']['close_time'];
         $bar_price = $randomBar['Bar']['price'];
 
+        $meeting_id = $this->Session->read('last_id');
         $meeting_date = $meeting_info['Meeting']['date'];
         $meeting_time_hour = $meeting_info['Meeting']['time']['hour'];
         $meeting_time_min = $meeting_info['Meeting']['time']['min'];
@@ -248,6 +249,7 @@ class MeetingsController extends AppController
                 'bar_start_time', 
                 'bar_close_time',
                 'bar_price',
+                'meeting_id',
                 'meeting_date',
                 'meeting_time_hour',
                 'meeting_time_min', 
@@ -264,9 +266,7 @@ class MeetingsController extends AppController
         $this->request->dataにはuser_id_1,user_id_2,bar_idが欠損している
         */
         
-        $this->request->data["Meeting"]["user_id_1"] = $this->Auth->user('id');
-        $loginUserName = $this->Auth->user('nickname');
-        $this->set('loginUserName',$loginUserName);
+        $this->request->data["Meeting"]["user_id"] = $this->Auth->user('id');
 
         $randomBar = $this->Session->read('randomBar');
         $this->set('randomBar',$randomBar);
@@ -274,14 +274,20 @@ class MeetingsController extends AppController
 
         $randomUser = $this->Session->read('randomUser');
         $this->set('randomUser',$randomUser);
-        $this->request->data["Meeting"]["user_id_2"] = $randomUser['User']['id'];   
+        $this->request->data["Meeting"]["match_user"] = $randomUser['User']['id'];   
         //var_dump($this->request->data);
 
         $this->Session->write('data',$this->request->data);
 
         $this->set("data",$this->request->data);
 
-        $this->Meeting->save($this->request->data);
+        // $this->Meeting->save($this->request->data);
+
+        if($this->Meeting->save($this->request->data)){
+            $last_id = $this->Meeting->getLastInsertID();
+        }
+
+        $this->Session->write('last_id',$last_id);
         
         /*
         *CakeEmailの送信
@@ -293,32 +299,57 @@ class MeetingsController extends AppController
     public function meetinglist() {
 
         $data = $this->Meeting->find('all',array(
-            // 'fields' => array('User.nickname','User.birthday','User.work','Bar.name','Bar.station','Meeting.date','Meeting.time','Meeting.meetingspot'), //フィールド名の配列
-            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC'), //並び順を文字列または配列で指定  
+            'limit' =>100
             )
         );
 
         $this->set('data', $data);
+
+    }
+
+    public function result() {
+        $data = null;
+        if(!empty($this->request->data)){
+            $data = $this->Bar->find('all', array('conditions' => 
+                array('Bar.name like' => "%{$this->data['Bar']['name']}%")));
+        } else {
+            $data = $this->Board->find('all');
+        }
+        $this->set('data',$data);
 
     }
 
     public function userpolicy() {
 
-
     }
 
-    public function acceptance() {
+    public function acceptance($id = null) {
 
-        $data = $this->Meeting->find('first',array(
-            'conditions' => array('user_id' => $this->request->data['id']),
-            'order' => array('Meeting.match_user' => 'ASC','Meeting.time' => 'ASC'), //並び順を文字列または配列で指定  
-            )
-        );
-        $this->set('data', $data);
+        $this->Meeting->id = $id;
+        if (!$this->Meeting->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+
+            if ($this->Meeting->save($this->request->data)) {
+
+                $this->Session->setFlash('デートを約束しました！！', 'default', array(), 'success');
+
+                $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
+
+            } else {
+
+                $this->Session->setFlash('システムエラーでデート約束出来ませんでした！！', 'default', array(), 'fail');
+
+                $this->redirect('/meetings/acceptance/'.$id);
+            }
+
+        } else {
+
+        $this->request->data = $this->Meeting->read(null, $id);
+
+        }
     }
-
-
-
-
 
 }

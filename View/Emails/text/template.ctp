@@ -1,8 +1,8 @@
-こんにちは<?php echo $user_nickname ;?>さん！<?php echo $partner_nickname ;?>さんからデートのお誘いです！<?php echo "\n" ?>
+こんにちは<?php echo $partner_nickname ;?>さん！<?php echo $user_nickname ;?>さんからデートのお誘いです！<?php echo "\n" ?>
 お店は<?php echo $user_nickname ;?>さんが好きな<?php echo $partner_genre ;?>だよ！<?php echo "\n" ?>
 デートOKなら、このメールのリンクをクリックしてね！<?php echo "\n" ?>
 
-http://xxxxx.xxxxx.xxxxx.xxxxx.xxxxxx<?php echo "\n" ?>
+http://localhost:8888/gachakoi/meetings/acceptance/<?php echo $meeting_id ;?><?php echo "\n" ?>
 
 【待ち合わせ】<?php echo "\n" ?>
 	日付：<?php echo $meeting_date ;?><?php echo "\n" ?>

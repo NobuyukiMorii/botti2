@@ -25,10 +25,10 @@
   <div id="top" class="header">
     <!-- vert-text -->
     <div class="vert-text">
-      <h1>がちゃ恋</h1>
+      <h1>DateOutTokyo</h1>
       <h3>
-        <em>無料で</em> 出会えて,
-        <em>簡単に</em> デート</h3>
+        <em>For Free</em> and
+        <em>So Easy</em></h3>
         
     
       <!-- Login Form -->
@@ -39,7 +39,7 @@
               <input type="hidden" name="_method" value="POST"/>
             </div>
 
-            <h2 class="form-signin-heading">ログインする</h2>
+            <h2 class="form-signin-heading">Sign Up</h2>
             <input name="data[User][username]" id="UserUsername" type="email" class="form-control" placeholder="Email address" required autofocus>
             <input name="data[User][password]" id="UserPassword" type="password" class="form-control" placeholder="Password" required>
             <label class="checkbox">
