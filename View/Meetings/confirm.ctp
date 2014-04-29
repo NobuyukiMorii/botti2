@@ -1,13 +1,29 @@
+<?php var_dump($data["Meeting"]["date"]) ;?><br />
+<?php var_dump($data["Meeting"]["time"]) ;?><br />
+
+
+<div class="container">
+
+        <!-- START THE FEATURETTES -->
+
+            <h2 class="featurette-heading"><?php echo $randomUser['User']['nickname']; ?>さんを
+                <span class="text-muted">デートに誘いました。</span>
+            </h2>
+
+            <h3><?php echo $randomUser['User']['nickname']; ?>さんがOKするのをお待ち下さい。</h3>
+
+            <h4 class="text-left">デート内容</h4>
+
+            <p class="lead"><?php echo h($this->data["Meeting"]["date"] ["year"]); ?>年<?php echo h($this->data["Meeting"]["date"] ["month"]); ?>月<?php echo h($this->data["Meeting"]["date"] ["day"]); ?>日<?php echo h($this->data["Meeting"]["time"]["hour"]); ?>時<?php echo h($this->data["Meeting"]["time"]["min"]); ?>分に、<?php echo h($this->data["Meeting"]["meetingspot"]); ?>で待ち合わせです。</p>
+
+
+        <!-- /END THE FEATURETTES -->
+
+</div>
+
+
 <!-- containerここから -->
 <div class="container" >
-  <!-- row0ここから -->
-  <div class="row">
-
-      <h1>リクエストを送信しました。</h1>
-      <p><?php echo $randomUser['User']['nickname']; ?>さんと、<?php echo h($this->data["Meeting"]["date"] ["year"]); ?>年<?php echo h($this->data["Meeting"]["date"] ["month"]); ?>月<?php echo h($this->data["Meeting"]["date"] ["day"]); ?>日<?php echo h($this->data["Meeting"]["time"]["hour"]); ?>時<?php echo h($this->data["Meeting"]["time"]["min"]); ?>分に、<?php echo h($this->data["Meeting"]["meetingspot"]); ?>で待ち合わせです。</p>
-
-  </div>
-  <!-- row0ここまで -->
 
     <!-- row１ここから -->
     <div class="row">
@@ -102,26 +118,6 @@
 
     </div>
     <!-- row２ここまで -->
-
-        <!-- Map -->
-    <div class="row">
-
-      <div class="col-lg-12 col-md-12 portfolio-item" >
-        <div id="contact" class="map">
-          <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed">
-          </iframe>
-            <br />
-          <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-          </small>
-        </iframe>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- /Map -->
 
     <!-- row３ここから -->
     <div class="row">

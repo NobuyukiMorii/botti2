@@ -14,7 +14,7 @@ class MeetingsController extends AppController
         $this->Auth->allow('add');
     }
 
-    public function roulette2(){
+    public function roulette(){
 
         $login_gender = $this->Auth->user('gender');
         if($login_gender == 1){
@@ -22,7 +22,6 @@ class MeetingsController extends AppController
         } else {
             $partner_gender = 1;
         }
-        //制御構造の場合、外の}には;いらない。
 
         $randomUser = $this->User->find('first',array(
             'conditions' => array('User.age >=' => '20','User.gender' => $partner_gender),
@@ -80,10 +79,6 @@ class MeetingsController extends AppController
             'monthNames' => false
         );
         $this->set('start_time_option',$start_time_option);
-
-        /*
-        ここからマッチング処理
-        */
 
         //山手線の駅のマッチングポイント
         $station_a = $randomUser['User']['kiboueki'];
@@ -148,13 +143,6 @@ class MeetingsController extends AppController
         $total_much_point = $mach_station_point + $mach_youbi_point + $much_age_point + $much_work_point + $much_age_point + $much_genre_point;
         $this->set('total_much_point',$total_much_point);
 
-        /*
-        *ここまでマッチング処理
-        */
-
-
-
-
     }
 
     public function image2Bar($bar_id){
@@ -178,7 +166,7 @@ class MeetingsController extends AppController
         exit;
     }
 
-    public function detail2(){
+    public function detail(){
 
         $randomBar = $this->Session->read('randomBar');
         $randomUser = $this->Session->read('randomUser');
@@ -202,33 +190,68 @@ class MeetingsController extends AppController
     }
 
     public function email () {
+
+        $randomUser = $this->Session->read('randomUser');
+        $randomBar = $this->Session->read('randomBar');
+        $meeting_info = $this->Session->read('data');
+
+        $user_nickname = $this->Auth->user('nickname');
+
+        $partner_nickname = $randomUser['User']['nickname'];
+        $partner_age = $randomUser['User']['age'];
+        $partner_work = $randomUser['User']['workText'];
+        $partner_kibouyoubi = $randomUser['User']['kibouyoubi'];
+        $partner_kiboueki = $randomUser['User']['kiboueki'];
+        $partner_genre = $randomUser['User']['genreText'];
+
+        $bar_name = $randomBar['Bar']['name'];
+        $bar_url = $randomBar['Bar']['url'];
+        $bar_station = $randomBar['Bar']['station'];
+        $bar_gate = $randomBar['Bar']['gate'];
+        $bar_genre = $randomBar['Bar']['genreText'];
+        $bar_walk_time = $randomBar['Bar']['walk_time'];
+        $bar_telnumber = $randomBar['Bar']['telnumber'];
+        $bar_location = $randomBar['Bar']['location'];
+        $bar_start_time = $randomBar['Bar']['start_time'];
+        $bar_close_time = $randomBar['Bar']['close_time'];
+        $bar_price = $randomBar['Bar']['price'];
+
+        $meeting_date = $meeting_info['Meeting']['date'];
+        $meeting_time = $meeting_info['Meeting']['time'];
+        $meetingspot = $meeting_info['Meeting']['meetingspot'];
+
         $title = "【ガチャ恋】デートのお誘い";
 
-        $msg = 'こんにちは◯◯さん！◯◯さんからデートのお誘いです！デートするなら、このメールのリンクをクリックしてね！';
-
-        // 'こんにちは◯◯さん！◯◯さんからデートのお誘いです！デートするなら、このメールのリンクをクリックしてね！'.
-        //         'お店'.
-        //             '店名:◯◯'.
-        //             'url:◯◯'.
-        //             '最寄駅'.
-        //             '紹介文'.
-        //         '待ち合わせ'.
-        //             '日程:◯月◯日'.
-        //             '時間:◯時◯分'.
-        //             '場所：◯駅の◯'.
-        //         'お相手'.
-        //             '名前:◯◯さん'.
-        //             '年齢:◯◯才'.
-        //             '職業：◯◯'.;
-
-        // $randomUser = $this->Session->read('randomUser');
-        // $to = $randomBar['User']['username'];
-
         $email = new CakeEmail('smtp');
-        $email->to('qwerty.poiu.mory@gmail.com')
-              ->emailFormat('text')
-              ->subject($title)
-              ->send($msg);
+        $email->to($randomUser['User']['username']);
+        $email->subject($title);
+
+        $email->emailFormat( 'text');
+        $email->template( 'template');
+        $email->viewVars( compact( 
+                'user_nickname', 
+                'partner_nickname',
+                'partner_age', 
+                'partner_work',
+                'partner_kibouyoubi',
+                'partner_kiboueki',
+                'partner_genre',
+                'bar_name',
+                'bar_url', 
+                'bar_station',
+                'bar_gate', 
+                'bar_genre', 
+                'bar_walk_time',
+                'bar_telnumber', 
+                'bar_location',
+                'bar_start_time', 
+                'bar_close_time',
+                'bar_price',
+                'meeting_date',
+                'meeting_time', 
+                'meetingspot'
+                ));
+        $email->send();
 
         $this->render('confirm');
     }
@@ -252,10 +275,9 @@ class MeetingsController extends AppController
         $this->request->data["Meeting"]["user_id_2"] = $randomUser['User']['id'];   
         //var_dump($this->request->data);
 
+        $this->Session->write('meeting_data',$this->request->data);
+
         $this->set("data",$this->request->data);
-        /*
-        保存すると勝手にUserテーブルと連携しようとしやがる。
-        */
 
         $this->Meeting->save($this->request->data);
         

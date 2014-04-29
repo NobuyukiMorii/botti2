@@ -25,6 +25,11 @@ height: 400px;
 overflow: hidden;
 }
 
+.trimming3 {
+width: 300px;
+height: 300px;
+}
+
 .img-responsive-question {
   display: block;
   max-width: 100%;

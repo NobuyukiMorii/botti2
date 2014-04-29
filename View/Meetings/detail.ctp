@@ -1,124 +1,124 @@
-<div class="container" >
+<?php echo $this->Html->script(array('jquery-1.10.2.js', 'jquery-ui-1.10.4.custom','jquery.ui.datepicker-ja'), array('inline'=>false)); ?>
+<?php echo $this->Html->css(array('jquery-ui-1.10.4.custom'), array('inline'=>false)); ?>
+
+
+<div class="container">
+
+    <div class="row" style="margin-top:0px;">
+
+        <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
+          <h2 class="text-left"><?php echo h($randomBar['Bar']['name']); ?></h2>
+        </a>
+
+    </div>
 
     <div class="row">
 
-        <h1>デートの待ち合わせ</h1>
+        <div class="col-md-5" >
 
-        <form action="/gachakoi/meetings/confirm" enctype="multipart/form-data" role="form" id="MeetingConfirmForm" method="post" accept-charset="utf-8">
-            <div style="display:none;">
-                <input type="hidden" name="_method" value="POST"/>
-            </div>
+          <div>
 
-            <fieldset>
+            <p class="trimming2" style="margin-top:0px;">
+            <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
+                <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
+            </a>
+            </p>
 
-            <div class="form-group">
-                <div class="input date">
-                <label for="MeetingDateMonth">日付</label>
+          </div>
 
-                    <select class="span2" name="data[Meeting][date][year]" class="form-control" id="MeetingDateYear">
-                        <?php for($year=date('Y'); $year<=date("Y",strtotime("+1 year")); $year++) {
-                            print('<option value="'.$year.'">'.$year.'</option>');
-                        } ?>
-                     </select>
+          <div style="margin-top:330px;">
 
-                    <select class="span2" name="data[Meeting][date][month]" class="form-control" id="MeetingDateMonth">
-                        <?php 
-                            $this_month=date('n');
-                            for($month=1; $month<13; $month++){
-                            echo "<option value=\"$month\"";
-                            if($month==$this_month){
-                            echo "selected=selected";  
-                            }
-                            echo ">$month</option>";                  
-                            }
-                        ?>     
-                    </select>
+            <h4>
+            <dl class="text-left">
+              <dt>最寄駅</dt>
+                <dd><?php echo $randomBar['Bar']['stationText']; ?></dd>
+              <dt>アクセス</dt>
+                <dd><?php echo $randomBar['Bar']['gate']; ?>から徒歩<?php echo $randomBar['Bar']['walk_time']; ?>分</dd>
+              <dt>住所</dt>  
+                <dd><?php echo $randomBar['Bar']['location']; ?></dd>
+              <dt>電話番号</dt>
+                <dd><?php echo $randomBar['Bar']['telnumber']; ?></dd>
+            </dl>
+          </h4>
 
-                    <select class="span2" name="data[Meeting][date][day]" class="form-control" id="MeetingDateDay">
-                        <?php 
-                            $today=date('d');
-                            for($day=1; $day<32; $day++){
-                            echo "<option value=\"$day\"";
-                            if($day==$today){
-                            echo "selected=selected";  
-                            }
-                            echo ">$day</option>";
-                           }
-                       ?>      
-                    </select>
-                </div>
-            </div>
 
-        <div class="form-group">
-            <div class="input time">
+          </div>
 
-                <label for="MeetingTimeHour">時間</label>
 
-                <select class="span2" name="data[User][kibouzikan][meridian]" class="form-control input-sm" id="UserKibouzikanMeridian">
-                    <option value="am">午前</option>
-                    <option value="pm" selected="selected">午後</option>
-                </select>
-
-                <select class="span2" name="data[Meeting][time][hour]" class="form-control" id="MeetingTimeHour">
-                    <?php 
-                        $selected_hour=h($randomUser['User']['kibouzikan']['hour']);
-
-                        for($hour=1; $hour<13; $hour++){
-                            echo "<option value=\"$hour\"";
-                                if($hour==7){
-                                    echo "selected=selected";  
-                                }
-                            echo ">$hour</option>";
-                        }
-                    ?>
-                </select>
-
-                <select class="span2" name="data[Meeting][time][min]" class="form-control" id="MeetingTimeMin">
-                    <option value="0" selected="selected">0</option>
-                    <option value="30">30</option>
-                </select>
-
-            </div>
         </div>
 
 
 
-        <!--     <div class="form-group">
-            <?php echo $this->Form->input('Meeting.time', array('class' => 'form-control'));?>
-            <?php echo $this->Form->error('Meeting.time', array('class' => "warning")); ?>
-            </div> -->
+        <div class="col-md-7" >
 
-        <div class="form-group">
-            <div class="input time">
-                <label for="Meetingspot">待ち合わせ場所</label>
+            <div class="text-left" style="margin-top:20px;">
 
-                <select class="span6" name="data[Meeting][meetingspot]" id="Meetingspot" class="form-control">
-                <option value="<?php echo h($randomBar['Bar']['stationText']); ?>駅<?php echo h($randomBar['Bar']['gate']); ?>の改札前" selected="selected"><?php echo h($randomBar['Bar']['stationText']); ?>駅の<?php echo h($randomBar['Bar']['gate']); ?>の改札前</option>
-                <option value="<?php echo h($randomBar['Bar']['name']); ?>のお店の中"><?php echo h($randomBar['Bar']['name']); ?>のお店の中</option>
-                </select>
-                <?php echo $this->Form->error('Meeting.meetingspot', array('class' => "warning")); ?>
+                <h2><strong><?php echo $randomUser['User']['kibouekiText']; ?>駅</strong>を希望している<?php echo h($randomUser['User']['nickname']); ?>さんにぴったりなお店。<br />
+                <?php echo h($randomUser['User']['nickname']); ?>さんは<strong><?php echo h($randomUser['User']['genreText']); ?></strong>が好きだし、絶対に喜ぶはず！<br /></h2>
+
             </div>
-        </div>
 
-            <?php echo $this->Form->submit('本当にデートに誘う', array('class' => 'btn btn-primary'));?>
+            <div class="text-left" style="margin-top:60px;">
 
-        </fieldset>
-        <?php echo $this->Form->end();?>
+                <div class ="well my-inline form-inline">
 
-        <dl align = center ;>
-          <dt><?php echo h($randomUser['User']['nickname']); ?>さんは</dt>
-          <dd><?php echo h($randomUser['User']['kibouyoubiText']);?>の<?php echo h($randomUser['User']['kibouzikan']);?>からが都合よくて、</dd>
-        </dl>
-        <dl align = center ;>
-          <dt><?php echo h($randomBar['Bar']['name']); ?>の最寄り駅は、</dt>
-          <dd><?php echo h($randomBar['Bar']['stationText']); ?>、最寄り口は<?php echo h($randomBar['Bar']['gate']); ?>だよ！</dd>
-        </dl>
+                    <div>
+                        <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
+                        <p>待ち合わせ日時</p>
+                        <div class = "form-group">
+                            <?php echo $this->Datepicker->datepicker('Meeting.date', array(
+                              'label' => false,
+                              'type' => 'text',
+                              'default' => date('Y/m/d', strtotime($NextWeekDay)),
+                              'empty' => true,
+                              'maxYear' => date('Y'),
+                              'inline' => true
+                              ));
+                              ?>
+                          </div>
 
-    </div>
+                          <div class = "form-group">
+                            <?
+                            echo $this->form->input('Meeting.time', array(
+                              'label' => false,
+                              'default' => date('H:i:s', strtotime($randomUser['User']['kibouzikan'])),
+                              'timeFormat' => '24',
+                              'dateFormat' => 'H:i:s',
+                              'empty' => true,
+                              'separator' => '/',
+                              ));
+                              ?>
+                          </div>
+
+                    </div>
+
+
+                    <div>
+                        <h4 class="text-left text-info"; style="margin-top:10px;">
+                        <?php echo $randomUser['User']['nickname']; ?>さんは<?php echo $randomUser['User']['kibouyoubiText']; ?>の<?php echo $randomUser['User']['kibouzikan']; ?>をご希望です。
+                        </h4>
+                    </div>
+
+                    <div class = "form-group" style="margin-top : 30px">
+                      <p>待ち合わせ場所</p>
+                        <div class="radio">
+                          <?php echo $this->Form->radio('Meeting.meetingspot', array("改札前" => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'改札前', "店内" =>'店内'), array('legend' => false,'separator' => "<br />", 'value' =>'改札前' ), array('class' => 'form-group','required' => false));?>
+                        </div>
+                    </div>
+
+                  <div class="text-right" style="margin-top : 0px">
+                      <?php echo $this->Form->submit('デートに誘う', array('class' => 'btn btn-primary'));?>
+                  </div>
+
+              <?php echo $this->Form->end();?>
+
+              </form>
+              
+          </div>
+
+      </div>
+
+  </div>
+
 </div>
-
-
-
-
-
-
+    <!-- /.container -->

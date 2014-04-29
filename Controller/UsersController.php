@@ -53,7 +53,7 @@ public function login (){
     if($this->request->isPost()){
         if($this->Auth->login()){
             //$this->redirect($this->Auth->redirect(array('action' => 'roulette','controller' => 'Meetings')));
-            $this->redirect('/Meetings/roulette2/');
+            $this->redirect('/Meetings/roulette/');
             $this->Session->setFlash('ログインしました。','default',array(),'auth');
         } else {
             $this->Session->setFlash('ユーザー名かパスワードが違います。','default',array(),'auth');

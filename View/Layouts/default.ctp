@@ -25,6 +25,9 @@
     <!-- Original for this template -->
     <?=$this->Html->css('style.css')?>
 
+    <!-- Original for this template -->
+    <?=$this->Html->css('one-page-wonder.css')?>
+
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -42,7 +45,7 @@
 
       <div class="masthead">
         <ul class="nav nav-justified">
-          <li><a href="<?php echo $this->Html->url('/meetings/roulette2'); ?>">がちゃ恋とは？</a></li>
+          <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">がちゃ恋とは？</a></li>
           <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">ご利用に当たって</a></li>
           <li><a href="<?php echo $this->Html->url('/bars/admin_register'); ?>">バー登録</a></li>
           <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">居酒屋一覧</a></li>
@@ -69,8 +72,6 @@
     ================================================== -->
     <?=$this->Html->script('jquery-1.10.2.js')?>
     <?=$this->Html->script('bootstrap.js')?>
-    <?=$this->Html->script('http://code.jquery.com/jquery-1.8.3.js')?>
-    <?=$this->Html->script('http://code.jquery.com/ui/1.10.0/jquery-ui.js')?>
     <!-- Placed at the end of the document so the pages load faster -->
   </body>
 </html>

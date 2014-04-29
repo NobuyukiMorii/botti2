@@ -41,7 +41,7 @@
 
                 	 <div class="text-left">
 
-                	 	<a href="<?php echo $this->Html->url('/meetings/roulette2'); ?>">
+                	 	<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">
 				            <?php echo $this->Html->image('next2.png', array('alt' => '次へ','width'=>'150','height'=>'150')); ?>
 				         </a>
 
