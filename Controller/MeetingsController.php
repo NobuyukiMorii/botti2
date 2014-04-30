@@ -317,15 +317,36 @@ class MeetingsController extends AppController
 
     }
 
-    public function result() {
-        $data = null;
-        if(!empty($this->request->data)){
-            $data = $this->Bar->find('all', array('conditions' => 
-                array('Bar.name like' => "%{$this->data['Bar']['name']}%")));
-        } else {
-            $data = $this->Board->find('all');
-        }
+    public function user_date() {
+
+
+        $data = $this->Meeting->find('all',array(
+            'conditions' => array('or' => array(
+                'Meeting.user_id' => $this->Auth->user('id'),
+                'Meeting.match_user' => $this->Auth->user('id'),
+                )
+            ),
+            'limit' =>100
+            )
+        );
+
+        // $LoginUserId = $this->Auth->user('id');
+        // if($LoginUserId === $data['Meeting']['user_id']) {
+        //     $data['Meeting']['date_partner'] = $this->User->find('first',array(
+        //         'conditions' => array('User.id' => $data['Meeting']['match_user'])
+        //         )
+        //     );
+        // } elseif ($LoginUserId === $data['Meeting']['match_user']) {
+        //     $data['Meeting']['date_partner'] = $this->User->find('first',array(
+        //         'conditions' => array('User.id' => $data['Meeting']['user_id'])
+        //         )
+        //     );
+        // }
         $this->set('data',$data);
+
+
+        $LoginUserName = $this->Auth->user('nickname');
+        $this->set('LoginUserName',$LoginUserName);
 
     }
 
@@ -380,10 +401,23 @@ class MeetingsController extends AppController
             )
         );
 
-        $partner_data = $this->User->find('first',array(
-            'conditions' => array('User.id' => $data['Meeting']['match_user'])
-            )
-        );
+        // $partner_data = $this->User->find('first',array(
+        //     'conditions' => array('User.id' => $data['Meeting']['match_user'])
+        //     )
+        // );
+        $LoginUserId = $this->Auth->user('id');
+
+        if($LoginUserId === $data['Meeting']['user_id']) {
+            $partner_data = $this->User->find('first',array(
+                'conditions' => array('User.id' => $data['Meeting']['match_user'])
+                )
+            );
+        } elseif ($LoginUserId === $data['Meeting']['match_user']) {
+            $partner_data = $this->User->find('first',array(
+                'conditions' => array('User.id' => $data['Meeting']['user_id'])
+                )
+            );
+        }
 
         $youbi = array("日", "月", "火", "水", "木", "金", "土");
         $yoteibi = $data['Meeting']['date'];

@@ -29,7 +29,7 @@
 
 
 	    						<p class="trimming4" >
-	    							<img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$data['Meeting']['user_id']); ?>" alt="<?php echo h($data['User']['nickname']); ?>">
+	    							<img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$partner_data['User']['id']); ?>" alt="<?php echo h($partner_data['User']['nickname']); ?>">
 	    						</p>
 
 	    						<p class="trimming4" style="margin-top:330px;">
@@ -45,11 +45,11 @@
 	    						<h4>
 	    							<dl class="text-left" style="margin-top:50px;">	
 	    								<dt>お名前<dt>
-	    									<dd><?php echo $data['User']['nickname']; ?>さん</dd>	
+	    									<dd><?php echo $partner_data['User']['nickname']; ?>さん</dd>	
 	    								<dt>年齢<dt>
-	    									<dd><?php echo $data['User']['age']; ?>歳</dd>
+	    									<dd><?php echo $partner_data['User']['age']; ?>歳</dd>
 	    								<dt>お仕事</dt>
-	    									<dd><?php echo $data['User']['workText']; ?></dd>
+	    									<dd><?php echo $partner_data['User']['workText']; ?></dd>
 	    							</dl>
 	    						</h4>
 

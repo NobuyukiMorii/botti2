@@ -15,22 +15,29 @@ class Meeting extends AppModel {
 		),
 	);
 
-	// public $validate = array(
-	// 	'user_id_1' => array(
-	// 			//'rule'=>array('maxRecords','User.user_id_1',3),
-	// 			// 'message'=>'１日３回以上ガチャできません！。'
-	// 			)
-	// );
+	public function afterFind ($results, $primary) {
 
-	/*
-	*これだとgacha_countの全部の回数になる。一日あたりの回数になるよう改造しないと。
-	*おそらくcreated_atと組み合わせることで出来るのではないか
-	*/
+        foreach($results as $i => $item){
 
-	// public function maxRecords($data,$field,$num){
-	// 	$n = $this->find('gacha_count',
-	// 		array('conditions' => array($field => $data)));
-	// 	return $n < $num ? true : false;
-	// }
+            foreach (array('Meeting') as $model) {
+                if (array_key_exists($model, $item)) {
+
+                    if ($item[$model]['result'] == 1) {
+                        $item[$model]['resultText'] = '検討中';
+                    } elseif ($item[$model]['result'] == 2) {
+                        $item[$model]['resultText'] = 'デート予定';
+                    } elseif ($item[$model]['result'] == 3)  {
+                        $item[$model]['resultText'] = 'ふられた';
+                    } 
+                }
+            }
+
+            $results[$i] = $item;
+
+        }
+        return $results;
+    }
+
+
 }
 ?>
