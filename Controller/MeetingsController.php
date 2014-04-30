@@ -280,6 +280,8 @@ class MeetingsController extends AppController
 
         $total_match_point = $this->Session->read('total_match_point');
         $this->request->data["Meeting"]["total_match_point"] = $total_match_point;
+
+        $this->request->data["Meeting"]["result"] = 1;
         // var_dump($total_match_point);
         // $this->set("total_match_point",$total_match_point);
 
