@@ -17,7 +17,7 @@
             <div class="col-md-6" >
 
                 <h1 class="text-left"><?php echo $randomUser['User']['nickname']; ?>さん</h1>
-                <h1 class="text-left"><?php echo $total_much_point ;?>％  match</h1>
+                <h1 class="text-left"><?php echo $total_match_point ;?>％  match</h1>
 
                 <div class="text-left" style="margin-top:40px;">
 

@@ -140,8 +140,10 @@ class MeetingsController extends AppController
         } else {$much_genre_point = 0;
         }
         //トータルポイント
-        $total_much_point = $mach_station_point + $mach_youbi_point + $much_age_point + $much_work_point + $much_age_point + $much_genre_point;
-        $this->set('total_much_point',$total_much_point);
+        $total_match_point = $mach_station_point + $mach_youbi_point + $much_age_point + $much_work_point + $much_age_point + $much_genre_point;
+        $this->set('total_match_point',$total_match_point);
+
+        $this->Session->write('total_match_point',$total_match_point);
 
     }
 
@@ -275,7 +277,13 @@ class MeetingsController extends AppController
         $randomUser = $this->Session->read('randomUser');
         $this->set('randomUser',$randomUser);
         $this->request->data["Meeting"]["match_user"] = $randomUser['User']['id'];   
-        //var_dump($this->request->data);
+
+        $total_match_point = $this->Session->read('total_match_point');
+        $this->request->data["Meeting"]["total_match_point"] = $total_match_point;
+        // var_dump($total_match_point);
+        // $this->set("total_match_point",$total_match_point);
+
+
 
         $this->Session->write('data',$this->request->data);
 

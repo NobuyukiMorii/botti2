@@ -102,7 +102,26 @@
                     <div class = "form-group" style="margin-top : 30px">
                       <p>待ち合わせ場所</p>
                         <div class="radio">
-                          <?php echo $this->Form->radio('Meeting.meetingspot', array("改札前" => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'改札前', "店内" =>'店内'), array('legend' => false,'separator' => "<br />", 'value' =>'改札前' ), array('class' => 'form-group','required' => false));?>
+
+                          <?php echo $this->Form->radio(
+                          'Meeting.meetingspot',
+                              array(
+                              $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前'
+                              => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前', 
+                              $randomBar['Bar']['name'].'の店内'
+                              => $randomBar['Bar']['name'].'の店内'
+                              ), 
+                              array(
+                                'legend' => false,'separator' => "<br />",
+                                'value' => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前'
+                              ),
+                              array(
+                                'class' => 'form-group',
+                                'required' => false
+                              )
+                          )
+                          ;?>
+
                         </div>
                     </div>
 

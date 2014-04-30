@@ -45,10 +45,10 @@
 
       <div class="masthead">
         <ul class="nav nav-justified">
-          <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">がちゃ恋とは？</a></li>
+          <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">トップ画面</a></li>
           <li><a href="<?php echo $this->Html->url('/meetings/list'); ?>">ご利用に当たって</a></li>
           <li><a href="<?php echo $this->Html->url('/bars/admin_register'); ?>">バー登録</a></li>
-          <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">居酒屋一覧</a></li>
+          <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">デート場所一覧</a></li>
           <li><a href="<?php echo $this->Html->url('/meetings/meetinglist'); ?>">約束一覧</a></li>
           <li><a href="<?php echo $this->Html->url('/users/edit/'.$LoginUserId); ?>">プロフィール編集</a></li>
           <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
