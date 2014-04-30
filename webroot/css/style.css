@@ -26,8 +26,21 @@ overflow: hidden;
 }
 
 .trimming3 {
+position: absolute;
+top: 30px; 
+left: 0px;
+width: 400px;
+height: 400px;
+overflow: hidden;
+}
+
+.trimming4 {
+position: absolute;
+top: 30px; 
+left: 0px;
 width: 300px;
 height: 300px;
+overflow: hidden;
 }
 
 .img-responsive-question {
@@ -47,4 +60,16 @@ height: 300px;
 position: absolute; 
 top: 100px; 
 left: 400px;
+}
+
+.circle-image {
+position: absolute;
+width: 200px;
+height: 200px;
+}
+
+.boxContainer {
+display: flex;
+flex-direction: row-reverse;
+justify-content: space-between;
 }

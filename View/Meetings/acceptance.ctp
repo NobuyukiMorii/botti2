@@ -1,18 +1,70 @@
-<h1>プロフィール変更画面</h1>
+	    <div class="container">
 
-<?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
+	    	<div class="row" style="margin-top:20px;">
 
-<fieldset>
+	    		<div class="col-md-5" >
 
-    <div>
-      <p>OK or No</p>
-      <div class="radio">
-        <?php echo $this->Form->radio('Meeting.result', array("2" => "OK", "3" =>'No'), array('legend' => false,'separator' => "<br />", 'value' =>'2' ), array('class' => 'form-group','required' => false));?>
-      </div>
-    </div>
+	    			<h1 class="text-left"><?php echo $data['Meeting']['date']; ?>(<?php echo $youbi; ?>)</h1>
+	    			<h1 class="text-left"><?php echo $data['Meeting']['time']; ?></h1>
+	    			<h2 class="text-left"><a href = "<?php echo $data['Bar']['url'] ;?>"><?php echo $data['Bar']['name']; ?></a></h2>
+	    			<h2 class="text-left text-primary"><?php echo $data['Meeting']['meetingspot']; ?>待ち合わせ</h2>
+	    				<h4>
+	    				<dl class="text-left" style="margin-top:30px;">		
+	    					<dt>ジャンル<dt>
+	    						<dd><?php echo $data['Bar']['genreText']; ?></dd>
+	    						<dt>ご予算</dt>
+	    						<dd>１人様平均<?php echo $data['Bar']['price']; ?>円</dd>
+	    						<dt>アクセス<dt>
+	    							<dd><?php echo $data['Bar']['stationText']; ?>駅<?php echo $data['Bar']['gate']; ?>から徒歩<?php echo $data['Bar']['walk_time']; ?>分</dd>
+	    							<dt>電話番号</dt>
+	    							<dd><?php echo $data['Bar']['telnumber']; ?></dd>
+	    							<dt>住所<dt>
+	    								<dd><?php echo $data['Bar']['location']; ?></dd>
+	    							</dl>
+	    						</h4>
+	    		</div>
 
-  <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-primary'));?>
 
-</fieldset>
+	    		<div class="col-md-4" >
 
-<?php echo $this->Form->end(); ?>
+
+	    						<p class="trimming4" >
+	    							<img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$data['Meeting']['user_id']); ?>" alt="<?php echo h($data['User']['nickname']); ?>">
+	    						</p>
+
+	    						<p class="trimming4" style="margin-top:330px;">
+	    							<a href = "<?php echo $data['Bar']['url'] ;?>"><img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$data['Meeting']['bar_id']); ?>" alt="<?php echo h($data['Bar']['name']); ?>"></a>
+	    						</p>
+
+	    		</div>
+
+	    		<div class="col-md-3" >
+
+	    						<h1 class="text-left"><?php echo $data['Meeting']['total_match_point'] ;?>％  match</h1>	    						
+
+	    						<h4>
+	    							<dl class="text-left" style="margin-top:50px;">	
+	    								<dt>お名前<dt>
+	    									<dd><?php echo $data['User']['nickname']; ?>さん</dd>	
+	    								<dt>年齢<dt>
+	    									<dd><?php echo $data['User']['age']; ?>歳</dd>
+	    								<dt>お仕事</dt>
+	    									<dd><?php echo $data['User']['workText']; ?></dd>
+	    							</dl>
+	    						</h4>
+
+
+	    						<div class ="well my-inline form-inline" style="margin-top:90px;">
+	    							<?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form'));?>
+	    							<div class="boxContainer">
+	    								<?php echo $this->Form->submit('NO', array('name' => 'NO','class' => 'btn btn-warning btn-block')); ?>
+	    								<?php echo $this->Form->submit('OK', array('name' => 'OK','class' => 'btn btn-success btn-block')); ?>
+	    							</div>
+	    							<?php echo $this->Form->end();?>
+	    						</div>
+
+	    		</div>
+
+	    	</div>
+
+	   	</div>

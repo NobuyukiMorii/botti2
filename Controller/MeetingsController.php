@@ -332,9 +332,25 @@ class MeetingsController extends AppController
 
         if ($this->request->is('post') || $this->request->is('put')) {
 
+            if(isset($this->request->data['OK'])) {
+                //OKボタンの場合の処理
+               $data['Meeting']['result'] = 2;
+               $this->request->data['Meeting']['result'] = $data['Meeting']['result'];
+ 
+            }elseif(isset($this->request->data['NO'])) {
+                //NOへの場合
+                $data['Meeting']['result'] = 3;
+                $this->request->data['Meeting']['result'] = $data['Meeting']['result'];
+ 
+            }
+
             if ($this->Meeting->save($this->request->data)) {
 
-                $this->Session->setFlash('デートを約束しました！！', 'default', array(), 'success');
+                if($this->request->data['Meeting']['result'] == 2){
+                    $this->Session->setFlash('デートを約束しました！！', 'default', array(), 'success');
+                } elseif ($this->request->data['Meeting']['result'] == 3) {
+                    $this->Session->setFlash('デートをお断りしました！！', 'default', array(), 'success');
+                }
 
                 $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
 
@@ -348,6 +364,24 @@ class MeetingsController extends AppController
         } else {
 
         $this->request->data = $this->Meeting->read(null, $id);
+
+        $data = $this->Meeting->find('first',array(
+            'conditions' => array('Meeting.id' => $id),
+            )
+        );
+
+        $partner_data = $this->User->find('first',array(
+            'conditions' => array('User.id' => $data['Meeting']['match_user'])
+            )
+        );
+
+        $youbi = array("日", "月", "火", "水", "木", "金", "土");
+        $yoteibi = $data['Meeting']['date'];
+        $w = date("w",$yoteibi);
+        $this->set('youbi',$youbi[$w]);
+
+        $this->set('data',$data);
+        $this->set('partner_data',$partner_data);
 
         }
     }

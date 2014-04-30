@@ -12,13 +12,13 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top:-20px;">
 
         <div class="col-md-5" >
 
           <div>
 
-            <p class="trimming2" style="margin-top:0px;">
+            <p class="trimming3" style="margin-top:0px;">
             <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
                 <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
             </a>
@@ -26,10 +26,10 @@
 
           </div>
 
-          <div style="margin-top:330px;">
+          <div style="margin-top:370px;">
 
             <h4>
-            <dl class="text-left">
+            <dl class="text-left" style="margin-left:-20px;">
               <dt>最寄駅</dt>
                 <dd><?php echo $randomBar['Bar']['stationText']; ?></dd>
               <dt>アクセス</dt>
@@ -51,7 +51,7 @@
 
         <div class="col-md-7" >
 
-            <div class="text-left" style="margin-top:20px;">
+            <div class="text-left" style="margin-top:60px;">
 
                 <h2><strong><?php echo $randomUser['User']['kibouekiText']; ?>駅</strong>を希望している<?php echo h($randomUser['User']['nickname']); ?>さんにぴったりなお店。<br />
                 <?php echo h($randomUser['User']['nickname']); ?>さんは<strong><?php echo h($randomUser['User']['genreText']); ?></strong>が好きだし、絶対に喜ぶはず！<br /></h2>
