@@ -6,6 +6,7 @@
             <div class="row">
             <div class="col-xs-4">
             <div class="form-group">
+            <p class="text-left">メールアドレス</p>
             <?php echo $this->Form->input('User.username', array('class' => 'form-control','required' => false,'label' => false , 'div' => false));?>
             </div>
             </div>
@@ -14,6 +15,7 @@
             <div class="row">
             <div class="col-xs-4">
             <div class="form-group">
+            <p class="text-left">パスワード</p>
             <?php echo $this->Form->input('User.password', array('class' => 'form-control','required' => false,'label' => false , 'div' => false));?>
             </div>
             </div>
@@ -22,58 +24,244 @@
             <div class="row">
             <div class="col-xs-4">
             <div class="form-group">
+            <p class="text-left">お名前</p>
             <?php echo $this->Form->input('User.nickname', array('class' => 'form-control','required' => false,'label' => false , 'div' => false));?>
             </div>
             </div>
             </div>
 
-            <?php echo $this->Form->radio('User.gender', array("1" => '男性', "2" => '女性'), array('legend' => false,'value' => '1'), array('class' => 'form-control','required' => false));?>
-
             <div class="row">
-            <div class="col-xs-3">
-            <div class="form-group">
-            <?php echo $this->Form->input('User.birthday', array('class' => 'form-control','required' => false));?>
-            </div>
-            </div>
-            </div>
-
-            <div class="form-group">
-            <?php echo $this->Form->input(
-                  'User.work',
-                        array('type'=>'select','label' => false,'options'=>array('1'=>'大学生','2'=>'大学院生','3'=>'会社員','4'=>'公務員','5'=>'経営者','6'=>'自営業','7'=>'農業','8'=>'医者','9'=>'弁護士','10'=>'ニート','11'=>'ハイパーメディアクリエイター','12'=>'その他'), 
-                              array(
-                                    'class' => 'form-group',
-                                    'required' => false
-                                    )
-                              )
+            <div class = "form-group">
+            <div class = "text-left">
+            <p>性別</p>
+            <?php echo $this->Form->radio('User.gender',
+                  array(
+                        "1" => '男性', 
+                        "2" => '女性'
+                  ), 
+                  array(
+                        'legend' => false,
+                        'value' => '1'
+                  ),
+                  array(
+                        'class' => 'form-group',
+                        'required' => false
+                  )
             )
             ;?>
             </div>
+            </div>
+            </div>
 
+            <div class="row">
+            <div class="col-xs-1">
+            <div class="form-horizontal">     
+            <div class = "form-group">
+            <p class="text-left">お誕生日</p>
+                  <?php 
+                  echo $this->Form->input('User.birthday', array(
+                  'label' => false,
+                  'default' => date('Y-m-d', strtotime("-25 year")),
+                  'empty' => true,
+                  'maxYear' => date('YMD', strtotime("-20 year")),
+                  'minYear' => date('YMD', strtotime("-40 year")),
+                  'dateFormat' => 'YMD',
+                  'separator' => '/',
+                  'monthNames' => false,
+                  'empty' => true,
+                  'class' => 'form-control',
+                  'required' => false,
+                  'div' => false
+                  ));
+                  ?>
+            </div>
+            </div>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-xs-4">
             <div class="form-group">
-            <?php echo $this->Form->input('User.kibouyoubi',array('type'=>'select','options'=>array('1'=>'月曜日','2'=>'火曜日','3'=>'水曜日','4'=>'木曜日','5'=>'金曜日','6'=>'土曜日','0'=>'日曜日'),'required' => false,'label' => false , 'div' => false)) ?>
+            <div class = "text-left">
+            <p>お仕事</p>
+            <?php echo $this->Form->input('User.work',
+                  array(
+                        'type'=>'select',
+                        'label' => false,
+                        'options'=> array(
+                                          '1'=>'大学生',
+                                          '2'=>'大学院生',
+                                          '3'=>'会社員',
+                                          '4'=>'公務員',
+                                          '5'=>'経営者',
+                                          '6'=>'自営業',
+                                          '7'=>'農業',
+                                          '8'=>'医者',
+                                          '9'=>'弁護士',
+                                          '10'=>'ニート',
+                                          '11'=>'ハイパーメディアクリエイター',
+                                          '12'=>'その他'
+                                    ), 
+                        array(
+                              'class' => 'form-group',
+                              'required' => false
+                        )
+                  )
+            )
+            ;?>
+            </div>
+            </div>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-xs-4">
+            <div class="form-group">
+            <div class = "text-left">
+            <div class="form-group">
+            <p>デートしたい曜日</p>
+            <?php echo $this->Form->input
+                  ('User.kibouyoubi',
+                  array('type'=>'select',
+                        'options'=>
+                              array(
+                                    '1'=>'月曜日',
+                                    '2'=>'火曜日',
+                                    '3'=>'水曜日',
+                                    '4'=>'木曜日',
+                                    '5'=>'金曜日',
+                                    '6'=>'土曜日',
+                                    '0'=>'日曜日'
+                                    ),
+                        'required' => false,
+                        'label' => false ,
+                        'div' => false
+                        )
+                  )
+            ?>
+            </div>
+            </div>
+            </div>
             </div>
 
             <div class="row">
             <div class="col-xs-3">
-            <div class="form-group">
-            <?php echo $this->Form->input('User.kibouzikan', array('class' => 'form-control','required' => false,'label' => false , 'div' => false));?>
+            <div class = "form-group">
+            <div class = "text-left">
+            <p>待ち合わせできる時間</p>
+                  <?php
+                  echo $this->form->input('User.kibouzikan', array(
+                  'label' => false,
+                  'timeFormat' => '24',
+                  'dateFormat' => 'H:i:s',
+                  'default' => date('19:00'),
+                  'empty' => true,
+                  'interval' => 30,
+                  'class' => 'form-control',
+                  'required' => false
+                  ));
+                  ?>
             </div>
             </div>
             </div>
-
-            <div class="form-group">
-            <?php echo $this->Form->input('User.genre',array('type'=>'select','options'=>array('1'=>'和風居酒屋','2'=>'洋風居酒屋','3'=>'中華料理','4'=>'コンセプト居酒屋'),'required' => false,'label' => false , 'div' => false)); ?>
-            </div>
-
-            <div class="form-group">
-            <?php echo $this->Form->input('User.kiboueki',array('type'=>'select','options'=>array('1'=>'東京','2'=>'有楽町','3'=>'新橋','4'=>'浜松町','5'=>'田町','6'=>'品川','7'=>'大崎','8'=>'五反田','9'=>'目黒','10'=>'恵比寿','11'=>'渋谷','12'=>'原宿','13'=>'代々木','14'=>'新宿','15'=>'新大久保','16'=>'高田馬場','17'=>'目白','18'=>'池袋','19'=>'大塚','20'=>'巣鴨','21'=>'駒込','22'=>'田端','23'=>'西日暮里','24'=>'日暮里','25'=>'鶯谷','26'=>'上野','27'=>'御徒町','28'=>'秋葉原','29'=>'神田'),'required' => false,'label' => false , 'div' => false)); ?>
             </div>
 
             <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-4">
             <div class="form-group">
-            <?php echo $this->Form->input('User.message', array('class' => 'form-control','required' => false,'label' => false , 'div' => false));?>
+            <div class = "text-left">
+            <div class="form-group">
+            <p>好きな居酒屋のジャンル</p>
+            <?php echo $this->Form->input(
+                  'User.genre',
+                  array(
+                        'type'=>'select',
+                        'options'=>
+                              array(
+                                    '1'=>'和風居酒屋',
+                                    '2'=>'洋風居酒屋',
+                                    '3'=>'中華料理',
+                                    '4'=>'コンセプト居酒屋'
+                              ),
+                        'required' => false,
+                        'label' => false ,
+                        'div' => false
+                        )
+                  ); 
+            ?>
+            </div>
+            </div>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-xs-4">
+            <div class="form-group">
+            <div class = "text-left">
+            <div class="form-group">
+            <p>デートしたい駅（山手線）</p>
+            <?php echo $this->Form->input(
+                  'User.kiboueki',
+                  array(
+                        'type'=>'select',
+                        'options'=>array(
+                                    '1'=>'東京',
+                                    '2'=>'有楽町',
+                                    '3'=>'新橋',
+                                    '4'=>'浜松町',
+                                    '5'=>'田町',
+                                    '6'=>'品川',
+                                    '7'=>'大崎',
+                                    '8'=>'五反田',
+                                    '9'=>'目黒',
+                                    '10'=>'恵比寿',
+                                    '11'=>'渋谷',
+                                    '12'=>'原宿',
+                                    '13'=>'代々木',
+                                    '14'=>'新宿',
+                                    '15'=>'新大久保',
+                                    '16'=>'高田馬場',
+                                    '17'=>'目白',
+                                    '18'=>'池袋',
+                                    '19'=>'大塚',
+                                    '20'=>'巣鴨',
+                                    '21'=>'駒込',
+                                    '22'=>'田端',
+                                    '23'=>'西日暮里',
+                                    '24'=>'日暮里',
+                                    '25'=>'鶯谷',
+                                    '26'=>'上野',
+                                    '27'=>'御徒町',
+                                    '28'=>'秋葉原',
+                                    '29'=>'神田'),
+                        'required' => false,
+                        'label' => false ,
+                        'div' => false
+                  )
+            );
+            ?>
+            </div>
+            </div>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-xs-4">
+            <div class="form-group">
+            <div class = "text-left">
+            <div class="form-group">
+            <p>メッセージ</p>
+            <?php echo $this->Form->input
+                  (
+                  'User.message', 
+                  array('class' => 'form-control',
+                        'required' => false,
+                        'label' => false ,
+                        'div' => false
+                        )
+                  );
+            ?>
+            </div>
             </div>
             </div>
             </div>
@@ -81,5 +269,6 @@
              <?php echo $this->Form->input('User.image', array('type' => 'file','required' => false)); ?>
 
              <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-primary'));?>
+
       </fieldset>
 <?php echo $this->Form->end(); ?>
