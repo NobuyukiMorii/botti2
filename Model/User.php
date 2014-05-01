@@ -349,8 +349,8 @@ class User extends AppModel {
 
         'message' => array(
             array(
-                'rule' => array('maxLength', 200),
-                'message' => '「200文字以内で入力して下さい。',
+                'rule' => array('maxLength', 150),
+                'message' => '「50文字以内で入力して下さい。',
             )
         ),
 
