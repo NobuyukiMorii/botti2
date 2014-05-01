@@ -86,6 +86,7 @@
                               'dateFormat' => 'H:i:s',
                               'empty' => true,
                               'separator' => '/',
+                              'interval' => 30
                               ));
                               ?>
                           </div>

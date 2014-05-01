@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Stylish Portfolio Template for Bootstrap</title>
+  <title>DateBookTokyo</title>
 
   <!-- Bootstrap core CSS -->
   <?=$this->Html->css('bootstrap.css')?>
@@ -25,10 +25,10 @@
   <div id="top" class="header">
     <!-- vert-text -->
     <div class="vert-text">
-      <h1>DateOutTokyo</h1>
+      <h1>DateBookTokyo</h1>
       <h3>
-        <em>For Free</em> and
-        <em>So Easy</em></h3>
+        <em>大切な出会いは、</em>
+        <em>本の中に</em></h3>
         
     
       <!-- Login Form -->

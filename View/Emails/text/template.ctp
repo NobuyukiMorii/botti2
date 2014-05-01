@@ -27,10 +27,10 @@ http://localhost:8888/gachakoi/meetings/acceptance/<?php echo $meeting_id ;?><?p
 きっといい人だと思います。<?php echo "\n" ?>
 <?php echo $meeting_date ;?>があなたの最高の日になるように。
 
-From DateOutTokyo
+From DateBookTokyo
 http://localhost:8888/gachakoi/users/login
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-DateOut
+DateBookTokyo
 （Email  xxxx@gmail.com
 （TEL）   xxx-xxxx-xxxx 
