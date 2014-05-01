@@ -45,9 +45,14 @@
             <label class="checkbox">
               <input type="checkbox" value="remember-me"> ログインしたままにする
             </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
           </form>
         </div>
+
+        <div class="container">
+          <div class="form-signin">
+            <a href="<?php echo $this->Html->url('/users/add'); ?>"><button class="btn btn-lg btn-success btn-block" type="submit">ユーザー登録</button></a>
+          </div>
       <!-- /Login Form -->
     </div>
 

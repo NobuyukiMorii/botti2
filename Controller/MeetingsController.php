@@ -10,10 +10,6 @@ class MeetingsController extends AppController
 
     public $helpers = array("DatePicker");
 
-    public function beforeFilter(){
-        $this->Auth->allow('add','acceptance');
-    }
-
     public function roulette(){
 
         $login_gender = $this->Auth->user('gender');
@@ -224,7 +220,7 @@ class MeetingsController extends AppController
         $meeting_time_min = $meeting_info['Meeting']['time']['min'];
         $meetingspot = $meeting_info['Meeting']['meetingspot'];
 
-        $title = "【ガチャ恋】デートのお誘い";
+        $title = "【DateOutTokyo】デートのお誘い/".$meeting_date."/".$partner_nickname;
 
         $email = new CakeEmail('smtp');
         $email->to($randomUser['User']['username']);
@@ -324,7 +320,8 @@ class MeetingsController extends AppController
             'conditions' => array('or' => array(
                 'Meeting.user_id' => $this->Auth->user('id'),
                 'Meeting.match_user' => $this->Auth->user('id'),
-                )
+                ),
+                'Meeting.date >=' => date("Y-m-d")
             ),
             'limit' =>100
             )
@@ -354,6 +351,135 @@ class MeetingsController extends AppController
 
     }
 
+    public function email2 () {
+
+        $meeting_id = $this->Session->read('meeting_id');
+
+        $date_data = $this->Meeting->find('first',array(
+            'conditions' => array('Meeting.id' => $meeting_id),
+            )
+        );
+
+        $LoginUserId = $this->Auth->user('id');
+
+        if($LoginUserId === $date_data['Meeting']['user_id']) {
+            $partner_data = $this->User->find('first',array(
+                'conditions' => array('User.id' => $date_data['Meeting']['match_user'])
+                )
+            );
+        } elseif ($LoginUserId === $date_data['Meeting']['match_user']) {
+            $partner_data = $this->User->find('first',array(
+                'conditions' => array('User.id' => $date_data['Meeting']['user_id'])
+                )
+            );
+        }
+
+        $user_nickname = $this->Auth->user('nickname');
+
+        $partner_nickname = $partner_data['User']['nickname'];
+        $partner_age = $partner_data['User']['age'];
+        $partner_work = $partner_data['User']['workText'];
+        $partner_kibouyoubi = $partner_data['User']['kibouyoubi'];
+        $partner_kiboueki = $partner_data['User']['kiboueki'];
+        $partner_genre = $partner_data['User']['genreText'];
+
+        $bar_name = $date_data['Bar']['name'];
+        $bar_url = $date_data['Bar']['url'];
+        $bar_station = $date_data['Bar']['stationText'];
+        $bar_gate = $date_data['Bar']['gate'];
+        $bar_genre = $date_data['Bar']['genreText'];
+        $bar_walk_time = $date_data['Bar']['walk_time'];
+        $bar_telnumber = $date_data['Bar']['telnumber'];
+        $bar_location = $date_data['Bar']['location'];
+        $bar_start_time = $date_data['Bar']['start_time'];
+        $bar_close_time = $date_data['Bar']['close_time'];
+        $bar_price = $date_data['Bar']['price'];
+
+        $meeting_date = $date_data['Meeting']['date'];
+        $meeting_time = $date_data['Meeting']['time'];
+        $meetingspot = $date_data['Meeting']['meetingspot'];
+        $meetingresult = $date_data['Meeting']['result'];
+
+        if($date_data['Meeting']['result'] == 2) {
+            $title = "【【DateOutTokyo】デートOKのご連絡/".$meeting_date."/".$partner_nickname;
+        } elseif ($date_data['Meeting']['result'] == 3) {
+            $title = "【【DateOutTokyo】デートキャンセルのご連絡/".$meeting_date."/".$partner_nickname;
+        }
+
+        if($date_data['Meeting']['result'] == 2) {
+
+            $email = new CakeEmail('smtp');
+            $email->to($partner_data['User']['username']);
+            $email->subject($title);
+
+            $email->emailFormat( 'text');
+            $email->template( 'template2');
+            $email->viewVars( compact( 
+                    'user_nickname', 
+                    'partner_nickname',
+                    'partner_age', 
+                    'partner_work',
+                    'partner_kibouyoubi',
+                    'partner_kiboueki',
+                    'partner_genre',
+                    'bar_name',
+                    'bar_url', 
+                    'bar_station',
+                    'bar_gate', 
+                    'bar_genre', 
+                    'bar_walk_time',
+                    'bar_telnumber', 
+                    'bar_location',
+                    'bar_start_time', 
+                    'bar_close_time',
+                    'bar_price',
+                    'meeting_id',
+                    'meeting_date',
+                    'meeting_time',
+                    'meetingspot',
+                    'meetingresult'
+                    ));
+            $email->send();
+    
+        } elseif ($date_data['Meeting']['result'] == 3) {
+
+            $email = new CakeEmail('smtp');
+            $email->to($partner_data['User']['username']);
+            $email->subject($title);
+
+            $email->emailFormat( 'text');
+            $email->template( 'template3');
+            $email->viewVars( compact( 
+                    'user_nickname', 
+                    'partner_nickname',
+                    'partner_age', 
+                    'partner_work',
+                    'partner_kibouyoubi',
+                    'partner_kiboueki',
+                    'partner_genre',
+                    'bar_name',
+                    'bar_url', 
+                    'bar_station',
+                    'bar_gate', 
+                    'bar_genre', 
+                    'bar_walk_time',
+                    'bar_telnumber', 
+                    'bar_location',
+                    'bar_start_time', 
+                    'bar_close_time',
+                    'bar_price',
+                    'meeting_id',
+                    'meeting_date',
+                    'meeting_time',
+                    'meetingspot',
+                    'meetingresult'
+                    ));
+            $email->send(); 
+        }
+
+        $this->redirect(array('action' => 'user_date','controller' => 'Meetings'));
+    }
+
     public function acceptance($id = null) {
 
         $this->Meeting->id = $id;
@@ -377,13 +503,14 @@ class MeetingsController extends AppController
 
             if ($this->Meeting->save($this->request->data)) {
 
+                $this->Session->write('meeting_id',$id);
+
                 if($this->request->data['Meeting']['result'] == 2){
                     $this->Session->setFlash('デートを約束しました！！', 'default', array(), 'success');
                 } elseif ($this->request->data['Meeting']['result'] == 3) {
                     $this->Session->setFlash('デートをお断りしました！！', 'default', array(), 'success');
                 }
-
-                $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
+                $this->setAction("email2");
 
             } else {
 

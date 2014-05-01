@@ -4,6 +4,7 @@
     <tr>
         <th>写真</th>
         <th>店名</th>
+        <th>ジャンル</th>
         <th>料金</th>
         <th>紹介文</th>
         <th>電話番号</th>
@@ -15,6 +16,7 @@
     <tr>
         <td><a href="<?php echo h($data[$i]['Bar']['url']);?>"><img src="<?php echo $this->Html->url("/bars/image/".$data[$i]['Bar']['id']);?>", width = '100', height = '100' , alt ='BarImage'></a></td>
         <td width="180"><a href="<?php echo h($data[$i]['Bar']['url']);?>"><?php echo h($data[$i]['Bar']['name']); ?></a></td>
+        <td width="100"><?php echo h($data[$i]['Bar']['genreText']); ?></td>
         <td width="100"><?php echo h($data[$i]['Bar']['price']); ?></td>
         <td width="300"><?php echo h($data[$i]['Bar']['description']);?></td>
         <td width="400"><?php echo h($data[$i]['Bar']['telnumber']);?></td>

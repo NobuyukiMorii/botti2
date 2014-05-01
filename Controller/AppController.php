@@ -31,7 +31,7 @@ class AppController extends Controller {
 
     public function beforeFilter(){
 
-        $this->Auth->allow('add','/gachakoi/View/xml/default');
+        $this->Auth->allow('login','acceptance','add','/gachakoi/View/xml/default');
 
         $this->Auth->authorize = "Controller";//2014/4/24 users/edit/idとするため追記
 
