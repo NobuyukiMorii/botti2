@@ -21,7 +21,8 @@
     住所：<?php echo $bar_location ;?><?php echo "\n" ?>
     電話番号：<?php echo $bar_telnumber ;?><?php echo "\n" ?>
     営業時間：<?php echo $bar_start_time ;?>~<?php echo $bar_close_time ;?><?php echo "\n" ?>
-    URL：<a href = "<?php echo $bar_url ;?>"><?php echo $bar_url ;?></a><?php echo "\n" ?>
+    URL：
+    <?php echo $bar_url ;?><?php echo "\n" ?>
 
 この度は本当におめでとうございます！<?php echo "\n" ?>
 <?php echo $meeting_date ;?>があなたにとって最高の日になるように、心よりお祈り申し上げます。

@@ -305,7 +305,8 @@ class MeetingsController extends AppController
     public function meetinglist() {
 
         $data = $this->Meeting->find('all',array(
-            'limit' =>100
+            'limit' =>100,
+            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
             )
         );
 
@@ -323,7 +324,8 @@ class MeetingsController extends AppController
                 ),
                 'Meeting.date >=' => date("Y-m-d")
             ),
-            'limit' =>100
+            'limit' =>100,
+            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
             )
         );
 

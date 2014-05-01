@@ -21,7 +21,8 @@ http://localhost:8888/gachakoi/meetings/acceptance/<?php echo $meeting_id ;?><?p
 	住所：<?php echo $bar_location ;?><?php echo "\n" ?>
 	電話番号：<?php echo $bar_telnumber ;?><?php echo "\n" ?>
 	営業時間：<?php echo $bar_start_time ;?>~<?php echo $bar_close_time ;?><?php echo "\n" ?>
-	URL：<?php echo $bar_url ;?><?php echo "\n" ?>
+	URL：
+	<?php echo $bar_url ;?><?php echo "\n" ?>
 
 きっといい人だと思います。<?php echo "\n" ?>
 <?php echo $meeting_date ;?>があなたの最高の日になるように。
