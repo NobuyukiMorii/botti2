@@ -291,6 +291,9 @@ class MeetingsController extends AppController
 
         if($this->Meeting->save($this->request->data)){
             $last_id = $this->Meeting->getLastInsertID();
+        } else {
+            $this->Session->setFlash('入力に誤りがあります！', 'default', array(), 'fail');
+            $this->redirect('/meetings/detail/');
         }
 
         $this->Session->write('last_id',$last_id);

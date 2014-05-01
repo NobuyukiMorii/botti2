@@ -38,6 +38,34 @@ class Meeting extends AppModel {
         return $results;
     }
 
+    public $validate = array(
+
+        'date' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => '日付は必ず入力して下さい。'
+            ),
+        ),
+
+        'time' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => '時間は必ず入力して下さい。'
+            ),
+            array(
+                'rule' => array('time','H:i:s'),
+                'message' => '◯◯:◯◯の形式で入力して下さい。'
+            )
+        ),
+
+        'meetingspot' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => '必ず入力して下さい。',
+            ),
+        ), 
+    );
+
 
 }
 ?>
