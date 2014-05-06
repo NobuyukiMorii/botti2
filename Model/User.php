@@ -18,11 +18,11 @@ class User extends AppModel {
     );
 */
 
-	// public function beforeSave(){
-	// 	$this->data['User']['password'] =
-	// 	 AuthComponent::password($this->data['User']['password']);
-	// return true;
-	// }
+    // public function beforeSave(){
+    //  $this->data['User']['password'] =
+    //   AuthComponent::password($this->data['User']['password']);
+    // return true;
+    // }
 
     /*
     *上記記述より下の方が良さそうなので、置き換えた。
@@ -205,7 +205,7 @@ class User extends AppModel {
     あ、ビューに表示させるところがないからだ。作ろう。
     */
 
-	public $validate = array(
+    public $validate = array(
 
         'username' => array(
             'isUnique' => array(

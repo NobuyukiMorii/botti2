@@ -2,15 +2,25 @@
 
 class Bar extends AppModel {
 
-	public $name = 'Bar';
+    public $name = 'Bar';
 
-	public $uses  = array('Bar');
+    public $uses  = array('Bar');
 
-    public $hasMany = array(
-        'Attachment' => array(
-            'classname' => 'Attachment',
-            'foreignKey' => 'bar_id')
+/*
+    public $hasone = array(
+        "Meeting" => array(
+            'className' => 'Meeting',
+            'conditions' => '',
+            'order' => '',
+            'dependent' => false,
+            'limit' => 0,
+            'exclusive' => false,
+            'finderQuery' => '',
+            'foreignKey' => 'bar_id'
+        )
     );
+*/
+//自分だけ投稿するつもりだから、バリデーションはなしでいい。
 
     public function afterFind ($results, $primary) {
 
@@ -112,14 +122,8 @@ class Bar extends AppModel {
         ),
 
         'location' => array(
-            array(
-                'rule' => 'notEmpty',
-                'message' => '必ず入力して下さい。',
-            ),
-            array(
-                'rule' => array('maxLength', 50),
-                'message' => '50文字以内で入力して下さい。',
-            )
+            'rule' => 'notEmpty',
+            'message' => '必ず入力して下さい。',
         ),
 
         'telnumber' => array(
@@ -175,43 +179,43 @@ class Bar extends AppModel {
             )
         ),
 
-        // 'image' => array(
+        'image' => array(
 
-        //     // ルール：uploadError => errorを検証
-        //     'upload-file' => array( 
-        //         'rule' => array( 'uploadError'),
-        //         'message' => array( '写真のアップロードに失敗しました。')
-        //     ),
+            // ルール：uploadError => errorを検証
+            'upload-file' => array( 
+                'rule' => array( 'uploadError'),
+                'message' => array( '写真のアップロードに失敗しました。')
+            ),
 
-        //     // ルール：extension => pathinfoを使用して拡張子を検証
-        //     'extension' => array(
-        //         'rule' => array( 'extension', array( 
-        //             'jpg', 'jpeg', 'png', 'gif')  // 拡張子を配列で定義
-        //         ),
-        //         'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
-        //     ),
+            // ルール：extension => pathinfoを使用して拡張子を検証
+            'extension' => array(
+                'rule' => array( 'extension', array( 
+                    'jpg', 'jpeg', 'png', 'gif')  // 拡張子を配列で定義
+                ),
+                'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
+            ),
 
-        //     // ルール：mimeType => 
-        //     // finfo_file(もしくは、mime_content_type)でファイルのmimeを検証
-        //     'mimetype' => array( 
-        //         'rule' => array( 'mimeType', array( 
-        //             'image/jpeg', 'image/png', 'image/gif')  // MIMEタイプを配列で定義
-        //         ),
-        //         'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
-        //     ),
+            // ルール：mimeType => 
+            // finfo_file(もしくは、mime_content_type)でファイルのmimeを検証
+            'mimetype' => array( 
+                'rule' => array( 'mimeType', array( 
+                    'image/jpeg', 'image/png', 'image/gif')  // MIMEタイプを配列で定義
+                ),
+                'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
+            ),
 
-        //     // ルール：fileSize => filesizeでファイルサイズを検証(2GBまで)
-        //     'size' => array(
-        //         'maxFileSize' => array( 
-        //             'rule' => array( 'fileSize', '<=', '10MB'),  // 10M以下
-        //             'message' => array( '10MB以下のファイルにして下さい。')
-        //         ),
-        //         'minFileSize' => array( 
-        //             'rule' => array( 'fileSize', '>',  0),    // 0バイトより大
-        //             'message' => array( 'このファイルは選択出来ません。')
-        //         ),
-        //     ),
-        // ),
+            // ルール：fileSize => filesizeでファイルサイズを検証(2GBまで)
+            'size' => array(
+                'maxFileSize' => array( 
+                    'rule' => array( 'fileSize', '<=', '10MB'),  // 10M以下
+                    'message' => array( '10MB以下のファイルにして下さい。')
+                ),
+                'minFileSize' => array( 
+                    'rule' => array( 'fileSize', '>',  0),    // 0バイトより大
+                    'message' => array( 'このファイルは選択出来ません。')
+                ),
+            ),
+        ),
 
         'description' => array(
             array(

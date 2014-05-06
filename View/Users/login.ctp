@@ -20,12 +20,15 @@
 </head>
 
 <body>
+        <?php echo $this->Session->flash('success'); ?>
+        <?php echo $this->Session->flash('fail'); ?>
+        <?php echo $this->Session->flash('auth'); ?>
 
   <!-- Full Page Image Header Area -->
   <div id="top" class="header">
     <!-- vert-text -->
     <div class="vert-text">
-      <h1>DateBookTokyo</h1>
+      <h1>DateBook</h1>
       <h3>
         <em>大切な出会いは、</em>
         <em>本の中に</em></h3>
