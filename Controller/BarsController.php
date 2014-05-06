@@ -4,11 +4,11 @@ class BarsController extends AppController
 {
 
 // Sweet,Commentモデルを使用する
-    public $uses = array('Bar');
+    public $uses = array('Meeting','User','Bar');
 
     // Sessionコンポーネントを使用する
-    public $components = array('Auth','Session');
 
+    public $components = array('Auth','Session');
 
     public function admin_register(){
 
@@ -88,5 +88,30 @@ class BarsController extends AppController
         $this->set('data',$data);
 
     }
-//バーの詳細画面を追加
+
+    public $paginate = array(
+        'page' => 1,
+        'limit' => 5,
+        'limit' =>100,
+        'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
+    );
+
+    public function bar_control() {
+
+        $data = $this->Meeting->find('all',array(
+            'conditions' => array('Meeting.bar_id' => 47,'Meeting.date >=' => date("Y-m-d")),
+            'limit' =>100,
+            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
+            )
+        );
+
+        $data = $this->paginate();
+        $this->set('data',$data);
+
+        $LoginUserName = $this->Auth->user('nickname');
+        $this->set('LoginUserName',$LoginUserName);
+
+    }
+
+
 }

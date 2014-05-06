@@ -1,3 +1,4 @@
+<?php var_dump($data['Meeting']['time']); ?>
 	    <div class="container">
 
 	    	<div class="row" style="margin-top:20px;">

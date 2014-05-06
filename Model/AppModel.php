@@ -36,4 +36,12 @@ class AppModel extends Model {
         return false;
     }
 
+	protected function _getCurrentUser() {
+    App::uses('CakeSession', 'Model/Datasource');
+    $Session = new CakeSession();
+ 
+    $user = $Session->read('Auth.User');
+    return $user;
+	}
+
 }

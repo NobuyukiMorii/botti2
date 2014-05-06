@@ -26,28 +26,22 @@
 
           </div>
 
-          <div style="margin-top:370px;">
+          <div style="margin-top:400px;">
 
-            <h4>
-            <dl class="text-left" style="margin-left:-20px;">
-              <dt>最寄駅</dt>
-                <dd><?php echo $randomBar['Bar']['stationText']; ?></dd>
-              <dt>アクセス</dt>
-                <dd><?php echo $randomBar['Bar']['gate']; ?>から徒歩<?php echo $randomBar['Bar']['walk_time']; ?>分</dd>
-              <dt>住所</dt>  
-                <dd><?php echo $randomBar['Bar']['location']; ?></dd>
-              <dt>電話番号</dt>
-                <dd><?php echo $randomBar['Bar']['telnumber']; ?></dd>
-            </dl>
-          </h4>
+              <dl class="text-left" style="margin-left:-20px;">
+                <dt>住所</dt>  
+                  <dd><?php echo $randomBar['Bar']['location']; ?></dd>
+                <dt>電話番号</dt>
+                  <dd><?php echo $randomBar['Bar']['telnumber']; ?></dd>
+              </dl>
 
-
+          <div class="text-left" style="margin-left:-20px;" >
+            <?php echo $this->Html->link('戻る', '/meetings/roulette', array('class' => 'btn btn-success', 'target' => '_blank')); ?>
           </div>
-
 
         </div>
 
-
+        </div>
 
         <div class="col-md-7" >
 
@@ -108,7 +102,7 @@
                           'Meeting.meetingspot',
                               array(
                               $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前'
-                              => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前', 
+                              => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前（'.$randomBar['Bar']['name'].'まで徒歩'.$randomBar['Bar']['walk_time'].'分）', 
                               $randomBar['Bar']['name'].'の店内'
                               => $randomBar['Bar']['name'].'の店内'
                               ), 
@@ -124,6 +118,7 @@
                           ;?>
 
                         </div>
+
                     </div>
 
                   <div class="text-right" style="margin-top : 0px">

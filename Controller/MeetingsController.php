@@ -10,6 +10,11 @@ class MeetingsController extends AppController
 
     public $helpers = array("DatePicker");
 
+    public $paginate = array(
+        'page' => 1,
+        'limit' => 5,
+    );
+
     public function roulette(){
 
         $login_gender = $this->Auth->user('gender');
@@ -317,6 +322,7 @@ class MeetingsController extends AppController
 
     }
 
+
     public function user_date() {
 
 
@@ -331,21 +337,8 @@ class MeetingsController extends AppController
             'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
             )
         );
-
-        // $LoginUserId = $this->Auth->user('id');
-        // if($LoginUserId === $data['Meeting']['user_id']) {
-        //     $data['Meeting']['date_partner'] = $this->User->find('first',array(
-        //         'conditions' => array('User.id' => $data['Meeting']['match_user'])
-        //         )
-        //     );
-        // } elseif ($LoginUserId === $data['Meeting']['match_user']) {
-        //     $data['Meeting']['date_partner'] = $this->User->find('first',array(
-        //         'conditions' => array('User.id' => $data['Meeting']['user_id'])
-        //         )
-        //     );
-        // }
+        $data = $this->paginate();
         $this->set('data',$data);
-
 
         $LoginUserName = $this->Auth->user('nickname');
         $this->set('LoginUserName',$LoginUserName);
@@ -401,7 +394,7 @@ class MeetingsController extends AppController
         $bar_price = $date_data['Bar']['price'];
 
         $meeting_date = $date_data['Meeting']['date'];
-        $meeting_time = $date_data['Meeting']['time'];
+        $meeting_time = $date_data['Meeting']['time'];//date('YMD', strtotime($date_data['Meeting']['time']))
         $meetingspot = $date_data['Meeting']['meetingspot'];
         $meetingresult = $date_data['Meeting']['result'];
 
@@ -414,7 +407,7 @@ class MeetingsController extends AppController
         if($date_data['Meeting']['result'] == 2) {
 
             $email = new CakeEmail('smtp');
-            $email->to($partner_data['User']['username']);
+            $email->to(array($partner_data['User']['username'],'qwerty.poiu@softbank.ne.jp'));//自分の携帯のアドレスはバーのemailアドレス
             $email->subject($title);
 
             $email->emailFormat( 'text');

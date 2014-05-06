@@ -40,16 +40,7 @@
   <body>
     <div class="container"><!-- container -->
       <div style="margin : 30px 0px 20px 0px">
-        <h1><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">DateBook</a></h1>
-      </div>
-
-      <div class="masthead">
-        <ul class="nav nav-justified">
-          <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店一覧</a></li>
-          <li><a href="<?php echo $this->Html->url('/meetings/user_date'); ?>">デートの予定</a></li>
-          <li><a href="<?php echo $this->Html->url('/users/edit/'.$LoginUserId); ?>">プロフィール編集</a></li>
-          <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
-        </ul>
+        <h1>DateBook</h1>
       </div>
 
       <!-- Jumbotron -->

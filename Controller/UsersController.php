@@ -15,6 +15,7 @@ class UsersController extends AppController
     public $helpers = array("DatePicker");
 
 public function add(){
+    $this->layout = 'non_nav';
     if(!empty($this->data)){
         if($this->data){
             $this->User->create($this->request->data);

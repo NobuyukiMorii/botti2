@@ -28,12 +28,35 @@ class Meeting extends AppModel {
                         $item[$model]['resultText'] = 'デート予定';
                     } elseif ($item[$model]['result'] == 3)  {
                         $item[$model]['resultText'] = 'キャンセル';
-                    } 
+                    }
+                }
+
+                if (array_key_exists($model, $item)) {
+
+                    if ($this->_getCurrentUser('id') != $item[$model]['user_id']) {//誘われた こっちしか効いていない。なぜ？
+
+                        $item[$model]['date_partner'] = 
+                            $this->User->find(
+                                'first',
+                                array(
+                                    'conditions' => array('User.id' => $item[$model]['match_user']),
+
+                                )
+                            );
+                    } elseif ($this->_getCurrentUser('id') == $item[$model]['user_id']) {//誘った場合のみ聞いている
+
+                        $item[$model]['date_partner'] = 
+                            $this->User->find(
+                                'first',
+                                array(
+                                    'conditions' => array('User.id' => $item[$model]['user_id']),
+
+                                )
+                            );
+                    }
                 }
             }
-
             $results[$i] = $item;
-
         }
         return $results;
     }
