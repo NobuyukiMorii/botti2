@@ -45,14 +45,33 @@ class BarsController extends AppController
         exit;
     }
 
+    // public function admin_notice(){
+
+    //     $register = $this->Session->read('hozon');
+
+    //     if ($this->Bar->save($register, array( 'validate' => false))) {
+
+    //         $path = 'Bar_image';
+    //         $image = $register["Bar"]["image"];
+    //         $this->Session->setFlash('画像を登録しました');
+    //         move_uploaded_file($image['tmp_name'], $path . DS . $image['name']);
+    //         $this->render("admin_notice");
+    //     } else {
+    //         $this->Session->setFlash('画像が登録できませんでした');
+    //         $this->render("admin_register");
+    //     }
+    // }
+
     public function admin_notice(){
-
-        $register = $this->Session->read('hozon');
-
-        if ($this->Bar->save($register, array( 'validate' => false))) {
-            $this->render("admin_notice");
+      if ($this->request->is('post') || $this->request->is('put')) {
+        //画像の保存
+        if($this->Bar->saveAll($this->request->data)){
+          //画像保存先のパス
+          $this->Session->setFlash('登録しました');
+        }else{
+          $this->Session->setFlash('登録できませんでした');
         }
-
+      }
     }
 
     public function image($cid){
