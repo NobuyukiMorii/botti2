@@ -1,4 +1,12 @@
-<h1>お店情報一覧</h1>
+
+<?php
+echo $this->Paginator->first('<<',array());
+echo $this->Paginator->prev('<',array());
+echo $this->Paginator->numbers();
+echo $this->Paginator->next('>',array());
+echo $this->Paginator->last('>>',array());
+?>
+
     <div class="table-responsive">
     <table class = "table table-striped table-bordered table-condensed table-hover">
     <tr>
@@ -26,4 +34,3 @@
     </tr>
 <?php } ?>
     </table>
-<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn-default"><span class="glyphiconglyphicon-home"></span>ガチャする<a>

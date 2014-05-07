@@ -1,4 +1,4 @@
-<h1>検索結果</h1>
+
     <div class="table-responsive">
     <table class = "table table-striped table-bordered table-condensed table-hover">
     <tr>
@@ -24,8 +24,6 @@
     </tr>        
 <?php } ?>
     </table>
-
-<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn-default"><span class="glyphiconglyphicon-home"></span>ガチャする<a>
 
 
         

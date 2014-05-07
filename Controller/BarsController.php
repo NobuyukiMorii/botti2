@@ -8,7 +8,7 @@ class BarsController extends AppController
 
     // Sessionコンポーネントを使用する
 
-    public $components = array('Auth','Session');
+    public $components = array('Auth','Session','Paginator');
 
     public function admin_register(){
 
@@ -68,9 +68,13 @@ class BarsController extends AppController
     }
 
     public function admin_list() {
-
-        $data = $this->Bar->find('all');
-        $this->set('data', $data);
+        $this->Paginator->settings = array(
+            'conditions' => array(),
+            'limit' => 1,
+            'sort' => 'Bar.station'
+        );
+        $data = $this->Paginator->paginate('Bar');
+        $this->set(compact('data'));
     }
 
     public function search(){
@@ -88,6 +92,8 @@ class BarsController extends AppController
         $this->set('data',$data);
 
     }
+
+
 
     public $paginate = array(
         'page' => 1,
