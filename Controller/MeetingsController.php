@@ -6,14 +6,9 @@ class MeetingsController extends AppController
 
     public $uses = array('Meeting','User','Bar');
 
-    public $components = array('Auth','Email','Session');
+    public $components = array('Auth','Email','Session','Paginator');
 
     public $helpers = array("DatePicker");
-
-    public $paginate = array(
-        'page' => 1,
-        'limit' => 5,
-    );
 
     public function roulette(){
 
@@ -322,26 +317,19 @@ class MeetingsController extends AppController
 
     }
 
-
     public function user_date() {
-
-        $data = $this->Meeting->find('all',array(
+        $this->Paginator->settings = array(
             'conditions' => array('or' => array(
                 'Meeting.user_id' => $this->Auth->user('id'),
                 'Meeting.match_user' => $this->Auth->user('id'),
                 ),
                 'Meeting.date >=' => date("Y-m-d")
             ),
-            'limit' =>100,
+            'limit' => 2,
             'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
-            )
         );
-        $data = $this->paginate();
-        $this->set('data',$data);
-
-        $LoginUserName = $this->Auth->user('nickname');
-        $this->set('LoginUserName',$LoginUserName);
-
+        $data = $this->Paginator->paginate('Meeting');
+        $this->set(compact('data'));
     }
 
     public function userpolicy() {

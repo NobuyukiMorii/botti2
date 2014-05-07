@@ -1,3 +1,4 @@
+
 <?php
 echo $this->Paginator->first('<<',array());
 echo $this->Paginator->prev('<',array());
@@ -5,6 +6,7 @@ echo $this->Paginator->numbers();
 echo $this->Paginator->next('>',array());
 echo $this->Paginator->last('>>',array());
 ?>
+
  <div class="container">
  <div class="table-responsive">
  <table class = "table table-striped table-bordered table-condensed table-hover" >
