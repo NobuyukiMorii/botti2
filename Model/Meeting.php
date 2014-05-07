@@ -31,30 +31,73 @@ class Meeting extends AppModel {
                     }
                 }
 
+                // if (array_key_exists($model, $item)) {
+
+                //     if ($this->_getCurrentUser('id') != $item[$model]['user_id']) {//誘われた こっちしか効いていない。なぜ？
+
+                //         $item[$model]['date_partner'] = 
+                //             $this->User->find(
+                //                 'first',
+                //                 array(
+                //                     'conditions' => array('User.id' => $item[$model]['match_user']),
+
+                //                 )
+                //             );
+                //     } elseif ($this->_getCurrentUser('id') == $item[$model]['user_id']) {//誘った場合のみ聞いている
+
+                //         $item[$model]['date_partner'] = 
+                //             $this->User->find(
+                //                 'first',
+                //                 array(
+                //                     'conditions' => array('User.id' => $item[$model]['user_id']),
+
+                //                 )
+                //             );
+                //     }
+                // }
+
+                // if (array_key_exists($model, $item)) {
+
+                //     if ($this->_getCurrentUser('id') == 
+                //             $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['user_id']))))
+                //             {
+                //             $item[$model]['date_partner'] = 
+                //                 $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['match_user'])));
+                //             } else {
+                //             $item[$model]['date_partner'] = 
+                //                 $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['user_id'])));
+                //             }
+                // }
+
+                // if (array_key_exists($model, $item)) {
+
+                //     if ($item[$model]['user_id'] == $this->_getCurrentUser()){
+
+                //         $item[$model]['date_partner'] = $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['match_user'])));
+
+                //     } else {
+
+                //         $item[$model]['date_partner'] = $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['user_id'])));
+
+                //     }
+
+                // }
+
                 if (array_key_exists($model, $item)) {
 
-                    if ($this->_getCurrentUser('id') != $item[$model]['user_id']) {//誘われた こっちしか効いていない。なぜ？
+                    if ($this->_getCurrentUser() == $item[$model]['user_id']){
 
-                        $item[$model]['date_partner'] = 
-                            $this->User->find(
-                                'first',
-                                array(
-                                    'conditions' => array('User.id' => $item[$model]['match_user']),
+                        $item[$model]['date_partner'] = $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['match_user'])));
 
-                                )
-                            );
-                    } elseif ($this->_getCurrentUser('id') == $item[$model]['user_id']) {//誘った場合のみ聞いている
+                    } elseif ($this->_getCurrentUser() == $item[$model]['match_user']) {
 
-                        $item[$model]['date_partner'] = 
-                            $this->User->find(
-                                'first',
-                                array(
-                                    'conditions' => array('User.id' => $item[$model]['user_id']),
+                        $item[$model]['date_partner'] = $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['user_id'])));
 
-                                )
-                            );
-                    }
+                    } 
+
                 }
+
+
             }
             $results[$i] = $item;
         }

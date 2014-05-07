@@ -21,9 +21,6 @@ echo $this->Paginator->last('>>',array());
       <th>待ち合わせ時間</th>
       <th>待ち合わせ場所</th>
 
-      <th>誘った人</th>
-      <th>誘われた人</th>
-
       <th>駅名</th>
       <th>登録日</th>
       <th>ステータス</th>
@@ -39,8 +36,6 @@ echo $this->Paginator->last('>>',array());
     <td><?php echo h($data[$i]['Meeting']['date']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['time']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['meetingspot']); ?></td>
-    <td><?php echo h($data[$i]['User']['nickname']); ?></td>
-    <td><?php echo h($data[$i]['Meeting']['match_user']); ?></td>
 		<td><?php echo h($data[$i]['Bar']['stationText']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['created']); ?></td>
     <td><a class="btn btn-primary" href="<?php echo $this->Html->url("/Meetings/acceptance/".$data[$i]['Meeting']['id']); ?>"><?php echo h($data[$i]['Meeting']['resultText']); ?></a></td>

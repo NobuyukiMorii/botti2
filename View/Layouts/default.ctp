@@ -38,6 +38,8 @@
     <![endif]-->
   </head>
   <body>
+    <?php var_dump($LoginUserId) ;?>
+    <?php var_dump($LoginUserNickname) ;?>
     <div class="container"><!-- container -->
       <div style="margin : 30px 0px 20px 0px">
         <h1><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">DateBook</a></h1>

@@ -40,8 +40,9 @@ class AppModel extends Model {
     App::uses('CakeSession', 'Model/Datasource');
     $Session = new CakeSession();
  
-    $user = $Session->read('Auth.User');
+    $user = $Session->read('Auth.User.id');
     return $user;
 	}
+
 
 }

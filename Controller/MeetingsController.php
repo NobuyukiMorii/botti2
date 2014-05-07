@@ -325,7 +325,6 @@ class MeetingsController extends AppController
 
     public function user_date() {
 
-
         $data = $this->Meeting->find('all',array(
             'conditions' => array('or' => array(
                 'Meeting.user_id' => $this->Auth->user('id'),
@@ -545,7 +544,7 @@ class MeetingsController extends AppController
         }
 
         $youbi = array("日", "月", "火", "水", "木", "金", "土");
-        $yoteibi = $data['Meeting']['date'];
+        $yoteibi = strtotime($data['Meeting']['date']);
         $w = date("w",$yoteibi);
         $this->set('youbi',$youbi[$w]);
 

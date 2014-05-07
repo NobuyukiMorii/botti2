@@ -51,6 +51,7 @@ class AppController extends Controller {
     }
 
     public function beforeRender(){
+        $this->set('LoginUserNickname', $this->Auth->user('nickname'));
         $this->set('LoginUserId', $this->Auth->user('id'));
 	}
 
