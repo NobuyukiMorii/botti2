@@ -1,4 +1,4 @@
-<?php echo $this->Form->create('Bar',array('type' => 'post', 'action'=>'admin_confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
+<?php echo $this->Form->create('Bar',array('type' => 'file', 'action'=>'admin_notice', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
 
     <h2>新しくバーを登録する</h2>
 
@@ -63,7 +63,11 @@
          <?php echo $this->Form->input('Bar.url', array('class' => 'form-control','required' => false));?>
         </div>
 
-        <?php echo $this->Form->file('Bar.image', array('class' => 'btn','required' => false));?>
+<!--         <?php echo $this->Form->file('Bar.image', array('class' => 'btn','required' => false));?> -->
+        <?php echo $this->Form->hidden('Image.0.model', array('value'=>'Bar'));?>
+        <!-- ファイルを選択するボタン -->
+        <?php echo $this->Form->input('Image.0.photo_bar', array('type' => 'file')); ?>
+        <!-- 送信ボタン -->
 
         <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-primary'));?>
         <?php echo $this->Form->end();?>

@@ -22,7 +22,7 @@ echo $this->Paginator->last('>>',array());
     </tr>
 <?php for ($i = 0; $i < count($data); $i++) { ?>
     <tr>
-        <td><a href="<?php echo h($data[$i]['Bar']['url']);?>"><img src="<?php echo $this->Html->url("/bars/image/".$data[$i]['Bar']['id']);?>", width = '100', height = '100' , alt ='BarImage'></a></td>
+        <td><a href="<?php echo h($data[$i]['Bar']['url']);?>"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Image'][$i]['dir']."/thumb400_".$data[$i]['Image'][$i]['photo_bar']);?>",alt ='BarImage'></a></td>
         <td width="180"><a href="<?php echo h($data[$i]['Bar']['url']);?>"><?php echo h($data[$i]['Bar']['name']); ?></a></td>
         <td width="100"><?php echo h($data[$i]['Bar']['genreText']); ?></td>
         <td width="100"><?php echo h($data[$i]['Bar']['price']); ?></td>

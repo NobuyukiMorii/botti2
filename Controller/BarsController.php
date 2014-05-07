@@ -47,9 +47,9 @@ class BarsController extends AppController
 
     public function admin_notice(){
 
-        $register = $this->Session->read('hozon');
+        $register = $this->request->data;
 
-        if ($this->Bar->save($register, array( 'validate' => false))) {
+        if ($this->Bar->saveAll($register, array( 'validate' => false))) {
             $this->render("admin_notice");
         }
 

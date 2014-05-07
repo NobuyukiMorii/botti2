@@ -2,27 +2,17 @@
 
 class User extends AppModel {
 
-    public $uses  = array('User');
-/*
-    public $hasone = array(
-        "Meeting" => array(
-            'className' => 'Meeting',
-            'conditions' => '',
-            'order' => '',
-            'dependent' => false,
-            'limit' => 0,
-            'exclusive' => false,
-            'finderQuery' => '',
-            'foreignKey' => 'user_id_2'
-        )
-    );
-*/
+    public $uses  = array('User','Attachment');
 
-	// public function beforeSave(){
-	// 	$this->data['User']['password'] =
-	// 	 AuthComponent::password($this->data['User']['password']);
-	// return true;
-	// }
+    public $hasMany = array(
+        'Image' => array(
+            'className' => 'Attachment',
+            'foreignKey' => 'foreign_key',
+            // 'conditions' => array(
+            //     'Attachment.model' => 'User',
+            // ),
+        ),
+    );
 
     /*
     *上記記述より下の方が良さそうなので、置き換えた。
