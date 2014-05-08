@@ -58,7 +58,7 @@
                                           'label' => false , 
                                           'div' => false,
                                           'placeholder' => "メールアドレスを入力して下さい。",
-                                          'id' => "UserUsername"
+                                          'id' => "UserUsername",
                                           )
                               );
                         ?>
@@ -84,8 +84,41 @@
                   </div>
             </div>
 
+                  <div class="form-group form-inline">
+                        <label for="UserName" class="col-sm-2 control-label">お名前</label>
+                        <div class="col-sm-2">
+                              <?php echo $this->Form->input
+                                    (
+                                    'User.last_name', 
+                                    array('class' => 'form-control',
+                                          'required' => false,
+                                          'label' => false , 
+                                          'div' => false,
+                                          'placeholder' => "姓",
+                                          'id' => "UserName"
+                                          )
+                                    );
+                              ?>
+                        </div>
+
+                        <div class="col-sm-3">
+                              <?php echo $this->Form->input
+                                    (
+                                    'User.first_name', 
+                                    array('class' => 'form-control',
+                                          'required' => false,
+                                          'label' => false , 
+                                          'div' => false,
+                                          'placeholder' => "名",
+                                          'id' => "UserName"
+                                          )
+                                    );
+                              ?>
+                        </div>
+                  </div>
+
             <div class="form-group">
-                  <label for="UserNickname" class="col-sm-2 control-label">お名前</label>
+                  <label for="UserNickname" class="col-sm-2 control-label">ニックネーム</label>
                   <div class="col-sm-5">
                         <?php echo $this->Form->input
                               (
@@ -94,8 +127,26 @@
                                     'required' => false,
                                     'label' => false , 
                                     'div' => false,
-                                    'placeholder' => "お名前をフルネームで入力して下さい。",
+                                    'placeholder' => "ニックネームを入力して下さい。",
                                     'id' => "UserNickname"
+                                    )
+                              );
+                        ?>
+                  </div>
+            </div>
+
+            <div class="form-group">
+                  <label for="UserTelnumber" class="col-sm-2 control-label">電話番号</label>
+                  <div class="col-sm-2">
+                        <?php echo $this->Form->input
+                              (
+                              'User.telnumber', 
+                              array('class' => 'form-control',
+                                    'required' => false,
+                                    'label' => false , 
+                                    'div' => false,
+                                    'placeholder' => "xxx-xxxx-xxxx",
+                                    'id' => "UserTelnumber"
                                     )
                               );
                         ?>

@@ -63,7 +63,6 @@
          <?php echo $this->Form->input('Bar.url', array('class' => 'form-control','required' => false));?>
         </div>
 
-<!--         <?php echo $this->Form->file('Bar.image', array('class' => 'btn','required' => false));?> -->
         <?php echo $this->Form->hidden('Image.0.model', array('value'=>'Bar'));?>
         <!-- ファイルを選択するボタン -->
         <?php echo $this->Form->input('Image.0.photo_bar', array('type' => 'file')); ?>

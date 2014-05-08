@@ -256,6 +256,28 @@ class User extends AppModel {
             ),
         ),
 
+        'last_name' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => 'お名前は必ず入力して下さい。'
+            ),
+            array(
+                'rule' => array('maxLength', 30),
+                'message' => '10文字以内で入力して下さい。'
+            )
+        ),
+
+        'first_name' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => 'お名前は必ず入力して下さい。'
+            ),
+            array(
+                'rule' => array('maxLength', 30),
+                'message' => '10文字以内で入力して下さい。'
+            )
+        ),
+
         'nickname' => array(
             array(
                 'rule' => 'notEmpty',
@@ -265,6 +287,11 @@ class User extends AppModel {
                 'rule' => array('maxLength', 30),
                 'message' => '30文字以内で入力して下さい。'
             )
+        ),
+
+        'telnumber' => array(
+                'rule'=>array('custom','/\d{2,4}-\d{2,4}-\d{4}/'),
+                'message'=>'電話番号を正確に入力してください。'
         ),
 
         'gender' => array(
