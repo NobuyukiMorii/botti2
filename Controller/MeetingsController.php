@@ -35,7 +35,7 @@ class MeetingsController extends AppController
 
         $anata =$this->User->find('first',array(
             'conditions' => array('User.id' => $this->Auth->user('id')),
-            'limit' => 1
+            'limit' => 1,
             )
         );
 
@@ -318,6 +318,7 @@ class MeetingsController extends AppController
     }
 
     public function user_date() {
+
         $this->Paginator->settings = array(
             'conditions' => array('or' => array(
                 'Meeting.user_id' => $this->Auth->user('id'),
@@ -326,7 +327,7 @@ class MeetingsController extends AppController
                 'Meeting.date >=' => date("Y-m-d")
             ),
             'limit' => 2,
-            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
+            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC'),
         );
         $data = $this->Paginator->paginate('Meeting');
         $this->set(compact('data'));

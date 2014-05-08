@@ -1,7 +1,7 @@
 <?php
 class Attachment extends AppModel {
 
-    public $uses  = array('User','Bar','Attachment');
+    public $uses  = array('User','Bar','Attachment','Meeting');
 
     public $actsAs = array(
         'Upload.Upload' => array(

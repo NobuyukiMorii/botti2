@@ -1,4 +1,3 @@
-
 <?php
 echo $this->Paginator->first('<<',array());
 echo $this->Paginator->prev('<',array());
@@ -33,7 +32,7 @@ echo $this->Paginator->last('>>',array());
 	<tr>
     <td><img src="<?php echo $this->Html->url("/Meetings/image2User/".$data[$i]['Meeting']['date_partner']['User']['id']);?>", width = '120',alt ='PatnerImage'></td>
     <td><?php echo h($data[$i]['Meeting']['date_partner']['User']['nickname']); ?></td>
-    <td><img src="<?php echo $this->Html->url("/Meetings/image2Bar/".$data[$i]['Bar']['id']);?>", width = '120',alt ='PatnerImage'></td>
+    <td><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Bar']['Image'][0]['dir']."/thumb400_".$data[$i]['Bar']['Image'][0]['photo_bar']);?>",alt ='BarImage'></td>
     <td><?php echo h($data[$i]['Bar']['name']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['date']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['time']); ?></td>
@@ -47,5 +46,3 @@ echo $this->Paginator->last('>>',array());
 </table>
 </div>
 </div>
-
-

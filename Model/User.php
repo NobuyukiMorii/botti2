@@ -2,6 +2,8 @@
 
 class User extends AppModel {
 
+    public $name = 'User';
+
     public $uses  = array('User','Attachment');
 
     public $hasMany = array(
@@ -55,13 +57,6 @@ class User extends AppModel {
                     /*
                     *workに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
                     */
-                    // $work = array('1'=>'大学生','2'=>'大学院生','3'=>'会社員','4'=>'公務員','5'=>'経営者','6'=>'自営業','7'=>'農業','8'=>'医者','9'=>'弁護士','10'=>'ニート','11'=>'ハイパーメディアクリエイター','12'=>'その他');
-
-                    // foreach ($work as $key => $value) {
-                    //     if ($item[$model]['work'] == $key){
-                    //         $item[$model]['workText'] == $value;
-                    //     }
-                    // }
 
                     if ($item[$model]['work'] == 1) {
                         $item[$model]['workText'] = '大学生';

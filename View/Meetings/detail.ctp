@@ -1,7 +1,6 @@
 <?php echo $this->Html->script(array('jquery-1.10.2.js', 'jquery-ui-1.10.4.custom','jquery.ui.datepicker-ja'), array('inline'=>false)); ?>
 <?php echo $this->Html->css(array('jquery-ui-1.10.4.custom'), array('inline'=>false)); ?>
 
-
 <div class="container">
 
     <div class="row" style="margin-top:0px;">
@@ -20,7 +19,7 @@
 
             <p class="trimming3" style="margin-top:0px;">
             <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
-                <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$randomBar['Bar']['id']); ?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
+                <img class="img-responsive" src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$randomBar['Image'][0]['dir']."/thumb350_".$randomBar['Image'][0]['photo_bar']);?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
             </a>
             </p>
 

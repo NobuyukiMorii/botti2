@@ -34,7 +34,7 @@
 	    						</p>
 
 	    						<p class="trimming4" style="margin-top:330px;">
-	    							<a href = "<?php echo $data['Bar']['url'] ;?>"><img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$data['Meeting']['bar_id']); ?>" alt="<?php echo h($data['Bar']['name']); ?>"></a>
+	    							<a href = "<?php echo $data['Bar']['url'] ;?>"><img class="img-responsive" src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data['Bar']['Image'][0]['dir']."/thumb400_".$data['Bar']['Image'][0]['photo_bar']);?>" alt="<?php echo h($data['Bar']['name']); ?>"></a>
 	    						</p>
 
 	    		</div>
