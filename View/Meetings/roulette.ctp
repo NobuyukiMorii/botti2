@@ -11,7 +11,7 @@
 
             <div class="col-md-6" >
               <p class="trimming2" style="margin-left:40px;">
-                <img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$randomUser['User']['id']); ?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
+                <img class="img-responsive" src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$randomUser['Image'][0]['dir']."/thumb350_".$randomUser['Image'][0]['photo_user']);?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
               </p>
             </div>
 

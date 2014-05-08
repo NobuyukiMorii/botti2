@@ -1,4 +1,5 @@
 <?php var_dump($data['Meeting']['time']); ?>
+
 	    <div class="container">
 
 	    	<div class="row" style="margin-top:20px;">
@@ -30,7 +31,7 @@
 
 
 	    						<p class="trimming4" >
-	    							<img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$partner_data['User']['id']); ?>" alt="<?php echo h($partner_data['User']['nickname']); ?>">
+	    							<img class="img-responsive" src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$partner_data['Image'][0]['dir']."/thumb400_".$partner_data['Image'][0]['photo_user']);?>" alt="<?php echo h($data['Bar']['name']); ?>" alt="<?php echo h($partner_data['User']['nickname']); ?>">
 	    						</p>
 
 	    						<p class="trimming4" style="margin-top:330px;">

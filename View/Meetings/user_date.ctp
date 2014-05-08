@@ -30,9 +30,9 @@ echo $this->Paginator->last('>>',array());
   <tbody>
 	<?php for ($i = 0; $i < count($data); $i++) { ?>
 	<tr>
-    <td><img src="<?php echo $this->Html->url("/Meetings/image2User/".$data[$i]['Meeting']['date_partner']['User']['id']);?>", width = '120',alt ='PatnerImage'></td>
+    <td><img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$data[$i]['Meeting']['date_partner']['Image'][0]['dir']."/thumb150_".$data[$i]['Meeting']['date_partner']['Image'][0]['photo_user']);?>",alt ='PatnerImage'></td>
     <td><?php echo h($data[$i]['Meeting']['date_partner']['User']['nickname']); ?></td>
-    <td><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Bar']['Image'][0]['dir']."/thumb400_".$data[$i]['Bar']['Image'][0]['photo_bar']);?>",alt ='BarImage'></td>
+    <td><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Bar']['Image'][0]['dir']."/thumb150_".$data[$i]['Bar']['Image'][0]['photo_bar']);?>",alt ='BarImage'></td>
     <td><?php echo h($data[$i]['Bar']['name']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['date']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['time']); ?></td>

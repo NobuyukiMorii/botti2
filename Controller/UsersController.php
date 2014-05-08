@@ -19,13 +19,12 @@ public function add(){
     if(!empty($this->data)){
         if($this->data){
             $this->User->create($this->request->data);
-            $this->request->data["User"]["image"]=file_get_contents($this-> data["User"]["image"]["tmp_name"]);
 
             if(!$this->User->validates()){
                 $this->set("error",$this->User->validationErrors);
                 $this->render("add");
             } else {
-                $this->User->save($this->data);
+                $this->User->saveAll($this->data);
                 $this->Session->setFlash('ユーザー登録を完了しました。', 'default', array(), 'success');
                 $this->redirect(array('action'=>'login'));
             }
@@ -81,7 +80,6 @@ public function edit($id = null) {
 
     if ($this->request->is('post') || $this->request->is('put')) {
 
-        $this->request->data["User"]["image"]=file_get_contents($this->data["User"]["image"]["tmp_name"]);
             // 更新処理時
             // User.new_password1、User.new_password2 ともに入力の場合はパスワードの更新を行う
         if ($this->request->data['User']['new_password1'] !== '' && $this->request->data['User']['new_password2'] !== '') {

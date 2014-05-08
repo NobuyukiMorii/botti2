@@ -3,7 +3,7 @@
             (
             'User',
             array(
-                  'type' => 'post', 
+                  'type' => 'file', 
                   'action'=>'add', 
                   'enctype' => 'multipart/form-data',
                   'role' => 'form',
@@ -16,20 +16,35 @@
       <div class ="well">
 
             <div class="form-group">
-                  <label for="UserImage" class="col-sm-2 control-label">写真</label>
+                  <label for="Image0Model" class="col-sm-2 control-label">写真</label>
                   <div class="col-sm-10">
-                         <?php echo $this->Form->input(
-                              'User.image', 
-                                    array(
-                                          'type' => 'file',
-                                          'required' => false,
-                                          'label' => false , 
-                                          'id' => "UserImage"
+
+                        <?php echo $this->Form->hidden
+                              (
+                              'Image.0.model', 
+                              array(
+                                    'value'=>'User'
                                     )
                               );
                         ?>
+
+                        <?php echo $this->Form->input
+                              (
+                              'Image.0.photo_user',
+                              array(
+                                    'type' => 'file',
+                                    'required' => false,
+                                    'label' => false , 
+                                    'id' => "Image0Model"
+                                    )
+                              ); 
+                        ?>
+
                   </div>
             </div>
+
+
+
 
             <div class="form-group">
                   <label for="UserUsername" class="col-sm-2 control-label">メールアドレス</label>

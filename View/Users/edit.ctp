@@ -14,7 +14,7 @@
       基本情報
       <div class ="well">
 
-            <div class="form-group">
+<!--             <div class="form-group">
                   <label for="UserImage" class="col-sm-2 control-label">写真</label>
                   <div class="col-sm-10">
                          <?php echo $this->Form->input(
@@ -28,7 +28,7 @@
                               );
                         ?>
                   </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
                   <label for="UserUsername" class="col-sm-2 control-label">メールアドレス</label>
