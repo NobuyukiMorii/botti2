@@ -514,10 +514,91 @@ class MeetingsController extends AppController
             )
         );
 
-        // $partner_data = $this->User->find('first',array(
-        //     'conditions' => array('User.id' => $data['Meeting']['match_user'])
-        //     )
-        // );
+        $LoginUserId = $this->Auth->user('id');
+
+        if($LoginUserId === $data['Meeting']['user_id']) {
+            $partner_data = $this->User->find('first',array(
+                'conditions' => array('User.id' => $data['Meeting']['match_user'])
+                )
+            );
+        } elseif ($LoginUserId === $data['Meeting']['match_user']) {
+            $partner_data = $this->User->find('first',array(
+                'conditions' => array('User.id' => $data['Meeting']['user_id'])
+                )
+            );
+        }
+
+        if($data['Meeting']['result'] == 1 && $LoginUserId == $data['Meeting']['user_id']) {
+            $this->redirect('/meetings/acceptance_wait/'.$id);
+        } elseif ($data['Meeting']['result'] == 2) {
+            $this->redirect('/meetings/acceptance_cancel/'.$id);
+        } elseif ($data['Meeting']['result'] == 3) {
+            $this->redirect('/meetings/acceptance_wait/'.$id);
+        }
+
+        $youbi = array("日", "月", "火", "水", "木", "金", "土");
+        $yoteibi = strtotime($data['Meeting']['date']);
+        $w = date("w",$yoteibi);
+        $this->set('youbi',$youbi[$w]);
+
+        $this->set('data',$data);
+        $this->set('partner_data',$partner_data);
+
+        }
+    }
+
+    public function acceptance_wait($id = null) {
+
+        $this->Meeting->id = $id;
+        if (!$this->Meeting->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+
+        $this->request->data = $this->Meeting->read(null, $id);
+
+        $data = $this->Meeting->find('first',array(
+            'conditions' => array('Meeting.id' => $id),
+            )
+        );
+
+        $LoginUserId = $this->Auth->user('id');
+
+        if($LoginUserId === $data['Meeting']['user_id']) {
+            $partner_data = $this->User->find('first',array(
+                'conditions' => array('User.id' => $data['Meeting']['match_user'])
+                )
+            );
+        } elseif ($LoginUserId === $data['Meeting']['match_user']) {
+            $partner_data = $this->User->find('first',array(
+                'conditions' => array('User.id' => $data['Meeting']['user_id'])
+                )
+            );
+        } 
+
+        $youbi = array("日", "月", "火", "水", "木", "金", "土");
+        $yoteibi = strtotime($data['Meeting']['date']);
+        $w = date("w",$yoteibi);
+        $this->set('youbi',$youbi[$w]);
+
+        $this->set('data',$data);
+        $this->set('partner_data',$partner_data);
+
+    }
+
+    public function acceptance_cancel($id = null) {
+
+        $this->Meeting->id = $id;
+        if (!$this->Meeting->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+
+        $this->request->data = $this->Meeting->read(null, $id);
+
+        $data = $this->Meeting->find('first',array(
+            'conditions' => array('Meeting.id' => $id),
+            )
+        );
+
         $LoginUserId = $this->Auth->user('id');
 
         if($LoginUserId === $data['Meeting']['user_id']) {
@@ -540,7 +621,6 @@ class MeetingsController extends AppController
         $this->set('data',$data);
         $this->set('partner_data',$partner_data);
 
-        }
     }
 
 }

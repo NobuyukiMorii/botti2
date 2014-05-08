@@ -27,7 +27,7 @@ class Meeting extends AppModel {
                     if ($item[$model]['result'] == 1) {
                         $item[$model]['resultText'] = '検討中';
                     } elseif ($item[$model]['result'] == 2) {
-                        $item[$model]['resultText'] = 'デート予定';
+                        $item[$model]['resultText'] = '成立';
                     } elseif ($item[$model]['result'] == 3)  {
                         $item[$model]['resultText'] = 'キャンセル';
                     }
