@@ -16,12 +16,15 @@ class Bar extends AppModel {
         ),
     );
 
-    public function afterFind ($results, $primary) {
+    public function afterFind ($results, $primary = true) {
 
         foreach($results as $i => $item){
 
+            if(is_array($item)) {
+
             foreach (array('Bar') as $model) {
-                if (array_key_exists($model, $item)) {
+
+                if (array_key_exists($model, $item) && $results[0][$model] != false) {
 
                     if ($item[$model]['station'] == 1) {
                         $item[$model]['stationText'] = '東京';
@@ -95,6 +98,8 @@ class Bar extends AppModel {
 
                 }
             }
+
+        }
 
             $results[$i] = $item;
 

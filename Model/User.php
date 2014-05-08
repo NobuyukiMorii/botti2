@@ -42,12 +42,14 @@ class User extends AppModel {
 
 
     //user_id_1とのリレーションをどうす
-    public function afterFind ($results, $primary) {
+    public function afterFind ($results, $primary = true) {
 
         foreach($results as $i => $item){
 
+            if(is_array($item)) {
+
             foreach (array('User') as $model) {
-                if (array_key_exists($model, $item)) {
+                if (array_key_exists($model, $item) && $results[0][$model] != false) {
 
                     if ($item[$model]['gender'] == 1) {
                         $item[$model]['genderText'] = '男性';
@@ -178,6 +180,7 @@ class User extends AppModel {
 
                 }
             }
+        }
 
             $results[$i] = $item;
 
