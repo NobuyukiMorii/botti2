@@ -1,3 +1,7 @@
+<?php var_dump($start_time) ;?><br />
+<?php var_dump($last_order_time) ;?><br />
+<?php var_dump($meeting_time) ;?><br />
+
 <div class="container">
 
         <div class="row" style="margin-top:170px;">

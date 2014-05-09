@@ -37,9 +37,12 @@
         <div class="form-group">
         <?php echo $this->form->input('Bar.start_time', array(
           'label' => '開店時間',
+          'default' => date('18:00:00'),
           'timeFormat' => '24',
           'dateFormat' => 'H:i:s',
           'empty' => true,
+          'separator' => ':',
+          'interval' => 10
           ));
         ?>
         </div>
@@ -47,10 +50,25 @@
         <div class="form-group">
         <?php echo $this->form->input('Bar.close_time', array(
           'label' => '閉店時間',
+          'default' => date('24:00:00'),
           'timeFormat' => '24',
           'dateFormat' => 'H:i:s',
           'empty' => true,
           'separator' => ':',
+          'interval' => 10
+          ));
+        ?>
+        </div>
+
+        <div class="form-group">
+        <?php echo $this->form->input('Bar.last_order_time', array(
+          'label' => '閉店時間',
+          'default' => date('23:00:00'),
+          'timeFormat' => '24',
+          'dateFormat' => 'H:i:s',
+          'empty' => true,
+          'separator' => ':',
+          'interval' => 10
           ));
         ?>
         </div>

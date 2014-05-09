@@ -291,6 +291,79 @@ class MeetingsController extends AppController
         $this->set('randomBar',$randomBar);
         $this->request->data["Meeting"]["bar_id"] = $randomBar['Bar']['id'];
 
+        $start_time = date('H:i:s',strtotime($randomBar['Bar']['start_time']));
+        $last_order_time = date('H:i:s',strtotime($randomBar['Bar']['last_order_time']));
+        $meeting_time = date('H:i:s',strtotime(implode(":",array($this->request->data['Meeting']['time']['hour'],$this->request->data['Meeting']['time']['min']))));
+        $day_meridian = date('H:i:s',strtotime('12:00:00'));
+        $day_start = date('H:i:s',strtotime('00:00:00'));
+        $day_finish = date('H:i:s',strtotime('23:59:59'));
+
+        $this->set("start_time",$start_time);
+        $this->set("last_order_time",$last_order_time);
+        $this->set("meeting_time",$meeting_time);
+
+        /*
+        *ここからラストオーダーの判定
+        */
+
+        //待ち合わせもバーの閉店も午前、もしくは午後
+        if ($meeting_time > $last_order_time) {
+            $allowed_time_atlast = false;
+        } else {
+            $allowed_time_atlast = true;
+        }
+
+        //待ち合わせは午前、バーの閉店は午後
+        if(($meeting_time >= $day_start && $meeting_time < $day_meridian) && ($last_order_time >= $day_meridian && $last_order_time <= $day_finish)) {
+            $allowed_time_atlast = false;
+        }
+
+        //待ち合わせは午後、バーの閉店は午前
+        if(($meeting_time >= $day_meridian && $meeting_time <= $day_finish) && ($last_order_time >= $day_start && $last_order_time < $day_meridian)) {
+            $allowed_time_atlast = true;
+        } 
+
+        if ($allowed_time_atlast == false) {
+            $this->Session->setFlash('ラストオーダーに間に合う時間にお待ち合わせ下さい。', 'default', array(), 'fail');
+            $this->redirect('/meetings/detail/');
+        }
+
+        /*
+        *ラストオーダー判定ここまで
+        */
+
+        /*
+        *ここからオープン時間の判定
+        */
+        if ($meeting_time < $start_time) {
+            $allowed_time_atopen = false;
+        } else {
+            $allowed_time_atopen = true;
+        }
+
+        //待ち合わせは午前、バーの開店は午後
+        if(($meeting_time >= $day_start && $meeting_time < $day_meridian) && ($start_time >= $day_meridian && $start_time <= $day_finish)) {
+            if($allowed_time_atlast = true) {
+                $allowed_time_atopen = true;
+            } else {
+                $allowed_time_atopen = false;
+            }
+        }
+
+        //待ち合わせは午後、バーの開店は午前
+        if(($meeting_time >= $day_meridian && $meeting_time <= $day_finish) && ($start_time >= $day_start && $start_time < $day_meridian)) {
+            $allowed_time_atopen = true;
+        } 
+
+        if ($allowed_time_atopen == false) {
+            $this->Session->setFlash('お店がまだオープンしていません。', 'default', array(), 'fail');
+            $this->redirect('/meetings/detail/');
+        }
+
+        /*
+        *オープン時間判定ここまで
+        */
+
         $randomUser = $this->Session->read('randomUser');
         $this->set('randomUser',$randomUser);
         $this->request->data["Meeting"]["match_user"] = $randomUser['User']['id'];   
