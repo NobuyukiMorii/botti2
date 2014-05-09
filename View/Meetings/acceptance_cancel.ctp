@@ -23,7 +23,8 @@
 	    							<dt>住所<dt>
 	    								<dd><?php echo $data['Bar']['location']; ?></dd>
 	    							</dl>
-	    						</h4>
+	    				</h4>
+	    				<a href="<?php echo $this->Html->url('/meetings/user_date'); ?>" class="btn btn-primary"><span class="glyphiconglyphicon-home" ></span>戻る<a>
 	    		</div>
 
 

@@ -122,7 +122,7 @@
                     </div>
 
                   <div class="text-right" style="margin-top : 0px">
-                      <?php echo $this->Form->submit('デートに誘う', array('class' => 'btn btn-primary'));?>
+                      <?php echo $this->Form->submit('Book', array('class' => 'btn btn-primary'));?>
                   </div>
 
               <?php echo $this->Form->end();?>

@@ -259,10 +259,31 @@ class MeetingsController extends AppController
     }
 
     public function confirm(){
-        /*
-        全データを$this->request->dataにsaveする
-        $this->request->dataにはuser_id_1,user_id_2,bar_idが欠損している
-        */
+
+        $double_booking_count = $this->Meeting->find('count',
+            array(
+            'conditions' => 
+                array(
+                    'or' => 
+                        array(
+                            'Meeting.user_id' => $this->Auth->user('id'),
+                            'Meeting.match_user' => $this->Auth->user('id'),
+                        ),
+                    'Meeting.date' => $this->request->data['Meeting']['date'],
+                    'Meeting.result' => 1 || 2
+                    )
+                )
+        );
+
+        if($double_booking_count > 0) {
+            $this->Session->setFlash('同日に他のデートがあります。', 'default', array(), 'fail');
+            $this->redirect('/meetings/detail/');
+        }
+
+        if (strtotime($this->request->data['Meeting']['date']) < strtotime(date("Y-m-d"))) {
+            $this->Session->setFlash('過去の日付は選択出来ません。', 'default', array(), 'fail');
+            $this->redirect('/meetings/detail/');
+        }
         
         $this->request->data["Meeting"]["user_id"] = $this->Auth->user('id');
 
@@ -278,16 +299,11 @@ class MeetingsController extends AppController
         $this->request->data["Meeting"]["total_match_point"] = $total_match_point;
 
         $this->request->data["Meeting"]["result"] = 1;
-        // var_dump($total_match_point);
-        // $this->set("total_match_point",$total_match_point);
-
-
 
         $this->Session->write('data',$this->request->data);
 
         $this->set("data",$this->request->data);
 
-        // $this->Meeting->save($this->request->data);
 
         if($this->Meeting->save($this->request->data)){
             $last_id = $this->Meeting->getLastInsertID();

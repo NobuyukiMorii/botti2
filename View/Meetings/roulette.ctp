@@ -33,7 +33,7 @@
 
                 <div style="margin-top:40px;">
 
-                   <div class="text-right"><a href="<?php echo $this->Html->url('/meetings/detail'); ?>" class="btn btn btn-primary">デートに誘う</a></div>
+                   <div class="text-right"><a href="<?php echo $this->Html->url('/meetings/detail'); ?>" class="btn btn btn-primary">DATE</a></div>
 
         </div>
 

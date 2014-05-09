@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>DateBookTokyo</title>
+  <title>DateBook</title>
 
   <!-- Bootstrap core CSS -->
   <?=$this->Html->css('bootstrap.css')?>
@@ -27,8 +27,8 @@
     <div class="vert-text">
       <h1>DateBook</h1>
       <h3>
-        <em>大切な出会いは、</em>
-        <em>本の中に</em></h3>
+        <em>デートを</em>
+        <em>ブッキング</em></h3>
         
     
       <!-- Login Form -->
@@ -40,10 +40,11 @@
             </div>
 
             <h2 class="form-signin-heading">Sign Up</h2>
+            <?php echo $this->Session->flash('auth'); ?>
             <input name="data[User][username]" id="UserUsername" type="email" class="form-control" placeholder="Email address" required autofocus>
             <input name="data[User][password]" id="UserPassword" type="password" class="form-control" placeholder="Password" required>
             <label class="checkbox">
-              <input type="checkbox" value="remember-me"> ログインしたままにする
+              <input name="data[User][keep_me_logged_in]" type="checkbox" value="keep_me_logged_in"> ログインしたままにする
             </label>
             <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
           </form>

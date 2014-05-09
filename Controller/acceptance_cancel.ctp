@@ -23,8 +23,7 @@
 	    							<dt>住所<dt>
 	    								<dd><?php echo $data['Bar']['location']; ?></dd>
 	    							</dl>
-	    				</h4>
-	    				<a href="<?php echo $this->Html->url('/meetings/user_date'); ?>" class="btn btn-primary"><span class="glyphiconglyphicon-home" ></span>戻る<a>
+	    						</h4>
 	    		</div>
 
 
@@ -61,7 +60,6 @@
 	    							<?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form'));?>
 	    							<div class="boxContainer">
 	    								<?php echo $this->Form->submit('NO', array('name' => 'NO','class' => 'btn btn-warning btn-block')); ?>
-	    								<?php echo $this->Form->submit('OK', array('name' => 'OK','class' => 'btn btn-success btn-block')); ?>
 	    							</div>
 	    							<?php echo $this->Form->end();?>
 	    						</div>
