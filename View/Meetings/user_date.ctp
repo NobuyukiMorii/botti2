@@ -1,3 +1,4 @@
+
 <?php
 echo $this->Paginator->first('<<',array());
 echo $this->Paginator->prev('<',array());

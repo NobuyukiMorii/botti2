@@ -47,9 +47,11 @@
 
       <div class="masthead">
         <ul class="nav nav-justified">
-          <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店一覧</a></li>
-          <li><a href="<?php echo $this->Html->url('/meetings/user_date'); ?>">デートの予定</a></li>
-          <li><a href="<?php echo $this->Html->url('/users/edit/'.$LoginUserId); ?>">プロフィール編集</a></li>
+          
+          <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">デートカタログ</a></li>
+          <li><a href="<?php echo $this->Html->url('/meetings/user_date'); ?>">ブッキングリスト</a></li>
+          <li><a href="<?php echo $this->Html->url('/users/edit/'.$LoginUserId); ?>">プロフィール</a></li>
+          <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">マイバー</a></li>
           <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
         </ul>
       </div>

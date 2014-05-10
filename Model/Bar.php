@@ -97,6 +97,7 @@ class Bar extends AppModel {
                     } 
 
                 }
+
             }
 
         }

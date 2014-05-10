@@ -25,6 +25,7 @@ class MeetingsController extends AppController
             'limit' => 1
             )
         );
+        $randomUser['User']['kibouzikan'] =  date("H時i分", strtotime($randomUser['User']['kibouzikan']));
 
         $randomBar = $this->Bar->find('first',array(
             'conditions' => array('Bar.station' => $randomUser['User']['kiboueki'],'Bar.genre' => $randomUser['User']['genre']),
