@@ -12,6 +12,12 @@ class MeetingsController extends AppController
 
     public function roulette(){
 
+        $group_id = $this->Auth->user('group_id');
+        if($group_id == 2){
+            return $this->redirect('/Meetings/Control_meetinglist/');
+        }
+
+
         $login_gender = $this->Auth->user('gender');
         if($login_gender == 1){
             $partner_gender = 2;
@@ -25,7 +31,7 @@ class MeetingsController extends AppController
             'limit' => 1
             )
         );
-        $randomUser['User']['kibouzikan'] =  date("H時i分", strtotime($randomUser['User']['kibouzikan']));
+
 
         $randomBar = $this->Bar->find('first',array(
             'conditions' => array('Bar.station' => $randomUser['User']['kiboueki'],'Bar.genre' => $randomUser['User']['genre']),
@@ -39,10 +45,12 @@ class MeetingsController extends AppController
             'limit' => 1,
             )
         );
-
-        $this->set(compact('randomBar','randomUser','anata'));
         $this->Session->write('randomBar',$randomBar);
         $this->Session->write('randomUser',$randomUser);
+
+        $randomUser['User']['kibouzikan'] =  date("H時i分", strtotime($randomUser['User']['kibouzikan']));
+        $this->set(compact('randomBar','randomUser','anata'));
+
 
         //希望曜日の一週間後の日付を算出してViewに渡す
         $target_week = $randomUser['User']['kibouyoubi'];
@@ -170,6 +178,9 @@ class MeetingsController extends AppController
         $randomBar = $this->Session->read('randomBar');
         $randomUser = $this->Session->read('randomUser');
         $this->set(compact('randomBar','randomUser'));
+
+        $matiawase = date('H:i:s', strtotime($randomUser['User']['kibouzikan']));
+        $this->set('matiawase',$matiawase);
 
         //希望曜日の一週間後の日付を算出してViewに渡す
         $target_week = $randomUser['User']['kibouyoubi'];
@@ -392,18 +403,6 @@ class MeetingsController extends AppController
         *CakeEmailの送信
         */
         $this->setAction("email");
-
-    }
-
-    public function meetinglist() {
-
-        $data = $this->Meeting->find('all',array(
-            'limit' =>100,
-            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
-            )
-        );
-
-        $this->set('data', $data);
 
     }
 
@@ -710,6 +709,120 @@ class MeetingsController extends AppController
 
         $this->set('data',$data);
         $this->set('partner_data',$partner_data);
+
+    }
+
+    public function Control_meetinglist() {
+
+        $group_id = $this->Auth->user('group_id');
+        if($group_id == 1){
+            return $this->redirect('/Users/logout/');
+        }
+
+        $this->layout = 'Control_bar';
+
+        $this->Paginator->settings = array(
+            'conditions' => array('or' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                ),
+            ),
+            'limit' => 6,
+            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC'),
+        );
+        $data = $this->Paginator->paginate('Meeting');
+        $this->set(compact('data'));
+
+    }
+
+    public function Control_detail($id = null) {
+
+        $group_id = $this->Auth->user('group_id');
+        if($group_id == 1){
+            return $this->redirect('/Users/logout/');
+        }
+
+        $this->layout = 'Control_bar';
+
+        $this->Meeting->id = $id;
+        if (!$this->Meeting->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+
+        $data = $this->Meeting->find('first',array(
+            'conditions' => array('Meeting.id' => $id),
+            )
+        );
+
+        $this->set('data',$data);
+
+    }
+
+    public function Control_statistics() {
+
+        $group_id = $this->Auth->user('group_id');
+        if($group_id == 1){
+            return $this->redirect('/Users/logout/');
+        }
+
+        $this->layout = 'Control_bar';
+
+        //本日の予約人数
+        $count_today = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date' => date("Y-m-d"),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_today',$count_today);
+        //明日の予約人数
+        $count_tomorrow = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date' => date("Y-m-d", strtotime("+1 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_tomorrow',$count_tomorrow);
+
+        $count_in_week = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date >=' => date("Y-m-d"),
+                'Meeting.date <=' => date("Y-m-d", strtotime("+7 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_in_week',$count_in_week);
+
+        $count_in_month = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date >=' => date("Y-m-d"),
+                'Meeting.date <=' => date("Y-m-d", strtotime("+30 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_in_month',$count_in_month);
+
+    }
+
+    public function Control_calender() {
+
+        $group_id = $this->Auth->user('group_id');
+        if($group_id == 1){
+            return $this->redirect('/Users/logout/');
+        }
+
+        $this->layout = 'Control_bar';
 
     }
 

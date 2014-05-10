@@ -104,18 +104,16 @@ class BarsController extends AppController
 
     public function bar_control() {
 
-        $data = $this->Meeting->find('all',array(
-            'conditions' => array('Meeting.bar_id' => 47,'Meeting.date >=' => date("Y-m-d")),
-            'limit' =>100,
-            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
+        $this->Paginator->settings = array(
+            'Meeting' => array(
+                'limit' => 20,
+                'order' => array('date' => 'ASC'),
+                // 'group' => array('week', 'home_team_id', 'away_team_id'),
             )
         );
 
-        $data = $this->paginate();
-        $this->set('data',$data);
-
-        $LoginUserName = $this->Auth->user('nickname');
-        $this->set('LoginUserName',$LoginUserName);
+        $data = $this->Paginator->paginate('Meeting');
+        $this->set(compact('data'));
 
     }
 

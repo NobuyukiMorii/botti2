@@ -43,13 +43,19 @@ class Meeting extends AppModel {
 
                         $item[$model]['date_partner'] = $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['user_id'])));
 
-                    } 
+                    } else {
+
+                        $item[$model]['date_partner'] = $this->User->find('first',array('conditions' => array('User.id' => $item[$model]['match_user'])));
+
+                    }
 
                 }
 
                 if (array_key_exists($model, $item)) {
 
                     $item[$model]['time'] = date("H時i分", strtotime($item[$model]['time']));
+                    $item[$model]['time'] = date("H時i分", strtotime($item[$model]['created']));
+                    $item[$model]['time'] = date("H時i分", strtotime($item[$model]['modified']));
 
                 }
 

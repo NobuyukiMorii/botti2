@@ -6,8 +6,6 @@ class UsersController extends AppController
 // Sweet,Commentモデルを使用する
     public $name = 'Users';
 
-    public $scaffold;
-
     public $uses = array('User','Meeting');
 
     public $components = array('Auth','Session','Cookie');
@@ -16,6 +14,25 @@ class UsersController extends AppController
 
 public function add(){
     $this->layout = 'non_nav';
+    if(!empty($this->data)){
+        if($this->data){
+            $this->User->create($this->request->data);
+
+            if(!$this->User->validates()){
+                $this->set("error",$this->User->validationErrors);
+                $this->render("add");
+            } else {
+                $this->User->saveAll($this->data);
+                $this->Session->setFlash('ユーザー登録を完了しました。', 'default', array(), 'success');
+                $this->redirect(array('action'=>'login'));
+            }
+
+        }
+    }
+}
+
+public function Control_add(){
+    $this->layout = 'Control_non_nav';
     if(!empty($this->data)){
         if($this->data){
             $this->User->create($this->request->data);
@@ -44,22 +61,6 @@ public function image($cid){
     echo $graphic["User"]["image"];
     exit;
     }
-
-// public function login (){
-    
-//     $this->autoLayout = false;
-//     $this->autoRender = true;
-
-//     if($this->request->isPost()){
-//         if($this->Auth->login()){
-//             //$this->redirect($this->Auth->redirect(array('action' => 'roulette','controller' => 'Meetings')));
-//             $this->redirect('/Meetings/roulette/');
-//             $this->Session->setFlash('ログインしました。','default',array(),'auth');
-//         } else {
-//             $this->Session->setFlash('ユーザー名かパスワードが違います。','default',array(),'auth');
-//         }    
-//     }
-// }
 
 public function login() {
 
@@ -112,10 +113,67 @@ public function login() {
     }
 }
 
+public function Control_login() {
+
+    $this->autoLayout = false;
+    $this->autoRender = true;
+
+    if (!empty($this->data) ) {
+        // ログイン OK
+        if ($this->Auth->login()) {
+            // keep_me_logged_inがチェックされている場合
+            if (isset($this->data['User']['keep_me_logged_in'])) {
+                // cookieへの書き込みにkeep_me_logged_inを除外
+                unset($this->request->data['User']['keep_me_logged_in']);
+                $cookie = $this->request->data;
+                // cookie書き込み
+                $this->Cookie->write('Auth', $cookie, true, '+2 weeks');
+
+            // keep_me_logged_inがチェックされていない場合
+            } else {
+
+            }
+            // リダイレクト
+            return $this->redirect('/Meetings/Control_meetinglist/');
+            $this->Session->setFlash('ログインしました。','default',array(),'auth');
+
+        // ログイン NG
+        } else {
+            $this->Session->setFlash('ユーザー名かパスワードが違います。','default',array(),'auth');
+        }
+    }
+
+    if (empty($this->data) ) {
+        // cookie 有り
+        if ($this->Cookie->check('Auth')) {
+            // cookieをログイン用データに書き込み
+            $this->request->data = $this->Cookie->read('Auth');
+            // ログイン OK
+            if ($this->Auth->login()) {
+                // ログインリダイレクト
+                return $this->redirect('/Meetings/Control_meetinglist/');
+            // ログイン NG
+            } else {
+                // coockie削除
+                $this->Cookie->delete('Auth');    //    クッキー削除
+            }
+        // cookie 無し
+        } else {
+            // ログイン画面表示
+        }
+    }
+}
+
 public function logout(){
     
     $this->Cookie->delete('Auth');
     return $this->redirect( $this->Auth->logout());
+}
+
+public function Control_logout(){
+    
+    $this->Cookie->delete('Auth');
+    return $this->redirect('/Users/Control_login/');
 }
 
 public function edit($id = null) {

@@ -4,7 +4,7 @@
             'User',
             array(
                   'type' => 'file', 
-                  'action'=>'add', 
+                  'action'=>'Control_add', 
                   'enctype' => 'multipart/form-data',
                   'role' => 'form',
                   'class' => 'form-horizontal text-left'
@@ -16,7 +16,7 @@
             (
             'User.group_id', 
              array(
-                  'value'=>'1'
+                  'value'=>'2'
                   )
             );
       ?>

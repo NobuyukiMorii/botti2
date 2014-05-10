@@ -31,7 +31,7 @@ class AppController extends Controller {
 
     public function beforeFilter(){
 
-        $this->Auth->allow('login','acceptance','add','/gachakoi/View/xml/default');
+        $this->Auth->allow('login','Control_login','acceptance','add','/gachakoi/View/xml/default');
 
         $this->Auth->authorize = "Controller";//2014/4/24 users/edit/idとするため追記
 
@@ -53,6 +53,7 @@ class AppController extends Controller {
     public function beforeRender(){
         $this->set('LoginUserNickname', $this->Auth->user('nickname'));
         $this->set('LoginUserId', $this->Auth->user('id'));
+        $this->set('group_id',$this->Auth->user('group_id'));
 	}
 
 }

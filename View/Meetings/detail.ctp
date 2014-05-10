@@ -75,7 +75,7 @@
                             <?
                             echo $this->form->input('Meeting.time', array(
                               'label' => false,
-                              'default' => date('H:i:s', strtotime($randomUser['User']['kibouzikan'])),
+                              'default' => $matiawase,
                               'timeFormat' => '24',
                               'dateFormat' => 'H:i:s',
                               'empty' => true,

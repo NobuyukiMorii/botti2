@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +26,7 @@
   <div id="top" class="header">
     <!-- vert-text -->
     <div class="vert-text">
-      <h1>DateBook</h1>
+      <h1>DateBook For Shop</h1>
       <h3>
         <em>デートを</em>
         <em>ブッキング</em></h3>
@@ -33,16 +34,16 @@
     
       <!-- Login Form -->
         <div class="container">
-          <form action="/gachakoi/users/login" id="UserLoginForm" method="post" class="form-signin" accept-charset="utf-8" role="form">
+          <form action="/gachakoi/users/Control_login" id="UserLoginForm" method="post" class="form-signin" accept-charset="utf-8" role="form">
 
             <div style="display:none;">
               <input type="hidden" name="_method" value="POST"/>
             </div>
 
             <h2 class="form-signin-heading">Sign Up</h2>
-            <?php echo $this->Session->flash('success'); ?>
-            <?php echo $this->Session->flash('fail'); ?>
-            <?php echo $this->Session->flash('auth'); ?>
+	        <?php echo $this->Session->flash('success'); ?>
+	        <?php echo $this->Session->flash('fail'); ?>
+	        <?php echo $this->Session->flash('auth'); ?>
             <input name="data[User][username]" id="UserUsername" type="email" class="form-control" placeholder="Email address" required autofocus>
             <input name="data[User][password]" id="UserPassword" type="password" class="form-control" placeholder="Password" required>
             <label class="checkbox">
@@ -54,7 +55,7 @@
 
         <div class="container">
           <div class="form-signin">
-            <a href="<?php echo $this->Html->url('/users/add'); ?>"><button class="btn btn-lg btn-success btn-block" type="submit">ユーザー登録</button></a>
+            <a href="<?php echo $this->Html->url('/users/Control_add'); ?>"><button class="btn btn-lg btn-success btn-block" type="submit">ユーザー登録</button></a>
           </div>
       <!-- /Login Form -->
     </div>
