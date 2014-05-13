@@ -10,7 +10,6 @@
 	一週間以内の予約人数<?php echo $count_in_week ;?>
 	一ヶ月以内の予約人数<?php echo $count_in_month ;?>
 
-	月ごとの来店人数（カレンダーを使って表示）
 
 リピーター率
 

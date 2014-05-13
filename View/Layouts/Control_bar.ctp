@@ -51,7 +51,6 @@
 
           <li><a href="<?php echo $this->Html->url('/meetings/Control_meetinglist'); ?>">予約受付</a></li>
           <li><a href="<?php echo $this->Html->url('/meetings/Control_statistics/'); ?>">集計</a></li>
-          <li><a href="<?php echo $this->Html->url('/meetings/Control_calender/'); ?>">カレンダー</a></li>
           <li><a href="<?php echo $this->Html->url('/users/Control_logout'); ?>">ログアウト</a></li>
         </ul>
       </div>
