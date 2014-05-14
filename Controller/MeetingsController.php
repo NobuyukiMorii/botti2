@@ -8,7 +8,7 @@ class MeetingsController extends AppController
 
     public $components = array('Auth','Email','Session','Paginator');
 
-    public $helpers = array("DatePicker");
+    public $helpers = array('DatePicker','GoogleMap');
 
     public function roulette(){
 

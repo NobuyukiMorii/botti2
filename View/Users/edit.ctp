@@ -211,6 +211,25 @@
                         ;?>
                   </div>
             </div>
+            
+            <div class="form-group">
+                  <label for="UserMoyorieki" class="col-sm-2 control-label">自宅の最寄り駅</label>
+                  <div class="col-sm-5">
+                        <?php echo $this->Form->input
+                              (
+                              'User.moyorieki', 
+                              array('class' => 'form-control',
+                                    'required' => false,
+                                    'label' => false , 
+                                    'div' => false,
+                                    'placeholder' => "最寄り駅を入力して下さい。",
+                                    'id' => "UserMoyorieki"
+                                    )
+                              );
+                        ?>
+                  </div>
+            </div>
+
       </div>
 
       デートの希望

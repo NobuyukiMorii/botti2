@@ -21,7 +21,6 @@ class BarsController extends AppController
 
             //バリデーションチェック
             $this->Bar->set($this->request->data);
-            $this->request->data["Bar"]["image"]=file_get_contents($this-> data["Bar"]["image"]["tmp_name"]);
 
             //バリデーションエラーがあれば、admin_register画面に戻し、エラーを表示する
             if(!$this->Bar->validates()){

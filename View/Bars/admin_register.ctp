@@ -19,12 +19,15 @@
         </div>
 
         <div class="form-group">
+         <?php echo $this->Form->input('Bar.gate', array('class' => 'form-control','required' => false));?>
+        </div>
+
+
+        <div class="form-group">
         <?php echo $this->Form->input('Bar.genre',array('type'=>'select','options'=>array('1'=>'和風居酒屋','2'=>'洋風居酒屋','3'=>'中華料理','4'=>'コンセプト居酒屋'),'required' => false)); ?>
         </div>
 
-        <div class="form-group">
-         <?php echo $this->Form->input('Bar.gate', array('class' => 'form-control','required' => false));?>
-        </div>
+
 
         <div class="form-group">
          <?php echo $this->Form->input('Bar.walk_time', array('class' => 'form-control','required' => false));?>
@@ -50,7 +53,7 @@
         <div class="form-group">
         <?php echo $this->form->input('Bar.close_time', array(
           'label' => '閉店時間',
-          'default' => date('24:00:00'),
+          'default' => date('23:00:00'),
           'timeFormat' => '24',
           'dateFormat' => 'H:i:s',
           'empty' => true,
@@ -62,7 +65,7 @@
 
         <div class="form-group">
         <?php echo $this->form->input('Bar.last_order_time', array(
-          'label' => '閉店時間',
+          'label' => 'ラストオーダー',
           'default' => date('23:00:00'),
           'timeFormat' => '24',
           'dateFormat' => 'H:i:s',
