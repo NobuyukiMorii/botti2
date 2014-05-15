@@ -26,12 +26,11 @@ class MeetingsController extends AppController
         }
 
         $randomUser = $this->User->find('first',array(
-            'conditions' => array('User.age >=' => '20','User.gender' => $partner_gender),
+            'conditions' => array('User.age >=' => '20','User.gender' => $partner_gender,'User.group_id' => 1),
             'order' => 'rand()',
             'limit' => 1
             )
         );
-
 
         $randomBar = $this->Bar->find('first',array(
             'conditions' => array('Bar.station' => $randomUser['User']['kiboueki'],'Bar.genre' => $randomUser['User']['genre']),
@@ -415,7 +414,7 @@ class MeetingsController extends AppController
                 ),
                 'Meeting.date >=' => date("Y-m-d")
             ),
-            'limit' => 2,
+            'limit' => 10,
             'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC'),
         );
         $data = $this->Paginator->paginate('Meeting');

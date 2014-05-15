@@ -1,73 +1,178 @@
-<?php var_dump($data['Meeting']['time']); ?>
+<?= $this->Html->script('http://maps.google.com/maps/api/js?sensor=false', false); ?>
 
-	    <div class="container">
+<div class =" my-inline form-inline">
+  <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form'));?>
+  <?php echo $this->Form->submit('OK', array('name' => 'OK','class' => 'btn btn-success btn-block')); ?>
+  <?php echo $this->Form->submit('NO', array('name' => 'NO','class' => 'btn btn-warning btn-block')); ?>
+  <?php echo $this->Form->end();?>
+</div>
 
-	    	<div class="row" style="margin-top:20px;">
+<!-- content -->                      
+<div class="row"><!-- row --> 
+  <div class="panel panel-default"><!-- panel panel-default --> 
+    <div class="panel-body"><!-- panel-body --> 
 
-	    		<div class="col-md-5" >
+      <div class="row"><!-- row3 --> 
+        <div class="col-sm-12"><!-- col-sm-12 -->
 
-	    			<h1 class="text-left"><?php echo $data['Meeting']['date']; ?>(<?php echo $youbi; ?>)</h1>
-	    			<h1 class="text-left"><?php echo $data['Meeting']['time']; ?></h1>
-	    			<h2 class="text-left"><a href = "<?php echo $data['Bar']['url'] ;?>"><?php echo $data['Bar']['name']; ?></a></h2>
-	    			<h2 class="text-left text-primary"><?php echo $data['Meeting']['meetingspot']; ?>待ち合わせ</h2>
-	    				<h4>
-	    				<dl class="text-left" style="margin-top:30px;">		
-	    					<dt>ジャンル<dt>
-	    						<dd><?php echo $data['Bar']['genreText']; ?></dd>
-	    						<dt>ご予算</dt>
-	    						<dd>１人様平均<?php echo $data['Bar']['price']; ?>円</dd>
-	    						<dt>アクセス<dt>
-	    							<dd><?php echo $data['Bar']['stationText']; ?>駅<?php echo $data['Bar']['gate']; ?>から徒歩<?php echo $data['Bar']['walk_time']; ?>分</dd>
-	    							<dt>電話番号</dt>
-	    							<dd><?php echo $data['Bar']['telnumber']; ?></dd>
-	    							<dt>住所<dt>
-	    								<dd><?php echo $data['Bar']['location']; ?></dd>
-	    							</dl>
-	    				</h4>
-	    				<a href="<?php echo $this->Html->url('/meetings/user_date'); ?>" class="btn btn-primary"><span class="glyphiconglyphicon-home" ></span>戻る<a>
-	    		</div>
+          <div class="col-sm-8"><!-- col-sm-4 --> 
 
+          <?
+  // Override any of the following default options to customize your map
+          $map_options = array(
+            'id' => 'map_canvas',
+            'width' => '840px',
+            'height' => '400px',
+            'style' => '',
+            'zoom' => 7,
+            'type' => 'ROADMAP',
+            'custom' => null,
+            'localize' => false,
+            'latitude' => 35.681382,
+            'longitude' => 139.766084,
+            'address' => $data['Bar']['location'],
+            'marker' => false,
+            'markerTitle' => 'This is my position',
+            'markerIcon' => 'http://google-maps-icons.googlecode.com/files/home.png',
+            'markerShadow' => 'http://google-maps-icons.googlecode.com/files/shadow.png',
+            'infoWindow' => true,
+            'windowText' => 'My Position'
+            );
+            ?>
 
-	    		<div class="col-md-4" >
+            <?= $this->GoogleMap->map($map_options); ?>
 
-
-	    						<p class="trimming4" >
-	    							<img class="img-responsive" src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$partner_data['Image'][0]['dir']."/thumb400_".$partner_data['Image'][0]['photo_user']);?>" alt="<?php echo h($data['Bar']['name']); ?>" alt="<?php echo h($partner_data['User']['nickname']); ?>">
-	    						</p>
-
-	    						<p class="trimming4" style="margin-top:330px;">
-	    							<a href = "<?php echo $data['Bar']['url'] ;?>"><img class="img-responsive" src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data['Bar']['Image'][0]['dir']."/thumb400_".$data['Bar']['Image'][0]['photo_bar']);?>" alt="<?php echo h($data['Bar']['name']); ?>"></a>
-	    						</p>
-
-	    		</div>
-
-	    		<div class="col-md-3" >
-
-	    						<h1 class="text-left"><?php echo $data['Meeting']['total_match_point'] ;?>％  match</h1>	    						
-
-	    						<h4>
-	    							<dl class="text-left" style="margin-top:50px;">	
-	    								<dt>お名前<dt>
-	    									<dd><?php echo $partner_data['User']['nickname']; ?>さん</dd>	
-	    								<dt>年齢<dt>
-	    									<dd><?php echo $partner_data['User']['age']; ?>歳</dd>
-	    								<dt>お仕事</dt>
-	    									<dd><?php echo $partner_data['User']['workText']; ?></dd>
-	    							</dl>
-	    						</h4>
+            <?
+  // Override any of the following default options to customize your route
+            $directions_options = array(
+              'travelMode' => "WALKING",
+              'directionsDiv' => 'directions',
+              );
+              ?>
+              <div id="directions"></div>
+              <?= $this->GoogleMap->getDirections("map_canvas", "directions1", array("from" => $data['Bar']['stationText'].'駅'.$data['Bar']['gate'], "to" => $data['Bar']['location']), $directions_options); 
+            ?>
 
 
-	    						<div class ="well my-inline form-inline" style="margin-top:90px;">
-	    							<?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form'));?>
-	    							<div class="boxContainer">
-	    								<?php echo $this->Form->submit('NO', array('name' => 'NO','class' => 'btn btn-warning btn-block')); ?>
-	    								<?php echo $this->Form->submit('OK', array('name' => 'OK','class' => 'btn btn-success btn-block')); ?>
-	    							</div>
-	    							<?php echo $this->Form->end();?>
-	    						</div>
+          </div> <!-- /col-sm-4 --> 
+          <div class="col-sm-4"><!-- col-sm-8 --> 
+            <div class="row"><!-- row1 --> 
 
-	    		</div>
+                <!-- 待ち合わせ -->
+                <div class="panel-heading">
+                  <h4>待ち合わせ</h4>
+                </div>               
+                  <ul class="list-group">
+                    <li class="list-group-item">日付：<?php echo h($data['Meeting']['date']); ?></li>
+                    <li class="list-group-item">時間：<?php echo h($data['Meeting']['time']); ?></li>
+                    <li class="list-group-item">場所：<?php echo h($data['Meeting']['meetingspot']); ?></li>     
+                  </ul>
+                 <!-- /待ち合わせ -->
 
-	    	</div>
+                <!-- プロフィール -->
+                <div class="panel-heading">
+                  <h4>お相手</h4>
+                </div>               
+                  <ul class="list-group">
+                    <li class="list-group-item">お名前：<?php echo h($data['User']['last_name']); ?><?php echo h($data['User']['first_name']); ?></li>
+                    <li class="list-group-item">ニックネーム：<?php echo h($data['User']['last_name']); ?><?php echo h($data['User']['first_name']); ?></li>
+                    <li class="list-group-item">年齢：<?php echo h($data['User']['age']); ?>歳</li>
+                    <li class="list-group-item">誕生日：<?php echo h(date("Y年n月j日", strtotime($data['User']['birthday']))); ?></li>
+                    <li class="list-group-item">職業：<?php echo h($data['User']['workText']); ?></li>
+                  </ul>
+                 <!-- /プロフィール -->
 
-	   	</div>
+                 <!-- お店 -->
+                <div class="panel-heading">
+                  <h4>お店</h4>
+                </div>               
+                  <ul class="list-group">
+                    <li class="list-group-item">店名：<?php echo h($data['Bar']['name']); ?></li>
+                    <li class="list-group-item">時間：<?php echo h($data['Bar']['telnumber']); ?></li>
+                    <li class="list-group-item">住所：<?php echo h($data['Bar']['location']); ?></li>
+                    <li class="list-group-item">営業時間：<?php echo h(date("H時i分", strtotime($data['Bar']['start_time']))); ?>~<?php echo h(date("H時i分", strtotime($data['Bar']['close_time']))); ?>（LO:<?php echo h(date("H時i分", strtotime($data['Bar']['last_order_time']))); ?>）</li>
+                    <li class="list-group-item">料金：平均<?php echo h($data['Bar']['price']); ?>円</li>        
+                  </ul>
+                 <!-- /お店 -->  
+
+            </div><!-- /row1 --> 
+
+          </div> <!-- /col-sm-8 --> 
+
+        </div><!-- col-sm-12 -->
+
+      </div><!-- row3 --> 
+
+    </div><!-- /panel-body -->
+  </div><!-- panel panel-default --> 
+</div><!-- /row -->
+ <!-- content --> 
+
+
+ 
+<!-- content -->                      
+<div class="row"><!-- row --> 
+  <div class="panel panel-default"><!-- panel panel-default --> 
+    <div class="panel-body"><!-- panel-body --> 
+
+      <div class="row"><!-- row3 --> 
+
+        <div class="col-sm-6"><!-- col-sm-6 -->
+
+          <div class="col-sm-4"><!-- col-sm-4 --> 
+             <!-- PartnerImage -->
+            <div class="panel-thumbnail">
+              <img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$partner_data['Image'][0]['dir']."/thumb250_".$partner_data['Image'][0]['photo_user']);?>" class="img-responsive">
+            </div>
+            <!-- /PartnerImage -->          
+          </div> <!-- /col-sm-4 --> 
+
+          <div class="col-sm-8"><!-- col-sm-8 --> 
+
+                <!-- プロフィール -->
+                <div class="panel-heading">
+                  <h4><?php echo h($data['User']['last_name']); ?><?php echo h($data['User']['first_name']); ?></h4>
+                </div>               
+                  <ul class="list-group">
+                    <li class="list-group-item"><?php echo h($data['User']['message']); ?></li>
+                  </ul>
+                 <!-- /プロフィール -->                   
+
+
+          </div> <!-- /col-sm-8 -->
+
+        </div><!-- col-sm-6 -->
+
+        <div class="col-sm-6"><!-- col-sm-6 -->
+
+          <div class="col-sm-4"><!-- col-sm-4 --> 
+             <!-- PartnerImage -->
+            <div class="panel-thumbnail">
+              <img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data['Bar']['Image'][0]['dir']."/thumb250_".$data['Bar']['Image'][0]['photo_bar']);?>" class="img-responsive">
+            </div>
+            <!-- /PartnerImage -->          
+          </div> <!-- /col-sm-4 --> 
+
+          <div class="col-sm-8"><!-- col-sm-8 --> 
+
+                 <!-- お店 -->
+                <div class="panel-heading">
+                  <h4><?php echo h($data['Bar']['name']); ?></h4>
+                </div>               
+                  <ul class="list-group">
+                    <li class="list-group-item"><?php echo h($data['Bar']['description']); ?></li>       
+                  </ul>
+                 <!-- /お店 -->                  
+
+
+          </div> <!-- /col-sm-8 -->
+
+        </div><!-- col-sm-6 -->
+
+      </div><!-- row3 --> 
+
+    </div><!-- /panel-body -->
+  </div><!-- panel panel-default --> 
+</div><!-- /row -->
+ <!-- content --> 
+

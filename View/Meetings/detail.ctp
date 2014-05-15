@@ -2,60 +2,48 @@
 <?php echo $this->Html->css(array('jquery-ui-1.10.4.custom'), array('inline'=>false)); ?>
 <?= $this->Html->script('http://maps.google.com/maps/api/js?sensor=false', false); ?>
 
-<div class="container">
+<!-- content -->                      
+<div class="row"><!-- row --> 
+  <div class="panel panel-default"><!-- panel panel-default --> 
+    <div class="panel-body"><!-- panel-body --> 
+      <div class="row"><!-- row3 --> 
+        <div class="col-sm-12"><!-- col-sm-12 -->
 
-  <div class="row" style="margin-top:0px;">
+          <div class="col-sm-4"><!-- col-sm-4 --> 
+             <!-- PartnerImage -->
+            <div class="panel-thumbnail">
+              <img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$randomBar['Image'][0]['dir']."/thumb400_".$randomBar['Image'][0]['photo_bar']);?>" class="img-responsive">
+            </div>
+            <!-- /PartnerImage -->          
+          </div> <!-- /col-sm-4 --> 
+          <div class="col-sm-8"><!-- col-sm-8 --> 
+            <div class="row"><!-- row1 --> 
+              <div class="col-sm-6"><!-- col-sm-6 --> 
+                <!-- プロフィール -->
+                <div class="panel-heading">
+                  <h4>お店について</h4>
+                </div>               
+                  <ul class="list-group">
+                    <li class="list-group-item">店名：<?php echo h($randomBar['Bar']['name']); ?></li>
+                    <li class="list-group-item">ジャンル：<?php echo h($randomBar['Bar']['genreText']); ?></li>
+                    <li class="list-group-item">電話番号：<?php echo h($randomBar['Bar']['telnumber']); ?></li>
+                    <li class="list-group-item">料金：平均<?php echo h($randomBar['Bar']['price']); ?>円</li>
+                    <li class="list-group-item">最寄駅：<?php echo h($randomBar['Bar']['stationText']); ?></li>
+                    <li class="list-group-item">最寄口：<?php echo h($randomBar['Bar']['gate']); ?></li>
+                    <li class="list-group-item">駅から：徒歩<?php echo h($randomBar['Bar']['walk_time']); ?>分</li>
+                    <li class="list-group-item">営業時間：<?php echo h(date("H時i分", strtotime($randomBar['Bar']['start_time']))); ?>~<?php echo h(date("H時i分", strtotime($randomBar['Bar']['close_time']))); ?><br />（LO：<?php echo h(date("H時i分", strtotime($randomBar['Bar']['last_order_time']))); ?>）</li>
+                  </ul>
+                 <!-- /プロフィール -->
 
-    <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
-      <h2 class="text-left"><?php echo h($randomBar['Bar']['name']); ?></h2>
-    </a>
+               </div><!-- /col-sm-6 -->
 
-  </div>
+              <div class="col-sm-6"><!-- col-sm-6 -->
+              
 
-  <div class="row" style="margin-top:-20px;">
 
-    <div class="col-md-5" >
 
-      <div>
-
-        <p class="trimming3" style="margin-top:0px;">
-          <a target="_blank" href="<?php echo $randomBar['Bar']['url']; ?>">
-            <img class="img-responsive" src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$randomBar['Image'][0]['dir']."/thumb350_".$randomBar['Image'][0]['photo_bar']);?>" alt="<?php echo h($randomUser['User']['nickname']); ?>">
-          </a>
-        </p>
-
-      </div>
-
-      <div style="margin-top:400px;">
-
-        <dl class="text-left" style="margin-left:-20px;">
-          <dt>住所</dt>  
-          <dd><?php echo $randomBar['Bar']['location']; ?></dd>
-          <dt>電話番号</dt>
-          <dd><?php echo $randomBar['Bar']['telnumber']; ?></dd>
-        </dl>
-
-        <div class="text-left" style="margin-left:-20px;" >
-          <?php echo $this->Html->link('戻る', '/meetings/roulette', array('class' => 'btn btn-success', 'target' => '_blank')); ?>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="col-md-7" >
-
-      <div class="text-left" style="margin-top:60px;">
-
-        <h2><strong><?php echo $randomUser['User']['kibouekiText']; ?>駅</strong>を希望している<?php echo h($randomUser['User']['nickname']); ?>さんにぴったりなお店。<br />
-          <?php echo h($randomUser['User']['nickname']); ?>さんは<strong><?php echo h($randomUser['User']['genreText']); ?></strong>が好きだし、絶対に喜ぶはず！<br /></h2>
-
-        </div>
-
-        <div class="text-left" style="margin-top:60px;">
-
+        <!-- フォーム -->     
           <div class ="well my-inline form-inline">
-
             <div>
               <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
               <p>待ち合わせ日時</p>
@@ -79,7 +67,7 @@
                     'timeFormat' => '24',
                     'dateFormat' => 'H:i:s',
                     'empty' => true,
-                    'separator' => '/',
+                    'separator' => ':',
                     'interval' => 30
                     ));
                     ?>
@@ -89,12 +77,13 @@
 
 
                 <div>
-                  <h4 class="text-left text-info"; style="margin-top:10px;">
-                    <?php echo $randomUser['User']['nickname']; ?>さんは<?php echo $randomUser['User']['kibouyoubiText']; ?>の<?php echo $randomUser['User']['kibouzikan']; ?>をご希望です。
+                  <h4 class="text-left text-info";>
+                    <?php echo $randomUser['User']['nickname']; ?>さんは<?php echo $randomUser['User']['kibouyoubiText']; ?>の<?php echo h(date("H時i分", strtotime($randomUser['User']['kibouzikan']))); ?>をご希望です。
                   </h4>
+
                 </div>
 
-                <div class = "form-group" style="margin-top : 30px">
+                <div class = "form-group" style="margin-top : 50px">
                   <p>待ち合わせ場所</p>
                   <div class="radio">
 
@@ -102,7 +91,7 @@
                       'Meeting.meetingspot',
                       array(
                         $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前'
-                        => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前（'.$randomBar['Bar']['name'].'まで徒歩'.$randomBar['Bar']['walk_time'].'分）', 
+                        => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'].'の改札前', 
                         $randomBar['Bar']['name'].'の店内'
                         => $randomBar['Bar']['name'].'の店内'
                         ), 
@@ -121,23 +110,42 @@
 
                   </div>
 
-                  <div class="text-right" style="margin-top : 0px">
-                    <?php echo $this->Form->submit('Book', array('class' => 'btn btn-primary'));?>
+                  <div class="text-right" style="margin-top : 30px">
+                    <?php echo $this->Form->submit('デートに誘う', array('class' => 'btn btn-lg btn-success'));?>
                   </div>
 
                   <?php echo $this->Form->end();?>
-
                 </form>
 
               </div>
+              <!-- /フォーム -->
 
-            </div>
-          </div>
+              </div> <!-- /col-sm-6 --> 
+            </div><!-- /row1 --> 
+
+            <div class="row"><!-- row2 --> 
+              <div class="col-sm-12"><!-- col-sm-6 --> 
+                <div class="row"><!-- row4 --> 
+                <!-- メッセージ -->             
+
+                  <!-- /メッセージ -->
+                </div><!-- /row4 --> 
+
+              </div><!-- /col-sm-12 -->
+            </div><!-- /row2 --> 
+
+          </div> <!-- /col-sm-8 --> 
+
+        </div><!-- col-sm-12 -->
+
+      </div><!-- row3 --> 
+
+      <div class="row"><!-- row6 --> 
           <?
   // Override any of the following default options to customize your map
           $map_options = array(
             'id' => 'map_canvas',
-            'width' => '1100px',
+            'width' => '1350px',
             'height' => '400px',
             'style' => '',
             'zoom' => 7,
@@ -166,10 +174,16 @@
               );
               ?>
               <div id="directions"></div>
-              <?= $this->GoogleMap->getDirections("map_canvas", "directions1", array("from" => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'], "to" => $randomBar['Bar']['location']), $directions_options); ?>
+              <?= $this->GoogleMap->getDirections("map_canvas", "directions1", array("from" => $randomBar['Bar']['stationText'].'駅'.$randomBar['Bar']['gate'], "to" => $randomBar['Bar']['location']), $directions_options); 
+            ?>
+      </div><!-- /row6 --> 
 
-            </div>
-          </div>
 
-          <!-- /.container -->
+
+    </div><!-- /panel-body -->
+  </div><!-- panel panel-default --> 
+</div><!-- /row -->
+ <!-- content --> 
+
+
 
