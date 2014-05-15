@@ -74,11 +74,11 @@
                   <h4>お相手</h4>
                 </div>               
                   <ul class="list-group">
-                    <li class="list-group-item">お名前：<?php echo h($data['User']['last_name']); ?><?php echo h($data['User']['first_name']); ?></li>
-                    <li class="list-group-item">ニックネーム：<?php echo h($data['User']['last_name']); ?><?php echo h($data['User']['first_name']); ?></li>
-                    <li class="list-group-item">年齢：<?php echo h($data['User']['age']); ?>歳</li>
-                    <li class="list-group-item">誕生日：<?php echo h(date("Y年n月j日", strtotime($data['User']['birthday']))); ?></li>
-                    <li class="list-group-item">職業：<?php echo h($data['User']['workText']); ?></li>
+                    <li class="list-group-item">お名前：<?php echo h($partner_data['User']['last_name']); ?><?php echo h($data['User']['first_name']); ?></li>
+                    <li class="list-group-item">ニックネーム：<?php echo h($partner_data['User']['nickname']); ?></li>
+                    <li class="list-group-item">年齢：<?php echo h($partner_data['User']['age']); ?>歳</li>
+                    <li class="list-group-item">誕生日：<?php echo h(date("Y年n月j日", strtotime($partner_data['User']['birthday']))); ?></li>
+                    <li class="list-group-item">職業：<?php echo h($partner_data['User']['workText']); ?></li>
                   </ul>
                  <!-- /プロフィール -->
 
@@ -131,10 +131,10 @@
 
                 <!-- プロフィール -->
                 <div class="panel-heading">
-                  <h4><?php echo h($data['User']['last_name']); ?><?php echo h($data['User']['first_name']); ?></h4>
+                  <h4><?php echo h($partner_data['User']['last_name']); ?><?php echo h($partner_data['User']['first_name']); ?></h4>
                 </div>               
                   <ul class="list-group">
-                    <li class="list-group-item"><?php echo h($data['User']['message']); ?></li>
+                    <li class="list-group-item"><?php echo h($partner_data['User']['message']); ?></li>
                   </ul>
                  <!-- /プロフィール -->                   
 
