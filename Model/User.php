@@ -4,7 +4,7 @@ class User extends AppModel {
 
     public $name = 'User';
 
-    public $uses  = array('User','Attachment');
+    public $uses  = array('User','Attachment','Bar');
 
     public $hasMany = array(
         'Image' => array(

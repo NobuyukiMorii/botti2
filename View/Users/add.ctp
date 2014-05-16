@@ -381,6 +381,24 @@
                   </div>
             </div>
 
+            <div class="form-group">
+                  <label for="UserBar_id" class="col-sm-2 control-label">デートするお店</label>
+                  <div class="col-sm-10">
+                        <?php echo $this->Form->input(
+                              'User.bar_id',
+                              array(
+                                    'type'=>'select',
+                                    'options'=> $options_bar,
+                                    'required' => false,
+                                    'label' => false ,
+                                    'div' => false,
+                                    'id' => "UserBar_id"
+                              )
+                        );
+                        ?>
+                  </div>
+            </div>
+
       </div>
 
       その他

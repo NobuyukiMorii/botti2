@@ -6,7 +6,7 @@ class UsersController extends AppController
 // Sweet,Commentモデルを使用する
     public $name = 'Users';
 
-    public $uses = array('User','Meeting');
+    public $uses = array('User','Meeting','Bar');
 
     public $components = array('Auth','Session','Cookie');
 
@@ -28,6 +28,17 @@ public function add(){
             }
 
         }
+    } else {
+        $options_bar = $this->Bar->find('list',array(
+            'callbacks' => false,
+            'fields' => array('Bar.id','Bar.name')
+            )
+        );
+        pr($options_bar);
+
+
+        $this->set('options_bar',$options_bar);
+
     }
 }
 
