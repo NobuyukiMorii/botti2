@@ -26,15 +26,14 @@ class MeetingsController extends AppController
         }
 
         $randomUser = $this->User->find('first',array(
-            'conditions' => array('User.age >=' => '20','User.gender' => $partner_gender,'User.group_id' => 1),
+            'conditions' => array('User.age >=' => '20','not' => array('User.id' => $this->Auth->user('id')),'User.group_id' => 1,'User.bar_id'=>$this->Auth->user('bar_id')),
             'order' => 'rand()',
             'limit' => 1
             )
         );
 
         $randomBar = $this->Bar->find('first',array(
-            'conditions' => array('Bar.station' => $randomUser['User']['kiboueki'],'Bar.genre' => $randomUser['User']['genre']),
-            'order' => 'rand()',
+            'conditions' => array('Bar.id' => $randomUser['User']['bar_id']),
             'limit' => 1
             )
         );
@@ -47,9 +46,12 @@ class MeetingsController extends AppController
         $this->Session->write('randomBar',$randomBar);
         $this->Session->write('randomUser',$randomUser);
 
+        $randomUser['User']['kibouzikan_finish'] =  date("H時i分", strtotime($randomUser['User']['kibouzikan_finish']));
         $randomUser['User']['kibouzikan'] =  date("H時i分", strtotime($randomUser['User']['kibouzikan']));
         $this->set(compact('randomBar','randomUser','anata'));
 
+        $matiawase = date('H:i:s', strtotime($randomUser['User']['kibouzikan']));
+        $this->set('matiawase',$matiawase);
 
         //希望曜日の一週間後の日付を算出してViewに渡す
         $target_week = $randomUser['User']['kibouyoubi'];
@@ -84,70 +86,49 @@ class MeetingsController extends AppController
         );
         $this->set('start_time_option',$start_time_option);
 
-        //山手線の駅のマッチングポイント
-        $station_a = $randomUser['User']['kiboueki'];
-        $station_b = $anata['User']['kiboueki'];
+        // //山手線の駅のマッチングポイント
+        // $station_a = $randomUser['User']['kiboueki'];
+        // $station_b = $anata['User']['kiboueki'];
 
-        if ($station_a - $station_b > 15) {$dif_st_cnt = (29 - $station_a) + $station_b;}
-        if ($station_a - $station_b < -15) {$dif_st_cnt = $station_a + (29 - $station_b);}
-        if ($station_a - $station_b >= -15 || $station_a - $station_b <= 15 ) {$dif_st_cnt = abs($station_a - $station_b);};
-        $mach_station_point = 30 - $dif_st_cnt;
+        // if ($station_a - $station_b > 15) {$dif_st_cnt = (29 - $station_a) + $station_b;}
+        // if ($station_a - $station_b < -15) {$dif_st_cnt = $station_a + (29 - $station_b);}
+        // if ($station_a - $station_b >= -15 || $station_a - $station_b <= 15 ) {$dif_st_cnt = abs($station_a - $station_b);};
+        // $mach_station_point = 30 - $dif_st_cnt;
 
-        //曜日のマッチングポイント
+        //バーid
+        $bar_a = $randomUser['User']['bar_id'];
+        $bar_b = $anata['User']['bar_id'];
+        $this->set(compact('bar_a','bar_b'));
+
+        //曜日id
         $youbi_a = $randomUser['User']['kibouyoubi'];
         $youbi_b = $anata['User']['kibouyoubi'];
 
-        if ($youbi_a == $youbi_b) {
-            $mach_youbi_point = 20;
-        } else {$mach_youbi_point = 0;
-        }
-
-        //年齢のマッチングポイント
+        //年齢
         $age_a = $randomUser['User']['age'];
         $age_b = $anata['User']['age'];
-        if(abs($age_a - $age_b) <= 10) {
-            $much_age_point = 10 - abs($age_a - $age_b);            
-        } else {
-            $much_age_point = 0;
-        }
-
-        //仕事のマッチングポイント
-        $work_a = $randomUser['User']['work'];
-        $work_b = $anata['User']['work'];
-        if ($work_a == $work_b) {
-            $much_work_point = 10;
-        } else {$much_work_point = 0;
-        }   
 
         //時間のマッチングポイント
-        $time_a = strtotime($randomUser['User']['kibouzikan']);
-        $time_b = strtotime($anata['User']['kibouzikan']);
-        $this->set(compact('time_a','time_b')); 
-        $differ_time = ($time_a - $time_b) / 60;
-        if ($differ_time == 0) {
-            $much_age_point = 20;
-        } elseif ($differ_time >= 30 && $differ_time < 60) {
-            $much_age_point = 15;
-        } elseif ($differ_time >= 60 && $differ_time < 90) {
-            $much_age_point = 10;
-        } elseif ($differ_time >= 90 && $differ_time < 120) {
-            $much_age_point = 5;
-        } else {
-            $much_age_point = 0;
-        }
+        $time_a = $this->User->find('all',array(
+            'conditions' => array('User.id' => $randomUser['User']['id']),
+            'fields' => array('kibouzikan'),
+            'recursive' => 0,
+            'callbacks' => false
+            )
+        );
+        $time_b = $this->User->find('all',array(
+            'conditions' => array('User.id' => $anata['User']['id']),
+            'fields' => array('kibouzikan'),
+            'recursive' => 0,
+            'callbacks' => false
+            )
+        );
 
-        //食事のマッチングポイント
-        $genre_a = $randomUser['User']['genre'];
-        $genre_b = $anata['User']['genre'];
-        if ($genre_a == $genre_b) {
-            $much_genre_point = 10;
-        } else {$much_genre_point = 0;
-        }
-        //トータルポイント
-        $total_match_point = $mach_station_point + $mach_youbi_point + $much_age_point + $much_work_point + $much_age_point + $much_genre_point;
-        $this->set('total_match_point',$total_match_point);
+        //雰囲気
+        $atmosphere_a = $randomUser['User']['atmosphere'];
+        $atmosphere_b = $anata['User']['atmosphere'];
 
-        $this->Session->write('total_match_point',$total_match_point);
+        $this->set(compact('bar_a','bar_b','youbi_a','youbi_b','age_a','age_b','time_a','time_b','atmosphere_a','atmosphere_b'));
 
     }
 
@@ -208,14 +189,12 @@ class MeetingsController extends AppController
 
         $partner_nickname = $randomUser['User']['nickname'];
         $partner_age = $randomUser['User']['age'];
-        $partner_work = $randomUser['User']['workText'];
+        $partner_work = $randomUser['User']['work'];
         $partner_kibouyoubi = $randomUser['User']['kibouyoubi'];
-        $partner_kiboueki = $randomUser['User']['kiboueki'];
-        $partner_genre = $randomUser['User']['genreText'];
 
         $bar_name = $randomBar['Bar']['name'];
         $bar_url = $randomBar['Bar']['url'];
-        $bar_station = $randomBar['Bar']['stationText'];
+        $bar_station = $randomBar['Bar']['station'];
         $bar_gate = $randomBar['Bar']['gate'];
         $bar_genre = $randomBar['Bar']['genreText'];
         $bar_walk_time = $randomBar['Bar']['walk_time'];
@@ -231,7 +210,7 @@ class MeetingsController extends AppController
         $meeting_time_min = $meeting_info['Meeting']['time']['min'];
         $meetingspot = $meeting_info['Meeting']['meetingspot'];
 
-        $title = "【DateBookTokyo】デートのお誘い/".$meeting_date."/".$partner_nickname;
+        $title = "【QuickDateTokyo】デートのお誘い/".$meeting_date."/".$partner_nickname;
 
         $email = new CakeEmail('smtp');
         $email->to($randomUser['User']['username']);
@@ -397,7 +376,9 @@ class MeetingsController extends AppController
         }
 
         $this->Session->write('last_id',$last_id);
-        
+
+        $meeting_time = date('H時i分',strtotime($meeting_time)); 
+        $this->set('meeting_time',$meeting_time);      
         /*
         *CakeEmailの送信
         */
@@ -452,14 +433,12 @@ class MeetingsController extends AppController
 
         $partner_nickname = $partner_data['User']['nickname'];
         $partner_age = $partner_data['User']['age'];
-        $partner_work = $partner_data['User']['workText'];
+        $partner_work = $partner_data['User']['work'];
         $partner_kibouyoubi = $partner_data['User']['kibouyoubi'];
-        $partner_kiboueki = $partner_data['User']['kiboueki'];
-        $partner_genre = $partner_data['User']['genreText'];
 
         $bar_name = $date_data['Bar']['name'];
         $bar_url = $date_data['Bar']['url'];
-        $bar_station = $date_data['Bar']['stationText'];
+        $bar_station = $date_data['Bar']['station'];
         $bar_gate = $date_data['Bar']['gate'];
         $bar_genre = $date_data['Bar']['genreText'];
         $bar_walk_time = $date_data['Bar']['walk_time'];
@@ -475,9 +454,9 @@ class MeetingsController extends AppController
         $meetingresult = $date_data['Meeting']['result'];
 
         if($date_data['Meeting']['result'] == 2) {
-            $title = "【【DateBookTokyo】デートOKのご連絡/".$meeting_date."/".$partner_nickname;
+            $title = "【【QuickDateTokyo】デートOKのご連絡/".$meeting_date."/".$partner_nickname;
         } elseif ($date_data['Meeting']['result'] == 3) {
-            $title = "【【DateBookTokyo】デートキャンセルのご連絡/".$meeting_date."/".$partner_nickname;
+            $title = "【【QuickDateTokyo】デートキャンセルのご連絡/".$meeting_date."/".$partner_nickname;
         }
 
         if($date_data['Meeting']['result'] == 2) {
@@ -671,6 +650,7 @@ class MeetingsController extends AppController
         $this->set('data',$data);
         $this->set('partner_data',$partner_data);
 
+
     }
 
     public function acceptance_cancel($id = null) {
@@ -788,6 +768,72 @@ class MeetingsController extends AppController
         );
         $this->set('count_tomorrow',$count_tomorrow);
 
+        $count_2d = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date' => date("Y-m-d", strtotime("+2 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_2d',$count_2d);
+
+        $count_3d = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date' => date("Y-m-d", strtotime("+3 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_3d',$count_3d);
+
+        $count_4d = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date' => date("Y-m-d", strtotime("+4 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_4d',$count_4d);
+
+        $count_5d = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date' => date("Y-m-d", strtotime("+5 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_5d',$count_5d);
+
+        $count_6d = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date' => date("Y-m-d", strtotime("+6 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_6d',$count_6d);
+
+        $count_7d = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.date' => date("Y-m-d", strtotime("+7 day")),
+            ),
+            'field' => 'Meeting.date',
+            'callbacks' => false
+            )
+        );
+        $this->set('count_7d',$count_7d);
+
         $count_in_week = $this->Meeting->find('count',array(
             'conditions' => array(
                 'Meeting.bar_id' => $this->Auth->user('bar_id'),
@@ -812,17 +858,133 @@ class MeetingsController extends AppController
         );
         $this->set('count_in_month',$count_in_month);
 
+        $user_count = $this->User->find('count',array(
+            'conditions' => array(
+                'User.bar_id' => $this->Auth->user('bar_id'),
+                 'not' => array('User.id' => $this->Auth->user('id')),
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('user_count',$user_count);
+
+        $male_count = $this->User->find('count',array(
+            'conditions' => array(
+                'User.bar_id' => $this->Auth->user('bar_id'),
+                'User.gender' => 1,
+                 'not' => array('User.id' => $this->Auth->user('id')),
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('male_count',$male_count);
+
+        $female_count = $this->User->find('count',array(
+            'conditions' => array(
+                'User.bar_id' => $this->Auth->user('bar_id'),
+                'User.gender' => 2,
+                 'not' => array('User.id' => $this->Auth->user('id')),
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('female_count',$female_count);
+
+        $u24_count = $this->User->find('count',array(
+            'conditions' => array(
+                'User.bar_id' => $this->Auth->user('bar_id'),
+                'User.age >=' => 20,
+                'User.age <=' => 24,
+                 'not' => array('User.id' => $this->Auth->user('id')),
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('u24_count',$u24_count);
+
+        $u29_count = $this->User->find('count',array(
+            'conditions' => array(
+                'User.bar_id' => $this->Auth->user('bar_id'),
+                'User.age >=' => 25,
+                'User.age <=' => 29,
+                 'not' => array('User.id' => $this->Auth->user('id')),
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('u29_count',$u29_count);
+
+        $u34_count = $this->User->find('count',array(
+            'conditions' => array(
+                'User.bar_id' => $this->Auth->user('bar_id'),
+                'User.age >=' => 30,
+                'User.age <=' => 34,
+                 'not' => array('User.id' => $this->Auth->user('id')),
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('u34_count',$u34_count);
+
+        $u39_count = $this->User->find('count',array(
+            'conditions' => array(
+                'User.bar_id' => $this->Auth->user('bar_id'),
+                'User.age >=' => 35,
+                'User.age <=' => 39,
+                 'not' => array('User.id' => $this->Auth->user('id')),
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('u39_count',$u39_count);
+
+        $over40_count = $this->User->find('count',array(
+            'conditions' => array(
+                'User.bar_id' => $this->Auth->user('bar_id'),
+                'User.age >=' => 40,
+                 'not' => array('User.id' => $this->Auth->user('id')),
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('over40_count',$over40_count);
+
+        $past_yoyaku_count = $this->Meeting->find('count',array(
+            'conditions' => array(
+                'Meeting.bar_id' => $this->Auth->user('bar_id'),
+                'Meeting.result' => 2,
+            ),
+            'callbacks' => false
+            )
+        );
+        $this->set('past_yoyaku_count',$past_yoyaku_count);
+
     }
 
-    public function Control_calender() {
+    public function Control_userlist() {
+
+        $this->layout = 'Control_bar';
 
         $group_id = $this->Auth->user('group_id');
         if($group_id == 1){
             return $this->redirect('/Users/logout/');
         }
 
-        $this->layout = 'Control_bar';
+        $this->Paginator->settings = array(
+                'conditions' => array('User.bar_id' => $this->Auth->user('bar_id'),
+                'not' => array('User.id' => $this->Auth->user('id')),
+                'not' => array('User.group_id' => $this->Auth->user('group_id')),
+                 ),
+                'limit' => 10,
+        );
+        $data = $this->Paginator->paginate('User');
+        $data['User']['birthday'] = date('Y年n月j日',strtotime($data['User']['birthday']));
+        $this->set(compact('data'));
 
     }
+
+
+
+
 
 }

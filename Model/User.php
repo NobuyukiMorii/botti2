@@ -10,9 +10,6 @@ class User extends AppModel {
         'Image' => array(
             'className' => 'Attachment',
             'foreignKey' => 'foreign_key',
-            // 'conditions' => array(
-            //     'Attachment.model' => 'User',
-            // ),
         ),
     );
 
@@ -57,34 +54,6 @@ class User extends AppModel {
                         $item[$model]['genderText'] = '女性';
                     }
                     /*
-                    *workに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
-                    */
-
-                    if ($item[$model]['work'] == 1) {
-                        $item[$model]['workText'] = '大学生';
-                    } elseif ($item[$model]['work'] == 2) {
-                        $item[$model]['workText'] = '大学院生';
-                    } elseif ($item[$model]['work'] == 3)  {
-                        $item[$model]['workText'] = '会社員';
-                    } elseif ($item[$model]['work'] == 4) {
-                        $item[$model]['workText'] = '公務員';
-                    } elseif ($item[$model]['work'] == 5)  {
-                        $item[$model]['workText'] = '経営者';
-                    } elseif ($item[$model]['work'] == 6) {
-                        $item[$model]['workText'] = '自営業';
-                    } elseif ($item[$model]['work'] == 7)  {
-                        $item[$model]['workText'] = '農業';
-                    } elseif ($item[$model]['work'] == 8) {
-                        $item[$model]['workText'] = '医者';
-                    } elseif ($item[$model]['work'] == 9)  {
-                        $item[$model]['workText'] = '弁護士';
-                    } elseif ($item[$model]['work'] == 10) {
-                        $item[$model]['workText'] = 'ニート';
-                    } elseif ($item[$model]['work'] == 11)  {
-                        $item[$model]['workText'] = 'ハイパーメディアクリエイター';
-                    } elseif ($item[$model]['work'] == 12) {
-                        $item[$model]['workText'] = 'その他';
-                    }
                     /*
                     *kibouyoubiに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
                     */
@@ -102,80 +71,6 @@ class User extends AppModel {
                         $item[$model]['kibouyoubiText'] = '土曜日';
                     } elseif ($item[$model]['kibouyoubi'] == 0) {
                         $item[$model]['kibouyoubiText'] = '日曜日';
-                    } 
-                    /*
-                    *kibouekiに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
-                    */
-                    if ($item[$model]['kiboueki'] == 1) {
-                        $item[$model]['kibouekiText'] = '東京';
-                    } elseif ($item[$model]['kiboueki'] == 2) {
-                        $item[$model]['kibouekiText'] = '有楽町';
-                    } elseif ($item[$model]['kiboueki'] == 3) {
-                        $item[$model]['kibouekiText'] = '新橋';
-                    } elseif ($item[$model]['kiboueki'] == 4) {
-                        $item[$model]['kibouekiText'] = '浜松町';
-                    } elseif ($item[$model]['kiboueki'] == 5) {
-                        $item[$model]['kibouekiText'] = '田町';
-                    } elseif ($item[$model]['kiboueki'] == 6) {
-                        $item[$model]['kibouekiText'] = '品川';
-                    } elseif ($item[$model]['kiboueki'] == 7) {
-                        $item[$model]['kibouekiText'] = '大崎';
-                    } elseif ($item[$model]['kiboueki'] == 8) {
-                        $item[$model]['kibouekiText'] = '五反田';
-                    } elseif ($item[$model]['kiboueki'] == 9) {
-                        $item[$model]['kibouekiText'] = '目黒';
-                    } elseif ($item[$model]['kiboueki'] == 10) {
-                        $item[$model]['kibouekiText'] = '恵比寿';
-                    } elseif ($item[$model]['kiboueki'] == 11) {
-                        $item[$model]['kibouekiText'] = '渋谷';
-                    } elseif ($item[$model]['kiboueki'] == 12) {
-                        $item[$model]['kibouekiText'] = '原宿';
-                    } elseif ($item[$model]['kiboueki'] == 13) {
-                        $item[$model]['kibouekiText'] = '代々木';
-                    } elseif ($item[$model]['kiboueki'] == 14) {
-                        $item[$model]['kibouekiText'] = '新宿';
-                    } elseif ($item[$model]['kiboueki'] == 15) {
-                        $item[$model]['kibouekiText'] = '新大久保';
-                    } elseif ($item[$model]['kiboueki'] == 16) {
-                        $item[$model]['kibouekiText'] = '高田馬場';
-                    } elseif ($item[$model]['kiboueki'] == 17) {
-                        $item[$model]['kibouekiText'] = '目白';
-                    } elseif ($item[$model]['kiboueki'] == 18) {
-                        $item[$model]['kibouekiText'] = '池袋';
-                    } elseif ($item[$model]['kiboueki'] == 19) {
-                        $item[$model]['kibouekiText'] = '大塚';
-                    } elseif ($item[$model]['kiboueki'] == 20) {
-                        $item[$model]['kibouekiText'] = '巣鴨';
-                    } elseif ($item[$model]['kiboueki'] == 21) {
-                        $item[$model]['kibouekiText'] = '駒込';
-                    } elseif ($item[$model]['kiboueki'] == 22) {
-                        $item[$model]['kibouekiText'] = '田端';
-                    } elseif ($item[$model]['kiboueki'] == 23) {
-                        $item[$model]['kibouekiText'] = '西日暮里';
-                    } elseif ($item[$model]['kiboueki'] == 24) {
-                        $item[$model]['kibouekiText'] = '日暮里';
-                    } elseif ($item[$model]['kiboueki'] == 25) {
-                        $item[$model]['kibouekiText'] = '鴬谷';
-                    } elseif ($item[$model]['kiboueki'] == 26) {
-                        $item[$model]['kibouekiText'] = '上野';
-                    } elseif ($item[$model]['kiboueki'] == 27) {
-                        $item[$model]['kibouekiText'] = '御徒町';
-                    } elseif ($item[$model]['kiboueki'] == 28) {
-                        $item[$model]['kibouekiText'] = '秋葉原';
-                    } elseif ($item[$model]['kiboueki'] == 29) {
-                        $item[$model]['kibouekiText'] = '神田';
-                    }
-                    /*
-                    *genreに関する処理はforeachで書きたいが、どう書けばいいか良くわからない
-                    */
-                    if ($item[$model]['genre'] == 1) {
-                        $item[$model]['genreText'] = '居酒屋';
-                    } elseif ($item[$model]['genre'] == 2) {
-                        $item[$model]['genreText'] = 'イタリアン';
-                    } elseif ($item[$model]['genre'] == 3) {
-                        $item[$model]['genreText'] = '中華料理';
-                    } elseif ($item[$model]['genre'] == 4) {
-                        $item[$model]['genreText'] = 'コンセプト居酒屋';
                     } 
 
                 }
@@ -328,14 +223,20 @@ class User extends AppModel {
                 'rule' => 'notEmpty',
                 'message' => '必ず入力して下さい。',
             ),
+        ),
+
+        'moyorieki' => array(
             array(
-                'rule' => 'numeric',
-                'message' => 'プルダウンから選択して下さい。'
+                'rule' => 'notEmpty',
+                'message' => '必ず入力して下さい。',
             ),
+        ),
+
+        'atmosphere' => array(
             array(
-                'rule' => array('comparison','<=',12),
-                'message' => 'プルダウンから選択して下さい。'
-            )
+                'rule' => 'notEmpty',
+                'message' => '必ず入力して下さい。',
+            ),
         ),
 
         'kibouyoubi' => array(
@@ -347,19 +248,13 @@ class User extends AppModel {
         'kibouzikan' => array(
                 'rule' => 'notEmpty',
                 //'allowEmpty' => false
-                'message' => '希望開始時間は必ず入力して下さい。',   
+                'message' => '待ち合わせ時間は必ず入力して下さい。',   
         ),
 
-        'genre' => array(
+        'kibouzikan_finish' => array(
                 'rule' => 'notEmpty',
                 //'allowEmpty' => false
-                'message' => 'ジャンルは必ず入力して下さい。',   
-        ),
-
-        'kiboueki' => array(
-                'rule' => 'notEmpty',
-                //'allowEmpty' => false
-                'message' => '希望曜日は必ず入力して下さい。',   
+                'message' => 'お別れの時間は必ず入力して下さい。',   
         ),
 
         'message' => array(
@@ -369,43 +264,7 @@ class User extends AppModel {
             )
         ),
 
-        // 'image' => array(
 
-        //     // ルール：uploadError => errorを検証
-        //     'upload-file' => array( 
-        //         'rule' => array( 'uploadError'),
-        //         'message' => array( '写真のアップロードに失敗しました。')
-        //     ),
-
-        //     // ルール：extension => pathinfoを使用して拡張子を検証
-        //     'extension' => array(
-        //         'rule' => array( 'extension', array( 
-        //             'jpg', 'jpeg', 'png', 'gif')  // 拡張子を配列で定義
-        //         ),
-        //         'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
-        //     ),
-
-        //     // ルール：mimeType => 
-        //     // finfo_file(もしくは、mime_content_type)でファイルのmimeを検証
-        //     'mimetype' => array( 
-        //         'rule' => array( 'mimeType', array( 
-        //             'image/jpeg', 'image/png', 'image/gif')  // MIMEタイプを配列で定義
-        //         ),
-        //         'message' => array( 'jpg、jpeg、png、gifの写真を選択して下さい。')
-        //     ),
-
-        //     // ルール：fileSize => filesizeでファイルサイズを検証(2GBまで)
-        //     'size' => array(
-        //         'maxFileSize' => array( 
-        //             'rule' => array( 'fileSize', '<=', '10MB'),  // 10M以下
-        //             'message' => array( '10MB以下のファイルにして下さい。')
-        //         ),
-        //         'minFileSize' => array( 
-        //             'rule' => array( 'fileSize', '>',  0),    // 0バイトより大
-        //             'message' => array( 'このファイルは選択出来ません。')
-        //         ),
-        //     ),
-        // ),
 
     );
 

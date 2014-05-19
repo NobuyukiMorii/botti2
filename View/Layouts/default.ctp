@@ -41,7 +41,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                       </button>
-                      <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="navbar-brand logo">D</a>
+                      <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="navbar-brand logo">QuickDate</a>
                     </div>
                     <nav class="collapse navbar-collapse" role="navigation">
                     <form class="navbar-form navbar-left">
@@ -49,10 +49,22 @@
                     </form>
                     <ul class="nav navbar-nav">
                       <li>
-                        <a href="<?php echo $this->Html->url('/users/logout'); ?>"><i class="glyphicon glyphicon-home"></i> ログアウト</a>
+                        <a href="<?php echo $this->Html->url('/meetings/user_date'); ?>"><i class="glyphicon glyphicon-home"></i> デートの予定</a>
                       </li>
                       <li>
-                        <a href="<?php echo $this->Html->url('/meetings/user_date'); ?>"><i class="glyphicon glyphicon-home"></i> デートの予定</a>
+                        <a href="<?php echo $this->Html->url('/users/profile/'.$LoginUserId); ?>"><i class="glyphicon glyphicon-home"></i> プロフィール</a>
+                      </li>
+                      <li>
+                        <a href="<?php echo $this->Html->url('/users/my_bar/'.$LoginUserId); ?>"><i class="glyphicon glyphicon-home"></i> デートするお店</a>
+                      </li>
+                      <li>
+                        <a href="<?php echo $this->Html->url('/users/password/'.$LoginUserId); ?>"><i class="glyphicon glyphicon-home"></i> パスワードを変更する</a>
+                      </li>
+                      <li>
+                        <a href="<?php echo $this->Html->url('/meetings/userpolicy'); ?>"><i class="glyphicon glyphicon-home"></i> 利用規約</a>
+                      </li>
+                      <li>
+                        <a href="<?php echo $this->Html->url('/users/logout'); ?>"><i class="glyphicon glyphicon-home"></i> ログアウト</a>
                       </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

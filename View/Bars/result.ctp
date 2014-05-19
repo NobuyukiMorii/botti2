@@ -18,7 +18,7 @@
         <td width="100"><?php echo h($data[$i]['Bar']['price']); ?></td>
         <td width="300"><?php echo h($data[$i]['Bar']['description']);?></td>
         <td width="400"><?php echo h($data[$i]['Bar']['telnumber']);?></td>
-        <td width="300"><?php echo h($data[$i]['Bar']['stationText']); ?></td>
+        <td width="300"><?php echo h($data[$i]['Bar']['station']); ?></td>
         <td width="200"><?php echo h($data[$i]['Bar']['gate']); ?></td>
         <td width="400"><?php echo h($data[$i]['Bar']['location']);?></td>
     </tr>        

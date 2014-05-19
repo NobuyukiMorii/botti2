@@ -36,8 +36,11 @@
                     <li class="list-group-item">お名前：<?php echo h($data[$i]['Meeting']['date_partner']['User']['last_name']); ?><?php echo h($data[$i]['Meeting']['date_partner']['User']['first_name']); ?></li>
                     <li class="list-group-item">ニックネーム：<?php echo h($data[$i]['Meeting']['date_partner']['User']['nickname']); ?></li>
                     <li class="list-group-item">年齢：<?php echo h($data[$i]['Meeting']['date_partner']['User']['age']); ?>歳</li>
-                    <li class="list-group-item">誕生日：<?php echo h($data[$i]['Meeting']['date_partner']['User']['birthday']); ?></li>
-                    <li class="list-group-item">職業：<?php echo h($data[$i]['Meeting']['date_partner']['User']['workText']); ?></li>
+                    <li class="list-group-item">誕生日：<?php echo h(date("n月j日", strtotime($data[$i]['Meeting']['date_partner']['User']['birthday']))); ?></li>
+                    <li class="list-group-item">職業：<?php echo h($data[$i]['Meeting']['date_partner']['User']['work']); ?></li>
+                    <li class="list-group-item">好きな食べ物：<?php echo h($data[$i]['Meeting']['date_partner']['User']['like']); ?></li>
+                    <li class="list-group-item">嫌いな食べ物：<?php echo h($data[$i]['Meeting']['date_partner']['User']['dislike']); ?></li>
+                    <li class="list-group-item">好きな飲み物：<?php echo h($data[$i]['Meeting']['date_partner']['User']['drink']); ?></li>
                   </ul>
                  <!-- /プロフィール -->                    
               </div> <!-- /col-sm-6 --> 

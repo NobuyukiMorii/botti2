@@ -43,7 +43,7 @@ echo $this->Paginator->last('>>',array());
     <td><?php echo h($data[$i]['Meeting']['meetingspot']); ?></td>
     <td><?php echo h($data[$i]['User']['nickname']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['match_user']); ?></td>
-		<td><?php echo h($data[$i]['Bar']['stationText']); ?></td>
+		<td><?php echo h($data[$i]['Bar']['station']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['created']); ?></td>
     <td><a class="btn btn-primary" href="<?php echo $this->Html->url("/Meetings/acceptance/".$data[$i]['Meeting']['id']); ?>"><?php echo h($data[$i]['Meeting']['resultText']); ?></a></td>
 	</tr>

@@ -14,81 +14,23 @@
 </div>
 
 <?php for ($i = 0; $i < count($data); $i++) { ?>
+<table class="table table-striped table-bordered table-hover">
+  <tr>
+    <th class="col-sm-1">ステータス</th>
+    <th class="col-sm-1">予約日</th>
+    <th class="col-sm-1">予約時間</th>
+    <th class="col-sm-1">待ち合わせ</th>
+    <th class="col-sm-1">お客様①</th>
+    <th class="col-sm-1">お客様②</th>
+  </tr>
+  <tr>
+    <td><?php echo h($data[$i]['Meeting']['resultText']); ?></td>
+    <td><?php echo h($data[$i]['Meeting']['date']); ?></td>
+    <td><?php echo h($data[$i]['Meeting']['time']); ?></td>
+    <td><?php echo h($data[$i]['Meeting']['meetingspot']); ?></td>
+    <td><?php echo h($data[$i]['User']['last_name']); ?><?php echo h($data[$i]['User']['first_name']); ?><img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$data[$i]['User']['Image'][0]['dir']."/thumb150_".$data[$i]['User']['Image'][0]['photo_user']);?>" class="img-responsive"></td>
+    <td><?php echo h($data[$i]['Meeting']['date_partner']['User']['last_name']); ?><?php echo h($data[$i]['Meeting']['date_partner']['User']['first_name']); ?><img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$data[$i]['Meeting']['date_partner']['Image'][0]['dir']."/thumb150_".$data[$i]['Meeting']['date_partner']['Image'][0]['photo_user']);?>" class="img-responsive"></td>
+  </tr>
+</table>
 
-      <div class="row"><!-- row3 --> 
-
-        <div class="col-sm-2"><!-- col-sm-6 -->
-
-                 <!-- 待ち合わせ --> 
-                  <ul class="list-group">
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['date']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['time']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['meetingspot']); ?></li>     
-                  </ul>
-                 <!-- /待ち合わせ -->        
-
-        </div><!-- col-sm-6 -->
-
-        <div class="col-sm-2"><!-- col-sm-6 -->
-
-                 <!-- 待ち合わせ --> 
-                  <ul class="list-group">
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['resultText']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['created']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['modified']); ?></li>     
-                  </ul>
-                 <!-- /待ち合わせ -->        
-
-        </div><!-- col-sm-6 -->
-
-          <div class="col-sm-2"><!-- col-sm-4 --> 
-             <!-- PartnerImage -->
-            <div class="panel-thumbnail">
-              <img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$data[$i]['User']['Image'][0]['dir']."/thumb150_".$data[$i]['User']['Image'][0]['photo_user']);?>" class="img-responsive">
-            </div>
-            <!-- /PartnerImage -->          
-          </div> <!-- /col-sm-4 --> 
-
-          <div class="col-sm-2"><!-- col-sm-8 --> 
-
-                 <!-- 誘った人 --> 
-                  <ul class="list-group">
-                    <li class="list-group-item"><?php echo h($data[$i]['User']['last_name']); ?><?php echo h($data[$i]['User']['first_name']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['User']['telnumber']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['User']['age']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['User']['birthday']); ?></li>     
-                  </ul>
-                 <!-- /誘った人 -->                                   
-
-
-          </div> <!-- /col-sm-8 -->
-
-          <div class="col-sm-2"><!-- col-sm-4 --> 
-             <!-- PartnerImage -->
-            <div class="panel-thumbnail">
-              <img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$data[$i]['Meeting']['date_partner']['Image'][0]['dir']."/thumb150_".$data[$i]['Meeting']['date_partner']['Image'][0]['photo_user']);?>" class="img-responsive">
-            </div>
-            <!-- /PartnerImage -->          
-          </div> <!-- /col-sm-4 --> 
-
-          <div class="col-sm-2"><!-- col-sm-8 --> 
-
-                 <!-- 誘った人 --> 
-                  <ul class="list-group">
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['date_partner']['User']['last_name']); ?><?php echo h($data[$i]['Meeting']['date_partner']['User']['first_name']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['date_partner']['User']['telnumber']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['date_partner']['User']['age']); ?></li>
-                    <li class="list-group-item"><?php echo h($data[$i]['Meeting']['date_partner']['User']['birthday']); ?></li>     
-                  </ul>
-                 <!-- /誘った人 -->                                   
-
-
-          </div> <!-- /col-sm-8 -->  
-
-      </div><!-- row3 --> 
-<?php } ?>
-
-    </div><!-- /panel-body -->
-  </div><!-- panel panel-default --> 
-</div><!-- /row -->
- <!-- content --> 
+ <?php } ?>

@@ -1,3 +1,6 @@
+<div class="col-sm-4 col-sm-offset-8">
+<a href="<?php echo $this->Html->url('/bars/admin_register'); ?>"><button class="btn btn-lg btn-default ">あなたの行きつけバーを登録</button></a>
+</div>
 
       <?php echo $this->Form->create
             (
@@ -21,7 +24,71 @@
             );
       ?>
 
-      基本情報
+      <h4>行きつけるバーを選ぶ</h4>
+      <div class ="well">
+
+            <div class="pagination pagination-large" style="margin-top : -20px;">
+                <ul class="pagination">
+                  <?php
+                    echo $this->Paginator->prev(__('prev'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+                    echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
+                    echo $this->Paginator->next(__('next'), array('tag' => 'li','currentClass' => 'disabled'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+                  ?>
+                </ul>
+            </div>
+                                 
+              <div class="panel panel-default" style="margin-top : -30px;"><!-- panel panel-default --> 
+                <div class="panel-body"><!-- panel-body --> 
+
+            <?php for ($i = 0; $i < count($data); $i++) { ?>
+
+
+                    <div class="col-sm-6"><!-- col-sm-12 -->
+
+                      <div class="col-sm-4"><!-- col-sm-4 --> 
+                         <!-- PartnerImage -->
+                        <div class="panel-thumbnail">
+                          <img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Image'][0]['dir']."/thumb250_".$data[$i]['Image'][0]['photo_bar']);?>" class="img-responsive">
+                        </div>
+                        <?php echo $this->Form->radio('User.bar_id',
+                              array(
+                                    $data[$i]['Bar']['id'] => "", 
+                              ), 
+                              array(
+                                    'legend' => false,
+                                    'id' => "UserBarId"
+                              ),
+                              array(
+                                    'class' => 'form-group',
+                                    'required' => false
+                              )
+                        )
+                        ;?>
+                        <!-- /PartnerImage -->          
+                      </div> <!-- /col-sm-4 --> 
+                      <div class="col-sm-8"><!-- col-sm-8 --> 
+                            <!-- プロフィール -->
+                              <ul class="list-group">
+                                <li class="list-group-item">店名：<?php echo h($data[$i]['Bar']['name']); ?></li>
+                                <li class="list-group-item">ジャンル：<?php echo h($data[$i]['Bar']['genreText']); ?></li>
+                                <li class="list-group-item">料金：平均<?php echo h($data[$i]['Bar']['price']); ?>円</li>
+                                <li class="list-group-item">最寄駅：<?php echo h($data[$i]['Bar']['station']); ?></li>
+                                <li class="list-group-item">駅から：徒歩<?php echo h($data[$i]['Bar']['walk_time']); ?>分</li>
+                              </ul>
+                             <!-- /プロフィール -->
+
+                      </div> <!-- /col-sm-8 --> 
+
+                    </div><!-- col-sm-12 -->
+
+            <?php } ?>
+
+                </div><!-- /panel-body -->
+              </div><!-- panel panel-default -->
+      </div><!-- /デートするお店 --> 
+
+
+      <h4>基本情報</h4>
       <div class ="well">
 
             <div class="form-group">
@@ -172,7 +239,6 @@
                               ), 
                               array(
                                     'legend' => false,
-                                    'value' => '1',
                                     'id' => "User.gender"
                               ),
                               array(
@@ -196,7 +262,7 @@
                                     'maxYear' => date('YMD', strtotime("-20 year")),
                                     'minYear' => date('YMD', strtotime("-80 year")),
                                     'label' => false,
-                                    'default' => date('Y-m-d', strtotime("-25 year")),
+                                    'default' => date('Y-m-d', strtotime('1988-1-1')),
                                     'empty' => true,
                                     'required' => false,
                                     'class' => 'form-control',
@@ -208,39 +274,25 @@
             </div>
 
             <div class="form-group">
-                  <label for="UserWork" class="col-sm-2 control-label">お仕事</label>
-                  <div class="col-sm-10">
-                        <?php echo $this->Form->input('User.work',
-                              array(
-                                    'type'=>'select',
-                                    'label' => false,
-                                    'id' => "UserWork",
-                                    'options'=> array(
-                                                      '1'=>'大学生',
-                                                      '2'=>'大学院生',
-                                                      '3'=>'会社員',
-                                                      '4'=>'公務員',
-                                                      '5'=>'経営者',
-                                                      '6'=>'自営業',
-                                                      '7'=>'農業',
-                                                      '8'=>'医者',
-                                                      '9'=>'弁護士',
-                                                      '10'=>'ニート',
-                                                      '11'=>'ハイパーメディアクリエイター',
-                                                      '12'=>'その他'
-                                                ), 
-                                    array(
-                                          'class' => 'form-group',
-                                          'required' => false,
+                  <label for="UserWork" class="col-sm-2 control-label">ご職業</label>
+                  <div class="col-sm-5">
+                        <?php echo $this->Form->input
+                              (
+                              'User.work', 
+                              array('class' => 'form-control',
+                                    'required' => false,
+                                    'label' => false , 
+                                    'div' => false,
+                                    'placeholder' => "保険会社の営業など",
+                                    'id' => "UserWork"
                                     )
-                              )
-                        )
-                        ;?>
+                              );
+                        ?>
                   </div>
             </div>
             
             <div class="form-group">
-                  <label for="UserMoyorieki" class="col-sm-2 control-label">自宅の最寄り駅</label>
+                  <label for="UserMoyorieki" class="col-sm-2 control-label">よく行く駅（東京）</label>
                   <div class="col-sm-5">
                         <?php echo $this->Form->input
                               (
@@ -249,8 +301,81 @@
                                     'required' => false,
                                     'label' => false , 
                                     'div' => false,
-                                    'placeholder' => "最寄り駅を入力して下さい。",
+                                    'placeholder' => "よく行く東京の駅を入力して下さい。",
                                     'id' => "UserMoyorieki"
+                                    )
+                              );
+                        ?>
+                  </div>
+            </div>
+
+            <div class="form-group">
+                  <label for="Userlike" class="col-sm-2 control-label">好きな食べ物</label>
+                  <div class="col-sm-5">
+                        <?php echo $this->Form->input
+                              (
+                              'User.like', 
+                              array('class' => 'form-control',
+                                    'required' => false,
+                                    'label' => false , 
+                                    'div' => false,
+                                    'placeholder' => "カルボナーラ、ハンバーグなど",
+                                    'id' => "Userlike"
+                                    )
+                              );
+                        ?>
+                  </div>
+            </div>
+
+            <div class="form-group">
+                  <label for="UserDislike" class="col-sm-2 control-label">嫌いな食べ物</label>
+                  <div class="col-sm-5">
+                        <?php echo $this->Form->input
+                              (
+                              'User.dislike', 
+                              array('class' => 'form-control',
+                                    'required' => false,
+                                    'label' => false , 
+                                    'div' => false,
+                                    'placeholder' => "ピーマン、セロリなど",
+                                    'id' => "UserDislike"
+                                    )
+                              );
+                        ?>
+                  </div>
+            </div>
+
+            <div class="form-group">
+                  <label for="UserDrink" class="col-sm-2 control-label">好きなドリンク</label>
+                  <div class="col-sm-5">
+                        <?php echo $this->Form->input
+                              (
+                              'User.drink', 
+                              array('class' => 'form-control',
+                                    'required' => false,
+                                    'label' => false , 
+                                    'div' => false,
+                                    'placeholder' => "ビール、カシオレなど",
+                                    'id' => "UserDislike"
+                                    )
+                              );
+                        ?>
+                  </div>
+            </div>
+
+            <div class="form-group">
+                  <label for="UserMessage" class="col-sm-2 control-label">何かひとこと</label>
+                  <div class="col-sm-5">
+                        <?php echo $this->Form->input
+                              (
+                              'User.message', 
+                              array('class' => 'form-control',
+                                    'required' => false,
+                                    'label' => false ,
+                                    'div' => false,
+                                    'placeholder' => "50文字以下で入力して下さい。空欄でも大丈夫です。",
+                                    'id' => "UserMessage",
+                                    'rows' => 2
                                     )
                               );
                         ?>
@@ -259,76 +384,29 @@
 
       </div>
 
-      デートの希望
+      <h4>デートの希望</h4>
       <div class ="well">
 
             <div class="form-group">
-                  <label for="UserGenre" class="col-sm-2 control-label">好きな居酒屋のタイプ</label>
+                  <label for="UserAtmosphere" class="col-sm-2 control-label">デートの雰囲気</label>
                   <div class="col-sm-10">
                         <?php echo $this->Form->input(
-                              'User.genre',
+                              'User.atmosphere',
                               array(
                                     'type'=>'select',
                                     'options'=>
                                           array(
-                                                '1'=>'和風居酒屋',
-                                                '2'=>'洋風居酒屋',
-                                                '3'=>'中華料理',
-                                                '4'=>'コンセプト居酒屋'
+                                                'まったり'=>'まったり',
+                                                'きっちり'=>'きっちり',
+                                                'おもしろ'=>'おもしろ',
+                                                'でれでれ'=>'でれでれ',
                                           ),
                                     'required' => false,
                                     'label' => false ,
                                     'div' => false,
-                                    'id' => "UserGenre"
+                                    'id' => "UserAtmosphere"
                                     )
                               ); 
-                        ?>
-                  </div>
-            </div>
-
-            <div class="form-group">
-                  <label for="UserKiboueki" class="col-sm-2 control-label">希望駅（山手線）</label>
-                  <div class="col-sm-10">
-                        <?php echo $this->Form->input(
-                              'User.kiboueki',
-                              array(
-                                    'type'=>'select',
-                                    'options'=>array(
-                                                '1'=>'東京',
-                                                '2'=>'有楽町',
-                                                '3'=>'新橋',
-                                                '4'=>'浜松町',
-                                                '5'=>'田町',
-                                                '6'=>'品川',
-                                                '7'=>'大崎',
-                                                '8'=>'五反田',
-                                                '9'=>'目黒',
-                                                '10'=>'恵比寿',
-                                                '11'=>'渋谷',
-                                                '12'=>'原宿',
-                                                '13'=>'代々木',
-                                                '14'=>'新宿',
-                                                '15'=>'新大久保',
-                                                '16'=>'高田馬場',
-                                                '17'=>'目白',
-                                                '18'=>'池袋',
-                                                '19'=>'大塚',
-                                                '20'=>'巣鴨',
-                                                '21'=>'駒込',
-                                                '22'=>'田端',
-                                                '23'=>'西日暮里',
-                                                '24'=>'日暮里',
-                                                '25'=>'鶯谷',
-                                                '26'=>'上野',
-                                                '27'=>'御徒町',
-                                                '28'=>'秋葉原',
-                                                '29'=>'神田'),
-                                    'required' => false,
-                                    'label' => false ,
-                                    'div' => false,
-                                    'id' => "UserKiboueki"
-                              )
-                        );
                         ?>
                   </div>
             </div>
@@ -360,7 +438,7 @@
             </div>
 
             <div class="form-group form-inline">
-                  <label for="UserKibouzikan" class="col-sm-2 control-label">希望待ち合わせ時間</label>
+                  <label for="UserKibouzikan" class="col-sm-2 control-label">待ち合わせ時間</label>
                   <div class="col-sm-10">
                               <?php
                               echo $this->form->input
@@ -381,66 +459,36 @@
                   </div>
             </div>
 
-            <div class="form-group">
-                  <label for="UserBar_id" class="col-sm-2 control-label">デートするお店</label>
+            <div class="form-group form-inline">
+                  <label for="UserKibouzikan_finish" class="col-sm-2 control-label">お別れの時間</label>
                   <div class="col-sm-10">
-                        <?php echo $this->Form->input(
-                              'User.bar_id',
-                              array(
-                                    'type'=>'select',
-                                    'options'=> $options_bar,
+                              <?php
+                              echo $this->form->input
+                              ('User.kibouzikan_finish',
+                               array(
+                                    'label' => false,
+                                    'timeFormat' => '24',
+                                    'dateFormat' => 'H:i:s',
+                                    'default' => date('22:00'),
+                                    'empty' => true,
+                                    'interval' => 30,
+                                    'class' => 'form-control',
                                     'required' => false,
-                                    'label' => false ,
-                                    'div' => false,
-                                    'id' => "UserBar_id"
-                              )
-                        );
-                        ?>
-                  </div>
-            </div>
-
-      </div>
-
-      その他
-      <div class ="well">
-            <div class="form-group">
-                  <label for="UserMessage" class="col-sm-2 control-label">何かひとこと</label>
-                  <div class="col-sm-5">
-                        <?php echo $this->Form->input
-                              (
-                              'User.message', 
-                              array('class' => 'form-control',
-                                    'required' => false,
-                                    'label' => false ,
-                                    'div' => false,
-                                    'placeholder' => "50文字以下で入力して下さい。空欄でも大丈夫です。",
-                                    'id' => "UserMessage",
-                                    'rows' => 2
+                                    'id' => "UserKibouzikan_finish"
                                     )
-                              );
-                        ?>
+                               );
+                              ?>
                   </div>
             </div>
-      </div>
 
-      <div class="form-group">
-            <div class="col-sm-6 text-left">
-                  <?php echo $this->Html->link('戻る', '/users/login', array('class' => 'btn btn-success', 'target' => '_blank')); ?>
+             <!-- content -->
+       </div><!-- /wellデートの希望 -->  
+            <div class="form-group">
+                  <div class="col-sm-2 col-sm-offset-10">
+                        <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-success'));?>
+                  </div>
             </div>
-            <div class="col-sm-6 text-right">
-                  <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-success'));?>
-            </div>
-      </div>
-
-
-
       <?php echo $this->Form->end(); ?>
-
-
-
-
-
-
 
 
 

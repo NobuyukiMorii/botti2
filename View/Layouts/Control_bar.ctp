@@ -41,7 +41,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                       </button>
-                      <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="navbar-brand logo">D</a>
+                      <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="navbar-brand logo">QuickDate</a>
                     </div>
                     <nav class="collapse navbar-collapse" role="navigation">
                     <form class="navbar-form navbar-left">
@@ -49,13 +49,16 @@
                     </form>
                     <ul class="nav navbar-nav">
                       <li>
-                        <a href="<?php echo $this->Html->url('/users/logout'); ?>"><i class="glyphicon glyphicon-home"></i> ログアウト</a>
-                      </li>
-                      <li>
                         <a href="<?php echo $this->Html->url('/meetings/Control_meetinglist'); ?>"><i class="glyphicon glyphicon-home"></i> 予約状況</a>
                       </li>
                       <li>
+                        <a href="<?php echo $this->Html->url('/meetings/Control_userlist'); ?>"><i class="glyphicon glyphicon-home"></i> 登録ユーザー</a>
+                      </li>
+                      <li>
                         <a href="<?php echo $this->Html->url('/meetings/Control_statistics'); ?>"><i class="glyphicon glyphicon-home"></i> 集計</a>
+                      </li>
+                      <li>
+                        <a href="<?php echo $this->Html->url('/users/Control_logout'); ?>"><i class="glyphicon glyphicon-home"></i> ログアウト</a>
                       </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

@@ -27,10 +27,10 @@
 この度は本当に申し訳ございませんでした！<?php echo "\n" ?>
 <?php echo $partner_nickname ;?>さんに、これから素晴らしい出会いが訪れますように。
 
-From DateBookTokyo
+From QuickDateTokyo
 http://localhost:8888/gachakoi/users/login
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-DateBookTokyo
+QuickDateTokyo
 （Email  xxxx@gmail.com
 （TEL）   xxx-xxxx-xxxx 

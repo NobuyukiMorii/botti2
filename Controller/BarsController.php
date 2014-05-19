@@ -34,6 +34,7 @@ class BarsController extends AppController
         }
     }
 
+
     public function image2(){
         //指定したidに沿ってデータを一件検索
         $graphic = $this->Session->read('hozon');
@@ -48,10 +49,38 @@ class BarsController extends AppController
 
         $register = $this->request->data;
 
+            //住所から緯度と経度を計算する
+        $coordinates = $this->getLatLng($register['Bar']['location']);
+        $geo_info = explode(',', $coordinates);
+        
+        $register['Bar']['latitude'] = $geo_info[0];
+        $register['Bar']['longitude'] = $geo_info[1];
+
+        $last_char = mb_substr($register['Bar']['station'],-1);
+        if($last_char != "駅") {$register['Bar']['station'] = $register['Bar']['station']."駅";}
+
         if ($this->Bar->saveAll($register, array( 'validate' => false))) {
-            $this->render("admin_notice");
+            return $this->redirect('/users/add/');
         }
 
+    }
+
+    public function getLatLng($location)
+    {
+        $api_uri = 'http://maps.googleapis.com/maps/api/geocode/xml?address='.urlencode($location).'&sensor=false';
+
+        $xml = simplexml_load_file($api_uri);
+        $code = $xml->status;
+        if ($code == 'OK')
+        {
+            $lat = $xml->result->geometry->location->lat;
+            $lng = $xml->result->geometry->location->lng;
+            $coordinates = $lat. ',' . $lng;
+        } else 
+        {
+            $coordinates = false;
+        }
+        return $coordinates;
     }
 
     public function image($cid){
@@ -69,7 +98,7 @@ class BarsController extends AppController
     public function admin_list() {
         $this->Paginator->settings = array(
             'conditions' => array(),
-            'limit' => 1,
+            'limit' => 10,
             'sort' => 'Bar.station'
         );
         $data = $this->Paginator->paginate('Bar');

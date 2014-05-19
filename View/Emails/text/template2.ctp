@@ -27,10 +27,10 @@
 この度は本当におめでとうございます！<?php echo "\n" ?>
 <?php echo $meeting_date ;?>があなたにとって最高の日になるように、心よりお祈り申し上げます。
 
-From DateBookTokyo
+From QuickDateTokyo
 http://localhost:8888/gachakoi/users/login
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-DateBookTokyo
+QuickDateTokyo
 （Email  xxxx@gmail.com
 （TEL）   xxx-xxxx-xxxx 

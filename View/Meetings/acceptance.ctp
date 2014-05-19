@@ -1,14 +1,10 @@
 <?= $this->Html->script('http://maps.google.com/maps/api/js?sensor=false', false); ?>
 
-<div class =" my-inline form-inline">
-  <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form'));?>
-  <?php echo $this->Form->submit('OK', array('name' => 'OK','class' => 'btn btn-success btn-block')); ?>
-  <?php echo $this->Form->submit('NO', array('name' => 'NO','class' => 'btn btn-warning btn-block')); ?>
-  <?php echo $this->Form->end();?>
-</div>
-
+<div class="col-sm-12"><!-- row5 --> 
+    <h3><?php echo h($data['Meeting']['date']); ?> <?php echo h($data['Meeting']['time']); ?> ＠<?php echo h($data['Meeting']['meetingspot']); ?></h3>
+  </div>
 <!-- content -->                      
-<div class="row"><!-- row --> 
+<div class="row" style="margin-top:5px;"><!-- row --> 
   <div class="panel panel-default"><!-- panel panel-default --> 
     <div class="panel-body"><!-- panel-body --> 
 
@@ -22,16 +18,16 @@
           $map_options = array(
             'id' => 'map_canvas',
             'width' => '840px',
-            'height' => '400px',
+            'height' => '675px',
             'style' => '',
-            'zoom' => 7,
+            'zoom' => 17,
             'type' => 'ROADMAP',
             'custom' => null,
             'localize' => false,
-            'latitude' => 35.681382,
-            'longitude' => 139.766084,
+            'latitude' => $data['Bar']['latitude'],
+            'longitude' => $data['Bar']['longitude'],
             'address' => $data['Bar']['location'],
-            'marker' => false,
+            'marker' => true,
             'markerTitle' => 'This is my position',
             'markerIcon' => 'http://google-maps-icons.googlecode.com/files/home.png',
             'markerShadow' => 'http://google-maps-icons.googlecode.com/files/shadow.png',
@@ -42,43 +38,29 @@
 
             <?= $this->GoogleMap->map($map_options); ?>
 
-            <?
-  // Override any of the following default options to customize your route
-            $directions_options = array(
-              'travelMode' => "WALKING",
-              'directionsDiv' => 'directions',
-              );
-              ?>
-              <div id="directions"></div>
-              <?= $this->GoogleMap->getDirections("map_canvas", "directions1", array("from" => $data['Bar']['stationText'].'駅'.$data['Bar']['gate'], "to" => $data['Bar']['location']), $directions_options); 
-            ?>
-
-
           </div> <!-- /col-sm-4 --> 
           <div class="col-sm-4"><!-- col-sm-8 --> 
+            <div class =" my-inline form-inline">
+              <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form'));?>
+              <?php echo $this->Form->submit('デートする', array('name' => 'OK','class' => 'btn btn-success btn-block')); ?>
+              <?php echo $this->Form->submit('お断りする', array('name' => 'NO','class' => 'btn btn-warning btn-block')); ?>
+              <?php echo $this->Form->end();?>
+            </div>
             <div class="row"><!-- row1 --> 
-
-                <!-- 待ち合わせ -->
-                <div class="panel-heading">
-                  <h4>待ち合わせ</h4>
-                </div>               
-                  <ul class="list-group">
-                    <li class="list-group-item">日付：<?php echo h($data['Meeting']['date']); ?></li>
-                    <li class="list-group-item">時間：<?php echo h($data['Meeting']['time']); ?></li>
-                    <li class="list-group-item">場所：<?php echo h($data['Meeting']['meetingspot']); ?></li>     
-                  </ul>
-                 <!-- /待ち合わせ -->
 
                 <!-- プロフィール -->
                 <div class="panel-heading">
                   <h4>お相手</h4>
                 </div>               
                   <ul class="list-group">
-                    <li class="list-group-item">お名前：<?php echo h($partner_data['User']['last_name']); ?><?php echo h($data['User']['first_name']); ?></li>
+                    <li class="list-group-item">お名前：<?php echo h($partner_data['User']['last_name']); ?><?php echo h($partner_data['User']['first_name']); ?></li>
                     <li class="list-group-item">ニックネーム：<?php echo h($partner_data['User']['nickname']); ?></li>
                     <li class="list-group-item">年齢：<?php echo h($partner_data['User']['age']); ?>歳</li>
-                    <li class="list-group-item">誕生日：<?php echo h(date("Y年n月j日", strtotime($partner_data['User']['birthday']))); ?></li>
-                    <li class="list-group-item">職業：<?php echo h($partner_data['User']['workText']); ?></li>
+                    <li class="list-group-item">誕生日：<?php echo h(date("n月j日", strtotime($partner_data['User']['birthday']))); ?></li>
+                    <li class="list-group-item">職業：<?php echo h($partner_data['User']['work']); ?></li>
+                    <li class="list-group-item">好きな食べ物：<?php echo h($partner_data['User']['like']); ?></li>
+                    <li class="list-group-item">嫌いな食べ物：<?php echo h($partner_data['User']['dislike']); ?></li>
+                    <li class="list-group-item">好きな飲み物：<?php echo h($partner_data['User']['drink']); ?></li>
                   </ul>
                  <!-- /プロフィール -->
 
@@ -175,4 +157,3 @@
   </div><!-- panel panel-default --> 
 </div><!-- /row -->
  <!-- content --> 
-

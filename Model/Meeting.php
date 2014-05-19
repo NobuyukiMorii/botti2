@@ -54,8 +54,8 @@ class Meeting extends AppModel {
                 if (array_key_exists($model, $item)) {
 
                     $item[$model]['time'] = date("H時i分", strtotime($item[$model]['time']));
-                    $item[$model]['time'] = date("H時i分", strtotime($item[$model]['created']));
-                    $item[$model]['time'] = date("H時i分", strtotime($item[$model]['modified']));
+                    $item[$model]['created'] = date("Y年n月j日H時i分", strtotime($item[$model]['created']));
+                    $item[$model]['modified'] = date("Y年n月j日H時i分", strtotime($item[$model]['modified']));
 
                 }
 
