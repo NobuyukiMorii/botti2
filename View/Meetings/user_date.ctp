@@ -39,7 +39,7 @@
                     <li class="list-group-item">誕生日：<?php echo h(date("n月j日", strtotime($data[$i]['Meeting']['date_partner']['User']['birthday']))); ?></li>
                     <li class="list-group-item">職業：<?php echo h($data[$i]['Meeting']['date_partner']['User']['work']); ?></li>
                     <li class="list-group-item">好きな食べ物：<?php echo h($data[$i]['Meeting']['date_partner']['User']['like']); ?></li>
-                    <li class="list-group-item">嫌いな食べ物：<?php echo h($data[$i]['Meeting']['date_partner']['User']['dislike']); ?></li>
+                    <li class="list-group-item">話題：<?php echo h($data[$i]['Meeting']['date_partner']['User']['topic']); ?></li>
                     <li class="list-group-item">好きな飲み物：<?php echo h($data[$i]['Meeting']['date_partner']['User']['drink']); ?></li>
                   </ul>
                  <!-- /プロフィール -->                    
@@ -53,7 +53,7 @@
                   <ul class="list-group">
                     <li class="list-group-item">日付：<?php echo h($data[$i]['Meeting']['date']); ?></li>
                     <li class="list-group-item">時間：<?php echo h($data[$i]['Meeting']['time']); ?></li>
-                    <li class="list-group-item">場所：<?php echo h($data[$i]['Meeting']['meetingspot']); ?></li>     
+                    <li class="list-group-item">場所：<?php echo h($data[$i]['Bar']['name']); ?> 店内</li>     
                   </ul>
                  <!-- /待ち合わせ -->
 

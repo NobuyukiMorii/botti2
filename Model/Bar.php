@@ -26,16 +26,31 @@ class Bar extends AppModel {
 
                 if (array_key_exists($model, $item) && $results[0][$model] != false) {
 
-                    if ($item[$model]['genre'] == 1) {
+                    if ($item[$model]['genre'] == 0) {
+                        $item[$model]['genreText'] = 'バー';
+                    } elseif ($item[$model]['genre'] == 1) {
                         $item[$model]['genreText'] = '居酒屋';
                     } elseif ($item[$model]['genre'] == 2) {
-                        $item[$model]['genreText'] = '洋風居酒屋';
+                        $item[$model]['genreText'] = 'イタリアン';
                     } elseif ($item[$model]['genre'] == 3) {
-                        $item[$model]['genreText'] = '中華料理';
-                    } elseif ($item[$model]['genre'] == 3) {
-                        $item[$model]['genreText'] = 'コンセプト居酒屋';
+                        $item[$model]['genreText'] = 'フレンチ';
+                    } elseif ($item[$model]['genre'] == 4) {
+                        $item[$model]['genreText'] = 'スパニッシュ';
+                    } elseif ($item[$model]['genre'] == 5) {
+                        $item[$model]['genreText'] = '焼き肉';
+                    } elseif ($item[$model]['genre'] == 6) {
+                        $item[$model]['genreText'] = '焼き鳥';
+                    } elseif ($item[$model]['genre'] == 7) {
+                        $item[$model]['genreText'] = '鍋';
+                    } elseif ($item[$model]['genre'] == 8) {
+                        $item[$model]['genreText'] = '中華';
+                    } elseif ($item[$model]['genre'] == 9) {
+                        $item[$model]['genreText'] = 'アジア系';
+                    } elseif ($item[$model]['genre'] == 10) {
+                        $item[$model]['genreText'] = 'インド系';
+                    } elseif ($item[$model]['genre'] == 11) {
+                        $item[$model]['genreText'] = 'その他';
                     } 
-
                 }
 
             }

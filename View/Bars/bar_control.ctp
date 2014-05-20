@@ -40,7 +40,6 @@ echo $this->Paginator->last('>>',array());
     <td><?php echo h($data[$i]['Bar']['name']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['date']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['time']); ?></td>
-    <td><?php echo h($data[$i]['Meeting']['meetingspot']); ?></td>
     <td><?php echo h($data[$i]['User']['nickname']); ?></td>
     <td><?php echo h($data[$i]['Meeting']['match_user']); ?></td>
 		<td><?php echo h($data[$i]['Bar']['station']); ?></td>

@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
         <meta charset="utf-8">
-        <title>Bootply.com - Faceboot - A Facebook style template for Bootstrap</title>
+        <title>ぼっち飲み</title>
         <meta name="generator" content="Bootply" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <?=$this->Html->css('bootstrap.css')?>
@@ -41,7 +41,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                       </button>
-                      <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="navbar-brand logo">QuickDate</a>
+                      <a href="<?php echo $this->Html->url('/meetings/title'); ?>" class="navbar-brand logo">ぼっち飲み</a>
                     </div>
                     <nav class="collapse navbar-collapse" role="navigation">
                     <form class="navbar-form navbar-left">
@@ -49,16 +49,13 @@
                     </form>
                     <ul class="nav navbar-nav">
                       <li>
-                        <a href="<?php echo $this->Html->url('/meetings/user_date'); ?>"><i class="glyphicon glyphicon-home"></i> デートの予定</a>
+                        <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>"><i class="glyphicon glyphicon-home"></i> ぼっち飲み</a>
                       </li>
                       <li>
-                        <a href="<?php echo $this->Html->url('/users/profile/'.$LoginUserId); ?>"><i class="glyphicon glyphicon-home"></i> プロフィール</a>
+                        <a href="<?php echo $this->Html->url('/meetings/user_date'); ?>"><i class="glyphicon glyphicon-home"></i> ぼっち飲みの予定</a>
                       </li>
                       <li>
-                        <a href="<?php echo $this->Html->url('/users/my_bar/'.$LoginUserId); ?>"><i class="glyphicon glyphicon-home"></i> デートするお店</a>
-                      </li>
-                      <li>
-                        <a href="<?php echo $this->Html->url('/users/password/'.$LoginUserId); ?>"><i class="glyphicon glyphicon-home"></i> パスワードを変更する</a>
+                        <a href="<?php echo $this->Html->url('/users/profile/'.$LoginUserId); ?>"><i class="glyphicon glyphicon-home"></i> ぼっちのプロフィール</a>
                       </li>
                       <li>
                         <a href="<?php echo $this->Html->url('/meetings/userpolicy'); ?>"><i class="glyphicon glyphicon-home"></i> 利用規約</a>

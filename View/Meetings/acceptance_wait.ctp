@@ -1,7 +1,7 @@
 <?= $this->Html->script('http://maps.google.com/maps/api/js?sensor=false', false); ?>
 
 <div class="col-sm-12"><!-- row5 --> 
-    <h3><?php echo h($data['Meeting']['date']); ?> <?php echo h($data['Meeting']['time']); ?> ＠<?php echo h($data['Meeting']['meetingspot']); ?></h3>
+    <h3><?php echo h($data['Meeting']['date']); ?> <?php echo h($data['Meeting']['time']); ?></h3>
   </div>
 <!-- content -->                      
 <div class="row" style="margin-top:70px;"><!-- row --> 
@@ -54,7 +54,7 @@
                     <li class="list-group-item">誕生日：<?php echo h(date("n月j日", strtotime($partner_data['User']['birthday']))); ?></li>
                     <li class="list-group-item">職業：<?php echo h($partner_data['User']['work']); ?></li>
                     <li class="list-group-item">好きな食べ物：<?php echo h($partner_data['User']['like']); ?></li>
-                    <li class="list-group-item">嫌いな食べ物：<?php echo h($partner_data['User']['dislike']); ?></li>
+                    <li class="list-group-item">話題：<?php echo h($partner_data['User']['topic']); ?></li>
                     <li class="list-group-item">好きな飲み物：<?php echo h($partner_data['User']['drink']); ?></li>
                   </ul>
                  <!-- /プロフィール -->

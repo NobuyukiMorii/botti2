@@ -22,7 +22,7 @@
     <th class="col-sm-1">年齢</th>
     <th class="col-sm-2">職業</th>
     <th class="col-sm-2">好きな食べ物</th>
-    <th class="col-sm-2">嫌いな食べ物</th>
+    <th class="col-sm-2">話題</th>
     <th class="col-sm-1">誕生日</th>
   </tr>
   <tr>
@@ -32,7 +32,7 @@
     <td><?php echo h($data[$i]['User']['age']); ?>才</td>
     <td><?php echo h($data[$i]['User']['work']); ?></td>
     <td><?php echo h($data[$i]['User']['like']); ?></td>
-    <td><?php echo h($data[$i]['User']['dislike']); ?></td>
+    <td><?php echo h($data[$i]['User']['topic']); ?></td>
     <td><?php echo h($data[$i]['User']['birthday']); ?></td>
   </tr>
 </table>

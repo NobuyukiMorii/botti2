@@ -32,7 +32,7 @@
     <td><?php echo h($bar[$i]['User']['age']); ?>才</td>
     <td><?php echo h($bar[$i]['User']['work']); ?></td>
     <td><?php echo h($bar[$i]['User']['like']); ?></td>
-    <td><?php echo h($bar[$i]['User']['dislike']); ?></td>
+    <td><?php echo h($bar[$i]['User']['topic']); ?></td>
     <td><?php echo h($bar[$i]['User']['birthday']); ?></td>
   </tr>
 </table>

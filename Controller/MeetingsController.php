@@ -17,7 +17,6 @@ class MeetingsController extends AppController
             return $this->redirect('/Meetings/Control_meetinglist/');
         }
 
-
         $login_gender = $this->Auth->user('gender');
         if($login_gender == 1){
             $partner_gender = 2;
@@ -26,7 +25,7 @@ class MeetingsController extends AppController
         }
 
         $randomUser = $this->User->find('first',array(
-            'conditions' => array('User.age >=' => '20','not' => array('User.id' => $this->Auth->user('id')),'User.group_id' => 1,'User.bar_id'=>$this->Auth->user('bar_id')),
+            'conditions' => array('User.age >=' => '20','not' => array('User.id' => $this->Auth->user('id')),'User.group_id' => 1),
             'order' => 'rand()',
             'limit' => 1
             )
@@ -34,7 +33,6 @@ class MeetingsController extends AppController
 
         $randomBar = $this->Bar->find('first',array(
             'conditions' => array('Bar.id' => $randomUser['User']['bar_id']),
-            'limit' => 1
             )
         );
 
@@ -124,11 +122,11 @@ class MeetingsController extends AppController
             )
         );
 
-        //雰囲気
-        $atmosphere_a = $randomUser['User']['atmosphere'];
-        $atmosphere_b = $anata['User']['atmosphere'];
+        //飲む量
+        $amount_a = $randomUser['User']['amount'];
+        $amount_b = $anata['User']['amount'];
 
-        $this->set(compact('bar_a','bar_b','youbi_a','youbi_b','age_a','age_b','time_a','time_b','atmosphere_a','atmosphere_b'));
+        $this->set(compact('bar_a','bar_b','youbi_a','youbi_b','age_a','age_b','time_a','time_b','amount_a','amount_b'));
 
     }
 
@@ -208,9 +206,8 @@ class MeetingsController extends AppController
         $meeting_date = $meeting_info['Meeting']['date'];
         $meeting_time_hour = $meeting_info['Meeting']['time']['hour'];
         $meeting_time_min = $meeting_info['Meeting']['time']['min'];
-        $meetingspot = $meeting_info['Meeting']['meetingspot'];
 
-        $title = "【QuickDateTokyo】デートのお誘い/".$meeting_date."/".$partner_nickname;
+        $title = "【ぼっち飲みTokyo】デートのお誘い/".$meeting_date."/".$partner_nickname;
 
         $email = new CakeEmail('smtp');
         $email->to($randomUser['User']['username']);
@@ -218,7 +215,7 @@ class MeetingsController extends AppController
 
         $email->emailFormat( 'text');
         $email->template( 'template');
-        $email->viewVars( compact( 
+        $email->viewVars(compact( 
                 'user_nickname', 
                 'partner_nickname',
                 'partner_age', 
@@ -240,8 +237,7 @@ class MeetingsController extends AppController
                 'meeting_id',
                 'meeting_date',
                 'meeting_time_hour',
-                'meeting_time_min', 
-                'meetingspot'
+                'meeting_time_min'
                 ));
         $email->send();
 
@@ -450,13 +446,12 @@ class MeetingsController extends AppController
 
         $meeting_date = $date_data['Meeting']['date'];
         $meeting_time = $date_data['Meeting']['time'];//date('YMD', strtotime($date_data['Meeting']['time']))
-        $meetingspot = $date_data['Meeting']['meetingspot'];
         $meetingresult = $date_data['Meeting']['result'];
 
         if($date_data['Meeting']['result'] == 2) {
-            $title = "【【QuickDateTokyo】デートOKのご連絡/".$meeting_date."/".$partner_nickname;
+            $title = "【【ぼっち飲みTokyo】デートOKのご連絡/".$meeting_date."/".$partner_nickname;
         } elseif ($date_data['Meeting']['result'] == 3) {
-            $title = "【【QuickDateTokyo】デートキャンセルのご連絡/".$meeting_date."/".$partner_nickname;
+            $title = "【【ぼっち飲みTokyo】デートキャンセルのご連絡/".$meeting_date."/".$partner_nickname;
         }
 
         if($date_data['Meeting']['result'] == 2) {
@@ -489,7 +484,6 @@ class MeetingsController extends AppController
                     'meeting_id',
                     'meeting_date',
                     'meeting_time',
-                    'meetingspot',
                     'meetingresult'
                     ));
             $email->send();
@@ -524,7 +518,6 @@ class MeetingsController extends AppController
                     'meeting_id',
                     'meeting_date',
                     'meeting_time',
-                    'meetingspot',
                     'meetingresult'
                     ));
             $email->send(); 
@@ -983,6 +976,10 @@ class MeetingsController extends AppController
 
     }
 
+    public function title() {
+
+
+    }    
 
 
 

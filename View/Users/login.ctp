@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>QuickDate</title>
+  <title>ぼっち飲み</title>
 
   <!-- Bootstrap core CSS -->
   <?=$this->Html->css('bootstrap.css')?>
@@ -25,19 +25,14 @@
   <div id="top" class="header">
     <!-- vert-text -->
     <div class="vert-text">
-      <h1>QuickDate</h1>
+      <h1>ぼっち飲み</h1>
       <h3>
-        <em>「誰かと会いたい」</em>
-        <em>そんな夜に</em></h3>
+        <em>ぼっち同士で飲みに行こう！</em></h3>
         
     
       <!-- Login Form -->
         <div class="container">
           <form action="/gachakoi/users/login" id="UserLoginForm" method="post" class="form-signin" accept-charset="utf-8" role="form">
-
-            <div style="display:none;">
-              <input type="hidden" name="_method" value="POST"/>
-            </div>
 
             <h2 class="form-signin-heading">Sign Up</h2>
             <?php echo $this->Session->flash('success'); ?>
@@ -48,13 +43,13 @@
             <label class="checkbox">
               <input name="data[User][keep_me_logged_in]" type="checkbox" value="keep_me_logged_in"> ログインしたままにする
             </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">ぼっちとしてログイン</button>
           </form>
         </div>
 
         <div class="container">
           <div class="form-signin">
-            <a href="<?php echo $this->Html->url('/users/add'); ?>"><button class="btn btn-lg btn-success btn-block" type="submit">ユーザー登録</button></a>
+            <a href="<?php echo $this->Html->url('/users/add'); ?>"><button class="btn btn-lg btn-success btn-block" type="submit">あなたをぼっちとして登録</button></a>
           </div>
       <!-- /Login Form -->
     </div>
@@ -65,26 +60,12 @@
     </div>
     <!-- /Full Page Image Header Area -->
 
-    <!-- Intro -->
-    <div id="about" class="intro">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <h1>
-                    「明日の夜、誰かに会いたいな」</h1>
-                    <h3>そんな時、ありませんか？</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Intro -->
-
     <!-- Services -->
     <div id="services" class="services">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
-                    <h2>QuickDateのコンセプト</h2>
+                    <h2>ぼっち飲みのコンセプト</h2>
                     <hr>
                 </div>
             </div>
@@ -92,29 +73,29 @@
                 <div class="col-md-2 col-md-offset-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-rocket"></i>
-                        <h4>すぐに</h4>
-                        <p>最速ログイン後クリック２回でデートに誘えます！</p>
+                        <h4>早い</h4>
+                        <p>ログインするとそこにぼっちがいます。チェンジも出来るけど、最短クリック２回すればぼっちを飲みに誘えます。</p>
                     </div>
                 </div>
                 <div class="col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-magnet"></i>
-                        <h4>無料で</h4>
-                        <p>完全に無料です。</p>
+                        <h4>お店を選ぶ必要なし</h4>
+                        <p>面倒くさいお店選びをする必要はありません。飲み相手がユーザー登録時にお気に入りのお店を登録しているので、そこに行けばOKです。</p>
                     </div>
                 </div>
                 <div class="col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-shield"></i>
                         <h4>安全・安心</h4>
-                        <p>デートに誘われるときでも、お店を決めるのは自分。馴染みのお店だから、安心してデート出来ます。</p>
+                        <p>ぼっちは基本的にいい人なので、安心で安全です。</p>
                     </div>
                 </div>
                 <div class="col-md-2 text-center">
                     <div class="service-item">
                         <i class="service-icon fa fa-pencil"></i>
-                        <h4>偶然の出会いを</h4>
-                        <p>出会いはいつだって偶然なはす。そんな出会いを、演出します。</p>
+                        <h4>人と出会える</h4>
+                        <p>ぼっち飲みを使えば、ぼっちがぼっちと会えます。いわゆるウィンウィンです。</p>
                     </div>
                 </div>
             </div>
@@ -127,8 +108,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
-                    <h3>リリースまであと１ヶ月！新規ユーザー募集中！</h3>
-                      <a href="<?php echo $this->Html->url('/users/add'); ?>"><button class="btn btn-lg btn-success btn-block" type="submit">ユーザー登録（無料）</button></a>
+                    <h3>新規ぼっち募集中！（もちろん無料です）</h3>
+                      <a href="<?php echo $this->Html->url('/users/add'); ?>"><button class="btn btn-lg btn-success btn-block" type="submit">あなたをぼっちとして登録</button></a>
                 </div>
             </div>
         </div>

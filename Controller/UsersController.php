@@ -25,7 +25,7 @@ public function add(){
 
     $this->Paginator->settings = array(
         'conditions' => array(),
-        'limit' => 10,
+        'limit' => 4,
         'sort' => 'Bar.station'
     );
     $data = $this->Paginator->paginate('Bar');
@@ -207,6 +207,12 @@ public function profile($id = null){
     );
     $this->set(compact('data'));
 
+    $bar = $this->Bar->find('first',array(
+        'conditions' => array('Bar.id' => $this->Auth->User('bar_id')),
+        )
+    );
+    $this->set(compact('bar'));
+
 }
 
 public function my_bar($id = null) {
@@ -233,7 +239,7 @@ public function my_bar($id = null) {
             $this->Session->setFlash('バー登録を更新しました！！', 'default', array(), 'success');
                 // 2つのパスワード入力フォームを空で表示するために、配列から破棄
 
-            $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
+            $this->redirect(array('controller' => 'Users','action' => 'profile'));
 
         } else {
                 // 更新失敗
@@ -328,7 +334,7 @@ public function password($id = null) {
                 // 2つのパスワード入力フォームを空で表示するために、配列から破棄
             unset($this->request->data['User']['new_password1'], $this->request->data['User']['new_password2']);
 
-            $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
+            $this->redirect('/users/profile/'.$this->Auth->user('id'));
 
         } else {
                 // 更新失敗

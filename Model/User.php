@@ -232,7 +232,7 @@ class User extends AppModel {
             ),
         ),
 
-        'atmosphere' => array(
+        'amount' => array(
             array(
                 'rule' => 'notEmpty',
                 'message' => '必ず入力して下さい。',

@@ -24,7 +24,8 @@
             );
       ?>
 
-      <h4>行きつけるバーを選ぶ</h4>
+      <h4>①行きつけるお店</h4>
+      <h6>誰かがあなたを飲みに誘う時、ここで選択したお店に誘われます。あなたの行きつけのお店がある時は、「あなたの行きつけのバーを登録」ボタンから登録して下さい。</h6>
       <div class ="well">
 
             <div class="pagination pagination-large" style="margin-top : -20px;">
@@ -88,7 +89,8 @@
       </div><!-- /デートするお店 --> 
 
 
-      <h4>基本情報</h4>
+      <h4>②プロフィール</h4>
+      <h6>中の人のスキル不足により写真は変更出来ないので、ご注意を。はじめからあなたの１番の写真を登録することを強くお勧めします。</h6>
       <div class ="well">
 
             <div class="form-group">
@@ -118,9 +120,6 @@
 
                   </div>
             </div>
-
-
-
 
             <div class="form-group">
                   <label for="UserUsername" class="col-sm-2 control-label">メールアドレス</label>
@@ -290,24 +289,6 @@
                         ?>
                   </div>
             </div>
-            
-            <div class="form-group">
-                  <label for="UserMoyorieki" class="col-sm-2 control-label">よく行く駅（東京）</label>
-                  <div class="col-sm-5">
-                        <?php echo $this->Form->input
-                              (
-                              'User.moyorieki', 
-                              array('class' => 'form-control',
-                                    'required' => false,
-                                    'label' => false , 
-                                    'div' => false,
-                                    'placeholder' => "よく行く東京の駅を入力して下さい。",
-                                    'id' => "UserMoyorieki"
-                                    )
-                              );
-                        ?>
-                  </div>
-            </div>
 
             <div class="form-group">
                   <label for="Userlike" class="col-sm-2 control-label">好きな食べ物</label>
@@ -319,7 +300,7 @@
                                     'required' => false,
                                     'label' => false , 
                                     'div' => false,
-                                    'placeholder' => "カルボナーラ、ハンバーグなど",
+                                    'placeholder' => "唐揚げ、ステーキなど",
                                     'id' => "Userlike"
                                     )
                               );
@@ -328,17 +309,17 @@
             </div>
 
             <div class="form-group">
-                  <label for="UserDislike" class="col-sm-2 control-label">嫌いな食べ物</label>
+                  <label for="UserTopic" class="col-sm-2 control-label">話したい話題</label>
                   <div class="col-sm-5">
                         <?php echo $this->Form->input
                               (
-                              'User.dislike', 
+                              'User.topic', 
                               array('class' => 'form-control',
                                     'required' => false,
                                     'label' => false , 
                                     'div' => false,
-                                    'placeholder' => "ピーマン、セロリなど",
-                                    'id' => "UserDislike"
+                                    'placeholder' => "恋愛相談、趣味のテニスのこと、会社の愚痴、などなど",
+                                    'id' => "UserTopic"
                                     )
                               );
                         ?>
@@ -356,7 +337,7 @@
                                     'label' => false , 
                                     'div' => false,
                                     'placeholder' => "ビール、カシオレなど",
-                                    'id' => "UserDislike"
+                                    'id' => "UserTopic"
                                     )
                               );
                         ?>
@@ -364,7 +345,31 @@
             </div>
 
             <div class="form-group">
-                  <label for="UserMessage" class="col-sm-2 control-label">何かひとこと</label>
+                  <label for="UserAmount" class="col-sm-2 control-label">飲む量（自称）</label>
+                  <div class="col-sm-10">
+                        <?php echo $this->Form->input(
+                              'User.amount',
+                              array(
+                                    'type'=>'select',
+                                    'options'=>
+                                          array(
+                                                'すげー飲む'=>'すげー飲む',
+                                                'まあまあ飲む'=>'まあまあ飲む',
+                                                'ほろ酔い程度に'=>'ほろ酔い程度に',
+                                                'ソフトドリンクを・・'=>'ソフトドリンクを・・',
+                                          ),
+                                    'required' => false,
+                                    'label' => false ,
+                                    'div' => false,
+                                    'id' => "UserAmount"
+                                    )
+                              ); 
+                        ?>
+                  </div>
+            </div>
+
+            <div class="form-group">
+                  <label for="UserMessage" class="col-sm-2 control-label">飲み相手にひとこと</label>
                   <div class="col-sm-5">
                         <?php echo $this->Form->input
                               (
@@ -384,32 +389,9 @@
 
       </div>
 
-      <h4>デートの希望</h4>
+      <h4>③ぼっち飲みのタイミング</h4>
+      <h6>多分ここに登録したタイミングでぼっち飲みに誘われる確率が高くなります。</h6>
       <div class ="well">
-
-            <div class="form-group">
-                  <label for="UserAtmosphere" class="col-sm-2 control-label">デートの雰囲気</label>
-                  <div class="col-sm-10">
-                        <?php echo $this->Form->input(
-                              'User.atmosphere',
-                              array(
-                                    'type'=>'select',
-                                    'options'=>
-                                          array(
-                                                'まったり'=>'まったり',
-                                                'きっちり'=>'きっちり',
-                                                'おもしろ'=>'おもしろ',
-                                                'でれでれ'=>'でれでれ',
-                                          ),
-                                    'required' => false,
-                                    'label' => false ,
-                                    'div' => false,
-                                    'id' => "UserAtmosphere"
-                                    )
-                              ); 
-                        ?>
-                  </div>
-            </div>
 
             <div class="form-group">
                   <label for="UserKibouyoubi" class="col-sm-2 control-label">希望曜日</label>
@@ -438,7 +420,7 @@
             </div>
 
             <div class="form-group form-inline">
-                  <label for="UserKibouzikan" class="col-sm-2 control-label">待ち合わせ時間</label>
+                  <label for="UserKibouzikan" class="col-sm-2 control-label">希望待ち合わせ時間</label>
                   <div class="col-sm-10">
                               <?php
                               echo $this->form->input
@@ -460,7 +442,7 @@
             </div>
 
             <div class="form-group form-inline">
-                  <label for="UserKibouzikan_finish" class="col-sm-2 control-label">お別れの時間</label>
+                  <label for="UserKibouzikan_finish" class="col-sm-2 control-label">希望終了時間</label>
                   <div class="col-sm-10">
                               <?php
                               echo $this->form->input
@@ -485,7 +467,7 @@
        </div><!-- /wellデートの希望 -->  
             <div class="form-group">
                   <div class="col-sm-2 col-sm-offset-10">
-                        <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-success'));?>
+                        <?php echo $this->Form->submit('ぼっち飲みを始める', array('class' => 'btn btn-primary'));?>
                   </div>
             </div>
       <?php echo $this->Form->end(); ?>

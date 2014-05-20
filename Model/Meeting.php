@@ -92,12 +92,6 @@ class Meeting extends AppModel {
             )
         ),
 
-        'meetingspot' => array(
-            array(
-                'rule' => 'notEmpty',
-                'message' => '必ず入力して下さい。',
-            ),
-        ), 
     );
 
 

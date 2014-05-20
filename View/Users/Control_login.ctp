@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>QuickDate</title>
+  <title>ぼっち飲み</title>
 
   <!-- Bootstrap core CSS -->
   <?=$this->Html->css('bootstrap.css')?>
@@ -26,7 +26,7 @@
   <div id="top" class="header">
     <!-- vert-text -->
     <div class="vert-text">
-      <h1>QuickDate For Shop</h1>
+      <h1>ぼっち飲み For Shop</h1>
       <h3>
         <em>デートを</em>
         <em>ブッキング</em></h3>

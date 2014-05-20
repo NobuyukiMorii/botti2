@@ -7,7 +7,7 @@ http://localhost:8888/gachakoi/meetings/acceptance/<?php echo $meeting_id ;?><?p
 【待ち合わせ】<?php echo "\n" ?>
 	日付：<?php echo $meeting_date ;?><?php echo "\n" ?>
 	時間：<?php echo $meeting_time_hour ;?>:<?php echo $meeting_time_min ;?><?php echo "\n" ?>
-	場所：<?php echo $meetingspot ;?><?php echo "\n" ?>
+	場所：<?php echo $bar_name ;?>店内<?php echo "\n" ?>
 
 【デート相手】<?php echo "\n" ?>
 	お名前：<?php echo $partner_nickname ;?>さん<?php echo "\n" ?>
@@ -27,10 +27,10 @@ http://localhost:8888/gachakoi/meetings/acceptance/<?php echo $meeting_id ;?><?p
 きっといい人だと思います。<?php echo "\n" ?>
 <?php echo $meeting_date ;?>があなたの最高の日になるように。
 
-From QuickDateTokyo
+From ぼっち飲み
 http://localhost:8888/gachakoi/users/login
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-QuickDateTokyo
+ぼっち飲みTokyo
 （Email  xxxx@gmail.com
 （TEL）   xxx-xxxx-xxxx 

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>QuickDate for Shop</title>
+    <title>ぼっち飲み for Shop</title>
 
     <?php
       echo $this->fetch('meta');
@@ -40,7 +40,7 @@
   <body>
     <div class="container"><!-- container -->
       <div style="margin : 30px 0px 20px 0px">
-        <h1>QuickDate for Shop</h1>
+        <h1>ぼっち飲み for Shop</h1>
       </div>
 
       <!-- Jumbotron -->

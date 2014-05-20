@@ -7,7 +7,7 @@
 【待ち合わせ】<?php echo "\n" ?>
     日付：<?php echo $meeting_date ;?><?php echo "\n" ?>
     時間：<?php echo $meeting_time ;?><?php echo "\n" ?>
-    場所：<?php echo $meetingspot ;?><?php echo "\n" ?>
+    場所：<?php echo $bar_name ;?>店内<?php echo "\n" ?>
 
 【デート相手】<?php echo "\n" ?>
     お名前：<?php echo $partner_nickname ;?>さん<?php echo "\n" ?>
@@ -27,10 +27,10 @@
 この度は本当におめでとうございます！<?php echo "\n" ?>
 <?php echo $meeting_date ;?>があなたにとって最高の日になるように、心よりお祈り申し上げます。
 
-From QuickDateTokyo
+From ぼっち飲みTokyo
 http://localhost:8888/gachakoi/users/login
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-QuickDateTokyo
+ぼっち飲みTokyo
 （Email  xxxx@gmail.com
 （TEL）   xxx-xxxx-xxxx 

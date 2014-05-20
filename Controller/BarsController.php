@@ -12,10 +12,14 @@ class BarsController extends AppController
 
     public function admin_register(){
 
+        $this->layout = 'non_nav';
+
 
     }
 
 	public function admin_confirm(){
+
+        $this->layout = 'non_nav';
 
         if ($this->request->is('post')) {
 
@@ -47,6 +51,8 @@ class BarsController extends AppController
 
     public function admin_notice(){
 
+        $this->layout = 'non_nav';
+        
         $register = $this->request->data;
 
             //住所から緯度と経度を計算する

@@ -41,7 +41,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                       </button>
-                      <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="navbar-brand logo">QuickDate</a>
+                      <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="navbar-brand logo">ぼっち飲み</a>
                     </div>
                     <nav class="collapse navbar-collapse" role="navigation">
                     <form class="navbar-form navbar-left">

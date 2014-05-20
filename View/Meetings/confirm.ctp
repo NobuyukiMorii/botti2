@@ -31,9 +31,9 @@
                     <li class="list-group-item">誕生日：<?php echo h(date("n月j日", strtotime($randomUser['User']['birthday']))); ?></li>
                     <li class="list-group-item">職業：<?php echo h($randomUser['User']['work']); ?></li>
                     <li class="list-group-item">好きな食べ物：<?php echo h($randomUser['User']['like']); ?></li>
-                    <li class="list-group-item">嫌いな食べ物：<?php echo h($randomUser['User']['dislike']); ?></li>
+                    <li class="list-group-item">話題：<?php echo h($randomUser['User']['topic']); ?></li>
                     <li class="list-group-item">好きな飲み物：<?php echo h($randomUser['User']['drink']); ?></li>
-                    <li class="list-group-item">よく行く駅：<?php echo h($randomUser['User']['moyorieki']); ?></li>
+                    <li class="list-group-item">飲む量：<?php echo h($randomUser['User']['amount']); ?></li>
                   </ul>
                  <!-- /プロフィール -->                    
               </div> <!-- /col-sm-6 --> 
@@ -46,7 +46,7 @@
                   <ul class="list-group">
                   	<li class="list-group-item">日付：<?php echo h($data['Meeting']['date']); ?></li>
                   	<li class="list-group-item">時間：<?php echo h($meeting_time); ?></li>
-                    <li class="list-group-item">場所：<?php echo h($data['Meeting']['meetingspot']); ?></li>     
+                    <li class="list-group-item">場所：<?php echo h($randomBar['Bar']['name']); ?>の店内</li>     
                   </ul>
                  <!-- /待ち合わせ -->
 

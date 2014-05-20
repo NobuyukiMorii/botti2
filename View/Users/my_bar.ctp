@@ -19,20 +19,21 @@
             );
       ?>
 
-      <h4>デートするお店</h4>
-      <div class ="well">
-
-            <div class="pagination pagination-large" style="margin-top : -20px;">
-                <ul class="pagination">
-                  <?php
-                    echo $this->Paginator->prev(__('prev'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
-                    echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
-                    echo $this->Paginator->next(__('next'), array('tag' => 'li','currentClass' => 'disabled'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
-                  ?>
-                </ul>
+        <div class="row">
+            <div class ="col-sm-11">
+              <div class="pagination pagination-large">
+                  <ul class="pagination">
+                    <?php
+                      echo $this->Paginator->prev(__('prev'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+                      echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
+                      echo $this->Paginator->next(__('next'), array('tag' => 'li','currentClass' => 'disabled'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+                    ?>
+                  </ul>
+              </div>
             </div>
-                                 
-              <div class="panel panel-default" style="margin-top : -30px;"><!-- panel panel-default --> 
+        </div>
+
+              <div class="panel panel-default"><!-- panel panel-default --> 
                 <div class="panel-body"><!-- panel-body --> 
 
             <?php for ($i = 0; $i < count($data); $i++) { ?>
@@ -80,10 +81,13 @@
 
                 </div><!-- /panel-body -->
               </div><!-- panel panel-default -->
-      </div><!-- /デートするお店 --> 
-            <div class="form-group">
-                  <div class="col-sm-2 col-sm-offset-10">
-                        <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-success'));?>
-                  </div>
+
+            <div class ="col-sm-1 col-sm-offset-11">
+              <div class="form-group">
+                    <div>
+                          <?php echo $this->Form->submit('変更する', array('class' => 'btn btn-default'));?>
+                    </div>
+              </div>
             </div>
+
       <?php echo $this->Form->end(); ?>
