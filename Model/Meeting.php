@@ -25,12 +25,17 @@ class Meeting extends AppModel {
                 if (array_key_exists($model, $item)) {
 
                     if ($item[$model]['result'] == 1) {
-                        $item[$model]['resultText'] = '検討中';
+                        if ($this->_getCurrentUser() == $item[$model]['user_id']) {
+                            $item[$model]['resultText'] = 'お相手の回答待ち';
+                        } elseif ($this->_getCurrentUser() == $item[$model]['match_user']) {
+                            $item[$model]['resultText'] = 'お誘い';
+                        }
                     } elseif ($item[$model]['result'] == 2) {
                         $item[$model]['resultText'] = '成立';
                     } elseif ($item[$model]['result'] == 3)  {
                         $item[$model]['resultText'] = 'キャンセル';
                     }
+
                 }
 
                 if (array_key_exists($model, $item)) {

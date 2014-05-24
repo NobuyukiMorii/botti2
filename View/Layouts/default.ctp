@@ -1,157 +1,64 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
-        <meta charset="utf-8">
-        <title>ぼっち飲み</title>
-        <meta name="generator" content="Bootply" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <?=$this->Html->css('bootstrap.css')?>
-        <?=$this->Html->css('facebook.css')?>
-        <link rel="shortcut icon" href="/bootstrap/img/favicon.ico">
-        <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
-        <?php
-          echo $this->fetch('meta');
-          echo $this->fetch('script');
-          echo $this->fetch('css');
-        ?>
-    </head>
-    
-    <!-- HTML code from Bootply.com editor -->
-    
-    <body>
-        
-        <div class="wrapper">
-    <div class="box">
-        <div class="row row-offcanvas row-offcanvas-left">
-                      
-        
-          
-            <!-- main right col -->
-            <div class="column col-sm-12 col-xs-12" id="main">
-                
-                <!-- top nav -->
-                <div class="navbar navbar-blue navbar-static-top">  
-                    <div class="navbar-header">
-                      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle</span>
-                        <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                      </button>
-                      <a href="<?php echo $this->Html->url('/meetings/title'); ?>" class="navbar-brand logo">ぼっち飲み</a>
-                    </div>
-                    <nav class="collapse navbar-collapse" role="navigation">
-                    <form class="navbar-form navbar-left">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>私の隠れ家においで</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <?=$this->Html->css('bootstrap.css')?>
+    <?=$this->Html->css('footer.css')?>
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <?php
+      echo $this->fetch('meta');
+      echo $this->fetch('script');
+      echo $this->fetch('css');
+    ?>
+  </head>
+  <body>
 
-                    </form>
-                    <ul class="nav navbar-nav">
-                      <li>
-                        <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>"><i class="glyphicon glyphicon-home"></i> ぼっち飲み</a>
-                      </li>
-                      <li>
-                        <a href="<?php echo $this->Html->url('/meetings/user_date'); ?>"><i class="glyphicon glyphicon-home"></i> ぼっち飲みの予定</a>
-                      </li>
-                      <li>
-                        <a href="<?php echo $this->Html->url('/users/profile/'.$LoginUserId); ?>"><i class="glyphicon glyphicon-home"></i> ぼっちのプロフィール</a>
-                      </li>
-                      <li>
-                        <a href="<?php echo $this->Html->url('/meetings/userpolicy'); ?>"><i class="glyphicon glyphicon-home"></i> 利用規約</a>
-                      </li>
-                      <li>
-                        <a href="<?php echo $this->Html->url('/users/logout'); ?>"><i class="glyphicon glyphicon-home"></i> ログアウト</a>
-                      </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                    </nav>
-                </div>
-                <!-- /top nav -->
-
-                <div class="padding">
-                    <div class="full col-sm-9">
-
-                <!-- View Contents -->
-                <?php echo $this->Session->flash('success'); ?>
-                <?php echo $this->Session->flash('fail'); ?>
-                <?php echo $this->Session->flash('auth'); ?>
-                <?php echo $this->fetch('content'); ?>
-                <!-- /View Contents -->
-                        
-                      
-                    </div><!-- /col-9 -->
-                </div><!-- /padding -->
-            </div>
-            <!-- /main -->
-          
-        </div>
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<?php echo $this->Html->url('/meetings/title'); ?>">私の隠れ家においで</a>
     </div>
-</div>
-
-
-<!--post modal-->
-<div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-  <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      Update Status
-      </div>
-      <div class="modal-body">
-          <form class="form center-block">
-            <div class="form-group">
-              <textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
-            </div>
-          </form>
-      </div>
-      <div class="modal-footer">
-          <div>
-          <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
-            <ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-      </div>  
-      </div>
-  </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">誰かを誘う</a></li>
+        <li><a href="<?php echo $this->Html->url('/meetings/user_date'); ?>">飲みの予定</a></li>
+        <li><a href="<?php echo $this->Html->url('/users/profile/'.$LoginUserId); ?>">プロフィール</a></li>
+        <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店の一覧</a></li>
+        <li><a href="<?php echo $this->Html->url('/bars/admin_register'); ?>">お店を登録する</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
   </div>
 </div>
-        
-        <?=$this->Html->script('jquery-1.10.2.js')?>
 
+<div><!-- /.MainContents -->
 
-        <?=$this->Html->script('bootstrap.js')?>
+<!-- View Contents -->
+<?php echo $this->Session->flash('auth'); ?>
+<?php echo $this->fetch('content'); ?>
+<!-- /View Contents -->
 
-        
-        <!-- JavaScript jQuery code from Bootply.com editor -->
-        
-    <script type='text/javascript'>
-            
-    $(document).ready(function() {
-            
-      /* off-canvas sidebar toggle */
+  
+</div><!-- /.MainContents -->
 
-      $('[data-toggle=offcanvas]').click(function() {
-          $(this).toggleClass('visible-xs text-center');
-          $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
-          $('.row-offcanvas').toggleClass('active');
-          $('#lg-menu').toggleClass('hidden-xs').toggleClass('visible-xs');
-          $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
-          $('#btnShow').toggle();
-      });
-            
-    });
-            
-    </script>
-        
-    </body>
+</div>
+
+  <!-- script references -->
+    <?=$this->Html->script('jquery-1.10.2.js')?>
+    <?=$this->Html->script('bootstrap.js')?>
+
+  </body>
 </html>

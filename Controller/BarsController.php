@@ -12,9 +12,6 @@ class BarsController extends AppController
 
     public function admin_register(){
 
-        $this->layout = 'non_nav';
-
-
     }
 
 	public function admin_confirm(){
@@ -104,7 +101,7 @@ class BarsController extends AppController
     public function admin_list() {
         $this->Paginator->settings = array(
             'conditions' => array(),
-            'limit' => 10,
+            'limit' => 6,
             'sort' => 'Bar.station'
         );
         $data = $this->Paginator->paginate('Bar');

@@ -44,12 +44,12 @@ class MeetingsController extends AppController
         $this->Session->write('randomBar',$randomBar);
         $this->Session->write('randomUser',$randomUser);
 
+        $matiawase = date('H:i:s', strtotime($randomUser['User']['kibouzikan']));
+        $this->set('matiawase',$matiawase);
+
         $randomUser['User']['kibouzikan_finish'] =  date("H時i分", strtotime($randomUser['User']['kibouzikan_finish']));
         $randomUser['User']['kibouzikan'] =  date("H時i分", strtotime($randomUser['User']['kibouzikan']));
         $this->set(compact('randomBar','randomUser','anata'));
-
-        $matiawase = date('H:i:s', strtotime($randomUser['User']['kibouzikan']));
-        $this->set('matiawase',$matiawase);
 
         //希望曜日の一週間後の日付を算出してViewに渡す
         $target_week = $randomUser['User']['kibouyoubi'];
@@ -83,50 +83,6 @@ class MeetingsController extends AppController
             'monthNames' => false
         );
         $this->set('start_time_option',$start_time_option);
-
-        // //山手線の駅のマッチングポイント
-        // $station_a = $randomUser['User']['kiboueki'];
-        // $station_b = $anata['User']['kiboueki'];
-
-        // if ($station_a - $station_b > 15) {$dif_st_cnt = (29 - $station_a) + $station_b;}
-        // if ($station_a - $station_b < -15) {$dif_st_cnt = $station_a + (29 - $station_b);}
-        // if ($station_a - $station_b >= -15 || $station_a - $station_b <= 15 ) {$dif_st_cnt = abs($station_a - $station_b);};
-        // $mach_station_point = 30 - $dif_st_cnt;
-
-        //バーid
-        $bar_a = $randomUser['User']['bar_id'];
-        $bar_b = $anata['User']['bar_id'];
-        $this->set(compact('bar_a','bar_b'));
-
-        //曜日id
-        $youbi_a = $randomUser['User']['kibouyoubi'];
-        $youbi_b = $anata['User']['kibouyoubi'];
-
-        //年齢
-        $age_a = $randomUser['User']['age'];
-        $age_b = $anata['User']['age'];
-
-        //時間のマッチングポイント
-        $time_a = $this->User->find('all',array(
-            'conditions' => array('User.id' => $randomUser['User']['id']),
-            'fields' => array('kibouzikan'),
-            'recursive' => 0,
-            'callbacks' => false
-            )
-        );
-        $time_b = $this->User->find('all',array(
-            'conditions' => array('User.id' => $anata['User']['id']),
-            'fields' => array('kibouzikan'),
-            'recursive' => 0,
-            'callbacks' => false
-            )
-        );
-
-        //飲む量
-        $amount_a = $randomUser['User']['amount'];
-        $amount_b = $anata['User']['amount'];
-
-        $this->set(compact('bar_a','bar_b','youbi_a','youbi_b','age_a','age_b','time_a','time_b','amount_a','amount_b'));
 
     }
 
@@ -183,9 +139,9 @@ class MeetingsController extends AppController
         $randomBar = $this->Session->read('randomBar');
         $meeting_info = $this->Session->read('data');
 
-        $user_nickname = $this->Auth->user('nickname');
+        $user_name = $this->Auth->user('last_name').$this->Auth->user('first_name');
 
-        $partner_nickname = $randomUser['User']['nickname'];
+        $partner_name = $randomUser['User']['last_name'].$randomUser['User']['first_name'];
         $partner_age = $randomUser['User']['age'];
         $partner_work = $randomUser['User']['work'];
         $partner_kibouyoubi = $randomUser['User']['kibouyoubi'];
@@ -200,6 +156,7 @@ class MeetingsController extends AppController
         $bar_location = $randomBar['Bar']['location'];
         $bar_start_time = $randomBar['Bar']['start_time'];
         $bar_close_time = $randomBar['Bar']['close_time'];
+        $bar_last_order_time = $randomBar['Bar']['last_order_time'];
         $bar_price = $randomBar['Bar']['price'];
 
         $meeting_id = $this->Session->read('last_id');
@@ -207,7 +164,7 @@ class MeetingsController extends AppController
         $meeting_time_hour = $meeting_info['Meeting']['time']['hour'];
         $meeting_time_min = $meeting_info['Meeting']['time']['min'];
 
-        $title = "【ぼっち飲みTokyo】デートのお誘い/".$meeting_date."/".$partner_nickname;
+        $title = "【ぼっち飲み】飲みのお誘い/".$meeting_date."/".$partner_name;
 
         $email = new CakeEmail('smtp');
         $email->to($randomUser['User']['username']);
@@ -216,8 +173,8 @@ class MeetingsController extends AppController
         $email->emailFormat( 'text');
         $email->template( 'template');
         $email->viewVars(compact( 
-                'user_nickname', 
-                'partner_nickname',
+                'user_name', 
+                'partner_name',
                 'partner_age', 
                 'partner_work',
                 'partner_kibouyoubi',
@@ -233,6 +190,7 @@ class MeetingsController extends AppController
                 'bar_location',
                 'bar_start_time', 
                 'bar_close_time',
+                'bar_last_order_time',
                 'bar_price',
                 'meeting_id',
                 'meeting_date',
@@ -263,12 +221,12 @@ class MeetingsController extends AppController
 
         if($double_booking_count > 0) {
             $this->Session->setFlash('同日に他のデートがあります。', 'default', array(), 'fail');
-            $this->redirect('/meetings/detail/');
+            $this->redirect('/meetings/roulette/');
         }
 
         if (strtotime($this->request->data['Meeting']['date']) < strtotime(date("Y-m-d"))) {
             $this->Session->setFlash('過去の日付は選択出来ません。', 'default', array(), 'fail');
-            $this->redirect('/meetings/detail/');
+            $this->redirect('/meetings/roulette/');
         }
         
         $this->request->data["Meeting"]["user_id"] = $this->Auth->user('id');
@@ -311,7 +269,7 @@ class MeetingsController extends AppController
 
         if ($allowed_time_atlast == false) {
             $this->Session->setFlash('ラストオーダーに間に合う時間にお待ち合わせ下さい。', 'default', array(), 'fail');
-            $this->redirect('/meetings/detail/');
+            $this->redirect('/meetings/roulette/');
         }
 
         /*
@@ -343,7 +301,7 @@ class MeetingsController extends AppController
 
         if ($allowed_time_atopen == false) {
             $this->Session->setFlash('お店がまだオープンしていません。', 'default', array(), 'fail');
-            $this->redirect('/meetings/detail/');
+            $this->redirect('/meetings/roulette/');
         }
 
         /*
@@ -368,7 +326,7 @@ class MeetingsController extends AppController
             $last_id = $this->Meeting->getLastInsertID();
         } else {
             $this->Session->setFlash('入力に誤りがあります！', 'default', array(), 'fail');
-            $this->redirect('/meetings/detail/');
+            $this->redirect('/meetings/roulette/');
         }
 
         $this->Session->write('last_id',$last_id);
@@ -395,7 +353,9 @@ class MeetingsController extends AppController
             'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC'),
         );
         $data = $this->Paginator->paginate('Meeting');
+
         $this->set(compact('data'));
+
     }
 
     public function userpolicy() {
@@ -425,9 +385,9 @@ class MeetingsController extends AppController
             );
         }
 
-        $user_nickname = $this->Auth->user('nickname');
+        $user_name = $this->Auth->user('last_name').$this->Auth->user('first_name');
 
-        $partner_nickname = $partner_data['User']['nickname'];
+        $partner_name = $partner_data['User']['last_name'].$partner_data['User']['first_name'];
         $partner_age = $partner_data['User']['age'];
         $partner_work = $partner_data['User']['work'];
         $partner_kibouyoubi = $partner_data['User']['kibouyoubi'];
@@ -442,6 +402,7 @@ class MeetingsController extends AppController
         $bar_location = $date_data['Bar']['location'];
         $bar_start_time = $date_data['Bar']['start_time'];
         $bar_close_time = $date_data['Bar']['close_time'];
+        $bar_last_order_time = $date_data['Bar']['last_order_time'];
         $bar_price = $date_data['Bar']['price'];
 
         $meeting_date = $date_data['Meeting']['date'];
@@ -449,9 +410,9 @@ class MeetingsController extends AppController
         $meetingresult = $date_data['Meeting']['result'];
 
         if($date_data['Meeting']['result'] == 2) {
-            $title = "【【ぼっち飲みTokyo】デートOKのご連絡/".$meeting_date."/".$partner_nickname;
+            $title = "【【ぼっち飲み】飲みOKのご連絡/".$meeting_date."/".$partner_name;
         } elseif ($date_data['Meeting']['result'] == 3) {
-            $title = "【【ぼっち飲みTokyo】デートキャンセルのご連絡/".$meeting_date."/".$partner_nickname;
+            $title = "【【ぼっち飲み】飲みキャンセルのご連絡/".$meeting_date."/".$partner_name;
         }
 
         if($date_data['Meeting']['result'] == 2) {
@@ -463,8 +424,8 @@ class MeetingsController extends AppController
             $email->emailFormat( 'text');
             $email->template( 'template2');
             $email->viewVars( compact( 
-                    'user_nickname', 
-                    'partner_nickname',
+                    'user_name',
+                    'partner_name',
                     'partner_age', 
                     'partner_work',
                     'partner_kibouyoubi',
@@ -480,6 +441,7 @@ class MeetingsController extends AppController
                     'bar_location',
                     'bar_start_time', 
                     'bar_close_time',
+                    'bar_last_order_time',
                     'bar_price',
                     'meeting_id',
                     'meeting_date',
@@ -497,8 +459,8 @@ class MeetingsController extends AppController
             $email->emailFormat( 'text');
             $email->template( 'template3');
             $email->viewVars( compact( 
-                    'user_nickname', 
-                    'partner_nickname',
+                    'user_name',
+                    'partner_name',
                     'partner_age', 
                     'partner_work',
                     'partner_kibouyoubi',
@@ -514,6 +476,7 @@ class MeetingsController extends AppController
                     'bar_location',
                     'bar_start_time', 
                     'bar_close_time',
+                    'bar_last_order_time',
                     'bar_price',
                     'meeting_id',
                     'meeting_date',
@@ -642,7 +605,6 @@ class MeetingsController extends AppController
 
         $this->set('data',$data);
         $this->set('partner_data',$partner_data);
-
 
     }
 
@@ -978,6 +940,12 @@ class MeetingsController extends AppController
 
     public function title() {
 
+        $data = $this->Bar->find('first',array(
+            'order' => array('Bar.id'),
+            'limit' => 1
+            )
+        );
+        $this->set(compact('data'));
 
     }    
 

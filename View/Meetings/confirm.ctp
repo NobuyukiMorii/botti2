@@ -1,81 +1,51 @@
-<!-- content -->                      
-<div class="row"><!-- row --> 
-  <div class="panel panel-default"><!-- panel panel-default --> 
-    <div class="panel-body"><!-- panel-body --> 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+          <h3 class="text-center"><?php echo $randomUser['User']['last_name']; ?><?php echo $randomUser['User']['first_name']; ?>さんを飲みに誘いました。</h3>
+          <p  class="text-center">連絡をお待ち下さい。</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-10 col-md-2 col-md-offset-10 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
+            <a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">
+                <button class="btn btn-lg btn-default" type="button">もう１人誘う</button>
+            </a>       
+        </div>
+    </div>
 
-      <div class="row"><!-- row7 --> 
-    	<h2 class="featurette-heading"><?php echo $randomUser['User']['last_name']; ?><?php echo $randomUser['User']['first_name']; ?>さんをデートに誘いました。デートOKをお待ち下さい。</h2>
+    <div class="row">
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><h1 class="page-header text-left"><?php echo h($randomUser['User']['last_name']); ?><?php echo h($randomUser['User']['first_name']); ?></h1></div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"><h1 class="page-header text-left"><?php echo h($randomBar['Bar']['name']); ?></h1></div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3 col-sm-3 col-md-6 col-xs-12"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$randomUser['Image'][0]['dir']."/thumb250_".$randomUser['Image'][0]['photo_user']);?>" class="img-responsive"></div>
+      <div class="col-lg-3 col-sm-3 col-md-6 col-xs-12"><p class="text-left"><?php echo h($randomUser['User']['message']); ?></p></div>
+      <div class="col-lg-3 col-sm-3 col-md-6 col-xs-12"><a href="<?php echo $randomBar['Bar']['url']; ?>" target="_blank"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$randomBar['Image'][0]['dir']."/thumb250_".$randomBar['Image'][0]['photo_bar']);?>" class="img-responsive"></a></div>
+      <div class="col-lg-3 col-sm-3 col-md-6 col-xs-12"><p class="text-left"><?php echo h($randomBar['Bar']['description']); ?></p></div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">       
+        <dl class="dl-horizontal">
+          <dt>年齢</dt><dd><?php echo h($randomUser['User']['age']); ?>歳</dt>
+          <dt>職業</dt><dd><?php echo h($randomUser['User']['work']); ?></dt>
+          <dt>希望曜日</dt><dd><?php echo h($randomUser['User']['kibouyoubiText']); ?></dt>
+          <dt>希望時間</dt><dd><?php echo h($randomUser['User']['kibouzikan']); ?></dt>
+          <dt>希望終了時間</dt><dd><?php echo h($randomUser['User']['kibouzikan_finish']); ?></dt>
+          <dt>話題</dt><dd><?php echo h($randomUser['User']['topic']); ?></dt>
+        </dl>
       </div>
 
-      <div class="row"><!-- row3 --> 
-        <div class="col-sm-12" style="margin-top : 40px"><!-- col-sm-12 -->
-
-          <div class="col-sm-4"><!-- col-sm-4 --> 
-             <!-- PartnerImage -->
-            <div class="panel-thumbnail">
-              <img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$randomUser['Image'][0]['dir']."/thumb400_".$randomUser['Image'][0]['photo_user']);?>" class="img-responsive">
-            </div>
-            <!-- /PartnerImage -->          
-          </div> <!-- /col-sm-4 --> 
-          <div class="col-sm-8"><!-- col-sm-8 --> 
-            <div class="row"><!-- row1 --> 
-
-              <div class="col-sm-6"><!-- col-sm-6 -->
-                <!-- プロフィール -->
-                <div class="panel-heading">
-                  <h4>プロフィール</h4>
-                </div>               
-                  <ul class="list-group">
-                    <li class="list-group-item">ニックネーム：<?php echo h($randomUser['User']['nickname']); ?></li>
-                    <li class="list-group-item">年齢：<?php echo h($randomUser['User']['age']); ?>歳</li>
-                    <li class="list-group-item">誕生日：<?php echo h(date("n月j日", strtotime($randomUser['User']['birthday']))); ?></li>
-                    <li class="list-group-item">職業：<?php echo h($randomUser['User']['work']); ?></li>
-                    <li class="list-group-item">好きな食べ物：<?php echo h($randomUser['User']['like']); ?></li>
-                    <li class="list-group-item">話題：<?php echo h($randomUser['User']['topic']); ?></li>
-                    <li class="list-group-item">好きな飲み物：<?php echo h($randomUser['User']['drink']); ?></li>
-                    <li class="list-group-item">飲む量：<?php echo h($randomUser['User']['amount']); ?></li>
-                  </ul>
-                 <!-- /プロフィール -->                    
-              </div> <!-- /col-sm-6 --> 
-
-              <div class="col-sm-6"><!-- col-sm-6 --> 
-                <!-- 待ち合わせ -->
-                <div class="panel-heading">
-                  <h4>待ち合わせ</h4>
-                </div>               
-                  <ul class="list-group">
-                  	<li class="list-group-item">日付：<?php echo h($data['Meeting']['date']); ?></li>
-                  	<li class="list-group-item">時間：<?php echo h($meeting_time); ?></li>
-                    <li class="list-group-item">場所：<?php echo h($randomBar['Bar']['name']); ?>の店内</li>     
-                  </ul>
-                 <!-- /待ち合わせ -->
-
-                 <!-- お店 -->
-                <div class="panel-heading">
-                  <h4>お店</h4>
-                </div>               
-                  <ul class="list-group">
-                  	<li class="list-group-item">店名：<?php echo h($randomBar['Bar']['name']); ?></li>
-                  	<li class="list-group-item">電話番号：<?php echo h($randomBar['Bar']['telnumber']); ?></li>
-                    <li class="list-group-item">住所：<br /><?php echo h($randomBar['Bar']['location']); ?></li>     
-                  </ul>
-                 <!-- /お店 -->
-
-                  <div class="col-sm-6 col-sm-offset-6" style="margin-top : 25px"><!-- col-sm-4 --> 
-                    <span class="input-group-btn"><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="pull-right"><button class="btn btn-lg btn-primary" type="button">トップ画面に戻る</button></a></span>
-                  </div><!-- /col-sm-4 -->
-
-               </div><!-- /col-sm-6 -->
-
-            </div><!-- /row1 --> 
-
-          </div> <!-- /col-sm-8 --> 
-
-        </div><!-- col-sm-12 -->
-
-      </div><!-- row3 --> 
-
-    </div><!-- /panel-body -->
-  </div><!-- panel panel-default --> 
-</div><!-- /row -->
- <!-- content --> 
+      <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">       
+        <dl class="dl-horizontal">
+          <dt>ジャンル</dt><dd><?php echo h($randomBar['Bar']['genreText']); ?></dd>
+          <dt>電話番号</dt><dd><?php echo h($randomBar['Bar']['telnumber']); ?></dd>
+          <dt>料金</dt><dd>平均<?php echo h(number_format($randomBar['Bar']['price'])); ?>円/人</dd>
+          <dt>最寄駅</dt><dd><?php echo h($randomBar['Bar']['station']); ?></dd>
+          <dt>営業時間</dt><dd><?php echo h(date("H時i分", strtotime($randomBar['Bar']['start_time']))); ?>~<?php echo h(date("H時i分", strtotime($randomBar['Bar']['close_time']))); ?></dd>
+          <dt>LO</dt><dd><?php echo h(date("H時i分", strtotime($randomBar['Bar']['last_order_time']))); ?></dd>
+        </dl>
+      </div>
+</div>

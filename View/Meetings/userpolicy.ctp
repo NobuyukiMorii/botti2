@@ -1,6 +1,6 @@
-<div class="row" style="margin-top:5px;"><!-- row --> 
-  <div class="panel panel-default"><!-- panel panel-default --> 
-    <div class="panel-body"><!-- panel-body --> 
+<div class="container">
+ <div class="row">
+        <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
 
 <h1>ぼっち飲み利用規約</h1>
 
@@ -165,7 +165,7 @@
 
 <p>本規約の成立、効力発生、解釈にあたっては日本法を準拠法とします。また、当サービス（掲載内容や広告などを含みます）に起因または関連して当社とお客様との間で生じた紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>  
 
-    </div><!-- /panel-body -->
-  </div><!-- panel panel-default --> 
-</div><!-- /row -->
+    </div>
+  </div>
+</div>
  <!-- content --> 

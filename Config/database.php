@@ -54,7 +54,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'root',
-		'database' => 'gachakoi',
+		'database' => 'botti2',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
@@ -65,7 +65,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'root',
-		'database' => 'gachakoi',
+		'database' => 'botti2',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

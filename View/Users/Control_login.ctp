@@ -34,7 +34,7 @@
     
       <!-- Login Form -->
         <div class="container">
-          <form action="/gachakoi/users/Control_login" id="UserLoginForm" method="post" class="form-signin" accept-charset="utf-8" role="form">
+          <form action="/botti2/users/Control_login" id="UserLoginForm" method="post" class="form-signin" accept-charset="utf-8" role="form">
 
             <div style="display:none;">
               <input type="hidden" name="_method" value="POST"/>

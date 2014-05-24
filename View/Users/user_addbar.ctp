@@ -3,7 +3,7 @@
             'User',
             array(
                   'type' => 'post', 
-                  'action'=>'my_bar', 
+                  'action'=>'user_addbar', 
                   'role' => 'form',
                   'class' => 'form-horizontal text-left'
                   )
@@ -66,7 +66,9 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12"><a href="<?php echo $data[$i]['Bar']['url']; ?>" target="_blank"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Image'][0]['dir']."/thumb250_".$data[$i]['Image'][0]['photo_bar']);?>" class="img-responsive"></a></div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12"><a href="<?php echo $data[$i]['Bar']['url']; ?>" target="_blank"><img src="<?php echo $this->Html->url("/webroot/img/250.jpg");?>" class="img-responsive"></a></div>
+    <!--         <img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Image'][0]['dir']."/thumb150_".$data[$i]['Image'][0]['photo_bar']);?>" class="img-responsive"> -->
+
     <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"><p class="text-left"><?php echo h($data[$i]['Bar']['description']); ?></p></div>
 
     <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">       

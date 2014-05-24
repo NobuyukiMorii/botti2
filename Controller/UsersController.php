@@ -16,18 +16,6 @@ public function add(){
 
     $this->layout = 'non_nav';
     
-    $options_bar = $this->Bar->find('list',array(
-        'callbacks' => false,
-        'fields' => array('Bar.id','Bar.name')
-        )
-    );
-    $this->set('options_bar',$options_bar);
-
-    $this->Paginator->settings = array(
-        'conditions' => array(),
-        'limit' => 4,
-        'sort' => 'Bar.station'
-    );
     $data = $this->Paginator->paginate('Bar');
     $this->set(compact('data'));
 
@@ -39,9 +27,6 @@ public function add(){
                 $this->set("error",$this->User->validationErrors);
                 $this->render("add");
             } else {
-
-                $last_char = mb_substr($this->request->data['User']['moyorieki'],-1);
-                if($last_char != "駅") {$this->request->data['User']['moyorieki'] = $this->request->data['User']['moyorieki']."駅";}
 
                 $this->User->saveAll($this->request->data);
                 $this->Session->setFlash('ユーザー登録を完了しました。', 'default', array(), 'success');
@@ -106,7 +91,8 @@ public function login() {
 
             }
             // リダイレクト
-            return $this->redirect('/Meetings/roulette/');
+
+            return $this->redirect('/Meetings/title/');
             $this->Session->setFlash('ログインしました。','default',array(),'auth');
 
         // ログイン NG
@@ -208,7 +194,7 @@ public function profile($id = null){
     $this->set(compact('data'));
 
     $bar = $this->Bar->find('first',array(
-        'conditions' => array('Bar.id' => $this->Auth->User('bar_id')),
+        'conditions' => array('Bar.id' => $data['User']['bar_id']),
         )
     );
     $this->set(compact('bar'));
@@ -219,7 +205,7 @@ public function my_bar($id = null) {
 
     $this->Paginator->settings = array(
         'conditions' => array(),
-        'limit' => 10,
+        'limit' => 6,
         'sort' => 'Bar.station'
     );
     $data = $this->Paginator->paginate('Bar');
@@ -274,17 +260,7 @@ public function edit($id = null) {
 
     if ($this->request->is('post') || $this->request->is('put')) {
 
-            // 更新処理時
-            // User.new_password1、User.new_password2 ともに入力の場合はパスワードの更新を行う
-        if ($this->request->data['User']['new_password1'] !== '' && $this->request->data['User']['new_password2'] !== '') {
-                // User.password が存在しないので、リクエストの配列に追加
-            $this->request->data['User']['password'] = $this->request->data['User']['new_password1'];
-        }
-
         unset($this->User->validate['username']['isUnique']);
-
-        $last_char = mb_substr($this->request->data['User']['moyorieki'],-1);
-        if($last_char != "駅") {$this->request->data['User']['moyorieki'] = $this->request->data['User']['moyorieki']."駅";}
 
         if ($this->User->save($this->request->data)) {
                 // 更新成功
@@ -372,6 +348,5 @@ public function admin_barlist(){
         $this->set(compact('bar'));
 
 }
-
 
 }

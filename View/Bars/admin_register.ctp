@@ -1,3 +1,7 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
       <?php echo $this->Form->create
             (
             'Bar',
@@ -11,8 +15,8 @@
             );
       ?>
 
-      <div class ="well">
-
+      <div>
+        <p>新しく登録するお店について記入して下さい。</p>
             <div class="form-group">
                   <label for="Image0Model" class="col-sm-2 control-label">写真</label>
                   <div class="col-sm-10">
@@ -187,7 +191,7 @@
 
             <div class="form-group">
                   <label for="BarGenre" class="col-sm-2 control-label">カテゴリー</label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-2">
                         <?php echo $this->Form->input
                               (
                               'Bar.genre',
@@ -209,7 +213,8 @@
                               'required' => false,
                               'label' => false, 
                               'div' => false,
-                              'id' => "BarGenre"
+                              'id' => "BarGenre",
+                              'class' => 'form-control'
                                     )
                               );
                         ?>
@@ -218,7 +223,7 @@
 
             <div class="form-group">
                   <label for="BarStart_time" class="col-sm-2 control-label">開店時間</label>
-                  <div class="col-sm-5">
+                  <div class="col-sm-1">
                         <?php echo $this->form->input('Bar.start_time', array(
                           'label' => false,
                           'default' => date('18:00:00'),
@@ -227,7 +232,8 @@
                           'empty' => true,
                           'separator' => ':',
                           'interval' => 10,
-                          'id' => "BarStart_time"
+                          'id' => "BarStart_time",
+                          'class' => 'form-control'
                           ));
                         ?>
                   </div>
@@ -235,7 +241,7 @@
 
             <div class="form-group">
                   <label for="BarClose_time" class="col-sm-2 control-label">閉店時間</label>
-                  <div class="col-sm-5">
+                  <div class="col-sm-1">
                         <?php echo $this->form->input('Bar.close_time', array(
                           'label' => false,
                           'default' => date('23:00:00'),
@@ -244,7 +250,8 @@
                           'empty' => true,
                           'separator' => ':',
                           'interval' => 10,
-                          'id' => "BarClose_time"
+                          'id' => "BarClose_time",
+                          'class' => 'form-control'
                           ));
                         ?>
                   </div>
@@ -252,7 +259,7 @@
 
             <div class="form-group">
                   <label for="BarLast_order_time" class="col-sm-2 control-label">ラストオーダー</label>
-                  <div class="col-sm-5">
+                  <div class="col-sm-1">
                         <?php echo $this->form->input('Bar.last_order_time', array(
                           'label' => false,
                           'default' => date('23:00:00'),
@@ -261,7 +268,8 @@
                           'empty' => true,
                           'separator' => ':',
                           'interval' => 10,
-                          'id' => "BarLast_order_time"
+                          'id' => "BarLast_order_time",
+                          'class' => 'form-control'
                           ));
                         ?>
                   </div>
@@ -291,22 +299,13 @@
              <!-- content -->
        </div><!-- /wellデートの希望 -->  
             <div class="form-group">
-                  <div class="col-sm-2 col-sm-offset-10">
-                        <?php echo $this->Form->submit('ぼっち飲みを始める', array('class' => 'btn btn-primary'));?>
+                  <div class="col-sm-2 col-sm-offset-6">
+                        <?php echo $this->Form->submit('登録する', array('class' => 'btn btn-lg btn-default'));?>
                   </div>
             </div>
       <?php echo $this->Form->end(); ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
+</div>
+</div>

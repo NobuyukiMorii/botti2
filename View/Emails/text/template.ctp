@@ -1,16 +1,15 @@
-こんにちは<?php echo $partner_nickname ;?>さん！<?php echo $user_nickname ;?>さんからデートのお誘いです！<?php echo "\n" ?>
-お店は<?php echo $user_nickname ;?>さんが好きな<?php echo $partner_genre ;?>だよ！<?php echo "\n" ?>
-デートOKなら、このメールのリンクをクリックしてね！<?php echo "\n" ?>
+こんにちは<?php echo $partner_name ;?>さん！<?php echo $user_name ;?>さんから飲みのお誘いです！<?php echo "\n" ?>
+詳細は以下URLにアクセスして、OKボタンかキャンセルボタンを押して下さい！<?php echo "\n" ?>
 
-http://localhost:8888/gachakoi/meetings/acceptance/<?php echo $meeting_id ;?><?php echo "\n" ?>
+http://localhost:8888/botti2/meetings/acceptance/<?php echo $meeting_id ;?><?php echo "\n" ?>
 
 【待ち合わせ】<?php echo "\n" ?>
 	日付：<?php echo $meeting_date ;?><?php echo "\n" ?>
 	時間：<?php echo $meeting_time_hour ;?>:<?php echo $meeting_time_min ;?><?php echo "\n" ?>
 	場所：<?php echo $bar_name ;?>店内<?php echo "\n" ?>
 
-【デート相手】<?php echo "\n" ?>
-	お名前：<?php echo $partner_nickname ;?>さん<?php echo "\n" ?>
+【飲み相手】<?php echo "\n" ?>
+	お名前：<?php echo $partner_name ;?>さん<?php echo "\n" ?>
 	年齢：<?php echo $partner_age ;?>才<?php echo "\n" ?>
 	お仕事：<?php echo $partner_work ;?><?php echo "\n" ?>
 
@@ -24,13 +23,8 @@ http://localhost:8888/gachakoi/meetings/acceptance/<?php echo $meeting_id ;?><?p
 	URL：
 	<?php echo $bar_url ;?><?php echo "\n" ?>
 
-きっといい人だと思います。<?php echo "\n" ?>
-<?php echo $meeting_date ;?>があなたの最高の日になるように。
-
 From ぼっち飲み
-http://localhost:8888/gachakoi/users/login
+http://localhost:8888/botti2/users/login
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-ぼっち飲みTokyo
-（Email  xxxx@gmail.com
-（TEL）   xxx-xxxx-xxxx 
+ぼっち飲み

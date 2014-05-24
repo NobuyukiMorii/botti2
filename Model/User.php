@@ -176,20 +176,26 @@ class User extends AppModel {
             )
         ),
 
-        'nickname' => array(
+        'first_name' => array(
             array(
                 'rule' => 'notEmpty',
                 'message' => 'ニックネームは必ず入力して下さい。'
             ),
             array(
-                'rule' => array('maxLength', 30),
-                'message' => '30文字以内で入力して下さい。'
+                'rule' => array('maxLength', 15),
+                'message' => '15文字以内で入力して下さい。'
             )
         ),
 
-        'telnumber' => array(
-                'rule'=>array('custom','/\d{2,4}-\d{2,4}-\d{4}/'),
-                'message'=>'電話番号を正確に入力してください。'
+        'last_name' => array(
+            array(
+                'rule' => 'notEmpty',
+                'message' => 'ニックネームは必ず入力して下さい。'
+            ),
+            array(
+                'rule' => array('maxLength', 15),
+                'message' => '15文字以内で入力して下さい。'
+            )
         ),
 
         'gender' => array(
@@ -225,20 +231,6 @@ class User extends AppModel {
             ),
         ),
 
-        'moyorieki' => array(
-            array(
-                'rule' => 'notEmpty',
-                'message' => '必ず入力して下さい。',
-            ),
-        ),
-
-        'amount' => array(
-            array(
-                'rule' => 'notEmpty',
-                'message' => '必ず入力して下さい。',
-            ),
-        ),
-
         'kibouyoubi' => array(
                 'rule' => 'notEmpty',
                 //'allowEmpty' => false
@@ -259,12 +251,24 @@ class User extends AppModel {
 
         'message' => array(
             array(
-                'rule' => array('maxLength', 150),
-                'message' => '「50文字以内で入力して下さい。',
+                'rule' => array('maxLength', 130),
+                'message' => '「130文字以内で入力して下さい。',
             )
         ),
 
-
+        'topic' => array(
+            array(
+                'rule' => array('maxLength', 10),
+                'message' => '「10文字以内で入力して下さい。',
+            )
+        ),
+        'bar_id' => array(
+            array(
+                'rule' => 'notEmpty',
+                //'allowEmpty' => false
+                'message' => 'お店は必ず入力して下さい。',  
+            )
+        ),
 
     );
 

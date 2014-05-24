@@ -1,65 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-
-    <title>ぼっち飲み</title>
-
+    <title>私の隠れ家においで</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <?=$this->Html->css('bootstrap.css')?>
+    <?=$this->Html->css('footer.css')?>
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <?php
       echo $this->fetch('meta');
       echo $this->fetch('script');
       echo $this->fetch('css');
     ?>
-
-    <!-- Bootstrap core CSS -->
-    <?=$this->Html->css('bootstrap.css')?>
-
-    <!-- Custom styles for this template -->
-    <?=$this->Html->css('justified-nav.css')?>
-
-    <!-- Original for this template -->
-    <?=$this->Html->css('style.css')?>
-
-    <!-- Original for this template -->
-    <?=$this->Html->css('one-page-wonder.css')?>
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
-    <div class="container"><!-- container -->
-      <div style="margin : 30px 0px 20px 0px">
-        <h1><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">ぼっち飲み</a></h1>
-      </div>
 
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-        <?php echo $this->Session->flash('success'); ?>
-        <?php echo $this->Session->flash('fail'); ?>
-        <?php echo $this->Session->flash('auth'); ?>
-        
-        <?php echo $this->fetch('content'); ?>
-      </div>
-      <!-- /Jumbotron -->
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<?php echo $this->Html->url('/meetings/title'); ?>">私の隠れ家においで</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">誰かを誘う</a></li>
+        <li><a href="<?php echo $this->Html->url('/meetings/user_date'); ?>">飲みの予定</a></li>
+        <li><a href="<?php echo $this->Html->url('/users/profile/'.$LoginUserId); ?>">プロフィール</a></li>
+        <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店の一覧</a></li>
+        <li><a href="<?php echo $this->Html->url('/bars/admin_register'); ?>">お店を登録する</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
 
-    </div> <!-- /container -->
+<div><!-- /.MainContents -->
 
+<!-- View Contents -->
+<?php echo $this->Session->flash('auth'); ?>
+<?php echo $this->fetch('content'); ?>
+<!-- /View Contents -->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
+  
+</div><!-- /.MainContents -->
+
+</div>
+
+  <!-- script references -->
     <?=$this->Html->script('jquery-1.10.2.js')?>
     <?=$this->Html->script('bootstrap.js')?>
-    <!-- Placed at the end of the document so the pages load faster -->
+
   </body>
 </html>

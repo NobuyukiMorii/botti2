@@ -31,41 +31,6 @@
               </div>
 
               <div class="col-sm-12">
-        <!-- フォーム -->     
-          <div class ="well my-inline form-inline">
-            <div>
-              <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
-              <label>日付</label>
-              <div class = "form-group">
-                <?php echo $this->Datepicker->datepicker('Meeting.date', array(
-                  'label' => false,
-                  'type' => 'text',
-                  'default' => date('Y/m/d', strtotime($NextWeekDay)),
-                  'empty' => true,
-                  'maxYear' => date('Y'),
-                  'inline' => true
-                  ));
-                  ?>
-                </div>
-                <br />
-                <label>時間</label>
-                <div class = "form-group">
-                  <?
-                  echo $this->form->input('Meeting.time', array(
-                    'label' => false,
-                    'default' => $matiawase,
-                    'timeFormat' => '24',
-                    'dateFormat' => 'H:i:s',
-                    'empty' => true,
-                    'separator' => ':',
-                    'interval' => 30
-                    ));
-                    ?>
-                  </div>
-
-                </div>
-
-
                 <div>
                   <h4 class="text-left text-info";>
                     <h6><?php echo $randomUser['User']['nickname']; ?>さんは<?php echo $randomUser['User']['kibouyoubiText']; ?>の<?php echo h(date("H時i分", strtotime($randomUser['User']['kibouzikan']))); ?>をご希望です。</h6>
@@ -73,16 +38,6 @@
                   </h4>
 
                 </div>
-
-                  <div class="text-right" style="margin-top : 10px">
-                    <?php echo $this->Form->submit('飲みに誘う', array('class' => 'btn btn-lg btn-primary'));?>
-                  </div>
-
-                  <?php echo $this->Form->end();?>
-                </form>
-
-              </div>
-              <!-- /フォーム -->
               </div>
 
               </div> <!-- /col-sm-6 --> 
@@ -146,5 +101,66 @@
  <!-- content --> 
 
 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"><div class="well"><p>12 wide</p></div></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-4 col-xs-offset-0"><div class="well"><p>4 cols</p></div></div>
+        <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-4 col-xs-offset-0"><div class="well"><p>4 cols</p></div></div>
+        <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-4 col-xs-offset-0"><div class="well"><p>4 cols</p></div></div>
+    </div>
+    <div class="row">
+      <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'enctype' => 'multipart/form-data', 'role' => 'form'));?>
+        <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
+              <div class="text-left">
+                <?php echo $this->Form->submit('飲みに誘う', array('class' => 'btn btn-lg btn-default'));?>
+              </div>         
+        </div>
 
+        <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">        <!-- フォーム -->     
+          
+            <div>
+              
+              <div class = "form-group">
+                <?php echo $this->Datepicker->datepicker('Meeting.date', array(
+                  'label' => false,
+                  'type' => 'text',
+                  'default' => date('Y/m/d', strtotime($NextWeekDay)),
+                  'empty' => true,
+                  'maxYear' => date('Y'),
+                  'inline' => true
+                  ));
+                  ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
+
+                <div class = "form-group">
+                  <?
+                  echo $this->form->input('Meeting.time', array(
+                    'label' => false,
+                    'default' => $matiawase,
+                    'timeFormat' => '24',
+                    'dateFormat' => 'H:i:s',
+                    'empty' => true,
+                    'separator' => ':',
+                    'interval' => 30
+                    ));
+                    ?>
+                  </div>
+
+        </div>
+        </form>
+        <?php echo $this->Form->end();?><!-- /フォーム --> 
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-3 col-xs-offset-0"><div class="well"><p>3 md cols</p></div></div>
+        <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-3 col-xs-offset-0"><div class="well"><p>3 md cols</p></div></div>
+        <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-3 col-xs-offset-0"><div class="well"><p>3 md cols</p></div></div>
+        <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-3 col-xs-offset-0"><div class="well"><p>3 md cols</p></div></div>
+    </div>
+</div>
 
