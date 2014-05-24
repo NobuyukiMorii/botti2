@@ -60,8 +60,8 @@
 <div class="container">
   <!-- セッションフラッシュここから -->
   <div class="row">
-    <div class="col-lg-3 col-lg-offset-9 col-md-4 col-md-offset-3 col-sm-9 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
-      <?php echo $this->Session->flash('fail'); ?>
+    <div class="col-lg-3 col-lg-offset-9 col-md-3 col-md-offset-9 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
+      <p class="text-danger"><?php echo $this->Session->flash('fail'); ?></p>
     </div>
   </div>
   <!-- セッションフラッシュここまで -->

@@ -204,6 +204,10 @@ class MeetingsController extends AppController
 
     public function confirm(){
 
+        if (is_array($this->request->data['Meeting']['date'])) {
+            $this->request->data['Meeting']['date'] = implode("/",$this->request->data['Meeting']['date']);
+        }
+
         $double_booking_count = $this->Meeting->find('count',
             array(
             'conditions' => 
@@ -222,10 +226,6 @@ class MeetingsController extends AppController
         if($double_booking_count > 0) {
             $this->Session->setFlash('同日に他のデートがあります。', 'default', array(), 'fail');
             $this->redirect('/meetings/roulette/');
-        }
-
-        if (is_array($this->request->data['Meeting']['date'])) {
-            $this->request->data['Meeting']['date'] = implode("/",$this->request->data['Meeting']['date']);
         }
 
         if (strtotime($this->request->data['Meeting']['date']) < strtotime(date("Y-m-d"))) {
@@ -316,9 +316,6 @@ class MeetingsController extends AppController
         $this->set('randomUser',$randomUser);
         $this->request->data["Meeting"]["match_user"] = $randomUser['User']['id'];   
 
-        $total_match_point = $this->Session->read('total_match_point');
-        $this->request->data["Meeting"]["total_match_point"] = $total_match_point;
-
         $this->request->data["Meeting"]["result"] = 1;
 
         $this->Session->write('data',$this->request->data);
@@ -353,7 +350,7 @@ class MeetingsController extends AppController
                 ),
                 'Meeting.date >=' => date("Y-m-d")
             ),
-            'limit' => 10,
+            'limit' => 7,
             'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC'),
         );
         $data = $this->Paginator->paginate('Meeting');

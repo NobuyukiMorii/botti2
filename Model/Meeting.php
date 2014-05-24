@@ -26,7 +26,7 @@ class Meeting extends AppModel {
 
                     if ($item[$model]['result'] == 1) {
                         if ($this->_getCurrentUser() == $item[$model]['user_id']) {
-                            $item[$model]['resultText'] = 'お相手の回答待ち';
+                            $item[$model]['resultText'] = '回答待ち';
                         } elseif ($this->_getCurrentUser() == $item[$model]['match_user']) {
                             $item[$model]['resultText'] = 'お誘い';
                         }

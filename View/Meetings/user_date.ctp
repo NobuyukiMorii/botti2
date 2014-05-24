@@ -13,16 +13,26 @@
 <?php for ($i = 0; $i < count($data); $i++) { ?>
 <div class="container">
   <div class="row">
-    <div class="col-lg-12  col-md-12 hidden-sm hidden-xs">
+    <div class="col-lg-8 col-md-12 hidden-sm hidden-xs">
       <h3>
        <span class="label label-default"><?php echo h($i+1); ?></span><?php echo h($data[$i]['Meeting']['date']); ?> <?php echo h($data[$i]['Meeting']['time']); ?>
        （<?php echo h($data[$i]['Meeting']['date_partner']['User']['last_name']); ?><?php echo h($data[$i]['Meeting']['date_partner']['User']['first_name']); ?> × <?php echo h($data[$i]['Bar']['name']); ?>）
-          <a href="<?php echo $this->Html->url("/Meetings/acceptance/".$data[$i]['Meeting']['id']); ?>">
-            <button class="btn btn-lg btn-default" type="button">
-              <?php echo h($data[$i]['Meeting']['resultText']); ?>
-            </button>
-          </a>
       </h3>
+    </div>
+    <div class="col-lg-4  col-md-12 hidden-sm hidden-xs">
+      <a href="<?php echo $this->Html->url("/Meetings/acceptance/".$data[$i]['Meeting']['id']); ?>">
+        <?php
+        if($data[$i]['Meeting']['result'] == 1){
+          echo '<button class="btn btn-lg btn-default" type="button">';
+        } elseif ($data[$i]['Meeting']['result'] == 2){
+          echo '<button class="btn btn-lg btn-primary" type="button">';
+        } elseif ($data[$i]['Meeting']['result'] == 3){
+          echo '<button class="btn btn-lg btn-warning" type="button">';
+        }
+        ;?>
+          <?php echo h($data[$i]['Meeting']['resultText']); ?>
+        </button>
+      </a>
     </div>
   </div>
 
@@ -46,7 +56,15 @@
     <div class="hidden-lg hidden-md col-sm-12  col-xs-12">
       <h5>
         <a href="<?php echo $this->Html->url("/Meetings/acceptance/".$data[$i]['Meeting']['id']); ?>">
-            <button class="btn btn-sm btn-default" type="button">
+        <?php
+        if($data[$i]['Meeting']['result'] == 1){
+          echo '<button class="btn btn-sm btn-default" type="button">';
+        } elseif ($data[$i]['Meeting']['result'] == 2){
+          echo '<button class="btn btn-sm btn-primary" type="button">';
+        } elseif ($data[$i]['Meeting']['result'] == 3){
+          echo '<button class="btn btn-sm btn-warning" type="button">';
+        }
+        ;?>
               <?php echo h($data[$i]['Meeting']['resultText']); ?>
             </button>
           </a>
