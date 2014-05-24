@@ -1,12 +1,13 @@
 <?php
 class Attachment extends AppModel {
 
+    public $uses  = array('User','Bar','Attachment','Meeting');
+
     public $actsAs = array(
         'Upload.Upload' => array(
             'photo_user' => array(
                 'thumbnailSizes' => array(
-                    'thumb150' => '150x150',
-                    'thumb80' => '80x80',
+                    'thumb250' => '250x250',                  
                 ),
                 'thumbnailMethod' => 'php',
                 'fields' => array('dir' => 'dir', 'type' => 'type', 'size' => 'size'),
@@ -16,7 +17,7 @@ class Attachment extends AppModel {
             ),
             'photo_bar' => array(
                 'thumbnailSizes' => array(
-                    'thumb' => '100x100'
+                    'thumb250' => '250x250',      
                 ),
                 'thumbnailMethod' => 'php',
                 'fields' => array('dir' => 'dir', 'type' => 'type', 'size' => 'size'),

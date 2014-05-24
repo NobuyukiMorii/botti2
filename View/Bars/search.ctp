@@ -1,6 +1,5 @@
 <form  action="<?php echo $this->Html->url("/bars/result");?>" method="post" >
 
-    <h3>検索画面</h3>
     <table>
     <tr>
         <th>店名</th>

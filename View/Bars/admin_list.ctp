@@ -1,29 +1,44 @@
-<h1>お店情報一覧</h1>
-    <div class="table-responsive">
-    <table class = "table table-striped table-bordered table-condensed table-hover">
-    <tr>
-        <th>写真</th>
-        <th>店名</th>
-        <th>ジャンル</th>
-        <th>料金</th>
-        <th>紹介文</th>
-        <th>電話番号</th>
-        <th>最寄駅</th>
-        <th>最寄口</th>
-        <th>住所</th>
-    </tr>
+<hr>
 <?php for ($i = 0; $i < count($data); $i++) { ?>
-    <tr>
-        <td><a href="<?php echo h($data[$i]['Bar']['url']);?>"><img src="<?php echo $this->Html->url("/bars/image/".$data[$i]['Bar']['id']);?>", width = '100', height = '100' , alt ='BarImage'></a></td>
-        <td width="180"><a href="<?php echo h($data[$i]['Bar']['url']);?>"><?php echo h($data[$i]['Bar']['name']); ?></a></td>
-        <td width="100"><?php echo h($data[$i]['Bar']['genreText']); ?></td>
-        <td width="100"><?php echo h($data[$i]['Bar']['price']); ?></td>
-        <td width="300"><?php echo h($data[$i]['Bar']['description']);?></td>
-        <td width="400"><?php echo h($data[$i]['Bar']['telnumber']);?></td>
-        <td width="300"><?php echo h($data[$i]['Bar']['stationText']); ?></td>
-        <td width="200"><?php echo h($data[$i]['Bar']['gate']); ?></td>
-        <td width="400"><?php echo h($data[$i]['Bar']['location']);?></td>
-    </tr>
+<div class="container">
+
+  <!-- ここからメイン右 バー-->
+  <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
+    <!-- ここから名前 -->
+    <div class="row">
+      <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <h3 class="text-left">
+          <?php echo h($data[$i]['Bar']['name']); ?><small>（<?php echo h($data[$i]['Bar']['station']); ?>）</small>
+        </h3>
+      </div>
+
+    </div>
+    <!-- ここまで名前 -->
+    <!-- ここからメッセージ -->
+    <div class="row">
+      <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <h6>
+          <?php echo h($data[$i]['Bar']['genreText']); ?>、<?php echo h($data[$i]['Bar']['telnumber']); ?>、平均<?php echo h(number_format($data[$i]['Bar']['price'])); ?>円/人、<?php echo h(date("H時i分", strtotime($data[$i]['Bar']['start_time']))); ?>~<?php echo h(date("H時i分", strtotime($data[$i]['Bar']['close_time']))); ?>（LO:<?php echo h(date("H時i分", strtotime($data[$i]['Bar']['last_order_time']))); ?>）
+        </h6>
+      </div>
+    </div>
+    <!-- ここまでメッセージ -->
+    <!-- ここから写真 -->
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <a href="<?php echo $data[$i]['Bar']['url']; ?>" target="_blank"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Image'][0]['dir']."/thumb250_".$data[$i]['Image'][0]['photo_bar']);?>" class="img-responsive"></a>
+      </div>
+
+    <!-- ここまで写真 -->
+    <!-- ここからメッセージ -->
+
+      <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <?php echo h($data[$i]['Bar']['description']); ?>
+      </div>
+    </div>
+    <!-- ここまでメッセージ -->
+  </div>
+  <!-- ここまでメイン右 バー -->
+</div>
 <?php } ?>
-    </table>
-<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn-default"><span class="glyphiconglyphicon-home"></span>ガチャする<a>
+<hr>

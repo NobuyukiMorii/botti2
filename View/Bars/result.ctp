@@ -1,4 +1,4 @@
-<h1>検索結果</h1>
+
     <div class="table-responsive">
     <table class = "table table-striped table-bordered table-condensed table-hover">
     <tr>
@@ -13,19 +13,17 @@
     </tr>
 <?php for ($i = 0; $i < count($data); $i++) { ?>
     <tr>
-        <td><a href="<?php echo h($data[$i]['Bar']['url']);?>"><img src="<?php echo $this->Html->url("/bars/image/".$data[$i]['Bar']['id']);?>", width = '100', height = '100' , alt ='BarImage'></a></td>
+        <td><a href="<?php echo h($data[$i]['Bar']['url']);?>"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data[$i]['Image'][$i]['dir']."/thumb400_".$data[$i]['Image'][$i]['photo_bar']);?>", alt ='BarImage'></a></td>
         <td width="180"><a href="<?php echo h($data[$i]['Bar']['url']);?>"><?php echo h($data[$i]['Bar']['name']); ?></a></td>
         <td width="100"><?php echo h($data[$i]['Bar']['price']); ?></td>
         <td width="300"><?php echo h($data[$i]['Bar']['description']);?></td>
         <td width="400"><?php echo h($data[$i]['Bar']['telnumber']);?></td>
-        <td width="300"><?php echo h($data[$i]['Bar']['stationText']); ?></td>
+        <td width="300"><?php echo h($data[$i]['Bar']['station']); ?></td>
         <td width="200"><?php echo h($data[$i]['Bar']['gate']); ?></td>
         <td width="400"><?php echo h($data[$i]['Bar']['location']);?></td>
     </tr>        
 <?php } ?>
     </table>
-
-<a href="<?php echo $this->Html->url('/meetings/roulette'); ?>" class="btn btn-default"><span class="glyphiconglyphicon-home"></span>ガチャする<a>
 
 
         

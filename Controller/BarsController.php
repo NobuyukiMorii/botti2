@@ -8,20 +8,20 @@ class BarsController extends AppController
 
     // Sessionコンポーネントを使用する
 
-    public $components = array('Auth','Session');
+    public $components = array('Auth','Session','Paginator');
 
     public function admin_register(){
-
 
     }
 
     public function admin_confirm(){
 
+        $this->layout = 'non_nav';
+
         if ($this->request->is('post')) {
 
             //バリデーションチェック
             $this->Bar->set($this->request->data);
-            $this->request->data["Bar"]["image"]=file_get_contents($this-> data["Bar"]["image"]["tmp_name"]);
 
             //バリデーションエラーがあれば、admin_register画面に戻し、エラーを表示する
             if(!$this->Bar->validates()){
@@ -35,6 +35,7 @@ class BarsController extends AppController
         }
     }
 
+
     public function image2(){
         //指定したidに沿ってデータを一件検索
         $graphic = $this->Session->read('hozon');
@@ -47,12 +48,42 @@ class BarsController extends AppController
 
     public function admin_notice(){
 
-        $register = $this->Session->read('hozon');
+        $this->layout = 'non_nav';
+        
+        $register = $this->request->data;
 
-        if ($this->Bar->save($register, array( 'validate' => false))) {
-            $this->render("admin_notice");
+            //住所から緯度と経度を計算する
+        $coordinates = $this->getLatLng($register['Bar']['location']);
+        $geo_info = explode(',', $coordinates);
+        
+        $register['Bar']['latitude'] = $geo_info[0];
+        $register['Bar']['longitude'] = $geo_info[1];
+
+        $last_char = mb_substr($register['Bar']['station'],-1);
+        if($last_char != "駅") {$register['Bar']['station'] = $register['Bar']['station']."駅";}
+
+        if ($this->Bar->saveAll($register, array( 'validate' => false))) {
+            return $this->redirect('/users/add/');
         }
 
+    }
+
+    public function getLatLng($location)
+    {
+        $api_uri = 'http://maps.googleapis.com/maps/api/geocode/xml?address='.urlencode($location).'&sensor=false';
+
+        $xml = simplexml_load_file($api_uri);
+        $code = $xml->status;
+        if ($code == 'OK')
+        {
+            $lat = $xml->result->geometry->location->lat;
+            $lng = $xml->result->geometry->location->lng;
+            $coordinates = $lat. ',' . $lng;
+        } else 
+        {
+            $coordinates = false;
+        }
+        return $coordinates;
     }
 
     public function image($cid){
@@ -68,9 +99,13 @@ class BarsController extends AppController
     }
 
     public function admin_list() {
-
-        $data = $this->Bar->find('all');
-        $this->set('data', $data);
+        $this->Paginator->settings = array(
+            'conditions' => array(),
+            'limit' => 6,
+            'sort' => 'Bar.station'
+        );
+        $data = $this->Paginator->paginate('Bar');
+        $this->set(compact('data'));
     }
 
     public function search(){
@@ -89,6 +124,8 @@ class BarsController extends AppController
 
     }
 
+
+
     public $paginate = array(
         'page' => 1,
         'limit' => 5,
@@ -98,18 +135,16 @@ class BarsController extends AppController
 
     public function bar_control() {
 
-        $data = $this->Meeting->find('all',array(
-            'conditions' => array('Meeting.bar_id' => 47,'Meeting.date >=' => date("Y-m-d")),
-            'limit' =>100,
-            'order' => array('Meeting.date' => 'ASC','Meeting.time' => 'ASC')
+        $this->Paginator->settings = array(
+            'Meeting' => array(
+                'limit' => 20,
+                'order' => array('date' => 'ASC'),
+                // 'group' => array('week', 'home_team_id', 'away_team_id'),
             )
         );
 
-        $data = $this->paginate();
-        $this->set('data',$data);
-
-        $LoginUserName = $this->Auth->user('nickname');
-        $this->set('LoginUserName',$LoginUserName);
+        $data = $this->Paginator->paginate('Meeting');
+        $this->set(compact('data'));
 
     }
 

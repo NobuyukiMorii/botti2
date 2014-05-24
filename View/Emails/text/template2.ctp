@@ -1,5 +1,5 @@
-おめでとうございます！！<?php echo $partner_nickname ;?>さん！<?php echo "\n" ?>
-<?php echo $user_nickname ;?>さんがデートOKしてくれました！<?php echo "\n" ?>
+おめでとうございます！！<?php echo $partner_name ;?>さん！<?php echo "\n" ?>
+<?php echo $user_name ;?>さんが飲みをOKしてくれました！<?php echo "\n" ?>
 
 当日は絶対遅刻しないようにして下さいね！！<?php echo "\n" ?>
 待ち合わせ時間、デート相手、お店は以下の通りです。<?php echo "\n" ?>
@@ -7,10 +7,10 @@
 【待ち合わせ】<?php echo "\n" ?>
     日付：<?php echo $meeting_date ;?><?php echo "\n" ?>
     時間：<?php echo $meeting_time ;?><?php echo "\n" ?>
-    場所：<?php echo $meetingspot ;?><?php echo "\n" ?>
+    場所：<?php echo $bar_name ;?>店内<?php echo "\n" ?>
 
 【デート相手】<?php echo "\n" ?>
-    お名前：<?php echo $partner_nickname ;?>さん<?php echo "\n" ?>
+    お名前：<?php echo $partner_name ;?>さん<?php echo "\n" ?>
     年齢：<?php echo $partner_age ;?>才<?php echo "\n" ?>
     お仕事：<?php echo $partner_work ;?><?php echo "\n" ?>
 
@@ -25,12 +25,10 @@
     <?php echo $bar_url ;?><?php echo "\n" ?>
 
 この度は本当におめでとうございます！<?php echo "\n" ?>
-<?php echo $meeting_date ;?>があなたにとって最高の日になるように、心よりお祈り申し上げます。
+<?php echo $meeting_date ;?>の飲みが凄く楽しいものであるよう、心よりお祈り申し上げます。
 
-From DateBookTokyo
-http://localhost:8888/gachakoi/users/login
+From ぼっち飲みTokyo
+http://localhost:8888/botti2/users/login
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-DateBookTokyo
-（Email  xxxx@gmail.com
-（TEL）   xxx-xxxx-xxxx 
+ぼっち飲み

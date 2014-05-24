@@ -1,71 +1,102 @@
-<?php var_dump($data['Meeting']['time']); ?>
-	    <div class="container">
+<?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form','class'=>'form-inline'));?>
+<div class="container">
 
-	    	<div class="row" style="margin-top:20px;">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <h1 class="text-left"><?php echo h($data['Meeting']['date']); ?>
+        <?php echo h($data['Meeting']['time']); ?><small>に<?php echo $data['Bar']['name']; ?>店内でお待ち合わせ</small>
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class =" my-inline form-inline col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form'));?>
+        <?php echo $this->Form->submit('飲みに行く', array('name' => 'OK','class' => 'btn btn-primary btn-block')); ?>
+    </div>
+    <div class =" my-inline form-inline col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <?php echo $this->Form->submit('キャンセルする', array('name' => 'NO','class' => 'btn btn-warning btn-block')); ?>
+        <?php echo $this->Form->end();?>
+    </div>
+  </div>
+  <!-- ここまでボタン -->
+</div>
+  
+<div class="container">
+  <!-- ここからメイン左 ユーザー -->
+  <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
 
-	    		<div class="col-md-5" >
+    <!-- ここから名前 -->
+    <div class="row">
+      <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <h3 class="text-left"><?php echo h($partner_data['User']['last_name']); ?>
+          <?php echo h($partner_data['User']['first_name']); ?>
+        </h3>
+      </div>
 
-	    			<h1 class="text-left"><?php echo $data['Meeting']['date']; ?>(<?php echo $youbi; ?>)</h1>
-	    			<h1 class="text-left"><?php echo $data['Meeting']['time']; ?></h1>
-	    			<h2 class="text-left"><a href = "<?php echo $data['Bar']['url'] ;?>"><?php echo $data['Bar']['name']; ?></a></h2>
-	    			<h2 class="text-left text-primary"><?php echo $data['Meeting']['meetingspot']; ?>待ち合わせ</h2>
-	    				<h4>
-	    				<dl class="text-left" style="margin-top:30px;">		
-	    					<dt>ジャンル<dt>
-	    						<dd><?php echo $data['Bar']['genreText']; ?></dd>
-	    						<dt>ご予算</dt>
-	    						<dd>１人様平均<?php echo $data['Bar']['price']; ?>円</dd>
-	    						<dt>アクセス<dt>
-	    							<dd><?php echo $data['Bar']['stationText']; ?>駅<?php echo $data['Bar']['gate']; ?>から徒歩<?php echo $data['Bar']['walk_time']; ?>分</dd>
-	    							<dt>電話番号</dt>
-	    							<dd><?php echo $data['Bar']['telnumber']; ?></dd>
-	    							<dt>住所<dt>
-	    								<dd><?php echo $data['Bar']['location']; ?></dd>
-	    							</dl>
-	    						</h4>
-	    		</div>
+    </div>
+    <!-- ここまで名前 -->
+    <!-- ここからメッセージ -->
+    <div class="row">
+      <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <h6>
+          <?php echo h($partner_data['User']['age']); ?>歳、<?php echo h($partner_data['User']['work']); ?>、<?php echo h($partner_data['User']['kibouyoubiText']); ?>の<?php echo h($partner_data['User']['kibouzikan']); ?>~<?php echo h($partner_data['User']['kibouzikan_finish']); ?>希望、<?php echo h($partner_data['User']['topic']); ?>の話がしたい。
+        </h6>
+      </div>
+    </div>
+    <!-- ここまでメッセージ -->
+    <!-- ここから写真 -->
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <img src="<?php echo $this->Html->url("/webroot/files/image/photo_user/".$partner_data['Image'][0]['dir']."/thumb250_".$partner_data['Image'][0]['photo_user']);?>" class="img-responsive">
+      </div>
 
+    <!-- ここまで写真 -->
+    <!-- ここからメッセージ -->
 
-	    		<div class="col-md-4" >
+      <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <?php echo h($partner_data['User']['message']); ?>
+      </div>
+    </div>
+    <!-- ここまでメッセージ -->
+  </div>
+  <!-- ここまでメイン左 ユーザー-->
 
+  <!-- ここからメイン右 バー-->
+  <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
 
-	    						<p class="trimming4" >
-	    							<img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2User/".$partner_data['User']['id']); ?>" alt="<?php echo h($partner_data['User']['nickname']); ?>">
-	    						</p>
+    <!-- ここから名前 -->
+    <div class="row">
+      <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <h3 class="text-left">
+          <?php echo h($data['Bar']['name']); ?>
+        </h3>
+      </div>
 
-	    						<p class="trimming4" style="margin-top:330px;">
-	    							<a href = "<?php echo $data['Bar']['url'] ;?>"><img class="img-responsive" src="<?php echo $this->Html->url("/Meetings/image2Bar/".$data['Meeting']['bar_id']); ?>" alt="<?php echo h($data['Bar']['name']); ?>"></a>
-	    						</p>
+    </div>
+    <!-- ここまで名前 -->
+    <!-- ここからメッセージ -->
+    <div class="row">
+      <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <h6>
+          <?php echo h($data['Bar']['genreText']); ?>、<?php echo h($data['Bar']['telnumber']); ?>、平均<?php echo h(number_format($data['Bar']['price'])); ?>円/人、<?php echo h($data['Bar']['station']); ?>、<?php echo h(date("H時i分", strtotime($data['Bar']['start_time']))); ?>~<?php echo h(date("H時i分", strtotime($data['Bar']['close_time']))); ?>（LO:<?php echo h(date("H時i分", strtotime($data['Bar']['last_order_time']))); ?>）
+        </h6>
+      </div>
+    </div>
+    <!-- ここまでメッセージ -->
+    <!-- ここから写真 -->
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <a href="<?php echo $data['Bar']['url']; ?>" target="_blank"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data['Bar']['Image'][0]['dir']."/thumb250_".$data['Bar']['Image'][0]['photo_bar']);?>" class="img-responsive"></a>
+      </div>
 
-	    		</div>
+    <!-- ここまで写真 -->
+    <!-- ここからメッセージ -->
 
-	    		<div class="col-md-3" >
-
-	    						<h1 class="text-left"><?php echo $data['Meeting']['total_match_point'] ;?>％  match</h1>	    						
-
-	    						<h4>
-	    							<dl class="text-left" style="margin-top:50px;">	
-	    								<dt>お名前<dt>
-	    									<dd><?php echo $partner_data['User']['nickname']; ?>さん</dd>	
-	    								<dt>年齢<dt>
-	    									<dd><?php echo $partner_data['User']['age']; ?>歳</dd>
-	    								<dt>お仕事</dt>
-	    									<dd><?php echo $partner_data['User']['workText']; ?></dd>
-	    							</dl>
-	    						</h4>
-
-
-	    						<div class ="well my-inline form-inline" style="margin-top:90px;">
-	    							<?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'acceptance','role' => 'form'));?>
-	    							<div class="boxContainer">
-	    								<?php echo $this->Form->submit('NO', array('name' => 'NO','class' => 'btn btn-warning btn-block')); ?>
-	    								<?php echo $this->Form->submit('OK', array('name' => 'OK','class' => 'btn btn-success btn-block')); ?>
-	    							</div>
-	    							<?php echo $this->Form->end();?>
-	    						</div>
-
-	    		</div>
-
-	    	</div>
-
-	   	</div>
+      <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        <?php echo h($data['Bar']['description']); ?>
+      </div>
+    </div>
+    <!-- ここまでメッセージ -->
+  </div>
+  <!-- ここまでメイン右 バー -->
+</div>
