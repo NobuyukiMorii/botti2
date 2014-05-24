@@ -5,7 +5,7 @@
                               <div class="panel panel-default">
                                 <div class="panel-thumbnail"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data['Image'][0]['dir']."/thumb250_".$data['Image'][0]['photo_bar']);?>" class="img-responsive"></div>
                                 <div class="panel-body">
-                                  <p>「ぼっち」はひとりぼっちのぼっちです。「私はぼっちじゃない！友達いるもん！」はい。そうだと思います。でも、たまに誰とも予定も合わなくて寂しくなっちゃう時とか、ふとした時にひとりぼっちになることってありますよね。そういう意味では、みんなぼっちです。「ぼっち飲み」は、飲みたいぼっち２人が、お気に入りのお店で飲むためのサービスです。</p>
+                                  <p>「私の隠れ家においで」はgittesttest。</p>
                                   <ul>
                                     <li>飲みたいけど、最近飲む友達がいない。</li>
                                     <li>親しい友達はお酒が好きじゃない</li>
