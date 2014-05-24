@@ -142,37 +142,25 @@
   <!-- ここまでメイン右 バー -->
 </div>
 
-<div class="container" style="margin-top:10px;">
+<div class="container">
   <!-- ここから日時入力 -->
     <div class="row">
       <div class="hidden-lg hidden-md col-sm-12 col-lg-offset-0 col-xs-12 col-md-offset-0"> 
         <div class="form-group">
-          <label for="MeetingDate">日付</label>
-            <?php echo $this->Form->datetime('Meeting.date', 'Y', null, array('minYear' => date("Y-m-d"),'maxYear' => date("Y-m-d H:i:s",strtotime("+1 year")),'empty' => '----','orderYear' => 'asc'));?>年
-            <?php echo $this->Form->datetime('Meeting.date', 'M', null, array('monthNames' => false,'empty' => '--'));?>月
-            <?php echo $this->Form->datetime('Meeting.date', 'D', null, array('empty' => '--'));?>日
-            <?php
-            if ($this->Form->isFieldError('Meeting.date')) {
-                echo $this->Form->error('Meeting.date');
-            }
-            ?>
-        </div>
-
-        <div class="form-group"> 
-          <label for="MeetingTime">時間</label>
-          <?
-          echo $this->form->input('Meeting.time', array(
-            'label' => false,
-            'default' => $matiawase,
-            'timeFormat' => '24',
-            'dateFormat' => 'H:i:s',
-            'empty' => true,
-            'separator' => ':',
-            'interval' => 30,
-            'inline' => true,
-            'id' => 'MeetingTime',
-            'class' => 'form-control'
-            ));
+            <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'class'=>'form-inline', 'role' => 'form'));?>
+            <?php echo $this->JpForm->datetime('Meeting.date', 'YMD', null, array('separator' => array('年', '月', '日'), 'minYear' => date("Y"), 'maxYear'=>date('Y',strtotime("+1 year")),'orderYear' => 'asc','selected' =>array(date('Y-m-d')))) ?>
+            <?
+            echo $this->form->input('Meeting.time', array(
+              'label' => false,
+              'default' => $matiawase,
+              'timeFormat' => '24',
+              'dateFormat' => 'H:i:s',
+              'empty' => false,
+              'separator' => ':',
+              'interval' => 30,
+              'inline' => true,
+              'id' => 'MeetingTime',
+              ));
             ?>
         </div>
         <div class="form-group">

@@ -224,6 +224,10 @@ class MeetingsController extends AppController
             $this->redirect('/meetings/roulette/');
         }
 
+        if (is_array($this->request->data['Meeting']['date'])) {
+            $this->request->data['Meeting']['date'] = implode("/",$this->request->data['Meeting']['date']);
+        }
+
         if (strtotime($this->request->data['Meeting']['date']) < strtotime(date("Y-m-d"))) {
             $this->Session->setFlash('過去の日付は選択出来ません。', 'default', array(), 'fail');
             $this->redirect('/meetings/roulette/');
