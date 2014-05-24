@@ -2,7 +2,7 @@
  
   <!-- ここからメイン左 ユーザー -->
   <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0"> 
-
+    <?php echo $this->Session->flash('auth'); ?>
     <!-- ここからボタン -->
     <div class="row">
       <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 chidden-sm hidden-xs"> 

@@ -264,15 +264,15 @@ public function edit($id = null) {
 
         if ($this->User->save($this->request->data)) {
                 // 更新成功
-            $this->Session->setFlash('プロフィールを更新しました！！', 'default', array(), 'success');
+            $this->Session->setFlash('プロフィールを更新しました！！', 'default', array(), 'auth');
                 // 2つのパスワード入力フォームを空で表示するために、配列から破棄
             unset($this->request->data['User']['new_password1'], $this->request->data['User']['new_password2']);
 
-            $this->redirect(array('action' => 'roulette','controller' => 'Meetings'));
+            $this->redirect(array('action' => 'profile','controller' => 'Users'));
 
         } else {
                 // 更新失敗
-            $this->Session->setFlash('プロフィールを更新に失敗しました！！', 'default', array(), 'fail');
+            $this->Session->setFlash('プロフィールを更新に失敗しました！！', 'default', array(), 'auth');
             $this->redirect('/users/edit/'.$this->Auth->user('id'));
 
         }

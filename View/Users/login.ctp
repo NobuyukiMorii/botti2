@@ -18,7 +18,7 @@
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">
-          <h1 class="text-center">Login</h1>
+          <h1 class="text-center">ログイン</h1>
       </div>
       <div class="modal-body">
           <?php echo $this->Session->flash('auth'); ?>

@@ -47,9 +47,6 @@
 <div><!-- /.MainContents -->
 
 <!-- View Contents -->
-<?php echo $this->Session->flash('auth'); ?>
-<?php echo $this->Session->flash('fail'); ?>
-<?php echo $this->Session->flash('success'); ?>
 <?php echo $this->fetch('content'); ?>
 <!-- /View Contents -->
 

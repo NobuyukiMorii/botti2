@@ -11,6 +11,7 @@
 </div>
 
 <div class="container">
+<?php echo $this->Session->flash('fail'); ?>
 <?php echo $this->Form->create('Meeting',array('type' => 'post', 'action'=>'confirm', 'class'=>'form-inline', 'role' => 'form'));?>
 
   <!-- ここから日時入力 -->

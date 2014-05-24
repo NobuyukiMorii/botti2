@@ -1,24 +1,17 @@
 <div class="container">
                          <!-- main col left --> 
-                         <div class="col-sm-5">
-                           
+                         <div class="col-sm-12">
+                            <?php echo $this->Session->flash('auth'); ?>
                               <div class="panel panel-default">
-                                <div class="panel-thumbnail"><img src="<?php echo $this->Html->url("/webroot/files/image/photo_bar/".$data['Image'][0]['dir']."/thumb250_".$data['Image'][0]['photo_bar']);?>" class="img-responsive"></div>
                                 <div class="panel-body">
                                   <p>「誰か私を飲みに誘って」は、自分のお気に入りのバーに、誰かに誘ってもらう、もしくは一緒に行ってサービスです。</p>
-                                  <ul>
-                                    <li>あのお店に行きたいけど、１人じゃ入りにくい。</li>
-                                    <li>いつもは１人で飲んでるけど、たまには誰かと飲みたい。</li>
-                                    <li>おしゃれなお店で誰かと出会いたい。</li>                                    
-                                  </ul>
-                                  <p>そんな方に是非。</p>
                                 </div>
                               </div>
                            
                           </div>
                           
                           <!-- main col right -->
-                          <div class="col-sm-7">
+                          <div class="col-sm-12">
                       
                                <div class="panel panel-default">
                                  <div class="panel-heading"> <h4>使い方</h4></div>
