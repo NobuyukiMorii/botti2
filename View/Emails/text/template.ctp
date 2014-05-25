@@ -1,7 +1,7 @@
 こんにちは<?php echo $partner_name ;?>さん！<?php echo $user_name ;?>さんから飲みのお誘いです！<?php echo "\n" ?>
 詳細は以下URLにアクセスして、OKボタンかキャンセルボタンを押して下さい！<?php echo "\n" ?>
 
-http://localhost:8888/botti2/meetings/acceptance/<?php echo $meeting_id ;?><?php echo "\n" ?>
+http://mory.weblike.jp/botti2/Meetings/acceptance/<?php echo $meeting_id ;?><?php echo "\n" ?>
 
 【待ち合わせ】<?php echo "\n" ?>
 	日付：<?php echo $meeting_date ;?><?php echo "\n" ?>
@@ -23,8 +23,5 @@ http://localhost:8888/botti2/meetings/acceptance/<?php echo $meeting_id ;?><?php
 	URL：
 	<?php echo $bar_url ;?><?php echo "\n" ?>
 
-From ぼっち飲み
-http://localhost:8888/botti2/users/login
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-ぼっち飲み
+From 僕を飲みに誘って
+http://mory.weblike.jp/botti2/users/login

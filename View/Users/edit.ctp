@@ -132,7 +132,7 @@
                                           'required' => false,
                                           'label' => false , 
                                           'div' => false,
-                                          'placeholder' => "130文字以下で入力して下さい。",
+                                          'placeholder' => "200文字以下で入力して下さい。",
                                           'id' => "UserTopic",
                                           'rows' => 5
                                           )

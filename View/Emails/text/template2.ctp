@@ -1,8 +1,7 @@
 おめでとうございます！！<?php echo $partner_name ;?>さん！<?php echo "\n" ?>
 <?php echo $user_name ;?>さんが飲みをOKしてくれました！<?php echo "\n" ?>
 
-当日は絶対遅刻しないようにして下さいね！！<?php echo "\n" ?>
-待ち合わせ時間、デート相手、お店は以下の通りです。<?php echo "\n" ?>
+http://mory.weblike.jp/botti2/Meetings/acceptance_cancel/<?php echo $meeting_id ;?><?php echo "\n" ?>
 
 【待ち合わせ】<?php echo "\n" ?>
     日付：<?php echo $meeting_date ;?><?php echo "\n" ?>
@@ -24,11 +23,7 @@
     URL：
     <?php echo $bar_url ;?><?php echo "\n" ?>
 
-この度は本当におめでとうございます！<?php echo "\n" ?>
-<?php echo $meeting_date ;?>の飲みが凄く楽しいものであるよう、心よりお祈り申し上げます。
+楽しんで来て下さいね<?php echo "\n" ?>
 
-From ぼっち飲みTokyo
-http://localhost:8888/botti2/users/login
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-ぼっち飲み
+From 僕を飲みに誘って
+http://mory.weblike.jp/botti2/users/login

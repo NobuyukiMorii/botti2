@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>誰か私を飲みに誘って</title>
+    <title>僕を飲みに誘って</title>
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <?=$this->Html->css('bootstrap.css')?>
@@ -27,11 +27,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<?php echo $this->Html->url('/meetings/title'); ?>">誰か私を飲みに誘って</a>
+      <a class="navbar-brand" href="<?php echo $this->Html->url('/meetings/title'); ?>">僕を飲みに誘って</a>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">誰かを誘う</a></li>
+        <li><a href="<?php echo $this->Html->url('/meetings/roulette'); ?>">飲みに誘う</a></li>
         <li><a href="<?php echo $this->Html->url('/meetings/user_date'); ?>">飲みの予定</a></li>
         <li><a href="<?php echo $this->Html->url('/users/profile/'.$LoginUserId); ?>">プロフィール</a></li>
         <li><a href="<?php echo $this->Html->url('/bars/admin_list'); ?>">お店の一覧</a></li>

@@ -1,7 +1,7 @@
-ごめんなさい！！<?php echo $partner_name ;?>さん。<?php echo "\n" ?>
-<?php echo $user_name ;?>さんが飲みををキャンセルしてしまいました。<?php echo "\n" ?>
+<?php echo $partner_name ;?>さん。<?php echo "\n" ?>
+残念ですが、<?php echo $user_name ;?>さんが飲みををキャンセルしてしまいました。<?php echo "\n" ?>
 
-キャンセルになった飲みの詳細は以下の通りです。<?php echo "\n" ?>
+http://mory.weblike.jp/botti2/Meetings/acceptance_wait/<?php echo $meeting_id ;?><?php echo "\n" ?>
 
 【待ち合わせ】<?php echo "\n" ?>
     日付：<?php echo $meeting_date ;?><?php echo "\n" ?>
@@ -23,8 +23,5 @@
     URL：
     <?php echo $bar_url ;?><?php echo "\n" ?>
 
-From ぼっち飲みTokyo
-http://localhost:8888/botti2/users/login
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-ぼっち飲み
+From 僕を飲みに誘って
+http://mory.weblike.jp/botti2/users/login

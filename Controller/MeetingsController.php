@@ -164,7 +164,7 @@ class MeetingsController extends AppController
         $meeting_time_hour = $meeting_info['Meeting']['time']['hour'];
         $meeting_time_min = $meeting_info['Meeting']['time']['min'];
 
-        $title = "【ぼっち飲み】飲みのお誘い/".$meeting_date."/".$partner_name;
+        $title = "【僕を飲みに誘って】飲みのお誘い/".$meeting_date."/".$partner_name;
 
         $email = new CakeEmail('smtp');
         $email->to($randomUser['User']['username']);
@@ -411,9 +411,9 @@ class MeetingsController extends AppController
         $meetingresult = $date_data['Meeting']['result'];
 
         if($date_data['Meeting']['result'] == 2) {
-            $title = "【【ぼっち飲み】飲みOKのご連絡/".$meeting_date."/".$partner_name;
+            $title = "【僕を飲みに誘って】飲みOKのご連絡/".$meeting_date."/".$partner_name;
         } elseif ($date_data['Meeting']['result'] == 3) {
-            $title = "【【ぼっち飲み】飲みキャンセルのご連絡/".$meeting_date."/".$partner_name;
+            $title = "【僕を飲みに誘って】飲みキャンセルのご連絡/".$meeting_date."/".$partner_name;
         }
 
         if($date_data['Meeting']['result'] == 2) {

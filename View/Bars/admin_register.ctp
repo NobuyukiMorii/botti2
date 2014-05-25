@@ -285,9 +285,9 @@
                                     'required' => false,
                                     'label' => false ,
                                     'div' => false,
-                                    'placeholder' => "50文字以下で入力して下さい。空欄でも大丈夫です。",
+                                    'placeholder' => "200文字以下で入力して下さい。",
                                     'id' => "BarDescription",
-                                    'rows' => 2
+                                    'rows' => 5
                                     )
                               );
                         ?>
