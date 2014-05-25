@@ -10,7 +10,7 @@ class Attachment extends AppModel {
                     'thumb250' => '250x250',                  
                 ),
                 'thumbnailMethod' => 'php',
-                'fields' => array('dir' => 'dir', 'type' => 'type', 'size' => 'size'),
+                'fields' => array('dir' => 'photo_user_dir', 'type' => 'photo_user_type', 'size' => 'photo_user_size'),
                 'mimetypes' => array('image/jpeg', 'image/gif', 'image/png'),
                 'extensions' => array('jpg', 'jpeg', 'JPG', 'JPEG', 'gif', 'GIF', 'png', 'PNG'),
                 'maxSize' => 2097152, //2MB
@@ -20,7 +20,7 @@ class Attachment extends AppModel {
                     'thumb250' => '250x250',      
                 ),
                 'thumbnailMethod' => 'php',
-                'fields' => array('dir' => 'dir', 'type' => 'type', 'size' => 'size'),
+                'fields' => array('dir' => 'photo_bar_dir', 'type' => 'photo_bar_type', 'size' => 'photo_bar_size'),
                 'mimetypes' => array('image/jpeg', 'image/gif', 'image/png'),
                 'extensions' => array('jpg', 'jpeg', 'JPG', 'JPEG', 'gif', 'GIF', 'png', 'PNG'),
                 'maxSize' => 2097152, //2MB
